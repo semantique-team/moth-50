@@ -33,7 +33,8 @@ mixed test (CS-FLEURS-READ, test-only; 0.51 h, one speaker). There is no new
 speaker available, so do not describe any result as unseen-speaker
 generalization beyond S2/S3/FLEURS; S3 informed Moth's development and is not
 pristine. Keep any newly recorded test private until the first paper is
-submitted; public external tests are used as published.
+submitted; public external tests are used as published. The frozen implementation
+is `experiments/E-002-protocol.md`.
 
 ## D5 — Size and deployment budget (confirmed 2026-11-17)
 
@@ -151,13 +152,38 @@ measurements or fixes rather than choices:
 - The vendored release validator accepts the 50,000,000-byte ceiling and the
   `moth-50` name.
 
-Proposed, not yet decided (P1–P7 in the review): activation checkpointing from
-the first base run, a staged adaptation schedule from Whisper-base, identity
-initialization of the extra blocks, Parakeet-TDT-0.6B-v3 pseudo-labelling as an
-E-006 arm, a tighter LM binary format, the evaluation-hygiene items (including
-which artifact and protocol define the E-003 reference, whether the gate fits a
-~4,000-step screen, and how many seeds MOTH-50 runs), and 25 Hz extra blocks as
-the fallback before base+4.
+Proposed, not yet decided (P1–P7 in the review): a staged adaptation schedule
+from Whisper-base, identity initialization of the extra blocks,
+Parakeet-TDT-0.6B-v3 pseudo-labelling as an E-006 arm, a tighter LM binary
+format, the evaluation-hygiene items (including which artifact and protocol
+define the E-003 reference, whether the gate fits a ~4,000-step screen, and how
+many seeds MOTH-50 runs), and 25 Hz extra blocks as the fallback before base+4.
+P1 (activation checkpointing) is accepted in D15.
+
+## D14 — Tokenizer pin (2026-11-17)
+
+The exact Moth 0.8.1 tokenizer is vendored at `data/tokenizer/moth_bpe.model`
+(14,327 B, sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`,
+1,024 pieces). The published release ships only `vocab.json`; the LM is indexed
+by these piece IDs, so the model is pinned and tested, not rebuilt. Provenance
+and attribution are in `data/tokenizer/README.md` and `NOTICE`. A new tokenizer
+is a different model and a new experiment, not a configuration change.
+
+## D15 — Memory plan for the first base run (2026-11-17)
+
+E-002 measured base+6 on the M5 Pro with real `moth-cs` mels, the pinned
+tokenizer and 200 MPS steps at the 6 × 30 s padded bucket:
+
+- no checkpointing: **13.368 GB** peak, 3.461 s/step (51.31 padded audio-s/s);
+- per-block checkpointing: **3.680 GB** peak, 4.473 s/step (40.08 padded
+  audio-s/s);
+- no non-finite losses; memory flat across the run.
+
+**Use per-block activation checkpointing from the first base run** (P1): it
+leaves >12 GB of headroom for the data pipeline and macOS at 1.29× the step
+time. Keep the 192 audio-s batch cap. Fall back to a 128 s batch or base+4 only
+if a later real run exceeds 12.5 GB; this probe did not need the fallback.
+Throughput is worst-case padded and is not the final training estimate.
 
 ## Open questions
 
@@ -171,10 +197,6 @@ the fallback before base+4.
   initialized as in Moth E-006, or copied from the last Whisper-base block?
 - Which adaptation schedule from Whisper-base (review P2): frozen-encoder warm-up
   first, and which encoder LR?
-- Does base+6 fit in 16 GB with activation checkpointing (review P1, E-002
-  probe)?
-- Where is the pinned Moth tokenizer (`moth_bpe.model`, sha256 `d6e1054e…f2fd`)
-  stored for this repository?
 - Is a later 25 Hz / conv-adapter variant worth testing once the 50 MB baseline
   exists?
 - Which NC external test set is acceptable for the paper, and how is it labelled

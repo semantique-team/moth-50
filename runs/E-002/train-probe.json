@@ -1,0 +1,75 @@
+{
+  "tool": "tools/probe_training.py",
+  "definition": "real moth-cs mels + pinned tokenizer, random-init MothSTT, bf16 autocast, fp32 CTC + AdamW, batch padded to the 30 s cap; no augmentation, no checkpoint",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "versions": {
+    "python": "3.12.12",
+    "torch": "2.14.1"
+  },
+  "device": "mps",
+  "candidate": "base+6",
+  "encoder": {
+    "width": 512,
+    "n_layers": 6,
+    "n_heads": 8,
+    "ffn_dim": 2048
+  },
+  "head_blocks": 6,
+  "params": 39259649,
+  "checkpointing": false,
+  "steps": 200,
+  "warmup": 10,
+  "batch_clips": 6,
+  "max_seconds": 30.0,
+  "padded_frames": 3000,
+  "data": {
+    "manifest": "../moth-cs-dataset/manifests/train.jsonl",
+    "manifest_sha256": "43eb2f3f6ffcec157f7caf8e254d098bd866b8979042bae5a96085f4e6ccd47a",
+    "clips_loaded": 1413,
+    "clips_skipped": 0,
+    "mean_clip_seconds": 2.447,
+    "max_clip_seconds": 5.131,
+    "padded_audio_seconds_per_step": 180.0
+  },
+  "tokenizer": {
+    "path": "data/tokenizer/moth_bpe.model",
+    "sha256": "d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd"
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "lr_head": 0.0001,
+    "lr_encoder": 1e-05,
+    "betas": [
+      0.9,
+      0.98
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0
+  },
+  "memory_gb": {
+    "first_step": {
+      "forward_gb": 12.07,
+      "backward_gb": 13.232,
+      "step_gb": 13.324
+    },
+    "max_observed": 13.368,
+    "last": 13.35
+  },
+  "timing_s": {
+    "median": 3.4614,
+    "mean": 3.5084,
+    "total": 706.24
+  },
+  "throughput": {
+    "padded_audio_s_per_s": 51.31,
+    "steps_per_s": 0.285
+  },
+  "loss": {
+    "first": 49.4362,
+    "last": 6.0992,
+    "min": 5.1881,
+    "max": 66.504,
+    "nonfinite_steps": 0
+  }
+}

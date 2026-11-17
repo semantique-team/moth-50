@@ -24,8 +24,8 @@ was evaluated and rejected. The model must remain commercially usable.
   linear CTC over the 1,024-piece BPE + E-031 LM + Silero VAD. **39.3 M acoustic
   parameters, 47.74 MB package** (measured graph size; 2.26 MB under the
   ceiling). Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.94 MB),
-  decided by E-004. Memory is the training risk: base+6 is projected at
-  12–21 GB without activation checkpointing (`docs/review-2026-11-17.md`, P1).
+  decided by E-004. Memory: E-002 measured 13.37 GB without checkpointing and
+  3.68 GB with per-block checkpointing; checkpointing is the default (D15).
 - **No 100 MB tier**; no from-scratch Conformer, transducer or AED backbone.
 - **No streaming**: encoder-only CTC, record-then-transcribe, like Moth.
 - **Data**: public CC0/CC-BY corpora, 2–5 h of new **S1** recordings, and
@@ -90,7 +90,7 @@ pinned checkout. Keep the evaluation semantics identical; that is the point of
 the vendored files. The Moth pipeline hard-codes the Whisper-tiny encoder and
 the 20 MB budget in several places; `docs/review-2026-11-17.md` §4 lists them.
 The SentencePiece tokenizer (`moth_bpe.model`, sha256 `d6e1054e…f2fd`) is not in
-the published release: pin it before training.
+the published release; it is pinned at `data/tokenizer/moth_bpe.model`.
 
 ## Layout
 
@@ -98,16 +98,21 @@ the published release: pin it before training.
 README.md                 this file
 pyproject.toml            dependencies, ruff and pytest configuration
 data/README.md            dataset pin, splits, restrictions
+data/tokenizer/           pinned Moth 1,024-piece BPE model and provenance
 docs/decisions.md         decisions and open questions
 docs/architecture-options.md  architecture analysis and planned sequence
 docs/review-2026-11-17.md evidence check, measurements and proposals
 experiments/README.md     new experiment ledger, starts at E-001
 experiments/E-001-baseline.md
+experiments/E-002-protocol.md  frozen evaluation protocol and data mixture
 runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
+runs/E-001/               Moth 0.8.1 baseline reproduction
+runs/E-002/               real 200-step MPS training probe
 tests/                    tests for tools/ and the vendored code
 tools/architecture_budget.py  parameter/size/compute estimator
 tools/probe_export.py     real INT8 export size and CPU latency (needs moth-stt)
 tools/probe_activations.py  activation memory, CPU or MPS (needs moth-stt)
+tools/probe_training.py   200-step MPS training memory/throughput probe
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0

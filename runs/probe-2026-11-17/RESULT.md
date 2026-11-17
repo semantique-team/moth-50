@@ -110,11 +110,14 @@ runs a real forward/backward/AdamW step and reports MPS driver memory.
 torch 2.14.1 (`--no-count`, one real forward/backward/AdamW step) gives
 **13.322 GB** peak driver memory without checkpointing (`mps-activations.json`)
 and **3.671 GB** with per-block checkpointing
-(`mps-activations-checkpointing.json`). Both fit the 16 GB machine; checkpointing
-is ~3.6× lower than the conservative ~6 GB projection and costs one extra
-forward pass. These are one-step, random-weight measurements: they exclude the
-data pipeline and allocator fragmentation of a multi-hour run, so E-002 still
-needs a real 200-step probe before committing to training.
+(`mps-activations-checkpointing.json`). The real 200-step E-002 probe confirms
+both maxima: **13.368 GB / 3.461 s per step** without checkpointing and
+**3.680 GB / 4.473 s per step** with it, no non-finite losses
+(`runs/E-002/RESULT.md`). Both fit the 16 GB machine; checkpointing is accepted
+from the first base run (D15). These are random-weight measurements: they
+exclude the data pipeline and allocator fragmentation of a multi-hour run, so
+the E-002 protocol required a real 200-step probe before committing to
+training; that probe is now done.
 
 ## 4. A packed LM format (review proposal P5)
 

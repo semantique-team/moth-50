@@ -181,23 +181,26 @@ which assumed an activation share that was never measured. base+6 keeps **2.6×*
 the activations of tiny+2 (9.73 vs 3.69 GB for a 6 × 30 s batch), about 80 % of
 them attention matrices: Moth's `_Block` materialises the `T × T` scores and
 keeps an fp32 softmax copy for backward. Projected onto E-028's 7.86 GB peak,
-base+6 needs **12–21 GB**: the lower end (only the activation term grows) leaves
-2–4 GB of a 16 GB machine for macOS and the data pipeline; the upper end (the
-whole peak scales) does not fit. Memory pressure already cost Moth time in
-several resumed runs (E-005, E-006, E-014, E-016), and E-004's original padded
-320 s / 64-clip batch was stopped at 16.9 GB RSS. Proposed (review P1):
+base+6 needs **12–21 GB**. E-002 has now measured it (2026-11-17) with a real
+200-step MPS run on the padded 6 × 30 s bucket, real `moth-cs` mels and the
+pinned tokenizer:
 
-- **per-block activation checkpointing from the first base run**: estimated
-  ≈1 GB of activations for base+6 (≈6 GB peak) for one extra forward pass;
+- **without checkpointing:** 13.368 GB peak, 3.461 s/step, stable over 200
+  steps, no non-finite losses;
+- **with per-block activation checkpointing:** 3.680 GB peak, 4.473 s/step.
+
+Both fit the 16 GB machine. **Checkpointing is accepted from the first base run**
+(D15): it leaves >12 GB for the data pipeline and macOS at 1.29× the step time.
+Keep the 192 audio-s batch cap; the throughput figures are worst-case padded,
+not a training-time estimate. The other P1 actions remain:
+
 - cap batches by Σ T² (or cut clips to ≤ 20 s), not only by audio-seconds;
 - check whether `scaled_dot_product_attention` on MPS avoids the fp32 copy;
-- run the E-002 probe on the worst bucket with `tools/probe_activations.py
-  --device mps --no-count`, with and without `--checkpointing`, before any
-  multi-hour run; it reports MPS driver memory after forward, backward and an
-  AdamW step, the quantity Moth logged.
+- keep the 128 s batch / base+4 fallback only if a later real run exceeds
+  12.5 GB; E-002 did not need it.
 
-If base+6 still exceeds ~12.5 GB with checkpointing, drop to batch 128 s or to
-base+4; do not fight the machine.
+Full record: `runs/E-002/RESULT.md`; protocol:
+`experiments/E-002-protocol.md`.
 
 Inference is not the main constraint, but it is closer than it looks. On ONNX
 Runtime CPU, base+6 is ≈2.7–3.0× slower than tiny+2 at the same clip length
@@ -455,11 +458,11 @@ checkout reviewed on 2026-11-17: raw MLS/LS audio was deleted after the
 2026-10-19 shard build, and the shards, checkpoints and the SentencePiece model
 `data/tokenizer/moth_bpe.model` are gitignored. The MOTH-50 data build must
 re-fetch the corpora at pinned revisions and rebuild mel shards; budget a day for
-the pipeline, not just the download. **Pin the tokenizer explicitly**: the
-published release ships only `vocab.json`, the LM is indexed by its piece IDs,
-and "keep the Moth tokenizer" (§6.1) needs the exact model with sha256
-`d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd` (Moth
-E-031/E-034/E-035 `build.json`). The recorded dataset is pinned at
+the pipeline, not just the download. **The tokenizer is pinned**: the exact model
+with sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`
+(Moth E-031/E-034/E-035 `build.json`) is vendored at
+`data/tokenizer/moth_bpe.model`; do not rebuild it. The recorded dataset is
+pinned at
 `semantique-team/moth-cs` `v1.0.0` and verified by
 `../moth-cs-dataset/scripts/verify.py`.
 
