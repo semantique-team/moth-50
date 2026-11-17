@@ -1,8 +1,9 @@
 # MOTH-50 — scaffold
 
-**Status: folder only, created 2026-11-16 as `moth-large`, renamed `MOTH-50`
-(repo `moth-50`) on 2026-11-17.** The model does not exist yet. Moth 0.8.1 is
-frozen in `../moth-stt`; this directory is the starting point for a larger
+**Status: local repository, initialized 2026-11-17 on `main`, no remote yet.**
+It was created 2026-11-16 as `moth-large` and renamed `MOTH-50` (repo
+`moth-50`) on 2026-11-17. The model does not exist yet. Moth 0.8.1 is frozen in
+`../moth-stt`; this directory is the starting point for a larger
 Italian–English code-switching speech recognizer and its own paper.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
