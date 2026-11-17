@@ -49,11 +49,19 @@ Training data must remain commercially usable:
   train-clean-100/360 (CC-BY 4.0), and the recorded moth-cs data (CC BY 4.0,
   with consent).
 - TTS augmentation with commercially permissive voices: Piper
-  `it_IT-paola-medium` (CC0), `it_IT-serena-high` (CC BY 4.0), public-domain
-  English voices such as `en_US-ljspeech-high`, or Kokoro-82M (Apache 2.0,
-  Italian voices `if_sara`/`im_nicola`). No voice cloning of S1/S2/S3.
+  `it_IT-paola-medium` (dataset CC0; fine-tuned from the `hifi_tts_92` base model,
+  trained on Hi-Fi TTS, CC BY 4.0 — attribute), `it_IT-serena-high` (CC BY 4.0;
+  trained on `committa/serena-synthetic-it-27h` by Marco Baccarani, synthetic),
+  public-domain English voices such as `en_US-ljspeech-high`, or Kokoro-82M
+  (Apache 2.0, Italian voices `if_sara`/`im_nicola`; its training data includes
+  synthetic audio from closed TTS providers). No voice cloning of S1/S2/S3.
+- Pseudo-labelling candidates: NVIDIA Parakeet-TDT-0.6B-v3 as the teacher
+  (CC-BY-4.0); VoxPopuli audio (CC0; © European Union – Source: European
+  Parliament).
 - CS-FLEURS and SwitchLingua are CC-BY-NC: evaluation only, never training.
-  Their use must be stated in the model card and paper.
+  Their use must be stated in the model card and paper. SwitchLingua's agreement
+  also forbids commercial applications without the authors' written permission.
 
 Every source and voice licence must be checked again when the data are actually
-added; this list is a plan, not a licence audit.
+added; this list is a plan, not a licence audit (the 2026-11-17 check is in
+`docs/review-2026-11-17.md` §7).

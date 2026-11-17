@@ -29,11 +29,11 @@ recompute the baseline with both definitions.
 T is reused and public; it is not a clean test for a model trained after 2026.
 Before training, freeze the evaluation protocol: T-600/T-S3 for comparability,
 FLEURS-IT/EN, a held-out **new S1 session** as a dev check, and an external
-mixed test (CS-FLEURS-READ, test-only). There is no new speaker available, so do
-not describe any result as unseen-speaker generalization beyond S2/S3/FLEURS;
-S3 informed Moth's development and is not pristine. Keep any newly recorded test
-private until the first paper is submitted; public external tests are used as
-published.
+mixed test (CS-FLEURS-READ, test-only; 0.51 h, one speaker). There is no new
+speaker available, so do not describe any result as unseen-speaker
+generalization beyond S2/S3/FLEURS; S3 informed Moth's development and is not
+pristine. Keep any newly recorded test private until the first paper is
+submitted; public external tests are used as published.
 
 ## D5 — Size and deployment budget (confirmed 2026-11-17)
 
@@ -92,9 +92,13 @@ them.
 
 **Do not clone S1/S2/S3 voices**: the dataset consent asks that the voices not
 be used to train synthetic voices. For synthetic data, use generic TTS voices
-with commercially permissive licences, such as Piper `it_IT-paola-medium` (CC0),
-`it_IT-serena-high` (CC BY 4.0), and public-domain English voices, or Kokoro-82M
-(Apache 2.0, Italian voices `if_sara`/`im_nicola`; validate quality). TTS data
+with commercially permissive licences, such as Piper `it_IT-paola-medium`
+(dataset CC0, fine-tuned from a CC BY 4.0 Hi-Fi TTS base: attribute),
+`it_IT-serena-high` (CC BY 4.0, trained on synthetic Qwen3-TTS data), and
+public-domain English voices, or Kokoro-82M (Apache 2.0, Italian voices
+`if_sara`/`im_nicola`; its training data includes synthetic audio from closed
+commercial TTS providers; validate quality). The provenance of each voice is in
+`docs/architecture-options.md` §8.2. TTS data
 is augmentation, not a substitute for real mixed speech, and synthetic voices
 never enter the test set.
 
@@ -112,8 +116,10 @@ The model must remain commercially usable. Training data must be CC0, CC-BY,
 public domain, recorded with consent, or synthetic from a commercially
 permissive TTS model/voice. No CC-BY-NC/ND training data. NC external test sets
 (CS-FLEURS, SwitchLingua) may be used for evaluation only if the model card
-states it; they must not be mixed into training. The release NOTICE must list
-every source and voice licence.
+states it; they must not be mixed into training. SwitchLingua's access agreement
+also forbids commercial applications without written permission: ask its
+authors before evaluating the commercial release on it, or report it only in the
+research paper. The release NOTICE must list every source and voice licence.
 
 ## D11 — Record-then-transcribe only (confirmed 2026-11-17)
 
