@@ -80,7 +80,7 @@ def test_unknown_package_name_is_rejected(tmp_path):
         validate_release(_release(tmp_path, name="other"))
 
 
-def test_moth20_budget_still_applies_when_explicit(tmp_path):
+def test_explicit_smaller_budget_is_enforced(tmp_path):
     root = _release(tmp_path, extra_bytes=2_000)
     with pytest.raises(ValueError, match="exceeds budget"):
         validate_release(root, 1_000)

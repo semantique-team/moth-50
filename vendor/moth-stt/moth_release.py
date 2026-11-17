@@ -21,9 +21,7 @@ MAX_BUDGET_BYTES = 50_000_000
 RELEASE_NAMES = ("moth-stt", "moth-50")
 
 
-def validate_release(
-    path: Path | str, budget_bytes: int = MAX_BUDGET_BYTES
-) -> tuple[dict, dict]:
+def validate_release(path: Path | str, budget_bytes: int = MAX_BUDGET_BYTES) -> tuple[dict, dict]:
     """Check config semantics, safe paths, required assets, hashes and actual size.
 
     Every entry in ``config.files`` is required and counted, in addition to the five
