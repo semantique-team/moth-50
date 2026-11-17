@@ -41,6 +41,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+The SentencePiece BPE tokenizer `data/tokenizer/moth_bpe.model` is the Moth
+0.8.1 tokenizer from `semantique-team/moth-stt` at commit
+`f3ecd1b0f4f0c5c044fa637e5fb5dd8a0c798d97`, trained on normalized Moth
+Italian–English transcripts and the English-term list. The Moth repository is
+Apache-2.0; the recorded Moth data is CC BY 4.0
+(`semantique-team/moth-cs`). The file is reproduced here unchanged to pin the
+LM/decoder piece IDs (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
+
 ## Planned data and TTS sources (to be listed when actually used)
 
 Training data must remain commercially usable:

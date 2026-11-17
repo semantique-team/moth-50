@@ -35,6 +35,15 @@ python ../moth-cs-dataset/scripts/verify.py
 It checks counts, unique ids, SHA-256, 48 kHz mono 16-bit WAV, durations, split
 disjointness and `en_spans`.
 
+## Tokenizer
+
+The Moth 0.8.1 tokenizer is vendored at `data/tokenizer/moth_bpe.model` and is
+**pinned**, not rebuilt: 14,327 B, sha256
+`d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`, 1,024
+SentencePiece BPE pieces, CTC mapping `blank = 0`, `ctc_id = sp_id + 1`. The
+published `moth-stt` release ships only `vocab.json`; the LM is indexed by these
+piece IDs. See `data/tokenizer/README.md` and `tests/test_tokenizer.py`.
+
 ## Splits
 
 | Split | Content | Use |
