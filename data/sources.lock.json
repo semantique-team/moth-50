@@ -24,8 +24,11 @@
       "version": "27.0",
       "url": "https://commonvoice.mozilla.org/en/datasets",
       "license": "CC0-1.0",
-      "status": "pinned by version and derived manifests; the archive checksum was not retained (Moth gap)",
-      "note": "Manual download after accepting the terms. The E-003 manifests are cv_it_train_clean50 and cv_it_train_noisy50."
+      "status": "pinned by version and derived manifests; downloaded manually from Mozilla Data Collective",
+      "archive": "cv-corpus-27.0-2026-09-11-it.tar.gz",
+      "bytes": 10542669746,
+      "sha256": "27e1ef0e2edfde2a5b0f6557fe6ad8c2c611e9508522be64c4fb93dec0e7c850",
+      "note": "Manual download after accepting the terms. The E-003 manifests are cv_it_train_clean50 and cv_it_train_noisy50; the clean half uses the full cv_it_train shards."
     },
     {
       "id": "mls-italian",

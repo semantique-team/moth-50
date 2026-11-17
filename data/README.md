@@ -50,10 +50,11 @@ piece IDs. See `data/tokenizer/README.md` and `tests/test_tokenizer.py`.
 available archive checksums for the E-003 mixture (moth-cs, Common Voice IT 27,
 MLS OpenSLR 94, LibriSpeech OpenSLR 12, MUSAN OpenSLR 17, FLEURS, CS-FLEURS,
 SwitchLingua). It is a metadata lock: the multi-gigabyte audio is **not**
-vendored and has not been re-downloaded in this checkout. Common Voice's archive
-checksum was not retained by Moth; the derived manifests are the pin there.
-FLEURS's current HF revision is not the unrecorded 2026-10-19 Moth snapshot, so
-re-score a baseline before comparing across revisions.
+vendored and has not been re-downloaded in this checkout. The Common Voice 27.0
+Italian archive is pinned by sha256 `27e1ef0e…` and 10,542,669,746 bytes; Moth
+had not retained a checksum, so this closes that gap. FLEURS's current HF
+revision is not the unrecorded 2026-10-19 Moth snapshot, so re-score a baseline
+before comparing across revisions.
 
 ## Splits
 
