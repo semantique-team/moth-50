@@ -1,10 +1,10 @@
 # MOTH-50 — scaffold
 
-**Status: local repository, initialized 2026-11-17 on `main`, no remote yet.**
-It was created 2026-11-16 as `moth-large` and renamed `MOTH-50` (repo
-`moth-50`) on 2026-11-17. The model does not exist yet. Moth 0.8.1 is frozen in
-`../moth-stt`; this directory is the starting point for a larger
-Italian–English code-switching speech recognizer and its own paper.
+**Status (2026-11-17): remote `semantique-team/moth-50`, `main`; no model
+trained yet.** E-001 is done, the E-002 protocol and memory probe are complete,
+all E-003 data shards are built and the E-003 preflight is green. The only
+missing E-002 artifact is the held-out S1-dev session (200/900 clips recorded).
+Read `STATUS.md` first when resuming.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
@@ -95,6 +95,7 @@ the published release; it is pinned at `data/tokenizer/moth_bpe.model`.
 ## Layout
 
 ```
+STATUS.md                 session handoff: done, running, next commands
 README.md                 this file
 pyproject.toml            dependencies, ruff and pytest configuration
 data/README.md            dataset pin, splits, restrictions
