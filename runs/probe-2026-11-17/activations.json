@@ -1,0 +1,117 @@
+{
+  "tool": "tools/probe_activations.py",
+  "definition": "unique storages saved for backward, bf16 autocast, equal-length clips",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "versions": {
+    "python": "3.12.10",
+    "torch": "2.14.1+cpu"
+  },
+  "note": "one process per candidate (--candidates X); a single process crashed with a native access violation on Windows after the base+6 6x30 batch",
+  "rows": [
+    {
+      "candidate": "tiny+2",
+      "batch": "6x30",
+      "saved_gb": 3.692,
+      "largest_block_gb": 0.6,
+      "checkpointing_estimate_gb": 0.732
+    },
+    {
+      "candidate": "tiny+2",
+      "batch": "12x16",
+      "saved_gb": 2.485,
+      "largest_block_gb": 0.398,
+      "checkpointing_estimate_gb": 0.538
+    },
+    {
+      "candidate": "tiny+2",
+      "batch": "32x6",
+      "saved_gb": 1.448,
+      "largest_block_gb": 0.225,
+      "checkpointing_estimate_gb": 0.366
+    },
+    {
+      "candidate": "base+0",
+      "batch": "6x30",
+      "saved_gb": 4.919,
+      "largest_block_gb": 0.802,
+      "checkpointing_estimate_gb": 0.964
+    },
+    {
+      "candidate": "base+0",
+      "batch": "12x16",
+      "saved_gb": 3.308,
+      "largest_block_gb": 0.532,
+      "checkpointing_estimate_gb": 0.706
+    },
+    {
+      "candidate": "base+0",
+      "batch": "32x6",
+      "saved_gb": 1.926,
+      "largest_block_gb": 0.302,
+      "checkpointing_estimate_gb": 0.475
+    },
+    {
+      "candidate": "base+2",
+      "batch": "6x30",
+      "saved_gb": 6.522,
+      "largest_block_gb": 0.802,
+      "checkpointing_estimate_gb": 0.983
+    },
+    {
+      "candidate": "base+2",
+      "batch": "12x16",
+      "saved_gb": 4.373,
+      "largest_block_gb": 0.532,
+      "checkpointing_estimate_gb": 0.725
+    },
+    {
+      "candidate": "base+2",
+      "batch": "32x6",
+      "saved_gb": 2.53,
+      "largest_block_gb": 0.302,
+      "checkpointing_estimate_gb": 0.495
+    },
+    {
+      "candidate": "base+4",
+      "batch": "6x30",
+      "saved_gb": 8.126,
+      "largest_block_gb": 0.802,
+      "checkpointing_estimate_gb": 1.001
+    },
+    {
+      "candidate": "base+4",
+      "batch": "12x16",
+      "saved_gb": 5.438,
+      "largest_block_gb": 0.532,
+      "checkpointing_estimate_gb": 0.745
+    },
+    {
+      "candidate": "base+4",
+      "batch": "32x6",
+      "saved_gb": 3.134,
+      "largest_block_gb": 0.302,
+      "checkpointing_estimate_gb": 0.514
+    },
+    {
+      "candidate": "base+6",
+      "batch": "6x30",
+      "saved_gb": 9.73,
+      "largest_block_gb": 0.802,
+      "checkpointing_estimate_gb": 1.02
+    },
+    {
+      "candidate": "base+6",
+      "batch": "12x16",
+      "saved_gb": 6.503,
+      "largest_block_gb": 0.532,
+      "checkpointing_estimate_gb": 0.765
+    },
+    {
+      "candidate": "base+6",
+      "batch": "32x6",
+      "saved_gb": 3.738,
+      "largest_block_gb": 0.302,
+      "checkpointing_estimate_gb": 0.534
+    }
+  ]
+}
