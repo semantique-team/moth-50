@@ -108,6 +108,7 @@ tests/                    tests for tools/ and the vendored code
 tools/architecture_budget.py  parameter/size/compute estimator
 tools/probe_export.py     real INT8 export size and CPU latency (needs moth-stt)
 tools/probe_activations.py  activation memory, CPU or MPS (needs moth-stt)
+tools/probe_lm_pack.py    packed LM format prototype (review P5)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0
 NOTICE                    attribution

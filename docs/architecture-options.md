@@ -132,9 +132,11 @@ Same-budget alternatives:
 The base+6 and base+4+12LM rows are the two serious 50 MB candidates. They have
 almost the same package size and differ only in where the bytes go. That is a
 clean experiment, not a guess. One caveat: the Moth LM stores 4 bytes per n-gram
-(uint16 token + int16 log-prob) although a token needs 11 bits. A tighter format
-could fit the unpruned LM inside base+6's 7.64 MB of LM room and make E-004 a free
-gain rather than a trade-off (review proposal P5); measure it before assuming it.
+(uint16 token + int16 log-prob) although a token needs 11 bits. A packed format
+with an 8-bit log-prob codebook (prototyped in `runs/probe-2026-11-17` §4) puts
+the unpruned E-034 LM at 7.16 MB, inside base+6's 7.64 MB of LM room, for a
+49.52 MB package. If its WER cost is negligible, E-004 becomes a free gain rather
+than a trade-off (review proposal P5); measure it before assuming it.
 
 4-bit quantization is not a shortcut to a larger model under 50 MB: Whisper-
 small at 4 bits is still ~44 MB of weights before the LM and VAD, and ONNX/

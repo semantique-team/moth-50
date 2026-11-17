@@ -1,15 +1,16 @@
-# Probe 2026-11-17 — real INT8 size, CPU latency and activation memory
+# Probe 2026-11-17 — real INT8 size, CPU latency, activation memory, packed LM
 
 **Status: measured.** This is not an E-xxx experiment; it trains nothing. It checks
 the arithmetic of `docs/architecture-options.md` §3–4 against the exact Moth 0.8.1
-export recipe before E-002.
+export recipe before E-002, and sizes the packed LM format of review proposal P5.
 
 - **Code:** `tools/probe_export.py`, `tools/probe_activations.py`, run against the
-  Moth checkout `moth-stt-dev` at `d5ae605` (`stt.model.MothSTT`, `stt.export`).
+  Moth checkout `moth-stt-dev` at `d5ae605` (`stt.model.MothSTT`, `stt.export`);
+  `tools/probe_lm_pack.py` (§4), standalone.
 - **Machine:** Windows 11 laptop, Intel Core Ultra 7 268V, 32 GB; Python 3.12.10,
   torch 2.14.1+cpu, onnx 1.23.2, onnxruntime 1.31.0.
 - **Weights:** random. The INT8 graph size does not depend on weight values.
-- **Raw data:** `export.json`, `activations.json`.
+- **Raw data:** `export.json`, `activations.json`, `lm_pack.json`.
 
 ## 1. INT8 graph size (Moth recipe: `export_fp32` + `quantize_dynamic`, per-channel QInt8)
 
@@ -77,3 +78,57 @@ stem and head), not a measured peak. On Windows a single process crashed with a
 native access violation after the base+6 6 × 30 s batch, so `activations.json` was
 merged from one process per candidate. Confirm both numbers on the M5 Pro with
 `python tools/probe_activations.py --device mps [--checkpointing]` during E-002.
+
+## 4. A packed LM format (review proposal P5)
+
+`tools/probe_lm_pack.py` re-encodes a Moth `MOTHLMB1` LM as `MOTHLMB2`: 11-bit
+tokens + a `b`-bit index into one log-prob codebook per order, trigram contexts
+grouped by `prev2` with an 11-bit `prev1`, and minimal-width row offsets. Every
+field is fixed-width, so a JS reader keeps O(1) random access; the backoff rule is
+unchanged. The probe checks the round trip and that the written size equals the
+layout formula, then scores the 600 unique T sentences with both files. Raw data:
+`lm_pack.json`.
+
+- **Input:** the only Moth LM on this machine, the 0.7.0 `lm_bpe3.bin`
+  (5,116,464 B, sha256 `dcf1d59f…`; 196,132 bigrams, 804,969 trigrams, 137,976
+  contexts). It stores only 967 distinct bigram and 853 distinct trigram values,
+  so a 10-bit codebook is lossless.
+- **Tokenizer:** the real `moth_bpe.model` is not on this machine. Sentences are
+  tokenized by a SentencePiece-style BPE rebuilt from `vocab.json` (0 unknown
+  tokens). It is a proxy for realistic contexts, not the shipped tokenizer.
+
+| Codebook bits | Bytes (0.7.0 LM) | vs MOTHLMB1 | Entry error mean / max (nats) | Sentence Δ mean / max (nats) | Top-1 next token unchanged | Unpruned E-034 LM (12,313,440 B) → |
+|---:|---:|---:|---:|---:|---:|---:|
+| 10 (lossless) | 3,183,116 | 62.2 % | 0 / 0 | 0 / 0 | 100 % | 7,797,724 B |
+| **8** | **2,926,700** | **57.2 %** | **0.0067 / 0.054** | **0.033 / 0.165** | **99.36 %** | **7,155,008 B** |
+| 7 | 2,800,540 | 54.7 % | 0.0145 / 0.113 | 0.064 / 0.235 | 98.86 % | 6,835,696 B |
+| 6 | 2,674,888 | 52.3 % | 0.0296 / 0.236 | 0.125 / 0.545 | 97.11 % | 6,516,896 B |
+
+The mean T sentence log-prob is −45.6 nats; the decoder multiplies LM scores by
+0.55. The last column is exact for the layout, computed from the entry and context
+counts in Moth's E-034 `build.json` (the file itself is not on this machine).
+
+What it means for the 50 MB package with base+6 (39,946,582 B INT8 + VAD + misc):
+
+| LM | Format | LM bytes | Package | Room to 50,000,000 B |
+|---|---|---:|---:|---:|
+| A3 (0.8.1) | MOTHLMB1 | 5,381,992 | 47,742,194 | 2,257,806 |
+| A3 (0.8.1) | MOTHLMB2, 10-bit lossless | 3,357,932 | 45,718,134 | 4,281,866 |
+| E-034 unpruned | MOTHLMB1 | 12,313,440 | 54,673,642 | ✗ |
+| E-034 unpruned | MOTHLMB2, 10-bit lossless | 7,797,724 | 50,157,926 | ✗ (−157,926) |
+| **E-034 unpruned** | **MOTHLMB2, 8-bit** | **7,155,008** | **49,515,210** | **484,790** |
+| E-034 unpruned | MOTHLMB2, 7-bit | 6,835,696 | 49,195,898 | 804,102 |
+
+- An 8-bit codebook fits **base+6 with the unpruned LM** (E-023/E-034: dev −0.65,
+  T-600 −0.77 significant) under 50 MB with 0.48 MB to spare. The LM-score change
+  is small (99.4 % of next-token argmaxes unchanged), but it is not a WER
+  measurement: decode dev and T with both formats before adopting it.
+- Lossless 10-bit packing would save 2.02 MB on the shipped A3 LM, provided its
+  log-probs also take at most 1,024 distinct values per order (the 0.7.0 LM's do;
+  11 bits are lossless for any range under 20 nats at Moth's 0.01 scale).
+- A quantile-only k-means codebook left the sparse low-probability tail without
+  centroids (max entry error 2.14 nats at 8 bits); the probe initializes half the
+  centroids on a uniform grid, which bounds the max error at 0.054 nats.
+- Not done here: the JS reader, decoder parity, and a WER readout. The unpruned
+  LM may store more distinct values than the 0.7.0 LM, so its 8-bit error must be
+  measured on the file itself.

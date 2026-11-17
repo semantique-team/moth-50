@@ -1,0 +1,165 @@
+{
+  "tool": "tools/probe_lm_pack.py",
+  "lm": {
+    "file": "lm_bpe3.bin",
+    "bytes": 5116464,
+    "sha256": "dcf1d59f075858c7e5f210804b5aabde847fb5d33e8d716e0d534f7c7886003e",
+    "bigrams": 196132,
+    "trigrams": 804969,
+    "contexts": 137976,
+    "log_scale": 0.009999999776482582,
+    "mothlmb1_quantization_max_error": 0.004999999888241291,
+    "distinct_bigram_values": 967,
+    "distinct_trigram_values": 853
+  },
+  "text": {
+    "files": [
+      "T.jsonl"
+    ],
+    "unique_sentences": 600,
+    "unk_tokens": 0,
+    "tokenizer": "SentencePiece-style BPE rebuilt from vocab.json (proxy)"
+  },
+  "variants": [
+    {
+      "bits": 10,
+      "bytes": 3183116,
+      "ratio": 0.6221,
+      "entry_abs_error_mean": 0.0,
+      "entry_abs_error_p99": 0.0,
+      "entry_abs_error_max": 0.0,
+      "text": {
+        "sentences": 600,
+        "tokens": 7635,
+        "token_abs_delta_mean": 0.0,
+        "token_abs_delta_p99": 0.0,
+        "token_abs_delta_max": 0.0,
+        "sentence_abs_delta_mean": 0.0,
+        "sentence_abs_delta_p95": 0.0,
+        "sentence_abs_delta_max": 0.0,
+        "sentence_logprob_mean": -45.572,
+        "top1_agreement": 1.0,
+        "top10_overlap": 1.0
+      },
+      "predicted_bytes": {
+        "E-031 A3 (0.8.1 shipped)": {
+          "mothlmb1": 5381992,
+          "mothlmb2": 3357932
+        },
+        "E-034 N1_2_1 (bigram>=2, all trigrams)": {
+          "mothlmb1": 12034004,
+          "mothlmb2": 7614344
+        },
+        "E-034 N2_1_1 (unpruned)": {
+          "mothlmb1": 12313440,
+          "mothlmb2": 7797724
+        }
+      }
+    },
+    {
+      "bits": 8,
+      "bytes": 2926700,
+      "ratio": 0.572,
+      "entry_abs_error_mean": 0.0067,
+      "entry_abs_error_p99": 0.02587,
+      "entry_abs_error_max": 0.05375,
+      "text": {
+        "sentences": 600,
+        "tokens": 7635,
+        "token_abs_delta_mean": 0.00885,
+        "token_abs_delta_p99": 0.03517,
+        "token_abs_delta_max": 0.05375,
+        "sentence_abs_delta_mean": 0.0329,
+        "sentence_abs_delta_p95": 0.0843,
+        "sentence_abs_delta_max": 0.1653,
+        "sentence_logprob_mean": -45.572,
+        "top1_agreement": 0.99358,
+        "top10_overlap": 0.98542
+      },
+      "predicted_bytes": {
+        "E-031 A3 (0.8.1 shipped)": {
+          "mothlmb1": 5381992,
+          "mothlmb2": 3084712
+        },
+        "E-034 N1_2_1 (bigram>=2, all trigrams)": {
+          "mothlmb1": 12034004,
+          "mothlmb2": 6989092
+        },
+        "E-034 N2_1_1 (unpruned)": {
+          "mothlmb1": 12313440,
+          "mothlmb2": 7155008
+        }
+      }
+    },
+    {
+      "bits": 7,
+      "bytes": 2800540,
+      "ratio": 0.5474,
+      "entry_abs_error_mean": 0.01445,
+      "entry_abs_error_p99": 0.05082,
+      "entry_abs_error_max": 0.113,
+      "text": {
+        "sentences": 600,
+        "tokens": 7635,
+        "token_abs_delta_mean": 0.01767,
+        "token_abs_delta_p99": 0.06879,
+        "token_abs_delta_max": 0.10017,
+        "sentence_abs_delta_mean": 0.0638,
+        "sentence_abs_delta_p95": 0.1551,
+        "sentence_abs_delta_max": 0.2345,
+        "sentence_logprob_mean": -45.572,
+        "top1_agreement": 0.98861,
+        "top10_overlap": 0.97787
+      },
+      "predicted_bytes": {
+        "E-031 A3 (0.8.1 shipped)": {
+          "mothlmb1": 5381992,
+          "mothlmb2": 2950148
+        },
+        "E-034 N1_2_1 (bigram>=2, all trigrams)": {
+          "mothlmb1": 12034004,
+          "mothlmb2": 6678516
+        },
+        "E-034 N2_1_1 (unpruned)": {
+          "mothlmb1": 12313440,
+          "mothlmb2": 6835696
+        }
+      }
+    },
+    {
+      "bits": 6,
+      "bytes": 2674888,
+      "ratio": 0.5228,
+      "entry_abs_error_mean": 0.02964,
+      "entry_abs_error_p99": 0.09622,
+      "entry_abs_error_max": 0.2364,
+      "text": {
+        "sentences": 600,
+        "tokens": 7635,
+        "token_abs_delta_mean": 0.03614,
+        "token_abs_delta_p99": 0.12232,
+        "token_abs_delta_max": 0.2033,
+        "sentence_abs_delta_mean": 0.1252,
+        "sentence_abs_delta_p95": 0.3197,
+        "sentence_abs_delta_max": 0.5452,
+        "sentence_logprob_mean": -45.572,
+        "top1_agreement": 0.97105,
+        "top10_overlap": 0.96496
+      },
+      "predicted_bytes": {
+        "E-031 A3 (0.8.1 shipped)": {
+          "mothlmb1": 5381992,
+          "mothlmb2": 2816100
+        },
+        "E-034 N1_2_1 (bigram>=2, all trigrams)": {
+          "mothlmb1": 12034004,
+          "mothlmb2": 6368444
+        },
+        "E-034 N2_1_1 (unpruned)": {
+          "mothlmb1": 12313440,
+          "mothlmb2": 6516896
+        }
+      }
+    }
+  ]
+}
