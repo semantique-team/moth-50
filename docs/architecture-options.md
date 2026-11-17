@@ -455,10 +455,21 @@ E-031/E-034/E-035 `build.json`). The recorded dataset is pinned at
    **not** clone S1/S2/S3 voices: the dataset consent asks that the voices not
    be used to train synthetic voices.
 2. **TTS-generated code-switched speech, 20–100 h.** Use only commercially
-   permissive voices: Piper `it_IT-paola-medium` (CC0) or `it_IT-serena-high`
-   (CC BY 4.0) for Italian, public-domain English voices such as
-   `en_US-ljspeech-high` for embedded terms, or Kokoro-82M (Apache 2.0, Italian
-   voices `if_sara`/`im_nicola`; validate the quality first). Synthesize Italian
+   permissive voices, and record each voice's provenance (licences checked
+   2026-11-17, `docs/review-2026-11-17.md` §7):
+   - Piper `it_IT-paola-medium`: dataset CC0, but fine-tuned from the
+     `hifi_tts_92` base model trained on Hi-Fi TTS (CC BY 4.0) — attribute it;
+   - Piper `it_IT-serena-high`: CC BY 4.0, but trained only on the synthetic
+     `committa/serena-synthetic-it-27h` (Qwen3-TTS cloning a preset voice;
+     credit Marco Baccarani) — check accent quality;
+   - public-domain English voices such as `en_US-ljspeech-high` for embedded terms;
+   - Kokoro-82M (Apache 2.0; Italian voices `if_sara`/`im_nicola`, grade C, 10–100
+     min of data each). Its card says the training data includes synthetic audio
+     from closed commercial TTS providers: a provenance risk to record. Validate
+     the quality first.
+
+   Avoid voices without a stated licence (e.g. Piper `it_IT-riccardo-x_low`,
+   "see URL"). Synthesize Italian
    sentences with English terms, or concatenate Italian and English TTS spans at
    word boundaries. Keep TTS as a minority source (e.g. 10–20 % of mixed
    exposure), in a separate manifest, and never in the test set. No S1/S2/S3
@@ -479,13 +490,32 @@ E-031/E-034/E-035 `build.json`). The recorded dataset is pinned at
    student. High upside, high pipeline cost. The review (P4) proposes it as an
    E-006 arm rather than a post-baseline afterthought, because data is the
    expected bottleneck. The unlabeled audio must itself be commercially usable,
-   and the teacher's licence must be attributed in the NOTICE.
-6. **External code-switching corpora for evaluation, test-only.** CS-FLEURS has
-   an Italian–English read test (~1.2 h) and a synthetic XTTS subset;
-   SwitchLingua has an Italian subset (~6–7 h) but is gated. Both are
-   **CC-BY-NC**: for this commercial model they are **evaluation only**, never
-   training. The ELRA Italian–English mobile corpus (122 h, 213 speakers) is
-   commercial (€25,200) and not an option for an open model.
+   and the teacher's licence must be attributed in the NOTICE. Candidates (to be
+   re-checked when used): VoxPopuli Italian unlabelled audio (4.6 k h in v1,
+   21.9 k h in v2; CC0, credit the European Parliament; its released models and
+   code are CC BY-NC and must not be used), the Italian Granary manifests
+   (VoxPopuli and YouTube-Commons sources; CC-BY-4.0 labels), YODAS (CC-BY-3.0,
+   per-video attribution) and, for English, the CC-BY configurations of People's
+   Speech (not the `_sa` ones). VoxPopuli also has 91 h of transcribed Italian
+   (CC0) that is not in Moth's mixture.
+6. **External code-switching corpora for evaluation, test-only.**
+   - CS-FLEURS (`byan/cs-fleurs`, arXiv:2509.14161) has an Italian–English read
+     test with a real voice, but it is small: **176 utterances, 0.51 h, one
+     speaker**. Its synthetic XTTS-v2 Italian–English sets are 9.8 h (train) and
+     3.0 h (test1).
+   - SwitchLingua (`Shelton1013/SwitchLingua_audio`, arXiv:2506.00087) has 294
+     recorded Italian clips; per-language hours are not published (80.2 h and
+     174 speakers in total). Access is gated behind a signed agreement that
+     limits use to research and non-commercial purposes and forbids commercial
+     applications without written permission.
+   - Both are **CC-BY-NC**: for this commercial model they are **evaluation
+     only**, never training; for SwitchLingua, ask the authors before using it to
+     evaluate the commercial release, or report it only in the research paper.
+   - ELRA-S0228_108 "Italian English Speech Recognition Corpus (Mobile)" (122 h,
+     213 speakers) is **monolingual English spoken by Italians**, not
+     code-switched. It costs €25,200 under both its non-commercial and commercial
+     (VAR) licences; whether an open-weights release is allowed depends on the
+     VAR terms. Not an option for now.
 
 ### 8.3 Evaluation
 
@@ -499,9 +529,11 @@ model trained in 2027. The new protocol should have:
 - **A new S1 dev session + S2/S3**: with S1-only recordings there is no new real
   speaker. Report the S1, S2 and S3 ranges separately; S3 never contributed
   training audio but informed Moth's development, so it is not pristine.
-- **An external mixed test**: CS-FLEURS-READ Italian–English (real voices,
-  test-only) and/or SwitchLingua Italian (test-only, licence permitting). Report
-  the domain difference honestly: read/generated, not spontaneous.
+- **An external mixed test**: CS-FLEURS-READ Italian–English (real voice,
+  test-only; only 176 utterances, 0.51 h and one speaker, so report a CI and no
+  speaker range) and/or SwitchLingua Italian (test-only, only with the authors'
+  permission for a commercial model). Report the domain difference honestly:
+  read/generated, not spontaneous.
 - **Per-speaker ranges, bootstrap CIs, seed replicates** for the final recipe.
   Moth never measured seed variance (one seed per configuration; the E-040
   replication was not run), so MOTH-50 must measure it — at least 2–3 seeds for

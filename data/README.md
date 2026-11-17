@@ -59,9 +59,12 @@ disjointness and `en_spans`.
    as dev. New sessions need a written consent/addendum covering `moth-50` and
    commercial use. There is no new speaker available; S2, S3 and FLEURS remain
    the generalization checks;
-3. commercially permissive TTS augmentation (Piper `it_IT-paola-medium` CC0 or
-   `it_IT-serena-high` CC BY 4.0; public-domain English voices; Kokoro-82M
-   Apache 2.0 with `if_sara`/`im_nicola`). Do not clone S1/S2/S3 voices. Keep
+3. commercially permissive TTS augmentation (Piper `it_IT-paola-medium`: dataset
+   CC0, fine-tuned from a CC BY 4.0 Hi-Fi TTS base; `it_IT-serena-high`: CC BY
+   4.0, trained on synthetic Qwen3-TTS data; public-domain English voices;
+   Kokoro-82M Apache 2.0 with `if_sara`/`im_nicola`, whose training data includes
+   synthetic audio from closed TTS providers; provenance in
+   `docs/architecture-options.md` §8.2). Do not clone S1/S2/S3 voices. Keep
    TTS as a minority source (10–20 % of mixed exposure) in a separate manifest;
 4. word/phrase-level splicing of permissive corpora, measured against Moth's
    utterance-level splicing;
