@@ -11,15 +11,22 @@ With per-block activation checkpointing, only the block inputs are kept and one
 block is recomputed at a time, so the estimate is: stem + head + block inputs +
 the largest single block.
 
-``--device mps`` (or ``cuda``) additionally reports the allocator after the forward
-and after the backward of a real run, with or without ``--checkpointing``; use it
-on the training machine for the E-002 memory probe.
+``--device mps`` (or ``cuda``) additionally runs one real bf16 training step
+(forward, backward, AdamW) and reports the allocator after each phase, with or
+without ``--checkpointing``. On MPS the reading is
+``torch.mps.driver_allocated_memory``, the quantity Moth logged (E-028 peaked at
+7,495.7 MiB); on CUDA the true peak is reported too. Use ``--no-count`` on a
+16 GB machine so the CPU count does not compete for the same unified memory.
+This is the E-002 memory probe.
 
 Usage:
-    python tools/probe_activations.py --moth-stt ../moth-stt \
+    python tools/probe_activations.py --moth-stt ../moth-stt-dev \
         --out runs/probe-2026-11-17/activations.json
-    python tools/probe_activations.py --moth-stt ../moth-stt --device mps \
+    python tools/probe_activations.py --moth-stt ../moth-stt --device mps --no-count \
         --candidates base+6 --batches 6x30 --checkpointing --out /tmp/mps.json
+
+``--moth-stt`` is a Moth repository checkout with ``stt/`` (on the training
+machine the frozen repository; never the published release folder).
 """
 
 from __future__ import annotations
@@ -46,7 +53,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("--moth-stt", type=Path, default=Path("../moth-stt"))
+    parser.add_argument(
+        "--moth-stt",
+        type=Path,
+        required=True,
+        help="Moth repository checkout with stt/ (not the published release folder)",
+    )
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--candidates", nargs="+", default=list(CANDIDATES))
     parser.add_argument("--batches", nargs="+", default=list(BATCHES))
@@ -54,9 +66,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--checkpointing",
         action="store_true",
-        help="with --device mps/cuda: run the real pass with per-block checkpointing",
+        help="with --device mps/cuda: run the real step with per-block checkpointing",
+    )
+    parser.add_argument(
+        "--no-count",
+        action="store_true",
+        help="skip the CPU saved-tensor count (use on a 16 GB machine with --device mps)",
     )
     args = parser.parse_args(argv)
+    if args.no_count and args.device == "cpu":
+        parser.error("--no-count needs --device mps or cuda")
 
     sys.path.insert(0, str(args.moth_stt.resolve()))
     import torch
@@ -113,12 +132,67 @@ def main(argv: list[str] | None = None) -> int:
         mark("head")
         return F.log_softmax(model.head(x).float(), dim=-1), boundary
 
-    def allocated() -> int:
+    def count_saved(model, mel, lengths, n_blocks: int) -> dict:
+        """CPU bf16 forward: unique storages saved for backward, per segment."""
+        recorder = Recorder()
+        with (
+            torch.autograd.graph.saved_tensors_hooks(recorder.pack, lambda t: t),
+            torch.autocast("cpu", dtype=torch.bfloat16),
+        ):
+            out, boundary = forward(model, mel, lengths, recorder)
+        del out
+        unique: dict[tuple[int, int], int] = {}
+        for entries in recorder.saved.values():
+            unique.update(entries)
+        per_segment = {seg: sum(v.values()) for seg, v in recorder.saved.items()}
+        blocks = [per_segment.get(f"block{i}", 0) for i in range(n_blocks)]
+        outside = sum(v for seg, v in per_segment.items() if not seg.startswith("block"))
+        return {
+            "saved_gb": round(sum(unique.values()) / 1e9, 3),
+            "largest_block_gb": round(max(blocks) / 1e9, 3),
+            "checkpointing_estimate_gb": round(
+                (outside + n_blocks * boundary + max(blocks)) / 1e9, 3
+            ),
+        }
+
+    def memory() -> int:
+        """Allocator reading comparable to Moth's training log (MPS: driver memory)."""
         if device.type == "mps":
-            return int(torch.mps.current_allocated_memory())
+            torch.mps.synchronize()
+            return int(torch.mps.driver_allocated_memory())
+        torch.cuda.synchronize()
+        return int(torch.cuda.memory_allocated())
+
+    def device_step(model, mel, lengths) -> dict:
+        """One real bf16 training step (forward, backward, AdamW) on the device."""
+        model.to(device)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-5)
+        if device.type == "mps":
+            torch.mps.empty_cache()
+        else:
+            torch.cuda.empty_cache()
+            torch.cuda.reset_peak_memory_stats()
+        readings = {}
+        with torch.autocast(device.type, dtype=torch.bfloat16):
+            out, _ = forward(
+                model, mel.to(device), lengths.to(device), use_checkpointing=args.checkpointing
+            )
+        readings["after_forward"] = memory()
+        out.float().mean().backward()
+        readings["after_backward"] = memory()
+        optimizer.step()
+        readings["after_step"] = memory()
+        result = {
+            f"{device.type}_checkpointing": args.checkpointing,
+            **{f"{device.type}_{key}_gb": round(value / 1e9, 3) for key, value in readings.items()},
+            f"{device.type}_max_observed_gb": round(max(readings.values()) / 1e9, 3),
+        }
         if device.type == "cuda":
-            return int(torch.cuda.memory_allocated())
-        return 0
+            result["cuda_peak_gb"] = round(torch.cuda.max_memory_allocated() / 1e9, 3)
+        del out, optimizer
+        model.zero_grad(set_to_none=True)
+        model.to("cpu")
+        return result
 
     rows = []
     for name in args.candidates:
@@ -134,56 +208,14 @@ def main(argv: list[str] | None = None) -> int:
             mel = torch.randn(clips, 80, frames) * 0.1
             lengths = torch.full((clips,), frames)
 
-            recorder = Recorder()
-            with (
-                torch.autograd.graph.saved_tensors_hooks(recorder.pack, lambda t: t),
-                torch.autocast("cpu", dtype=torch.bfloat16),
-            ):
-                out, boundary = forward(model, mel, lengths, recorder)
-            del out
-            unique: dict[tuple[int, int], int] = {}
-            for entries in recorder.saved.values():
-                unique.update(entries)
-            per_segment = {seg: sum(v.values()) for seg, v in recorder.saved.items()}
-            blocks = [per_segment.get(f"block{i}", 0) for i in range(n_blocks)]
-            outside = sum(v for seg, v in per_segment.items() if not seg.startswith("block"))
-            row = {
-                "candidate": name,
-                "batch": batch_name,
-                "saved_gb": round(sum(unique.values()) / 1e9, 3),
-                "largest_block_gb": round(max(blocks) / 1e9, 3),
-                "checkpointing_estimate_gb": round(
-                    (outside + n_blocks * boundary + max(blocks)) / 1e9, 3
-                ),
-            }
-
+            row: dict = {"candidate": name, "batch": batch_name}
+            if not args.no_count:
+                row.update(count_saved(model, mel, lengths, n_blocks))
             if device.type != "cpu":
-                model.to(device)
-                if device.type == "mps":
-                    torch.mps.empty_cache()
-                base = allocated()
-                with torch.autocast(device.type, dtype=torch.bfloat16):
-                    out, _ = forward(
-                        model,
-                        mel.to(device),
-                        lengths.to(device),
-                        use_checkpointing=args.checkpointing,
-                    )
-                after_forward = allocated()
-                out.float().mean().backward()
-                after_backward = allocated()
-                row[f"{device.type}_checkpointing"] = args.checkpointing
-                row[f"{device.type}_forward_gb"] = round((after_forward - base) / 1e9, 3)
-                row[f"{device.type}_after_backward_gb"] = round(after_backward / 1e9, 3)
-                if device.type == "mps":
-                    row["mps_driver_gb"] = round(torch.mps.driver_allocated_memory() / 1e9, 3)
-                del out
-                model.zero_grad(set_to_none=True)
-                model.to("cpu")
+                row.update(device_step(model, mel, lengths))
 
             rows.append(row)
             print(json.dumps(row), flush=True)
-            del recorder, unique
             gc.collect()
 
     report = {

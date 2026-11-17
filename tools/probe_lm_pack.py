@@ -47,7 +47,9 @@ VOCAB = 1026  # 1,024 BPE pieces + BOS + EOS
 BOS, EOS = 1024, 1025
 TOKEN_BITS = 11
 
-#: Entry/context counts of other Moth LMs (Moth runs/E-034, E-035 build.json).
+#: Entry/context counts of other Moth LMs. Entries are from Moth runs/E-034 and
+#: E-035 build.json; E-034's 265,001 trigram contexts are derived from its MOTHLMB1
+#: byte size (12,313,440 = 8,252 fixed + 4 B per entry + 8 B per context).
 KNOWN_LMS = {
     "E-031 A3 (0.8.1 shipped)": {
         "bytes": 5_381_992,
