@@ -49,7 +49,8 @@ E-006 variables. Each run records the manifest hashes, source revisions and
 hours per source in `runs/E-003/config.yaml`; a mixture change is a new
 experiment, not a tweak inside the screen.
 
-The exact public-corpus revisions and the mel-shard build are part of E-002.
+The exact public-corpus revisions, URLs and available checksums are pinned in
+`data/sources.lock.json`; the download and mel-shard build are still pending.
 The manifests must pass `moth_manifest` validation and the dataset
 `../moth-cs-dataset/scripts/verify.py` before use. The tokenizer is pinned at
 `data/tokenizer/moth_bpe.model` (sha256 `d6e1054e…f2fd`); do not rebuild it.

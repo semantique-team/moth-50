@@ -98,6 +98,7 @@ the published release; it is pinned at `data/tokenizer/moth_bpe.model`.
 README.md                 this file
 pyproject.toml            dependencies, ruff and pytest configuration
 data/README.md            dataset pin, splits, restrictions
+data/sources.lock.json    pinned source versions, URLs and checksums
 data/tokenizer/           pinned Moth 1,024-piece BPE model and provenance
 docs/decisions.md         decisions and open questions
 docs/architecture-options.md  architecture analysis and planned sequence

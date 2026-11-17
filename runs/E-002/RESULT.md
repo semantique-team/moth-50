@@ -80,8 +80,10 @@ E-016). The 192 audio-s batch cap stays.
 
 - Record and verify the new held-out **S1-dev session** (30–60 min, consent
   addendum): E-003 cannot be ranked without it.
-- Re-fetch the public corpora at pinned revisions and rebuild the mel shards
-  for the frozen E-003 mixture (`experiments/E-002-protocol.md` §2).
+- Re-fetch the public corpora at the pinned revisions in
+  `data/sources.lock.json` and rebuild the mel shards for the frozen E-003
+  mixture (`experiments/E-002-protocol.md` §2). The metadata lock is done; the
+  multi-gigabyte download is not.
 - The 0.8.1 dev-macro reference is re-scored (**23.0170 %**); E-003 starts once
   the two data prerequisites above exist.
 
@@ -90,6 +92,7 @@ E-016). The 192 audio-s batch cap stays.
 - `runs/E-002/train-probe.json` — no checkpointing.
 - `runs/E-002/train-probe-checkpointing.json` — per-block checkpointing.
 - `runs/E-002/dev-reference.json` — re-scored 0.8.1 dev-macro reference.
+- `data/sources.lock.json` — pinned source versions, URLs and checksums.
 - `experiments/E-002-protocol.md` — frozen protocol.
 - `data/tokenizer/moth_bpe.model` — pinned tokenizer
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).

@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "updated": "2026-11-17",
+  "note": "Pins versions, URLs and checksums for the E-003 mixture. Audio is not vendored. Status 'pinned' means the identifier/checksum is recorded; it does not mean the archive was downloaded or re-verified in this checkout.",
+  "sources": [
+    {
+      "id": "moth-cs",
+      "role": "recorded train/test/anchor; S1-dev is a future addendum",
+      "version": "v1.0.0",
+      "url": "https://huggingface.co/datasets/semantique-team/moth-cs",
+      "revision": "v1.0.0",
+      "license": "CC-BY-4.0",
+      "status": "pinned; verified by ../moth-cs-dataset/scripts/verify.py",
+      "manifests": {
+        "train.jsonl": "43eb2f3f6ffcec157f7caf8e254d098bd866b8979042bae5a96085f4e6ccd47a",
+        "test.jsonl": "f9147c852799b22b864a9792060dfec2515ced7a8c530933307daaf8ad56d3e5",
+        "anchor.jsonl": "16de84aaf06028325994c23b7306943fe2fd45191ac5d41bea37f93dfc5617e0",
+        "releases/v1.0.0.json": "02a03ae17c9dd0013553dc37c3947d533966ea0c155a70157ea4900193fef830"
+      }
+    },
+    {
+      "id": "common-voice-it",
+      "role": "training (clean-50 and noisy-50 manifests)",
+      "version": "27.0",
+      "url": "https://commonvoice.mozilla.org/en/datasets",
+      "license": "CC0-1.0",
+      "status": "pinned by version and derived manifests; the archive checksum was not retained (Moth gap)",
+      "note": "Manual download after accepting the terms. The E-003 manifests are cv_it_train_clean50 and cv_it_train_noisy50."
+    },
+    {
+      "id": "mls-italian",
+      "role": "training",
+      "version": "OpenSLR 94 (Italian)",
+      "url": "https://www.openslr.org/94/",
+      "download": "https://dl.fbaipublicfiles.com/mls/mls_italian.tar.gz",
+      "md5": "dc77f5805aecc7182aa20786032e5dc1",
+      "size": "15G",
+      "license": "CC-BY-4.0",
+      "status": "pinned; not downloaded in this checkout"
+    },
+    {
+      "id": "librispeech",
+      "role": "training (train-clean-100) and dev (dev-clean)",
+      "version": "OpenSLR 12",
+      "url": "https://www.openslr.org/12/",
+      "downloads": [
+        {
+          "file": "train-clean-100.tar.gz",
+          "md5": "2a93770f6d5c6c964bc36631d331a522",
+          "size": "6.3G"
+        },
+        {
+          "file": "dev-clean.tar.gz",
+          "md5": "42e2234ba48799c1f50f24a7926300a1",
+          "size": "337M"
+        }
+      ],
+      "license": "CC-BY-4.0",
+      "status": "pinned; not downloaded in this checkout"
+    },
+    {
+      "id": "musan",
+      "role": "noise and music augmentation",
+      "version": "OpenSLR 17",
+      "url": "https://www.openslr.org/17/",
+      "download": "https://www.openslr.org/resources/17/musan.tar.gz",
+      "md5": "0c472d4fc0c5141eca47ad1ffeb2a7df",
+      "size": "11G",
+      "license": "CC-BY-4.0",
+      "status": "pinned; not downloaded in this checkout"
+    },
+    {
+      "id": "fleurs",
+      "role": "evaluation only (IT/EN)",
+      "version": "google/fleurs",
+      "url": "https://huggingface.co/datasets/google/fleurs",
+      "revision": "70bb2e84b976b7e960aa89f1c648e09c59f894dd",
+      "license": "CC-BY-4.0",
+      "status": "pinned at this revision; not the unrecorded 2026-10-19 Moth snapshot, so re-score any baseline before comparing"
+    },
+    {
+      "id": "cs-fleurs",
+      "role": "external mixed test only; never training",
+      "version": "byan/cs-fleurs",
+      "url": "https://huggingface.co/datasets/byan/cs-fleurs",
+      "revision": "0cdbf166c5517ae4b6eb1c54248522eedec53017",
+      "license": "CC-BY-NC-4.0",
+      "status": "pinned; test-only for the commercial model"
+    },
+    {
+      "id": "switchlingua",
+      "role": "optional external test; never training",
+      "url": "https://huggingface.co/datasets/Shelton1013/SwitchLingua_audio",
+      "license": "CC-BY-NC-4.0 plus signed agreement",
+      "status": "gated; commercial evaluation requires the authors' written permission"
+    },
+    {
+      "id": "moth-tokenizer",
+      "role": "tokenizer for training, LM and decoder",
+      "version": "Moth 0.8.1 / moth-stt@f3ecd1b",
+      "path": "data/tokenizer/moth_bpe.model",
+      "sha256": "d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd",
+      "license": "Apache-2.0 repository; Moth data CC-BY-4.0",
+      "status": "vendored and tested"
+    }
+  ]
+}

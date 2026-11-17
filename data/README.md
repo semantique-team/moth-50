@@ -44,6 +44,17 @@ SentencePiece BPE pieces, CTC mapping `blank = 0`, `ctc_id = sp_id + 1`. The
 published `moth-stt` release ships only `vocab.json`; the LM is indexed by these
 piece IDs. See `data/tokenizer/README.md` and `tests/test_tokenizer.py`.
 
+## Source lock
+
+`data/sources.lock.json` pins the versions, URLs, licences, manifest hashes and
+available archive checksums for the E-003 mixture (moth-cs, Common Voice IT 27,
+MLS OpenSLR 94, LibriSpeech OpenSLR 12, MUSAN OpenSLR 17, FLEURS, CS-FLEURS,
+SwitchLingua). It is a metadata lock: the multi-gigabyte audio is **not**
+vendored and has not been re-downloaded in this checkout. Common Voice's archive
+checksum was not retained by Moth; the derived manifests are the pin there.
+FLEURS's current HF revision is not the unrecorded 2026-10-19 Moth snapshot, so
+re-score a baseline before comparing across revisions.
+
 ## Splits
 
 | Split | Content | Use |
