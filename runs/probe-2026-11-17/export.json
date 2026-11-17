@@ -1,0 +1,118 @@
+{
+  "tool": "tools/probe_export.py",
+  "recipe": "stt.export.export_fp32 + quantize_int8 (dynamic, per-channel QInt8)",
+  "weights": "random (size is value-independent)",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "Intel64 Family 6 Model 189 Stepping 1, GenuineIntel",
+  "versions": {
+    "python": "3.12.10",
+    "torch": "2.14.1+cpu",
+    "onnx": "1.23.2",
+    "onnxruntime": "1.31.0"
+  },
+  "reps": 7,
+  "candidates": [
+    {
+      "candidate": "tiny+2",
+      "params": 11575169,
+      "fp32_bytes": 46333455,
+      "int8_bytes": 11876257,
+      "int8_bytes_per_param": 1.02601,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 37
+      },
+      "latency_s": {
+        "10s_1t": 0.0622,
+        "10s_4t": 0.0323,
+        "30s_1t": 0.3574,
+        "30s_4t": 0.156
+      }
+    },
+    {
+      "candidate": "base+0",
+      "params": 20348417,
+      "fp32_bytes": 81412059,
+      "int8_bytes": 20697343,
+      "int8_bytes_per_param": 1.01715,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 37
+      },
+      "latency_s": {
+        "10s_1t": 0.0954,
+        "10s_4t": 0.0479,
+        "30s_1t": 0.5005,
+        "30s_4t": 0.2211
+      }
+    },
+    {
+      "candidate": "base+2",
+      "params": 26652161,
+      "fp32_bytes": 106633969,
+      "int8_bytes": 27113541,
+      "int8_bytes_per_param": 1.01731,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 49
+      },
+      "latency_s": {
+        "10s_1t": 0.1283,
+        "10s_4t": 0.0612,
+        "30s_1t": 0.6566,
+        "30s_4t": 0.2908
+      }
+    },
+    {
+      "candidate": "base+4",
+      "params": 32955905,
+      "fp32_bytes": 131856035,
+      "int8_bytes": 33530165,
+      "int8_bytes_per_param": 1.01743,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 61
+      },
+      "latency_s": {
+        "10s_1t": 0.1648,
+        "10s_4t": 0.0845,
+        "30s_1t": 0.8685,
+        "30s_4t": 0.3711
+      }
+    },
+    {
+      "candidate": "base+6",
+      "params": 39259649,
+      "fp32_bytes": 157078048,
+      "int8_bytes": 39946582,
+      "int8_bytes_per_param": 1.0175,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 73
+      },
+      "latency_s": {
+        "10s_1t": 0.1882,
+        "10s_4t": 0.0767,
+        "30s_1t": 0.9831,
+        "30s_4t": 0.5343
+      }
+    },
+    {
+      "candidate": "base+7",
+      "params": 42411521,
+      "fp32_bytes": 169689045,
+      "int8_bytes": 43154777,
+      "int8_bytes_per_param": 1.01752,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 79
+      },
+      "latency_s": {
+        "10s_1t": 0.2313,
+        "10s_4t": 0.0935,
+        "30s_1t": 1.0352,
+        "30s_4t": 0.4424
+      }
+    }
+  ]
+}
