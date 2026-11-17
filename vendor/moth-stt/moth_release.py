@@ -15,17 +15,25 @@ import math
 import re
 from pathlib import Path, PurePosixPath
 
+#: MOTH-50 change: the full-package ceiling is 50,000,000 bytes (moth-50 D5).
+MAX_BUDGET_BYTES = 50_000_000
+#: MOTH-50 change: Moth-20 (``moth-stt``) packages stay valid for E-001.
+RELEASE_NAMES = ("moth-stt", "moth-50")
 
-def validate_release(path: Path | str, budget_bytes: int = 20_000_000) -> tuple[dict, dict]:
+
+def validate_release(
+    path: Path | str, budget_bytes: int = MAX_BUDGET_BYTES
+) -> tuple[dict, dict]:
     """Check config semantics, safe paths, required assets, hashes and actual size.
 
     Every entry in ``config.files`` is required and counted, in addition to the five
-    referenced runtime assets, config and NOTICE. An explicit budget may select the
-    extended tier, but must never exceed 25,000,000 bytes. Binary format parsing is
-    left to the runtime readers; the LM must at least carry the MOTHLMB1 signature.
+    referenced runtime assets, config and NOTICE. An explicit budget may select a
+    smaller tier (Moth-20: 20,000,000), but must never exceed 50,000,000 bytes. Binary
+    format parsing is left to the runtime readers; the LM must at least carry the
+    MOTHLMB1 signature.
     """
-    if type(budget_bytes) is not int or not 0 < budget_bytes <= 25_000_000:
-        raise ValueError("budget_bytes must be a positive integer <= 25000000")
+    if type(budget_bytes) is not int or not 0 < budget_bytes <= MAX_BUDGET_BYTES:
+        raise ValueError(f"budget_bytes must be a positive integer <= {MAX_BUDGET_BYTES}")
     root = Path(path).resolve()
 
     def safe_file(name: str) -> Path:
@@ -66,8 +74,8 @@ def validate_release(path: Path | str, budget_bytes: int = 20_000_000) -> tuple[
         config = json.loads(safe_file("config.json").read_text(encoding="utf-8"))
         if not isinstance(config, dict):
             raise ValueError("config must be an object")  # noqa: TRY004 - invalid JSON data
-        if config.get("name") != "moth-stt":
-            raise ValueError("name must be moth-stt")
+        if config.get("name") not in RELEASE_NAMES:
+            raise ValueError(f"name must be one of {', '.join(RELEASE_NAMES)}")
         if not isinstance(config.get("version"), str) or not config["version"].strip():
             raise ValueError("version must be a nonempty string")
         if number(config, "sample_rate", integer=True) != 16000:
@@ -179,8 +187,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--budget-bytes",
         type=int,
-        default=20_000_000,
-        help="asset budget in bytes; explicit extended tier up to 25000000",
+        default=MAX_BUDGET_BYTES,
+        help="asset budget in bytes; at most 50000000 (use 20000000 for Moth-20)",
     )
     parser.add_argument(
         "--browser-root",
