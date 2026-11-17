@@ -106,6 +106,16 @@ E-002 with `python tools/probe_activations.py --moth-stt ../moth-stt --device mp
 --no-count --candidates base+6 --batches 6x30 [--checkpointing] --out ...`, which
 runs a real forward/backward/AdamW step and reports MPS driver memory.
 
+**Confirmed on the M5 Pro (2026-11-17).** The same command on macOS 27.0.1 with
+torch 2.14.1 (`--no-count`, one real forward/backward/AdamW step) gives
+**13.322 GB** peak driver memory without checkpointing (`mps-activations.json`)
+and **3.671 GB** with per-block checkpointing
+(`mps-activations-checkpointing.json`). Both fit the 16 GB machine; checkpointing
+is ~3.6× lower than the conservative ~6 GB projection and costs one extra
+forward pass. These are one-step, random-weight measurements: they exclude the
+data pipeline and allocator fragmentation of a multi-hour run, so E-002 still
+needs a real 200-step probe before committing to training.
+
 ## 4. A packed LM format (review proposal P5)
 
 `tools/probe_lm_pack.py` re-encodes a Moth `MOTHLMB1` LM as `MOTHLMB2`: 11-bit

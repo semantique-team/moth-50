@@ -1,0 +1,20 @@
+{
+  "tool": "tools/probe_activations.py",
+  "definition": "unique storages saved for backward, bf16 autocast, equal-length clips",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "versions": {
+    "python": "3.12.12",
+    "torch": "2.14.1"
+  },
+  "rows": [
+    {
+      "candidate": "base+6",
+      "batch": "6x30",
+      "mps_checkpointing": false,
+      "mps_after_forward_gb": 12.07,
+      "mps_after_backward_gb": 13.23,
+      "mps_after_step_gb": 13.322,
+      "mps_max_observed_gb": 13.322
+    }
+  ]
+}
