@@ -24,6 +24,23 @@ Both configurations pass the E-002 memory gate:
   checkpointing; 3.671 GB / 3.680 GB with it), so there is no growth from
   AdamW state or the allocator over 200 steps.
 
+## Dev-macro reference for the E-003 gate
+
+The retained E-037 dev hypotheses are the shipped 0.8.1 INT8 graph + A3 LM with
+the frozen decoder. Re-scoring them with the vendored evaluator on the two dev
+manifests reproduces E-037 exactly:
+
+| Dev set | n | WER | 95 % CI |
+|---|---:|---:|---|
+| MLS-IT dev | 1,248 | **28.1040** | [27.3562, 28.8502] |
+| LS-EN dev | 2,691 | **17.9299** | [17.4856, 18.4061] |
+| **Macro** | 3,939 | **23.0170** | — |
+
+The E-003 gate therefore uses **23.0170 % macro WER** as the measured 0.8.1
+reference, not the stale 30.86 (E-014) or the acoustic-only 31.01 greedy
+(E-028): those are different protocols. Details and hashes:
+`runs/E-002/dev-reference.json`.
+
 ## Method
 
 - Model: `MothSTT`, `EncoderConfig(width=512, n_layers=6, n_heads=8,
@@ -65,12 +82,14 @@ E-016). The 192 audio-s batch cap stays.
   addendum): E-003 cannot be ranked without it.
 - Re-fetch the public corpora at pinned revisions and rebuild the mel shards
   for the frozen E-003 mixture (`experiments/E-002-protocol.md` §2).
-- Then run the re-scored 0.8.1 dev-macro baseline and start E-003.
+- The 0.8.1 dev-macro reference is re-scored (**23.0170 %**); E-003 starts once
+  the two data prerequisites above exist.
 
 ## Artifacts
 
 - `runs/E-002/train-probe.json` — no checkpointing.
 - `runs/E-002/train-probe-checkpointing.json` — per-block checkpointing.
+- `runs/E-002/dev-reference.json` — re-scored 0.8.1 dev-macro reference.
 - `experiments/E-002-protocol.md` — frozen protocol.
 - `data/tokenizer/moth_bpe.model` — pinned tokenizer
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).

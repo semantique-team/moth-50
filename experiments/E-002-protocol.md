@@ -67,9 +67,10 @@ Scoring always uses the vendored `moth_text.normalize` and `moth_eval.py`:
 **Two dev readouts, different jobs:**
 
 1. **Dev-macro (screen):** Moth's MLS-IT + LS-EN dev, macro WER. It is the
-   comparability metric for E-003; re-score Moth 0.8.1 on it first, under this
-   protocol, and use that measured reference—not the stale 30.86 (E-014) or the
-   unverified 31.01—as the gate baseline.
+   comparability metric for E-003. The measured 0.8.1 reference is **23.0170 %**
+   macro (MLS-IT 28.1040, LS-EN 17.9299) from the retained E-037 INT8 + A3
+   hypotheses re-scored under this protocol (`runs/E-002/dev-reference.json`);
+   do not use the stale 30.86 (E-014) or the acoustic-only 31.01 (E-028).
 2. **Dev-S1 (product and checkpoint selection):** the new S1 session, pooled
    WER and ETA. A candidate that improves dev-macro but regresses dev-S1 does
    not win; E-028 showed dev and product can move in opposite directions.
@@ -78,10 +79,10 @@ T-600, FLEURS and CS-FLEURS are test sets: never use them for checkpoint
 selection, decoder tuning or arm ranking.
 
 **E-003 gate (pre-registered):** at least **1.0 pp better dev-macro WER** than
-the re-scored 0.8.1 reference, with a paired bootstrap CI excluding zero, and no
-dev-S1 regression outside its CI. Keep the decoder fixed during the screen
-(beam 12, top-k 10, LM weight 0.55, token bonus 2.7, A3 LM); recalibrate per arm
-on dev only in E-004, never on T.
+the re-scored 0.8.1 reference (**23.0170 %**), with a paired bootstrap CI
+excluding zero, and no dev-S1 regression outside its CI. Keep the decoder fixed
+during the screen (beam 12, top-k 10, LM weight 0.55, token bonus 2.7, A3 LM);
+recalibrate per arm on dev only in E-004, never on T.
 
 **Seeds:** one seed per arm in E-003. If the top two arms are within ~1 pp,
 repeat them with a second seed before naming a winner; the final recipe gets

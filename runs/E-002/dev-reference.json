@@ -1,0 +1,39 @@
+{
+  "tool": "vendor/moth-stt/moth_eval.py (score_rows)",
+  "system": "Moth 0.8.1 INT8 + A3 LM, retained E-037 dev hypotheses",
+  "hyp": "../moth-stt/runs/E-037/readout/paired-1/dev/int8/dev.hyp.jsonl",
+  "hyp_sha256": "8d31eef0e0c659d67a5691b3161261d920ad0254b4d9e6361031e3737a322fb1",
+  "bootstrap": 1000,
+  "seed": 0,
+  "it": {
+    "manifest": "../moth-stt/data/manifests/mls_it_dev.jsonl",
+    "manifest_sha256": "e0355fa641241cffac14ae5c0f2af1f51ec564a6bc499993d8676a2b4859d602",
+    "n": 1248,
+    "ref_words": 40407,
+    "wer": 0.2810404137896899,
+    "wer_ci": [
+      0.27356175142352246,
+      0.2885019662157149
+    ],
+    "eta": null
+  },
+  "en": {
+    "manifest": "../moth-stt/data/manifests/ls_en_dev.jsonl",
+    "manifest_sha256": "51053e0a21d561dda20dfd0f7136e9063712a9f37be97507aac125e1595de8f6",
+    "n": 2691,
+    "ref_words": 53631,
+    "wer": 0.17929928586078947,
+    "wer_ci": [
+      0.17485650805406405,
+      0.184061248702358
+    ],
+    "eta": null
+  },
+  "macro_wer": 0.2301698498252397,
+  "macro_definition": "mean of MLS-IT dev WER and LS-EN dev WER",
+  "e037_reported": {
+    "macro": 0.2301698498252397,
+    "it": 0.2810404137896899,
+    "en": 0.17929928586078947
+  }
+}

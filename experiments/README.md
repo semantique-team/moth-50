@@ -35,7 +35,7 @@ external evidence.
 | ID | Question | Status |
 |---|---|---|
 | E-001 | Reproduce Moth 0.8.1 on the canonical dataset with the vendored evaluator | done: 24.0826 / 55.2253, matches E-038 |
-| E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_training.py`) | protocol frozen; 200-step probe passed (13.37 / 3.68 GB); S1-dev and corpus rebuild pending |
+| E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_training.py`) | protocol frozen; 200-step probe passed (13.37 / 3.68 GB); 0.8.1 dev reference re-scored (23.0170 macro); S1-dev and corpus rebuild pending |
 | E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | planned |
 | E-004 | Package-budget trade-off: base+6 + 5.38 MB LM vs base+4 + 12 MB LM | planned |
 | E-005 | Full fine-tune of the winner; INT8 export; browser run | planned |
