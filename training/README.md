@@ -51,6 +51,22 @@ uv run --frozen --project ../moth-stt --extra training -- \
 On the M5 Pro this takes seconds and peaks below 1 GB because the smoke clips
 are short; it is a wiring test, not a quality result.
 
+## Real-shard smoke (MLS)
+
+After the MLS shards and LS dev shard exist, `training/configs/mls-smoke.toml`
+runs the same 20-step base+6 check on real long-form data:
+
+```bash
+uv run --frozen --project ../moth-stt --extra training -- \
+  python -m training.train --config training/configs/mls-smoke.toml \
+  --moth-stt ../moth-stt --out runs/training-mls-smoke --device mps
+```
+
+Measured on the M5 Pro: 20 steps at ~192 audio-s per batch, **5.1–6.2 GB** peak
+with checkpointing, **1.5–2.0 s/step**, no non-finite losses. The greedy dev WER
+is meaningless after 20 steps; this test only proves that the shard loader,
+model, CTC targets, optimizer, checkpoints and dev loop work on real clips.
+
 ## Full E-003 data build
 
 The real config is `training/configs/base6.toml`. It expects the mel shards in

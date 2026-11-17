@@ -1,0 +1,43 @@
+# Real-shard smoke test: MLS train + MLS/LS dev, base+6, 20 steps.
+# Build the shards first (training/README.md); paths are relative to this file.
+
+[model]
+preset = "base"
+head_blocks = 6
+checkpointing = true
+
+[data]
+tokenizer = "../../data/tokenizer/moth_bpe.model"
+max_seconds = 192
+max_clips = 32
+augment = true
+dev_limit = 200
+
+[[data.train]]
+manifest = "../../moth-stt/data/manifests/mls_it_train.jsonl"
+shards = "../../data/shards/mls_it_train"
+
+[[data.dev]]
+manifest = "../../moth-stt/data/manifests/mls_it_dev.jsonl"
+shards = "../../data/shards/mls_it_dev"
+
+[[data.dev]]
+manifest = "../../moth-stt/data/manifests/ls_en_dev.jsonl"
+shards = "../../data/shards/ls_en_dev"
+
+[optimizer]
+lr_head = 3e-4
+lr_encoder = 3e-5
+
+[schedule]
+warmup_steps = 5
+min_factor = 0.05
+
+[train]
+epochs = 1
+max_steps = 20
+log_every = 5
+eval_every_steps = 10
+checkpoint_every_steps = 10
+empty_cache_every = 5
+seed = 0
