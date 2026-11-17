@@ -35,7 +35,7 @@ external evidence.
 | ID | Question | Status |
 |---|---|---|
 | E-001 | Reproduce Moth 0.8.1 on the canonical dataset with the vendored evaluator | planned |
-| E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test) | planned |
+| E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_activations.py`) | planned |
 | E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | planned |
 | E-004 | Package-budget trade-off: base+6 + 5.4 MB LM vs base+4 + 12 MB LM | planned |
 | E-005 | Full fine-tune of the winner; INT8 export; browser run | planned |
@@ -44,6 +44,8 @@ external evidence.
 | E-008 | External evaluation: CS-FLEURS-READ (test-only), FLEURS, per-speaker ranges | planned |
 
 The rationale, parameter counts and gates for E-003–E-008 are in
-`docs/architecture-options.md`. Do not start E-003 before E-002 has frozen the
-evaluation protocol; T is a comparability set, not a clean test. There is no
-100 MB experiment: the tier is rejected. No CC-BY-NC data in training.
+`docs/architecture-options.md`; the corrected Moth evidence, the measurements
+and the proposals that may change them are in `docs/review-2026-11-17.md`. Do
+not start E-003 before E-002 has frozen the evaluation protocol; T is a
+comparability set, not a clean test. There is no 100 MB experiment: the tier is
+rejected. No CC-BY-NC data in training.
