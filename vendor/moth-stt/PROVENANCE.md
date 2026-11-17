@@ -10,7 +10,7 @@ Source: `semantique-team/moth-stt` at commit
 | `moth_features.py` | `stt/features.py` | none |
 | `moth_eval.py` | `stt/eval.py` | `stt.text` imports → `moth_text` |
 | `moth_release.py` | `stt/release.py` | budget cap and default 25,000,000 / 20,000,000 → 50,000,000 (D5); config `name` may be `moth-50` as well as `moth-stt` (2026-11-17) |
-| `assets/mel_filters.bin` | `stt/assets/mel_filters.bin` | none; copied from the `moth-stt-dev` checkout at `d5ae605`; sha256 `4f2701b1d287d74a0dc9871026e9519d98cb76426615f2539b0d151a0ae4ec2e`, identical to the Moth 0.8.1 release asset (2026-11-17) |
+| `assets/mel_filters.bin` | `stt/assets/mel_filters.bin` | none; copied from the `moth-stt-dev` checkout at `d5ae605` (a different repository from the pinned commit), so the tie to Moth is the sha256 `4f2701b1d287d74a0dc9871026e9519d98cb76426615f2539b0d151a0ae4ec2e`, identical to the Moth 0.8.1 release asset (2026-11-17) |
 
 The import changes are mechanical; the scoring logic is unchanged. Do not edit
 these files to make a new result pass. If a change is genuinely needed, copy the
