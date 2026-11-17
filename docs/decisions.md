@@ -68,7 +68,7 @@ the LM and VAD.
   parameters, 47.74 MB package** (measured graph size, 2.26 MB under the
   ceiling; `runs/probe-2026-11-17`). Full fine-tune from base, 2–4 epochs.
 - **Same-budget challenger**: Whisper-base + 4 extra blocks + a 12 MB LM
-  (~47.95 MB). Decide by experiment at equal package size, not by prior.
+  (~47.94 MB). Decide by experiment at equal package size, not by prior.
 - **100 MB tier**: rejected (D5). Whisper-small and the deep-base 100 MB
   variants are retained in `docs/architecture-options.md` only as rejected
   evidence.
@@ -143,18 +143,21 @@ deliberately unchanged. The historical `moth-large` folder name is retired.
 measurements or fixes rather than choices:
 
 - The package numbers are the measured ones: base+6 is 39.95 MB INT8 and 47.74 MB
-  in total; base+7 (50.95 MB) does not fit.
-- The E-003 gate is relative to the 0.8.1 acoustic model re-measured under the
-  frozen protocol (E-028 was 31.01 greedy on Moth's dev, not 30.86).
-- Moth's seed variance is unknown; MOTH-50 measures its own.
+  in total; base+7 (50.95 MB) does not fit with the A3 LM in its current
+  `MOTHLMB1` format.
+- The 0.8.1 acoustic model (E-028) scored 31.01 greedy on Moth's dev; the 30.86
+  previously cited as the E-003 baseline is E-014.
+- Moth's seed variance was never measured (one seed per configuration).
 - The vendored release validator accepts the 50,000,000-byte ceiling and the
   `moth-50` name.
 
 Proposed, not yet decided (P1–P7 in the review): activation checkpointing from
 the first base run, a staged adaptation schedule from Whisper-base, identity
 initialization of the extra blocks, Parakeet-TDT-0.6B-v3 pseudo-labelling as an
-E-006 arm, a tighter LM binary format, the evaluation-hygiene items, and 25 Hz
-extra blocks as the fallback before base+4.
+E-006 arm, a tighter LM binary format, the evaluation-hygiene items (including
+which artifact and protocol define the E-003 reference, whether the gate fits a
+~4,000-step screen, and how many seeds MOTH-50 runs), and 25 Hz extra blocks as
+the fallback before base+4.
 
 ## Open questions
 

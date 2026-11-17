@@ -10,7 +10,8 @@ export recipe before E-002, and sizes the packed LM format of review proposal P5
 - **Machine:** Windows 11 laptop, Intel Core Ultra 7 268V, 32 GB; Python 3.12.10,
   torch 2.14.1+cpu, onnx 1.23.2, onnxruntime 1.31.0.
 - **Weights:** random. The INT8 graph size does not depend on weight values.
-- **Raw data:** `export.json`, `activations.json`, `lm_pack.json`.
+- **Raw data:** `export.json`, `export_lengths.json`, `activations.json`,
+  `lm_pack.json`.
 
 ## 1. INT8 graph size (Moth recipe: `export_fp32` + `quantize_dynamic`, per-channel QInt8)
 
@@ -30,12 +31,16 @@ vocab/mel filters/config/NOTICE 86,096 B (the Moth 0.8.1 files).
   11,910,677 B; different torch/ORT versions).
 - At width 512 the ratio is **1.0175 B/param**, not 1.03: base+6 is 39.95 MB, not
   40.4 MB, and the package is **47.74 MB with 2.26 MB of room**, not 48.2 / 1.8.
-- **base+6 is the deepest model that fits** with the A3 LM and Silero; base+7 is
-  0.95 MB over.
+- **base+6 is the deepest model that fits with the A3 LM in its current
+  `MOTHLMB1` format** and Silero; base+7 is 0.95 MB over. With a packed LM (§4),
+  base+7 + A3 would be 48,926,329 B if A3 packs losslessly at 10 bits
+  (unverified: only the 0.7.0 LM was inspected).
 - LM room at 50,000,000 B: **7.64 MB** with base+6, **14.06 MB** with base+4.
 - The CTC head and the conv stem are INT8 (`MatMulInteger`, `ConvInteger`), as in 0.8.1.
 
-## 2. CPU latency (ONNX Runtime, batch 1, median of 7)
+## 2. CPU latency (ONNX Runtime, batch 1)
+
+First run (`export.json`, median of 7):
 
 | Candidate | 10 s, 1 thread | 30 s, 1 thread | 30 s ratio vs tiny+2 |
 |---|---:|---:|---:|
@@ -46,11 +51,29 @@ vocab/mel filters/config/NOTICE 86,096 B (the Moth 0.8.1 files).
 | base+6 | 0.188 s | 0.983 s | 2.75× |
 | base+7 | 0.231 s | 1.035 s | 2.90× |
 
-The 4-thread timings in `export.json` are noisy on this laptop (base+6 slower than
-base+7) and are not used. The only browser measurement of 0.8.1 is the E-031
-acceptance run on one 3 s fixture: median RTFx 25.1× (1 thread) and 46.7×
-(4 threads). Dividing by the 1-thread ratio gives **≈9× (1 thread) to ≈17×
-(4 threads) for base+6**: a planning number, not a browser measurement.
+Length-matched second run (`export_lengths.json`, 1 thread, median of 9):
+
+| Candidate | 5 s | 10 s | 20 s | 30 s | Ratio vs tiny+2 (5 / 10 / 20 / 30 s) |
+|---|---:|---:|---:|---:|---:|
+| tiny+2 | 0.025 s | 0.061 s | 0.168 s | 0.302 s | 1 |
+| base+4 | 0.058 s | 0.139 s | 0.376 s | 0.735 s | 2.38 / 2.29 / 2.24 / 2.43 |
+| base+6 | 0.069 s | 0.168 s | 0.445 s | 0.861 s | 2.80 / 2.76 / 2.65 / 2.85 |
+
+Between the two runs the base+6 ratio at the same length moves by up to 10 %
+(10 s: 3.03 vs 2.76), so read it as **≈2.7–3.0×**. The 4-thread timings in
+`export.json` are noisy on this laptop (base+6 slower than base+7) and are not
+used.
+
+Browser projection: the export has a dynamic time axis, so the ratio must match
+the clip length. Moth E-022 measured the browser at 1 thread on the tiny+2
+architecture: RTFx 24.3 / 22.9 / 20.2× at 5 / 10 / 20 s. Dividing by the
+length-matched ratios gives **≈7–9× for base+6** (≈7–7.6× at 20 s) and ≈8.5–10×
+for base+4. The only 4-thread figure is 0.8.1's E-031 acceptance run on one 3 s
+fixture (46.7×), which suggests ≈15–17× for base+6. Features, VAD and the
+decoder do not slow down with model size, so the end-to-end slowdown is somewhat
+smaller than the model's; still, these are planning numbers, not browser
+measurements. At 1 thread base+6 would miss Moth's ≥ 10× browser bar and sits at
+the E-005 gate of ≥ 8×.
 
 ## 3. Activation memory kept for backward (bf16 autocast, 192 audio-s per batch)
 
@@ -69,15 +92,19 @@ acceptance run on one 3 s fixture: median RTFx 25.1× (1 thread) and 46.7×
   (Moth `runs/E-028/train.log.jsonl`, step 7,950). Projecting that peak to base+6
   gives **≈12–14 GB** if only the activation term grows (plus 0.44 GB of extra
   weights, gradients and AdamW state) and **≈20 GB** if the whole peak scales with
-  the activations. The 16 GB machine is at or over its limit either way.
+  the activations. The first case leaves 2–4 GB on a 16 GB machine for macOS and
+  the data pipeline; the second does not fit. Which one holds is what the E-002
+  probe must measure.
 - With per-block activation checkpointing the activation term drops to **≈1 GB**
   for base+6 at the cost of one extra forward pass (~4/3 of the step time).
 
 The checkpointing column is an estimate (block inputs + the largest single block +
 stem and head), not a measured peak. On Windows a single process crashed with a
 native access violation after the base+6 6 × 30 s batch, so `activations.json` was
-merged from one process per candidate. Confirm both numbers on the M5 Pro with
-`python tools/probe_activations.py --device mps [--checkpointing]` during E-002.
+merged from one process per candidate. Confirm both numbers on the M5 Pro during
+E-002 with `python tools/probe_activations.py --moth-stt ../moth-stt --device mps
+--no-count --candidates base+6 --batches 6x30 [--checkpointing] --out ...`, which
+runs a real forward/backward/AdamW step and reports MPS driver memory.
 
 ## 4. A packed LM format (review proposal P5)
 
@@ -105,8 +132,9 @@ layout formula, then scores the 600 unique T sentences with both files. Raw data
 | 6 | 2,674,888 | 52.3 % | 0.0296 / 0.236 | 0.125 / 0.545 | 97.11 % | 6,516,896 B |
 
 The mean T sentence log-prob is −45.6 nats; the decoder multiplies LM scores by
-0.55. The last column is exact for the layout, computed from the entry and context
-counts in Moth's E-034 `build.json` (the file itself is not on this machine).
+0.55. The last column is exact for the layout: entry counts from Moth's E-034
+`build.json`, trigram contexts (265,001) derived from its `MOTHLMB1` byte size
+(the file itself is not on this machine).
 
 What it means for the 50 MB package with base+6 (39,946,582 B INT8 + VAD + misc):
 
@@ -119,9 +147,13 @@ What it means for the 50 MB package with base+6 (39,946,582 B INT8 + VAD + misc)
 | **E-034 unpruned** | **MOTHLMB2, 8-bit** | **7,155,008** | **49,515,210** | **484,790** |
 | E-034 unpruned | MOTHLMB2, 7-bit | 6,835,696 | 49,195,898 | 804,102 |
 
-- An 8-bit codebook fits **base+6 with the unpruned LM** (E-023/E-034: dev −0.65,
-  T-600 −0.77 significant) under 50 MB with 0.48 MB to spare. The LM-score change
-  is small (99.4 % of next-token argmaxes unchanged), but it is not a WER
+- An 8-bit codebook fits **base+6 with the unpruned LM** under 50 MB with 0.48 MB
+  to spare. That LM gained −0.644 pp on Moth's dev (E-034 N2_1_1), but it uses
+  term weight ×1 instead of A3's ×3, and its T-600 and rare-term effects were
+  never measured with the current decoder: E-034 read dev only and notes that
+  E-023's gate deltas (T-600 −0.77) came from a different corpus and decoder
+  state, so it does not claim a product gain. The LM-score change from packing is
+  small (99.4 % of next-token argmaxes unchanged), but it is not a WER
   measurement: decode dev and T with both formats before adopting it.
 - Lossless 10-bit packing would save 2.02 MB on the shipped A3 LM, provided its
   log-probs also take at most 1,024 distinct values per order (the 0.7.0 LM's do;
