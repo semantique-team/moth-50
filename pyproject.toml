@@ -23,6 +23,8 @@ package = false
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+# Vendored Moth code stays byte-identical to upstream (see vendor/moth-stt/PROVENANCE.md).
+exclude = ["vendor/moth-stt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
