@@ -8,11 +8,11 @@ release recipe. Quantized size does not depend on the weight values, so random
 weights give the shipped graph size. Latency is ONNX Runtime CPU, batch 1, on
 random log-mel input; it is a relative cost, not a browser measurement.
 
-Needs a ``moth-stt`` checkout (frozen repository, not the published release
-folder) and its environment: torch, onnx, onnxruntime.
+Needs a ``moth-stt`` checkout with ``stt/`` (the repository, not the published
+release folder) and its environment: torch, onnx, onnxruntime, sentencepiece.
 
 Usage:
-    python tools/probe_export.py --moth-stt ../moth-stt \
+    python tools/probe_export.py --moth-stt ../moth-stt-dev \
         --out runs/probe-2026-11-17/export.json
 """
 
@@ -41,7 +41,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("--moth-stt", type=Path, default=Path("../moth-stt"))
+    parser.add_argument(
+        "--moth-stt",
+        type=Path,
+        required=True,
+        help="Moth repository checkout with stt/ (not the published release folder)",
+    )
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--candidates", nargs="+", default=list(CANDIDATES))
     parser.add_argument("--seconds", type=float, nargs="+", default=[10.0, 30.0])
