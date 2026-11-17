@@ -18,22 +18,22 @@ eval_max_seconds = 192
 eval_max_clips = 32
 
 [[data.train]]
-manifest = "../../moth-stt/data/manifests/cv_it_train_clean50.jsonl"
+manifest = "../../../moth-stt/data/manifests/cv_it_train_clean50.jsonl"
 shards = "../../data/shards/cv_it_train_clean50"
 repeat = 1
 
 [[data.train]]
-manifest = "../../moth-stt/data/manifests/cv_it_train_noisy50.jsonl"
+manifest = "../../../moth-stt/data/manifests/cv_it_train_noisy50.jsonl"
 shards = "../../data/shards/cv_it_train_noisy50"
 repeat = 1
 
 [[data.train]]
-manifest = "../../moth-stt/data/manifests/mls_it_train.jsonl"
+manifest = "../../../moth-stt/data/manifests/mls_it_train.jsonl"
 shards = "../../data/shards/mls_it_train"
 repeat = 1
 
 [[data.train]]
-manifest = "../../moth-stt/data/manifests/ls_en_train.jsonl"
+manifest = "../../../moth-stt/data/manifests/ls_en_train.jsonl"
 shards = "../../data/shards/ls_en_train"
 repeat = 1
 
@@ -46,17 +46,22 @@ repeat = 1
 # The term addenda are inside v1.0.0 here; a separate x20 manifest is a
 # mixture experiment, not a silent default.
 [[data.train]]
-manifest = "../../moth-cs-dataset/manifests/train.jsonl"
+manifest = "../../../moth-cs-dataset/manifests/train.jsonl"
 shards = "../../data/shards/gold-train"
 repeat = 50
 
 [[data.dev]]
-manifest = "../../moth-stt/data/manifests/mls_it_dev.jsonl"
+manifest = "../../../moth-stt/data/manifests/mls_it_dev.jsonl"
 shards = "../../data/shards/mls_it_dev"
 
 [[data.dev]]
-manifest = "../../moth-stt/data/manifests/ls_en_dev.jsonl"
+manifest = "../../../moth-stt/data/manifests/ls_en_dev.jsonl"
 shards = "../../data/shards/ls_en_dev"
+
+# After recording the held-out S1 session (experiments/E-002-s1-dev.md):
+# [[data.dev]]
+# manifest = "../../../moth-cs-dataset/manifests/R-S1-dev.jsonl"
+# shards = "../../data/shards/s1-dev"
 
 [optimizer]
 # E-003 starting point from review P2: adaptation from Whisper-base, screen the

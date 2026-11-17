@@ -135,6 +135,9 @@ uv run --frozen --project ../moth-stt --extra training -- \
   --moth-stt ../moth-stt --out runs/E-003/base6 --device mps
 ```
 
+Before E-003, add the held-out S1-dev source to `base6.toml` as documented in
+`experiments/E-002-s1-dev.md`; E-003 cannot be ranked without it.
+
 ## Resume and checkpoints
 
 - `--resume runs/.../checkpoints/ckpt_last.pt` restores model, optimizer, epoch,

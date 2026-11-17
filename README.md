@@ -106,6 +106,7 @@ docs/review-2026-11-17.md evidence check, measurements and proposals
 experiments/README.md     new experiment ledger, starts at E-001
 experiments/E-001-baseline.md
 experiments/E-002-protocol.md  frozen evaluation protocol and data mixture
+experiments/E-002-s1-dev.md   S1-dev recording runbook and manifest patch
 runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
 runs/E-001/               Moth 0.8.1 baseline reproduction
 runs/E-002/               real 200-step MPS training probe

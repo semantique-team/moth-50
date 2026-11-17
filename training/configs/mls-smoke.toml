@@ -14,15 +14,15 @@ augment = true
 dev_limit = 200
 
 [[data.train]]
-manifest = "../../moth-stt/data/manifests/mls_it_train.jsonl"
+manifest = "../../../moth-stt/data/manifests/mls_it_train.jsonl"
 shards = "../../data/shards/mls_it_train"
 
 [[data.dev]]
-manifest = "../../moth-stt/data/manifests/mls_it_dev.jsonl"
+manifest = "../../../moth-stt/data/manifests/mls_it_dev.jsonl"
 shards = "../../data/shards/mls_it_dev"
 
 [[data.dev]]
-manifest = "../../moth-stt/data/manifests/ls_en_dev.jsonl"
+manifest = "../../../moth-stt/data/manifests/ls_en_dev.jsonl"
 shards = "../../data/shards/ls_en_dev"
 
 [optimizer]
