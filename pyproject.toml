@@ -29,4 +29,4 @@ exclude = ["vendor/moth-stt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["vendor/moth-stt", "tools"]
+pythonpath = [".", "vendor/moth-stt", "tools"]

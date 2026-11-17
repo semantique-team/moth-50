@@ -110,6 +110,9 @@ runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
 runs/E-001/               Moth 0.8.1 baseline reproduction
 runs/E-002/               real 200-step MPS training probe
 tests/                    tests for tools/ and the vendored code
+training/                 MOTH-50 trainer port (config, data, model, loop)
+training/configs/         base+6 E-003 config and the 20-step smoke config
+training/fixtures/        tiny smoke manifests (audio not included)
 tools/architecture_budget.py  parameter/size/compute estimator
 tools/probe_export.py     real INT8 export size and CPU latency (needs moth-stt)
 tools/probe_activations.py  activation memory, CPU or MPS (needs moth-stt)

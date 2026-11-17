@@ -1,0 +1,55 @@
+# Tiny end-to-end trainer smoke test (20 train clips, 10 dev clips).
+# Build the shards first:
+#   uv run --frozen --project ../moth-stt --extra training -- \
+#     python -m stt.data.build_mel --manifest training/fixtures/smoke-train.jsonl \
+#     --audio-root ../moth-cs-dataset --out-dir data/shards/smoke-train --workers 2
+#   ... same for smoke-dev ...
+# Then:
+#   uv run --frozen --project ../moth-stt --extra training -- \
+#     python -m training.train --config training/configs/smoke.toml \
+#     --moth-stt ../moth-stt --out runs/trainer-smoke --device mps
+
+[model]
+preset = "base"
+head_blocks = 6
+vocab_size = 1024
+checkpointing = true
+
+[data]
+tokenizer = "../../data/tokenizer/moth_bpe.model"
+max_seconds = 10
+max_clips = 4
+augment = false
+seed = 0
+eval_max_seconds = 10
+eval_max_clips = 4
+
+[[data.train]]
+manifest = "../fixtures/smoke-train.jsonl"
+shards = "../../data/shards/smoke-train"
+
+[[data.dev]]
+manifest = "../fixtures/smoke-dev.jsonl"
+shards = "../../data/shards/smoke-dev"
+
+[optimizer]
+lr_head = 1e-4
+lr_encoder = 1e-5
+betas = [0.9, 0.98]
+eps = 1e-8
+weight_decay = 0.01
+grad_clip = 1.0
+
+[schedule]
+warmup_steps = 5
+min_factor = 0.05
+
+[train]
+epochs = 4
+max_steps = 20
+log_every = 5
+eval_every_steps = 10
+checkpoint_every_steps = 10
+empty_cache_every = 5
+autocast = "bf16"
+seed = 0
