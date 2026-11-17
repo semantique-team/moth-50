@@ -65,15 +65,19 @@ metrics. The final dev-macro/S1-dev readout uses the frozen beam+A3 decoder and
 
 ## Preflight (2026-11-17)
 
-`runs/E-003/preflight.json` reports `ready: false`:
+`runs/E-003/preflight.json` reports **`ready: true`** and `train_guard: ok`:
 
-- ready: MLS train (40,953 clips, 169.9 h), LS train (28,370 clips, 100.0 h),
-  MLS dev, LS dev, gold-train (1,413 clips, 0.96 h);
-- missing: CV clean-50 and noisy-50 shards; the spliced manifest/shards depend
-  on them and are therefore also missing;
+- CV clean-50 (56,769 clips, 84.2 h) + full `cv_it_train` shards; CV noisy-50
+  (56,349 clips, 83.6 h, 0 errors);
+- MLS train (40,953 clips, 169.9 h), LS train (28,370 clips, 100.0 h);
+- spliced IT+EN (20,623 clips, 110.0 h);
+- gold-train (1,413 clips, 0.96 h; repeated ×50 in the config);
+- MLS dev and LS dev ready;
 - tokenizer sha256 matches `d6e1054e…`;
-- train-row guard skipped until all manifests are present;
 - E-002 checkpointed memory: 3.68 GB, 4.47 s/step at 6 × 30 s.
+
+The only missing E-002 artifact is **S1-dev**, so E-003 can start the screen but
+the final ranking waits for that readout.
 
 ## Not done here
 

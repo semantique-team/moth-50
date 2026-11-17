@@ -1,9 +1,9 @@
 {
   "tool": "training/preflight.py",
   "config": "/Users/tancredi/Desktop/semantique/moth-50/training/configs/base6.toml",
-  "ready": false,
+  "ready": true,
   "strict": false,
-  "train_guard": "skipped",
+  "train_guard": "ok",
   "tokenizer": {
     "path": "/Users/tancredi/Desktop/semantique/moth-50/data/tokenizer/moth_bpe.model",
     "exists": true,
@@ -27,8 +27,12 @@
         "shards": "/Users/tancredi/Desktop/semantique/moth-50/data/shards/cv_it_train",
         "repeat": 1,
         "manifest_ok": true,
-        "shards_ok": false,
-        "status": "missing mel shards"
+        "shards_ok": true,
+        "rows": 56769,
+        "hours": 84.224,
+        "index_entries": 113118,
+        "missing_from_index": 0,
+        "status": "ready"
       },
       {
         "role": "train",
@@ -36,8 +40,12 @@
         "shards": "/Users/tancredi/Desktop/semantique/moth-50/data/shards/cv_it_noisy50",
         "repeat": 1,
         "manifest_ok": true,
-        "shards_ok": false,
-        "status": "missing mel shards"
+        "shards_ok": true,
+        "rows": 56349,
+        "hours": 83.564,
+        "index_entries": 56349,
+        "missing_from_index": 0,
+        "status": "ready"
       },
       {
         "role": "train",
@@ -70,9 +78,13 @@
         "manifest": "/Users/tancredi/Desktop/semantique/moth-50/data/manifests/spliced_it_en.jsonl",
         "shards": "/Users/tancredi/Desktop/semantique/moth-50/data/shards/spliced_it_en",
         "repeat": 1,
-        "manifest_ok": false,
-        "shards_ok": false,
-        "status": "missing manifest"
+        "manifest_ok": true,
+        "shards_ok": true,
+        "rows": 20623,
+        "hours": 110.003,
+        "index_entries": 20623,
+        "missing_from_index": 0,
+        "status": "ready"
       },
       {
         "role": "train",
