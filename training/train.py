@@ -35,7 +35,7 @@ import platform
 import sys
 import time
 from contextlib import nullcontext
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from pathlib import Path
 
 import torch
@@ -170,6 +170,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--device", default="mps", choices=["cpu", "mps", "cuda"])
     parser.add_argument("--resume", type=Path, default=None)
     parser.add_argument("--max-steps", type=int, default=0, help="override train.max_steps")
+    parser.add_argument(
+        "--head-blocks", type=int, default=None, help="override model.head_blocks (E-003 arms)"
+    )
     parser.add_argument("--dry-run", action="store_true", help="build model/data and exit")
     args = parser.parse_args(argv)
 
@@ -189,6 +192,8 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     config = load_config(args.config)
+    if args.head_blocks is not None:
+        config = replace(config, model=replace(config.model, head_blocks=args.head_blocks))
     device = torch.device(args.device)
     if device.type == "mps" and not torch.backends.mps.is_available():
         raise SystemExit("MPS is not available")

@@ -67,6 +67,22 @@ with checkpointing, **1.5–2.0 s/step**, no non-finite losses. The greedy dev W
 is meaningless after 20 steps; this test only proves that the shard loader,
 model, CTC targets, optimizer, checkpoints and dev loop work on real clips.
 
+## E-003 preflight
+
+`training/preflight.py` checks every manifest/shard, the tokenizer hash, Moth's
+train-row guard, the four parameter/package budgets and the E-002 memory
+reading, without training:
+
+```bash
+uv run --frozen --project ../moth-stt --extra training -- \
+  python -m training.preflight --config training/configs/base6.toml \
+  --moth-stt ../moth-stt --out runs/E-003/preflight.json
+```
+
+It reports missing sources as `ready: false`; add `--strict` to make that an
+error. The E-003 arms use the same config with `--head-blocks 0/2/4/6
+--max-steps 4000`; see `experiments/E-003-plan.md`.
+
 ## Full E-003 data build
 
 The real config is `training/configs/base6.toml`. It expects the mel shards in
