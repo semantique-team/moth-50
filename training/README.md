@@ -75,10 +75,10 @@ tar -xzf data/raw/librispeech/dev-clean.tar.gz -C data/raw/librispeech
 for spec in \
   "cv_it_train_clean50:data/raw" \
   "cv_it_train_noisy50:data/raw" \
-  "mls_it_train:data/raw/mls_it" \
-  "ls_en_train:data/raw/librispeech" \
-  "mls_it_dev:data/raw/mls_it" \
-  "ls_en_dev:data/raw/librispeech"
+  "mls_it_train:data/raw" \
+  "ls_en_train:data/raw" \
+  "mls_it_dev:data/raw" \
+  "ls_en_dev:data/raw"
 do
   name=${spec%%:*}; root=${spec#*:}
   uv run --frozen --project ../moth-stt --extra training -- \
