@@ -1,10 +1,14 @@
 # Architecture options for MOTH-50
 
-**Status: accepted 2026-11-17.** This document does not train anything and does
-not change the Moth 0.8.1 baseline. It turns the Moth evidence into the chosen
-50 MB architecture and a first experiment sequence. The 100 MB tier was
-evaluated and rejected (D5); its analysis is retained below only as rejected
-evidence. Decisions are recorded in `docs/decisions.md`.
+**Status: accepted 2026-11-17; numbers corrected by the 2026-11-17 review.** This
+document does not train anything and does not change the Moth 0.8.1 baseline. It
+turns the Moth evidence into the chosen 50 MB architecture and a first experiment
+sequence. The 100 MB tier was evaluated and rejected (D5); its analysis is
+retained below only as rejected evidence. Decisions are recorded in
+`docs/decisions.md`. The review (`docs/review-2026-11-17.md`) checked every cited
+Moth number against the Moth records and measured the real INT8 size, CPU latency
+and activation memory of the candidates (`runs/probe-2026-11-17/`); the
+corrections are applied in place below.
 
 ## 1. The decision in one paragraph
 
@@ -12,10 +16,12 @@ The cheapest credible step is **not** a new architecture family. It is the same
 proven recipe — a pretrained Whisper encoder, extra pre-LN transformer blocks, a
 linear CTC head over the 1,024-piece IT+EN BPE, an n-gram LM in shallow fusion
 and a VAD — scaled from Whisper-tiny to **Whisper-base**. A `base` encoder plus
-six extra blocks is **39.3 M acoustic parameters**, about **40 MB int8**, and
-about **48 MB** once the 5.4 MB LM and 2.3 MB VAD are included. That fits the
-50 MB ceiling and should still train in roughly 16–25 hours for 2–3 epochs on
-the 16 GB M5 Pro, if the memory probe passes. The same budget also admits a
+six extra blocks is **39.3 M acoustic parameters**, **39.95 MB int8** (measured
+export), and **47.74 MB** once the 5.38 MB LM and 2.33 MB VAD are included. That
+fits the 50 MB ceiling with 2.26 MB to spare. It should train in roughly 19–28
+hours for 2–3 epochs on the 16 GB M5 Pro **with activation checkpointing**, which
+it needs: without it, the measured activation memory puts the long-clip batches
+at or above 16 GB (§4). The same budget also admits a
 second configuration — `base` plus four blocks with a 12 MB LM — which is the
 direct acoustic-vs-LM trade-off to measure. The 100 MB tier was evaluated
 (Whisper-small, 87.8 M acoustic parameters, ~98 MB package) and **rejected** on
@@ -24,7 +30,8 @@ to the 16 GB memory limit. The target is 50 MB, full package.
 
 The bigger caveat is data, not parameters. Moth's own record says the mixed
 data — 50.2 minutes of recorded IT–EN speech, oversampled — moved the held-out
-speaker by 6.1 WER points when a second speaker was added (E-017), while adding
+speaker by 6.1 WER points when a second speaker was added (E-017, which also
+changed the gold amount, text and step count), while adding
 200 h of English-only LibriSpeech made the mixed set 5.16 points worse (E-012).
 A 39 M model trained on the same mixture will not automatically beat 0.8.1 by a
 large margin. Budget for data work in parallel with the architecture work.
@@ -38,39 +45,41 @@ lessons for a larger model are these.
 
 | Evidence | Measured effect | Lesson for MOTH-50 |
 |---|---|---|
-| E-004 → E-005: frozen Whisper-tiny encoder → full fine-tune on 437.7 h | dev macro WER **75.77 → 33.77** | Pretrained initialization is essential at this data scale. Do not train from scratch first. |
-| E-006: +2 transformer blocks (8.03 → 11.58 M) | dev **33.77 → 31.27**; T (S1, 200) **−5.85**; FLEURS-IT **−3.30** | Depth helps at 20 MB. The same lever should work at 50 MB. |
+| E-004 → E-005: frozen Whisper-tiny encoder (MLS-IT only, padded-30 s arm B) → full fine-tune on 437.7 h IT+EN | MLS-IT dev WER **70.79 → 38.08** (IT+EN macro 33.77) | Pretrained initialization is essential at this data scale. Do not train from scratch first. (The often-quoted 75.77 → 33.77 compares arm A's MLS-only dev with the bilingual macro; Moth's ledger says not to.) |
+| E-006: +2 transformer blocks (8.03 → 11.58 M) | dev **33.77 → 31.27**; T (S1, 200) **−5.85**; FLEURS-IT **−3.30** | Depth helps at 20 MB. The same lever should work at 50 MB. Caveat: E-006 also added 4 epochs, changed the LR and fixed augmentation; it is not a capacity-only estimate, and ETA rose 16.4 → 20.0. |
 | E-014: 110 h utterance-level IT+EN splicing | FLEURS-IT **−2.27**, FLEURS-EN **−0.95**; T/ETA ties | Splicing is a real generalization gain, but not an ETA fix. |
 | E-017: R-S1 + R-S2 gold, 50× | T-600 **32.77 / 42.86**; S3 (never trained) **−6.13 WER** | Real mixed speech generalizes across speakers. This is the strongest data lever in the record. |
 | E-022: decoder recalibration | T-600 **32.77 → 25.92**; T-S3 **35.43 → 26.66** | Calibrate the decoder before judging the acoustic model. Costs zero bytes. |
 | E-024: noise augmentation on half of CV-IT | **−11.54** WER at 10 dB; gains at 15/10/5 dB | Keep the noise recipe. It is cheap and robust. |
-| E-028: gentle gold fine-tune | product gains with dev +0.20; shipped in 0.8.0/0.8.1 | A larger model should also use a gentle fine-tune, not a high-LR shock. |
+| E-028: gentle gold fine-tune | product gains with dev +0.20; shipped in 0.8.0/0.8.1 | The gold stage of a larger model should also be gentle, not a high-LR shock. E-028 started from an already CTC-trained checkpoint, so its LRs are not the adaptation LRs from Whisper (review P2). |
 | E-031: LM corpus rebuild + term weighting | rare ETA **28.4 → 46.9 %**; T-600 24.08; +265 kB | LM data treatment can matter more than another acoustic block. |
-| E-037: paired fp32/INT8 | dev **+0.16 pp**, T-600 +0.49 pp (tie) | INT8 is the right deployment format. Measure it, don't fear it. |
-| E-041: browser vs Python runner | T-600 **+0.72 pp** (tie); S3 +1.53 pp; median RTFx **42×** | Measure the browser artifact; the never-trained voice pays the most. |
+| E-037: paired fp32/INT8 | dev **+0.16 pp** (significant), FLEURS-EN +0.45 (significant), T-600 +0.49 pp (tie) | INT8 is the right deployment format, with a small real cost. Measure it on the deeper model, don't fear it. |
+| E-031 browser acceptance (0.8.1) | median RTFx **46.7×** (4 threads) / **25.1×** (1 thread) on one 3 s fixture | Runtime acceptance, not a WER benchmark. E-041 (browser vs Python WER) was pre-registered but **never run**: the browser WER cost is unmeasured and must be measured for MOTH-50. |
 
 ### 2.2 What failed, and should not be repeated first
 
 | Evidence | Result | Why it matters |
 |---|---|---|
 | E-012: +200 h LibriSpeech EN (53/47 IT/EN) | FLEURS-EN −5.4, but T **+5.16** and ETA flat | More English alone shifts the model away from Italian and does not fix terms. |
-| E-013: BPE 4,096 | FLEURS-IT **+1.9**, T flat, ETA flat, +1.2 M params | Vocabulary size is not the ETA bottleneck; the acoustic model is. |
+| E-013: BPE 4,096 | FLEURS-IT **+2.19** (greedy vs greedy; the quoted +1.9 compared beam with greedy), T flat, ETA flat, +1.2 M params | Vocabulary size is not the ETA bottleneck; the acoustic model is. |
 | E-015/E-032: aggressive gold-term addenda | rare terms up, but natural terms/FLEURS/T-S3 down; gates failed | Do not over-weight a term list; it trades broad vocabulary for targeted hits. |
-| E-019: Whistle LoRA | S3 **+2.30** WER; FLEURS/CV significantly worse; 28 MB export | The gold effect is not architecture-independent; a decoder-based external model is not a shortcut. |
+| E-019: Whistle LoRA | S3 **+2.30** WER (tie); FLEURS/CV significantly worse; 29.35 MB export | The gold effect is not architecture-independent; a decoder-based external model is not a shortcut. |
 | E-023/E-034: larger unpruned LM | dev −0.6 to −0.65, but 12–13 MB LM binary and 26 MB package | Under 20 MB the LM could not grow. Under 50 MB it can; re-test, don't assume. |
 | E-027: decode-time contextual bias | rare ETA unchanged, T-600 tie | A glossary alone did not move the rare terms. |
 | E-029: quantization-aware training | no publishable candidate | INT8 PTQ is adequate; QAT is not the missing lever. |
 | E-033: intermediate CTC | dev **+0.0249 pp** (tie) | No reason to add it to the first larger model. |
-| E-036/E-040: conservative KD fine-tune | rare shortfall reproducible, silence not; arm gap < seed noise | Distillation from a weak teacher did not help. A strong teacher is a different experiment. |
+| E-036: conservative KD fine-tune (teacher = E-028 itself) | rare 39–41/81 vs a 42 target; `x` emitted on 120/120 silence clips (one repeated signal) | Distillation from the same-size model did not help. A strong teacher is a different experiment. E-040 (seed replication of E-036) was pre-registered but never run. |
 
 ### 2.3 The size inversion
 
 Moth's 20 MB ceiling made Whisper-base a "last resort": the base encoder plus a
-CTC head is ~20.35 M parameters, ~21 MB int8, and would have left no room for
-the LM and VAD (`../moth-stt/docs/02-architecture.md`,
-`docs/10-optimization-review.md`). At **50 MB** that constraint disappears.
-Whisper-base is no longer the fallback; it is the natural first step. This is
-the main architectural consequence of the new budget.
+CTC head is ~20.35 M parameters, 20.5–23.5 MB int8 by Moth's arithmetic (20.70 MB
+measured, `runs/probe-2026-11-17`), and would have left no room for the LM and
+VAD (Moth repository `docs/02-architecture.md` §7 and
+`docs/10-optimization-review.md`; these docs are in the development repository,
+not in the published `moth-stt` release folder). At **50 MB** that constraint
+disappears. Whisper-base is no longer the fallback; it is the natural first step.
+This is the main architectural consequence of the new budget.
 
 ## 3. Budget accounting
 
@@ -79,45 +88,53 @@ Assumptions, stated explicitly so they can be challenged:
 - The 50 MB figure is the **sum of required runtime assets**, as in Moth: acoustic
   int8 graph + LM + VAD + mel filterbank/vocab/config/NOTICE. It is not the
   download-compressed size and not the runtime footprint.
-- INT8 dynamic quantization costs about **1.03 bytes/parameter** in the Moth
-  export (11.575 M → 11.91 MB). The estimates below use that ratio; actual export
-  must be measured.
+- INT8 dynamic quantization costs **1.026 bytes/parameter at width 384 and 1.0175
+  at width 512**, measured with Moth's own export recipe on random-weight graphs
+  (`runs/probe-2026-11-17`; the tiny+2 control is within 34 kB of the shipped
+  11,910,677 B graph). The first version of this table assumed 1.03 everywhere.
 - The current LM is **5.38 MB** (E-031 A3, trigram, sparse int16 CSR) and Silero
-  VAD is **2.33 MB**. Miscellaneous files are ~0.08 MB.
+  VAD is **2.33 MB**. Miscellaneous files (vocab, mel filters, config, NOTICE) are
+  0.086 MB. MB means 10⁶ bytes; the ceiling is 50,000,000 bytes.
 - The 100 MB tier is rejected (D5); it is retained only as comparison evidence.
 
 The parameter counts below are exact for the stated shapes (conv stem + blocks +
 linear CTC head, V=1,024); they exclude buffers, optimizer state and the LM.
+`tools/architecture_budget.py --all` reproduces the table.
 
-| Candidate | Encoder / extra blocks | Acoustic params | INT8 graph | + 5.4 MB LM + 2.3 MB VAD | Compute vs Moth |
+| Candidate | Encoder / extra blocks | Acoustic params | INT8 graph | + 5.38 MB LM + 2.33 MB VAD + misc | Compute vs Moth |
 |---|---|---:|---:|---:|---:|
-| Moth 0.8.1 | tiny 4 + 2 | 11.58 M | 11.9 MB | 19.7 MB | 1.0× |
-| base | base 6 + 0 | 20.35 M | 21.0 MB | 28.8 MB | 1.8× |
-| base + 2 | base 6 + 2 | 26.65 M | 27.5 MB | 35.3 MB | 2.4× |
-| base + 4 | base 6 + 4 | 32.96 M | 33.9 MB | 41.8 MB | 3.0× |
-| **base + 6** | base 6 + 6 | **39.26 M** | **40.4 MB** | **48.2 MB** | **3.6×** |
-| base + 8 | base 6 + 8 | 45.56 M | 46.9 MB | 54.7 MB | 4.2× |
-| base + 12 | base 6 + 12 | 58.17 M | 59.9 MB | 67.7 MB | 5.3× |
-| small | small 12 + 0 | 87.79 M | 90.4 MB | 98.2 MB | 8.0× |
-| small + 2 | small 12 + 2 | 101.96 M | 105.0 MB | 112.8 MB | 9.3× |
+| Moth 0.8.1 (shipped) | tiny 4 + 2 | 11.58 M | 11.91 MB | 19.71 MB | 1.0× |
+| base | base 6 + 0 | 20.35 M | 20.70 MB (measured) | 28.49 MB | 1.8× |
+| base + 2 | base 6 + 2 | 26.65 M | 27.11 MB (measured) | 34.91 MB | 2.4× |
+| base + 4 | base 6 + 4 | 32.96 M | 33.53 MB (measured) | 41.33 MB | 3.0× |
+| **base + 6** | base 6 + 6 | **39.26 M** | **39.95 MB (measured)** | **47.74 MB** | **3.6×** |
+| base + 7 | base 6 + 7 | 42.41 M | 43.15 MB (measured) | 50.95 MB ✗ | 3.9× |
+| base + 8 | base 6 + 8 | 45.56 M | 46.4 MB | 54.2 MB | 4.1× |
+| base + 12 | base 6 + 12 | 58.17 M | 59.2 MB | 67.0 MB | 5.3× |
+| small | small 12 + 0 | 87.79 M | 90.4 MB (1.03 est.) | 98.2 MB | 8.0× |
+| small + 2 | small 12 + 2 | 101.96 M | 105.0 MB (1.03 est.) | 112.8 MB | 9.3× |
 
-Rows above 50 MB (`base + 8`, `base + 12`, `small`, `small + 2`) are retained
-only as rejected 100 MB-tier evidence; they are not planned. The 50 MB table is
-the design space.
+Rows above 50 MB (`base + 7`, `base + 8`, `base + 12`, `small`, `small + 2`) are
+not admissible; the last four are retained only as rejected 100 MB-tier
+evidence. **base + 6 is the deepest model that fits** with the A3 LM and Silero:
+base + 7 is 0.95 MB over. The 50 MB table is the design space.
 
 Same-budget alternatives:
 
 | Package | Acoustic | LM | Total | Comment |
 |---|---:|---:|---:|---|
-| base + 6 + A3 LM | 40.4 MB | 5.4 MB | 48.2 MB | Maximum acoustic capacity under 50 MB. |
-| base + 4 + 12 MB LM | 33.9 MB | 12.0 MB | 48.4 MB | Trades 2 blocks for a 2.2× larger LM. |
-| base + 2 + 20 MB LM | 27.5 MB | 20.0 MB | 49.9 MB | LM-heavy; only if the LM proves to be the bottleneck. |
-| base + 12 + 12 MB LM | 59.9 MB | 12.0 MB | 74.3 MB | Rejected 100 MB-tier deep model; no Whisper-small. |
-| small + A3 LM | 90.4 MB | 5.4 MB | 98.2 MB | Rejected 100 MB-tier; maximum pretrained capacity. |
+| base + 6 + A3 LM | 39.95 MB | 5.38 MB | 47.74 MB | Maximum acoustic capacity under 50 MB; room for an LM of up to 7.64 MB. |
+| base + 4 + 12 MB LM | 33.53 MB | 12.0 MB | 47.95 MB | Trades 2 blocks for a 2.2× larger LM; room for an LM of up to 14.06 MB, so the unpruned E-034 LM (12.31 MB) fits as is. |
+| base + 2 + 20 MB LM | 27.11 MB | 20.0 MB | 49.53 MB | LM-heavy; only if the LM proves to be the bottleneck. |
+| base + 12 + 12 MB LM | 59.2 MB | 12.0 MB | 73.6 MB | Rejected 100 MB-tier deep model; no Whisper-small. |
+| small + A3 LM | 90.4 MB | 5.38 MB | 98.2 MB | Rejected 100 MB-tier; maximum pretrained capacity. |
 
 The base+6 and base+4+12LM rows are the two serious 50 MB candidates. They have
 almost the same package size and differ only in where the bytes go. That is a
-clean experiment, not a guess.
+clean experiment, not a guess. One caveat: the Moth LM stores 4 bytes per n-gram
+(uint16 token + int16 log-prob) although a token needs 11 bits. A tighter format
+could fit the unpruned LM inside base+6's 7.64 MB of LM room and make E-004 a free
+gain rather than a trade-off (review proposal P5); measure it before assuming it.
 
 4-bit quantization is not a shortcut to a larger model under 50 MB: Whisper-
 small at 4 bits is still ~44 MB of weights before the LM and VAD, and ONNX/
@@ -128,35 +145,51 @@ honest route, not a lower bit width.
 ## 4. Training and inference feasibility on the M5 Pro / 16 GB
 
 Moth's measured throughput is the anchor: E-028 trained 11.58 M parameters at
-**342 audio-seconds per wall-second** and ~6.4 GB peak memory on an M5 with MPS
-bf16. The estimates below scale that measurement by FLOPs, then apply a 10 %
-pessimism factor. They are planning numbers; E-002 must measure them.
+**≈333 audio-seconds per wall-second** (time-weighted mean of its training log:
+590.8 h in 6,393 s) on an M5 with MPS bf16, and peaked at **7,496 MiB (7.86 GB)**
+of MPS driver memory at step 7,950. (The 6.45 GB quoted earlier is E-017's peak.)
+Throughput is scaled by block FLOPs with a 10 % pessimism factor
+(`tools/architecture_budget.py`); memory comes from the measured activation
+footprint (`runs/probe-2026-11-17`). They are planning numbers; E-002 must
+measure them on the M5 Pro.
 
-| Candidate | Est. audio-s/s | Est. hours per 13.3k-step epoch | Est. peak memory (batch 192 s) | Est. browser RTFx (Moth 42×) |
-|---|---:|---:|---:|---:|
-| base | 173 | 4.1 | 7–8 GB | ~22× |
-| base + 2 | 130 | 5.4 | 8–9 GB | ~17× |
-| base + 4 | 104 | 6.8 | 9–10 GB | ~13× |
-| **base + 6** | **86** | **8.2** | **10–12 GB** | **~11×** |
-| base + 12 (rejected 100 MB) | 58 | 12.2 | 12–14 GB | ~8× |
-| small (rejected 100 MB) | 39 | 18.2 | 14–16+ GB | ~5× |
+| Candidate | Est. audio-s/s | Est. h per epoch (plain / checkpointed) | Activations kept, 6 × 30 s batch (measured) | Est. peak without checkpointing | Est. browser RTFx (1 / 4 threads) |
+|---|---:|---:|---:|---:|---:|
+| base | 168 | 3.5 / 4.7 | 4.92 GB | 9–10.5 GB | ~18× / ~33× |
+| base + 2 | 126 | 4.7 / 6.2 | 6.52 GB | 10–14 GB | ~14× / ~25× |
+| base + 4 | 101 | 5.8 / 7.8 | 8.13 GB | 11–17 GB | ~10× / ~19× |
+| **base + 6** | **84** | **7.0 / 9.4** | **9.73 GB** | **12–21 GB** | **~9× / ~17×** |
 
-A "13.3k-step epoch" is the E-028 schedule (192 audio-seconds per step, one pass
-over the 589 h exposure mixture). A realistic fine-tune from Whisper-base is 2–4
-epochs: **16–33 h for base+6**, **14–27 h for base+4**. The M5 Pro may be somewhat
-faster than the M5 in the paper, but do not plan on it.
+An E-028 epoch is 13,283 steps over 590.8 h of audio (the 589.55 h mixture plus
+the term addenda), i.e. **≈160 audio-seconds per step on average**; 192 s is the
+batch cap, not the mean. A realistic fine-tune from Whisper-base is 2–4 epochs:
+**19–38 h for base+6** and **16–31 h for base+4** with activation checkpointing.
+The M5 Pro may be somewhat faster than the M5 in the paper, but do not plan on
+it. The rejected 100 MB rows are omitted: they were not measured.
 
-Memory is the real gate. E-028 peaked at 6.4 GB; base+6 is 3.6× the FLOPs and
-roughly 2–3× the activation footprint. 10–12 GB is plausible, but macOS memory
-pressure can kill a run (Moth lost time to this twice). Do a 200-step probe with
-the real batch and `empty_cache` settings before committing to a multi-hour run.
-If base+6 exceeds ~12.5 GB, drop to batch 128 s or to base+4; do not fight the
-machine.
+Memory is the real gate, and it is tighter than the first estimate (10–12 GB).
+base+6 keeps **2.6×** the activations of tiny+2 (9.73 vs 3.69 GB for a 6 × 30 s
+batch), about 80 % of them attention matrices: Moth's `_Block` materialises the
+`T × T` scores and keeps an fp32 softmax copy for backward. Projected onto
+E-028's 7.86 GB peak, base+6 needs **12–21 GB** — at or over the 16 GB of the
+M5 Pro, where memory pressure already cost Moth several runs (E-005, E-006,
+E-014, E-016; E-004's padded arm was stopped at 16.9 GB RSS). Therefore:
 
-Inference is not the constraint. A 39 M int8 CTC model at 50 Hz should still run
-at roughly 10× real time in the browser, which is plenty for record-then-
-transcribe. The rejected Whisper-small tier would have been ~5×; it is out of
-scope (D5).
+- use **per-block activation checkpointing from the first base run**: estimated
+  ≈1 GB of activations for base+6 (≈6 GB peak) for one extra forward pass;
+- cap batches by Σ T² (or cut clips to ≤ 20 s), not only by audio-seconds;
+- check whether `scaled_dot_product_attention` on MPS avoids the fp32 copy;
+- run the E-002 probe on the worst bucket with `tools/probe_activations.py
+  --device mps`, with and without `--checkpointing`, before any multi-hour run.
+
+If base+6 still exceeds ~12.5 GB with checkpointing, drop to batch 128 s or to
+base+4; do not fight the machine.
+
+Inference is not the constraint. On ONNX Runtime CPU, base+6 is 2.75× slower
+than tiny+2 on a 30 s clip (0.98 vs 0.36 s, 1 thread). Scaled from 0.8.1's
+browser acceptance run (25.1× / 46.7× on a 3 s fixture) that is ≈9× (1 thread)
+to ≈17× (4 threads) real time — plenty for record-then-transcribe. The rejected
+Whisper-small tier would have been ~5×; it is out of scope (D5).
 
 ## 5. Architecture families: the honest comparison
 
@@ -177,15 +210,20 @@ Whisper-base is 20.35 M parameters including a 1,024-piece CTC head; Whisper-
 small is 87.79 M. Both are multilingual and pretrained on 680 k h. Whisper-base
 zero-shot already reaches **18.27 % FLEURS-IT** (E-001 addendum), better than
 Moth 0.8.1's 20.16 % after its full fine-tune. That is the strongest single
-argument that a fine-tuned base should beat 0.8.1. Whisper-small was the 100 MB
-tier and is out of scope (D5); it is retained only as evidence.
+argument that a fine-tuned base should beat 0.8.1. Caveat: that number is the
+full autoregressive Whisper-base (287 MB fp32, forced `it`, greedy, 30 s padding),
+not the encoder behind a CTC head, and FLEURS may overlap Whisper's pretraining.
+Whisper-small was the 100 MB tier and is out of scope (D5); it is retained only
+as evidence.
 
 Risk: the base encoder was trained for a decoder's cross-attention, not for CTC.
 Moth's tiny encoder transferred well, so this is a low-to-moderate risk, not a
 research question. The first probe should fine-tune the whole encoder; freezing
 it or using LoRA is not supported by the low-resource evidence (the Pashto
 Whisper study in Moth's `docs/10` found full fine-tuning far better than frozen
-or LoRA for a shallow encoder).
+or LoRA for a shallow encoder). Moth reached its full fine-tune in two stages:
+E-004 trained the new head on a frozen encoder, then E-005 trained everything
+with head/encoder LR 1e-3/1e-4 and a 1,500-step warm-up (review proposal P2).
 
 ### 5.3 Conformer / Zipformer from scratch — **not first**
 
@@ -224,7 +262,12 @@ only option that could add hundreds of hours without new recordings. It is also
 the most expensive pipeline: teacher inference, filtering, alignment, and a
 student that must not inherit the teacher's hallucinations. Moth's E-036 KD from
 its own 11.6 M model did not help; that is evidence about a weak teacher, not
-about distillation in general. Do this after the base+CTC baseline exists.
+about distillation in general. Do this after the base+CTC baseline exists. A
+strong, commercially usable teacher is already measured in Moth's baselines:
+Parakeet-TDT-0.6B-v3 (CC-BY-4.0) scores **10.98 % WER / 83.6 % ETA on T-600** and
+3.65 % on FLEURS-IT, against 0.8.1's 24.08 / 55.23 and 20.16. Its vocabulary and
+TDT decoder differ from the student, so the route is sequence-level
+pseudo-labelling, not logit KD; the review (P4) proposes it as an E-006 data arm.
 
 ### 5.7 Product-key memory / MoE — **a later capacity trick**
 
@@ -256,36 +299,51 @@ result is uninterpretable.
 
 - **Encoder**: Whisper-base, width 512, 6 pretrained blocks, 8 heads, FFN 2,048,
   conv stem stride 2 (50 Hz), fixed sinusoids.
-- **Extra capacity**: 6 pre-LN transformer blocks at width 512, randomly
-  initialized (or initialized by duplicating the last base block; test in E-002).
+- **Extra capacity**: 6 pre-LN transformer blocks at width 512. Proposed by the
+  review (P3): identity initialization — zero the `out` and `mlp2` weights and
+  biases so each new block starts as the identity and step 0 is exactly
+  Whisper-base. Alternatives: random initialization (Moth E-006) or a copy of the
+  last base block; decide in E-003.
 - **Head**: linear 512 → 1,025, blank + 1,024 BPE. Keep the Moth tokenizer for
   comparability; do not rebuild a 4,096-piece vocabulary.
 - **LM**: E-031 A3 trigram first (5.38 MB); re-tune the LM budget only after the
   acoustic model is measured.
 - **VAD**: Silero VAD v5 (2.33 MB).
-- **Package**: ~48.2 MB estimated; hard ceiling 50 MB. The ~1.8 MB headroom
-  can fund a modest LM expansion or a small GRU LM; do not spend it before the
-  acoustic model is measured.
-- **Training**: full fine-tune, 2–4 epochs, batch 192 audio-s / 32 clips (reduce
-  to 128 s if memory demands), AdamW, bf16 autocast, fp32 CTC, encoder LR
-  5e-6–1e-5, head/extra-block LR 1e-4, cosine with 500–1,000 warm-up, grad clip
-  1.0, SpecAugment + tempo + E-024 noise, dropout 0.05–0.1, EMA or checkpoint
-  averaging, best by dev macro WER. Use gradient checkpointing if the 200-step
-  probe is above ~12 GB. Prefer 2 epochs first; Moth's 8-epoch run was for a tiny
+- **Package**: 47.74 MB (measured graph size, random weights); hard ceiling
+  50,000,000 B. The 2.26 MB headroom (LM room 7.64 MB) can fund a larger or more
+  tightly packed LM; do not spend it before the acoustic model is measured.
+- **Training** (revised by the review, P2; confirm before E-003): follow Moth's
+  E-004 → E-005 → E-028 path instead of starting with E-028's gentle LRs, which
+  were tuned for a checkpoint that was already CTC-trained.
+  1. Short warm-up of the head and extra blocks on the frozen encoder.
+  2. Full fine-tune, 2–4 epochs, batch 192 audio-s / 32 clips (reduce to 128 s if
+     memory demands), AdamW, bf16 autocast, fp32 CTC, head/extra-block LR
+     3e-4–1e-3 and encoder LR screened in 3e-5–1e-4 (E-005 used 1e-3/1e-4 for
+     tiny), cosine with 1,000–1,500 warm-up, grad clip 1.0, SpecAugment + safe
+     tempo + E-024 noise, dropout 0.05–0.1, EMA or checkpoint averaging.
+  3. Gentle gold fine-tune at E-028's 1e-4 head / 1e-5 encoder.
+
+  Use per-block activation checkpointing from the start (§4). Select checkpoints
+  on dev macro **and** the held-out S1 mixed session: E-028 had a worse dev and a
+  better product. Prefer 2 epochs first; Moth's 8-epoch run was for a tiny
   encoder, not a pretrained base.
 - **Expected planning range** (not a promise): T-600 **19–22 % WER**, ETA
-  **58–64 %**, FLEURS-IT **13–17 %**, browser RTFx **~10×**. The ranges are
-  anchored on E-006's +2-block gain and the base zero-shot FLEURS number; they
-  must be replaced by measurements.
+  **58–64 %**, FLEURS-IT **13–17 %**, browser RTFx **~9× (1 thread) to ~17×
+  (4 threads)**. The ranges are anchored on E-006's +2-block gain and the base
+  zero-shot FLEURS number; they must be replaced by measurements.
 
 ### 6.2 Same-budget alternative to measure, not assume
 
-`base + 4` with a **12 MB LM** is the other 48 MB configuration. It gives up two
-acoustic blocks (about 1.5–2.5 dev points in Moth's E-006 analogy) for a 2.2×
-larger LM (about 0.6 dev points in E-034, plus unknown ETA/rare-term gains). The
-right decision is an experiment at equal package size, not a prior. If the
-product metric is dominated by rare English terms, the LM-heavy variant may win;
-if it is dominated by Italian fluency, the acoustic-heavy variant will.
+`base + 4` with a **12 MB LM** is the other ~48 MB configuration. It gives up two
+acoustic blocks (about 1.5–2.5 dev points in Moth's E-006 analogy, which also
+changed epochs, LR and augmentation) for a 2.2× larger LM (about 0.6 dev points
+in E-034, plus unknown ETA/rare-term gains). base+4 leaves 14.06 MB for the LM, so
+the unpruned E-034 LM (12.31 MB) fits as is. The right decision is an experiment
+at equal package size, not a prior. Recalibrate the decoder (LM weight, token
+bonus) separately for each arm on dev, never on T: E-022 moved T-600 by 6.85 pp
+with decoder settings alone. If the product metric is dominated by rare English
+terms, the LM-heavy variant may win; if it is dominated by Italian fluency, the
+acoustic-heavy variant will.
 
 ### 6.3 Rejected 100 MB tier (out of scope)
 
@@ -316,8 +374,8 @@ new protocol and data mixture). The architecture work slots in after that.
 |---|---|---|
 | E-001 | Reproduce Moth 0.8.1 on the canonical dataset with the vendored evaluator | 24.08 / 55.23 within the published interval |
 | E-002 | Freeze the evaluation protocol and the data mixture; build manifests | S1 new sessions + external test; no T in training; commercial-only training data |
-| E-003 | **Architecture screen**: base vs base+2 vs base+4 vs base+6, short runs on the same mixture | At least 1.0 pp dev macro better than Moth's 30.86 with a CI excluding zero; memory/throughput within budget |
-| E-004 | **Package-budget trade-off**: base+6 + 5.4 MB LM vs base+4 + 12 MB LM | Product WER/ETA/rare-term readout at equal package size; pick one |
+| E-003 | **Architecture screen**: base vs base+2 vs base+4 vs base+6, short runs on the same mixture | At least 1.0 pp dev macro better than the 0.8.1 acoustic model (E-028: 31.01 greedy on Moth's dev; 30.86 was E-014), re-measured under the frozen protocol, with a CI excluding zero; memory/throughput within budget |
+| E-004 | **Package-budget trade-off**: base+6 + 5.4 MB LM vs base+4 + 12 MB LM | Product WER/ETA/rare-term readout at equal package size, decoder recalibrated per arm on dev; pick one |
 | E-005 | **Full fine-tune** of the winner, 2–4 epochs, int8 export, browser run | T-600 ≤ 22 WER / ≥ 58 ETA, FLEURS-IT ≤ 18, package ≤ 50 MB, RTFx ≥ 8× (confirm targets before running) |
 | E-006 | **Data scale**: S1 recordings, TTS augmentation, word/phrase-level splicing, more Italian | One variable at a time; S1 held-out session + T-S2/S3/FLEURS readouts; no T training; no voice cloning |
 | E-007 | **Optional architecture**: 25 Hz extra blocks, conv adapters, dropout/EMA, frame-level LID auxiliary | Only if E-005 leaves a clear bottleneck; pre-register the expected gain |
@@ -326,16 +384,25 @@ new protocol and data mixture). The architecture work slots in after that.
 For E-003, do not run four full 8-epoch trainings. Run each arm for ~4,000 steps
 from the same initialization and data order, evaluate dev macro plus FLEURS-IT
 and T, and only the winner gets a full run. At the estimated throughputs, the
-four-arm screen is about 6–8 h of training plus evaluations; the 200-step memory
-probe before it is minutes. Moth's E-006 and E-012 show that short-run rankings
-can differ from product rankings, so keep T and FLEURS in the screen even though
-T is reused.
+four-arm screen is about 6–9 h of training plus evaluations (the upper end with
+checkpointing); the memory probe before it is minutes. Moth's E-006 and E-012
+show that short-run rankings can differ from product rankings, so keep T and
+FLEURS in the screen even though T is reused. A short screen also favours
+shallower models when the new blocks start random; identity initialization (P3)
+reduces that bias. Moth never measured seed variance, so a gap under ~1 pp
+between the top two arms is not a ranking until a second seed confirms it.
 
-The Moth model and converter are already shape-generic: the primary candidate is
+The Moth **model** is shape-generic: the primary candidate is
 `EncoderConfig(width=512, n_layers=6, n_heads=8, ffn_dim=2048)` with
-`MothSTT(vocab_size=1024, head_blocks=6)`. The conversion script maps HF encoder
-keys by name and shape; it needs a `--model openai/whisper-base` / config flag,
-not a rewrite. The same `build_mel.py`, normalizer, tokenizer and release
+`MothSTT(vocab_size=1024, encoder_config=..., head_blocks=6)`, and the probes in
+`runs/probe-2026-11-17` built and exported it unchanged. The **pipeline** around
+it is not: training, evaluation, export and conversion build `MothSTT` or
+`WhisperTinyEncoder` with the default tiny `EncoderConfig()`, the training recipe
+records `asdict(EncoderConfig())` (so a base run would be logged as tiny without
+any error), and the 20,000,000-byte budget is hard-coded in the Python tools and
+in `web/ort.js`. The list with line numbers is in `docs/review-2026-11-17.md` §4.
+None of it is a rewrite, but every site must take the encoder configuration from
+the run config. The same `build_mel.py`, normalizer, tokenizer and release
 validator can be reused, but the new repository should copy them deliberately
 and re-run the parity tests rather than importing the frozen training code.
 
@@ -362,11 +429,17 @@ v1.0.0 adds the 150 term-addendum clips (7.4 min), used at lower repetition in
 E-028/E-032. The 1,413-clip, 57.6-min figure is the dataset total, not the
 E-017 training subset.
 
-The public corpora are re-downloadable but not currently on disk in the
-moth-stt checkout (raw audio and mel shards were deleted at archive time). The
-MOTH-50 data build must re-fetch them at pinned revisions and rebuild mel
-shards; budget a day for the pipeline, not just the download. The recorded
-dataset is pinned at `semantique-team/moth-cs` `v1.0.0` and verified by
+The public corpora are re-downloadable but not on disk in the `moth-stt-dev`
+checkout reviewed on 2026-11-17: raw MLS/LS audio was deleted after the
+2026-10-19 shard build, and the shards, checkpoints and the SentencePiece model
+`data/tokenizer/moth_bpe.model` are gitignored. The MOTH-50 data build must
+re-fetch the corpora at pinned revisions and rebuild mel shards; budget a day for
+the pipeline, not just the download. **Pin the tokenizer explicitly**: the
+published release ships only `vocab.json`, the LM is indexed by its piece IDs,
+and "keep the Moth tokenizer" (§6.1) needs the exact model with sha256
+`d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd` (Moth
+E-031/E-034/E-035 `build.json`). The recorded dataset is pinned at
+`semantique-team/moth-cs` `v1.0.0` and verified by
 `../moth-cs-dataset/scripts/verify.py`.
 
 ### 8.2 What could be added, in order of expected value
@@ -399,9 +472,12 @@ dataset is pinned at `semantique-team/moth-cs` `v1.0.0` and verified by
    (do not repeat E-012's 53/47 mistake); measure the mixture on the mixed
    readout, not just dev macro.
 5. **Pseudo-labeling with a strong teacher.** Label unlabeled Italian/English
-   audio with Whisper-small/large or Parakeet, filter by confidence, train the
-   CTC student. High upside, high pipeline cost; do it after the base+CTC
-   baseline.
+   audio with Parakeet-TDT-0.6B-v3 (CC-BY-4.0; T-600 10.98 % WER / 83.6 % ETA in
+   Moth's baselines) or Whisper-small/large, filter by confidence, train the CTC
+   student. High upside, high pipeline cost. The review (P4) proposes it as an
+   E-006 arm rather than a post-baseline afterthought, because data is the
+   expected bottleneck. The unlabeled audio must itself be commercially usable,
+   and the teacher's licence must be attributed in the NOTICE.
 6. **External code-switching corpora for evaluation, test-only.** CS-FLEURS has
    an Italian–English read test (~1.2 h) and a synthetic XTTS subset;
    SwitchLingua has an Italian subset (~6–7 h) but is gated. Both are
@@ -425,7 +501,9 @@ model trained in 2027. The new protocol should have:
   test-only) and/or SwitchLingua Italian (test-only, licence permitting). Report
   the domain difference honestly: read/generated, not spontaneous.
 - **Per-speaker ranges, bootstrap CIs, seed replicates** for the final recipe.
-  Moth's seed range was 0.46 pp; do not call a smaller difference a win.
+  Moth never measured seed variance (one seed per configuration; the E-040
+  replication was not run), so MOTH-50 must measure it — at least 2–3 seeds for
+  the winning recipe — before calling a difference under ~1 pp a win.
 - **Package size, INT8 cost, browser RTFx** in the same table as WER/ETA.
 
 Do not claim unseen-speaker generalization beyond S2/S3/FLEURS. The S1-only data
@@ -433,9 +511,9 @@ plan buys domain and term coverage, not a new speaker population.
 
 ## 9. Confirmed decisions (2026-11-17)
 
-1. **50 MB is the full package**: acoustic INT8 + LM + VAD + metadata. The
-   100 MB tier is rejected; `base + 8` is not admissible because its full
-   package would be ~55 MB.
+1. **50 MB is the full package**: acoustic INT8 + LM + VAD + metadata, 50,000,000
+   bytes. The 100 MB tier is rejected; `base + 7` (50.95 MB measured) and
+   `base + 8` (~54 MB) are not admissible with the A3 LM and Silero VAD.
 2. **The model must remain commercially usable.** Training data must be CC0,
    CC-BY, public domain, recorded with consent, or synthetic from a commercially
    permissive TTS model/voice. CS-FLEURS and SwitchLingua are CC-BY-NC:
@@ -451,17 +529,21 @@ plan buys domain and term coverage, not a new speaker population.
    not a parameter count.
 
 Remaining open questions: the exact S1 recording plan and dev session, the TTS
-mixture weight/voice selection, whether the ~1.8 MB headroom funds a larger LM
-or a small GRU LM, how to initialize the extra blocks, and whether a later 25 Hz
-or conv-adapter variant is worth testing.
+mixture weight/voice selection, whether the 2.26 MB headroom funds a larger or
+more tightly packed LM, how to initialize the extra blocks (the review proposes
+identity initialization), the adaptation schedule from Whisper-base, and whether
+a later 25 Hz or conv-adapter variant is worth testing.
 
 ## 10. Bottom line
 
 - **Chosen model**: Whisper-base + 6 extra transformer blocks + CTC, 1,024 BPE,
-  E-031 LM, Silero VAD; **39.3 M acoustic parameters, ~48.2 MB full package**.
-- **Same-budget challenger**: Whisper-base + 4 blocks + 12 MB LM (~48.4 MB);
+  E-031 LM, Silero VAD; **39.3 M acoustic parameters, 47.74 MB full package**
+  (measured graph size), 2.26 MB under the ceiling.
+- **Same-budget challenger**: Whisper-base + 4 blocks + 12 MB LM (~47.95 MB);
   decide by E-004, not by intuition.
 - **No 100 MB tier**: rejected (D5). The analysis is retained only as evidence.
+- **Training gate**: memory. Use activation checkpointing from the first base
+  run; without it base+6 needs an estimated 12–21 GB on a 16 GB machine.
 - **Most likely bottleneck**: mixed data, not parameters. The data plan is
   2–5 h of new S1 recordings plus permissive TTS and word/phrase-level splicing;
   S1-only data buys domain/term coverage, not a new speaker population.
