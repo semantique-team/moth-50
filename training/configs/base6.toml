@@ -19,12 +19,12 @@ eval_max_clips = 32
 
 [[data.train]]
 manifest = "../../../moth-stt/data/manifests/cv_it_train_clean50.jsonl"
-shards = "../../data/shards/cv_it_train_clean50"
+shards = "../../data/shards/cv_it_train"
 repeat = 1
 
 [[data.train]]
 manifest = "../../../moth-stt/data/manifests/cv_it_train_noisy50.jsonl"
-shards = "../../data/shards/cv_it_train_noisy50"
+shards = "../../data/shards/cv_it_noisy50"
 repeat = 1
 
 [[data.train]]

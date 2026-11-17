@@ -105,8 +105,7 @@ tar -xzf data/raw/librispeech/dev-clean.tar.gz -C data/raw/librispeech
 
 ```bash
 for spec in \
-  "cv_it_train_clean50:data/raw" \
-  "cv_it_train_noisy50:data/raw" \
+  "cv_it_train:data/raw" \
   "mls_it_train:data/raw" \
   "ls_en_train:data/raw" \
   "mls_it_dev:data/raw" \
@@ -125,6 +124,13 @@ uv run --frozen --project ../moth-stt --extra training -- \
   --audio-root ../moth-cs-dataset --out-dir data/shards/gold-train --workers 8
 ```
 
+The clean-50 manifest uses the full `data/shards/cv_it_train` shards. The
+noisy half is **not** a plain `build_mel` job: it must be built with the E-024
+mixer (`../moth-stt/runs/E-024/build_noisy_mel.py`), which mixes MUSAN noise and
+room tone at a deterministic per-clip SNR and writes
+`data/shards/cv_it_noisy50`. Do not run `build_mel` on
+`cv_it_train_noisy50.jsonl`, or the "noisy" half will be clean.
+
 3. Build the spliced set **after** the CV/MLS/LS shards (it concatenates cached
 mels and regenerates the manifest and report):
 
@@ -132,7 +138,7 @@ mels and regenerates the manifest and report):
 uv run --frozen --project ../moth-stt --extra training -- \
   python -m stt.data.build_spliced \
   --it-manifest ../moth-stt/data/manifests/cv_it_train_clean50.jsonl,../moth-stt/data/manifests/mls_it_train.jsonl \
-  --it-shards data/shards/cv_it_train_clean50,data/shards/mls_it_train \
+  --it-shards data/shards/cv_it_train,data/shards/mls_it_train \
   --en-manifest ../moth-stt/data/manifests/ls_en_train.jsonl \
   --en-shards data/shards/ls_en_train \
   --hours 110 --seed 0 --out-dir data/shards/spliced_it_en \
