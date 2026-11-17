@@ -1,0 +1,34 @@
+MOTH-50 — third-party notices
+
+The evaluation code in vendor/moth-stt/ is copied from:
+  https://github.com/semantique-team/moth-stt
+  commit f3ecd1b0f4f0c5c044fa637e5fb5dd8a0c798d97
+  Apache License 2.0 (see LICENSE)
+
+The recorded dataset used by this project is:
+  semantique-team/moth-cs v1.0.0
+  audio and transcripts CC BY 4.0
+  https://huggingface.co/datasets/semantique-team/moth-cs
+
+The Moth model and paper are:
+  https://huggingface.co/semantique-team/moth-stt
+  https://github.com/semantique-team/moth-stt
+
+No dataset audio or model weights are included in this folder.
+
+## Planned data and TTS sources (to be listed when actually used)
+
+Training data must remain commercially usable:
+
+- Common Voice IT 27 (CC0), MLS Italian (CC-BY 4.0), LibriSpeech
+  train-clean-100/360 (CC-BY 4.0), and the recorded moth-cs data (CC BY 4.0,
+  with consent).
+- TTS augmentation with commercially permissive voices: Piper
+  `it_IT-paola-medium` (CC0), `it_IT-serena-high` (CC BY 4.0), public-domain
+  English voices such as `en_US-ljspeech-high`, or Kokoro-82M (Apache 2.0,
+  Italian voices `if_sara`/`im_nicola`). No voice cloning of S1/S2/S3.
+- CS-FLEURS and SwitchLingua are CC-BY-NC: evaluation only, never training.
+  Their use must be stated in the model card and paper.
+
+Every source and voice licence must be checked again when the data are actually
+added; this list is a plan, not a licence audit.
