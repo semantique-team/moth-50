@@ -22,8 +22,10 @@ was evaluated and rejected. The model must remain commercially usable.
 
 - **Architecture**: Whisper-base encoder + 6 extra pre-LN transformer blocks +
   linear CTC over the 1,024-piece BPE + E-031 LM + Silero VAD. **39.3 M acoustic
-  parameters, ~48.2 MB package.** Same-budget challenger: base + 4 blocks + a
-  12 MB LM (~48.4 MB), decided by E-004.
+  parameters, 47.74 MB package** (measured graph size; 2.26 MB under the
+  ceiling). Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.95 MB),
+  decided by E-004. Training needs activation checkpointing to fit in 16 GB
+  (`docs/review-2026-11-17.md`).
 - **No 100 MB tier**; no from-scratch Conformer, transducer or AED backbone.
 - **No streaming**: encoder-only CTC, record-then-transcribe, like Moth.
 - **Data**: public CC0/CC-BY corpora, 2–5 h of new **S1** recordings, and
@@ -75,26 +77,37 @@ Vendored in `vendor/moth-stt/` at commit
 
 - `moth_text.py` — the one text rule (`normalize`), so WER/ETA are comparable.
 - `moth_manifest.py` — manifest schema and validation.
-- `moth_features.py` — reference log-mel (parity with the browser runtime).
+- `moth_features.py` — reference log-mel (parity with the browser runtime), with
+  its Whisper mel filterbank in `assets/`.
 - `moth_eval.py` — WER/ETA, per-category/speaker, bootstrap CI.
-- `moth_release.py` — package validation and budget checks.
+- `moth_release.py` — package validation and budget checks (raised to the
+  50,000,000-byte ceiling; see `vendor/moth-stt/PROVENANCE.md`).
 
 Do **not** copy `model.py`, `train.py` or `decode.py` blindly: the decoder
 depends on `stt.hotwords` and `stt.lm`, and the model/training code is specific
 to the 0.8.1 recipe. Copy them only with their dependencies, or import the
 pinned checkout. Keep the evaluation semantics identical; that is the point of
-the vendored files.
+the vendored files. The Moth pipeline hard-codes the Whisper-tiny encoder and
+the 20 MB budget in several places; `docs/review-2026-11-17.md` §4 lists them.
+The SentencePiece tokenizer (`moth_bpe.model`, sha256 `d6e1054e…f2fd`) is not in
+the published release: pin it before training.
 
 ## Layout
 
 ```
 README.md                 this file
+pyproject.toml            dependencies, ruff and pytest configuration
 data/README.md            dataset pin, splits, restrictions
-docs/decisions.md         initial decisions and open questions
+docs/decisions.md         decisions and open questions
 docs/architecture-options.md  architecture analysis and planned sequence
+docs/review-2026-11-17.md evidence check, measurements and proposals
 experiments/README.md     new experiment ledger, starts at E-001
 experiments/E-001-baseline.md
+runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
+tests/                    tests for tools/ and the vendored code
 tools/architecture_budget.py  parameter/size/compute estimator
+tools/probe_export.py     real INT8 export size and CPU latency (needs moth-stt)
+tools/probe_activations.py  activation memory, CPU or MPS (needs moth-stt)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0
 NOTICE                    attribution
@@ -104,8 +117,10 @@ NOTICE                    attribution
 
 0. Read `docs/architecture-options.md` (2026-11-17): the Moth evidence, the
    50 MB / 100 MB candidate configurations, the training-feasibility estimates
-   and the planned E-003–E-008 sequence. `tools/architecture_budget.py`
-   reproduces the parameter and package-size arithmetic.
+   and the planned E-003–E-008 sequence. Then read `docs/review-2026-11-17.md`
+   for the corrected evidence and the proposals. `tools/architecture_budget.py`
+   reproduces the parameter and package-size arithmetic; the probes in `tools/`
+   reproduce the measurements.
 1. Confirm the size/compute budget and the target deployment (CPU? browser?).
 2. Choose the model family and tokenizer; record the decision in
    `docs/decisions.md`.

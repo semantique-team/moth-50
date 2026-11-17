@@ -32,6 +32,9 @@ default and fail without it.
 - `stt/decode.py` — depends on `stt/hotwords.py` and `stt/lm.py`; copy it with
   those dependencies if the new model reuses the Moth decoder.
 
+When they are ported, note that the Moth pipeline hard-codes the Whisper-tiny
+`EncoderConfig()` outside `stt/model.py` (see `docs/review-2026-11-17.md` §4).
+
 ## Re-sync
 
 From a `moth-stt` checkout at the pinned commit:

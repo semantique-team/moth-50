@@ -24,6 +24,15 @@ If the numbers differ, the difference must be explained by a documented cause
    evaluator.
 4. Report pooled and per-speaker WER/ETA, with bootstrap CIs.
 5. Compare with `../moth-stt/runs/E-038/metrics.json` and the paper's table.
+6. Record the 0.8.1 acoustic dev reference that the E-003 gate uses: E-028 is
+   31.01 greedy dev macro on Moth's dev (not 30.86, which is E-014; see
+   `docs/review-2026-11-17.md`). Re-score it on the E-002 dev once that is
+   frozen.
+
+Note: the package numbers (19,706,289 B; 11,910,677 B graph) are from
+`release-0.8.1.json`; the published `moth-stt` folder on the Windows machine holds
+the 0.7.0 assets with a different LM (5,116,464 B). Re-decode only from the
+0.8.1 files (model sha256 `7bbfad7e…`, LM sha256 `3be1177b…`).
 
 ## Gate
 

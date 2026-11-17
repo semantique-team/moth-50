@@ -65,9 +65,10 @@ the LM and VAD.
 
 - **Primary**: Whisper-base encoder + 6 extra pre-LN transformer blocks + linear
   CTC over the 1,024-piece BPE + E-031 LM + Silero VAD. **39.3 M acoustic
-  parameters, ~48.2 MB package.** Full fine-tune from base, 2–4 epochs.
+  parameters, 47.74 MB package** (measured graph size, 2.26 MB under the
+  ceiling; `runs/probe-2026-11-17`). Full fine-tune from base, 2–4 epochs.
 - **Same-budget challenger**: Whisper-base + 4 extra blocks + a 12 MB LM
-  (~48.4 MB). Decide by experiment at equal package size, not by prior.
+  (~47.95 MB). Decide by experiment at equal package size, not by prior.
 - **100 MB tier**: rejected (D5). Whisper-small and the deep-base 100 MB
   variants are retained in `docs/architecture-options.md` only as rejected
   evidence.
@@ -129,16 +130,42 @@ are **`moth-50`**. It is a 50 MB-class Italian–English code-switching recogniz
 referred to as **Moth-20** (released as `moth-stt` 0.8.1); its repository name is
 deliberately unchanged. The historical `moth-large` folder name is retired.
 
+## D13 — Architecture review (2026-11-17)
+
+`docs/review-2026-11-17.md` confirms D8 and corrects the cited Moth evidence in
+`docs/architecture-options.md`. Accepted with the review, because they are
+measurements or fixes rather than choices:
+
+- The package numbers are the measured ones: base+6 is 39.95 MB INT8 and 47.74 MB
+  in total; base+7 (50.95 MB) does not fit.
+- The E-003 gate is relative to the 0.8.1 acoustic model re-measured under the
+  frozen protocol (E-028 was 31.01 greedy on Moth's dev, not 30.86).
+- Moth's seed variance is unknown; MOTH-50 measures its own.
+- The vendored release validator accepts the 50,000,000-byte ceiling and the
+  `moth-50` name.
+
+Proposed, not yet decided (P1–P7 in the review): activation checkpointing from
+the first base run, a staged adaptation schedule from Whisper-base, identity
+initialization of the extra blocks, Parakeet-TDT-0.6B-v3 pseudo-labelling as an
+E-006 arm, a tighter LM binary format, the evaluation-hygiene items, and 25 Hz
+extra blocks as the fallback before base+4.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out
   session is the dev set?
 - TTS mixture weight and voice selection; how much synthetic data survives the
   real-data readout without hurting S2/S3/FLEURS?
-- Does the ~1.8 MB headroom in the primary package go to a larger trigram, a
-  small GRU LM, or nothing?
-- Should the extra blocks be randomly initialized or initialized by duplicating
-  the last Whisper-base block?
+- Does the 2.26 MB headroom in the primary package go to a larger trigram, a
+  more tightly packed LM (review P5), or nothing?
+- Should the extra blocks be identity-initialized (review P3), randomly
+  initialized as in Moth E-006, or copied from the last Whisper-base block?
+- Which adaptation schedule from Whisper-base (review P2): frozen-encoder warm-up
+  first, and which encoder LR?
+- Does base+6 fit in 16 GB with activation checkpointing (review P1, E-002
+  probe)?
+- Where is the pinned Moth tokenizer (`moth_bpe.model`, sha256 `d6e1054e…f2fd`)
+  stored for this repository?
 - Is a later 25 Hz / conv-adapter variant worth testing once the 50 MB baseline
   exists?
 - Which NC external test set is acceptable for the paper, and how is it labelled
