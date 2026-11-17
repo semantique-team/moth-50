@@ -67,10 +67,10 @@ metrics. The final dev-macro/S1-dev readout uses the frozen beam+A3 decoder and
 
 `runs/E-003/preflight.json` reports `ready: false`:
 
-- ready: MLS train (40,953 clips, 169.9 h), MLS dev, LS dev, gold-train (1,413
-  clips, 0.96 h);
-- missing: CV clean-50 and noisy-50 shards, LS train shards, the spliced
-  manifest/shards;
+- ready: MLS train (40,953 clips, 169.9 h), LS train (28,370 clips, 100.0 h),
+  MLS dev, LS dev, gold-train (1,413 clips, 0.96 h);
+- missing: CV clean-50 and noisy-50 shards; the spliced manifest/shards depend
+  on them and are therefore also missing;
 - tokenizer sha256 matches `d6e1054e…`;
 - train-row guard skipped until all manifests are present;
 - E-002 checkpointed memory: 3.68 GB, 4.47 s/step at 6 × 30 s.

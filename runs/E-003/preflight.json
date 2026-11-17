@@ -58,8 +58,12 @@
         "shards": "/Users/tancredi/Desktop/semantique/moth-50/data/shards/ls_en_train",
         "repeat": 1,
         "manifest_ok": true,
-        "shards_ok": false,
-        "status": "missing mel shards"
+        "shards_ok": true,
+        "rows": 28370,
+        "hours": 99.999,
+        "index_entries": 28370,
+        "missing_from_index": 0,
+        "status": "ready"
       },
       {
         "role": "train",
