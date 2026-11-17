@@ -9,12 +9,17 @@ Source: `semantique-team/moth-stt` at commit
 | `moth_manifest.py` | `stt/manifest.py` | `from stt.text` → `from moth_text` |
 | `moth_features.py` | `stt/features.py` | none |
 | `moth_eval.py` | `stt/eval.py` | `stt.text` imports → `moth_text` |
-| `moth_release.py` | `stt/release.py` | none |
+| `moth_release.py` | `stt/release.py` | budget cap and default 25,000,000 / 20,000,000 → 50,000,000 (D5); config `name` may be `moth-50` as well as `moth-stt` (2026-11-17) |
 | `assets/mel_filters.bin` | `stt/assets/mel_filters.bin` | none; copied from the `moth-stt-dev` checkout at `d5ae605`; sha256 `4f2701b1d287d74a0dc9871026e9519d98cb76426615f2539b0d151a0ae4ec2e`, identical to the Moth 0.8.1 release asset (2026-11-17) |
 
 The import changes are mechanical; the scoring logic is unchanged. Do not edit
 these files to make a new result pass. If a change is genuinely needed, copy the
 change back into a new version with a note and recompute the baseline.
+
+The `moth_release.py` change is a packaging rule, not a scoring rule: without it
+the validator rejects any budget above 25,000,000 bytes and any package not named
+`moth-stt`, so it cannot validate a MOTH-50 release. Moth-20 packages still
+validate with `--budget-bytes 20000000`.
 
 `assets/mel_filters.bin` is Whisper's 80×201 Slaney filterbank (openai/whisper,
 MIT; see `NOTICE`). `moth_features.load_mel_filters()` and `log_mel()` read it by
@@ -40,6 +45,7 @@ cp "$SRC/features.py" "$DST/moth_features.py"
 cp "$SRC/eval.py" "$DST/moth_eval.py"
 cp "$SRC/release.py" "$DST/moth_release.py"
 cp "$SRC/assets/mel_filters.bin" "$DST/assets/mel_filters.bin"
-# re-apply the import edits, then run the py_compile check
+# re-apply the import edits and the moth_release.py budget/name edits,
+# then run the py_compile check and the tests
 python -m py_compile "$DST"/*.py
 ```
