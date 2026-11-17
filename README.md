@@ -119,6 +119,7 @@ tools/architecture_budget.py  parameter/size/compute estimator
 tools/probe_export.py     real INT8 export size and CPU latency (needs moth-stt)
 tools/probe_activations.py  activation memory, CPU or MPS (needs moth-stt)
 tools/probe_training.py   200-step MPS training memory/throughput probe
+tools/build_noisy_cv.py   noisy Common Voice half (E-024 mixer, MOTH-50 paths)
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0

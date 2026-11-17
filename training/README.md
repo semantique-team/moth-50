@@ -125,11 +125,22 @@ uv run --frozen --project ../moth-stt --extra training -- \
 ```
 
 The clean-50 manifest uses the full `data/shards/cv_it_train` shards. The
-noisy half is **not** a plain `build_mel` job: it must be built with the E-024
-mixer (`../moth-stt/runs/E-024/build_noisy_mel.py`), which mixes MUSAN noise and
-room tone at a deterministic per-clip SNR and writes
-`data/shards/cv_it_noisy50`. Do not run `build_mel` on
-`cv_it_train_noisy50.jsonl`, or the "noisy" half will be clean.
+noisy half is **not** a plain `build_mel` job: it must be built with
+`tools/build_noisy_cv.py` (the E-024 mixer), which mixes MUSAN noise and room
+tone at a deterministic per-clip SNR:
+
+```bash
+# check sizes/SNR first (no build)
+uv run --frozen --project ../moth-stt --extra training -- \
+  python tools/build_noisy_cv.py --check
+
+# build the noisy half (~2 h, 8 workers) and write the clean/noisy manifests
+uv run --frozen --project ../moth-stt --extra training -- \
+  python tools/build_noisy_cv.py --workers 8
+```
+
+Do not run `build_mel` on `cv_it_train_noisy50.jsonl`, or the "noisy" half will
+be clean.
 
 3. Build the spliced set **after** the CV/MLS/LS shards (it concatenates cached
 mels and regenerates the manifest and report):
