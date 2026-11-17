@@ -133,10 +133,9 @@ def main() -> None:
     parser.add_argument("--all", action="store_true", help="print the candidate table")
     args = parser.parse_args()
 
-    if args.all or args.width != 512 or args.layers != 6 or args.extra != 6:
-        if args.all:
-            print(format_table(CANDIDATES))
-            return
+    if args.all:
+        print(format_table(CANDIDATES))
+        return
 
     c = Candidate(
         "custom",

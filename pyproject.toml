@@ -1,0 +1,29 @@
+[project]
+name = "moth-50"
+version = "0.0.1"
+description = "MOTH-50 — a 50 MB-class Italian+English code-switching speech-to-text model"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy",
+    "num2words",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["vendor/moth-stt", "tools"]
