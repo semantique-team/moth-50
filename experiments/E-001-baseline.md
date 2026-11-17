@@ -1,8 +1,10 @@
 # E-001 — Reproduce Moth 0.8.1 on the canonical dataset
 
-**Status: planned.** This is the first experiment of `MOTH-50`: establish that
-the vendored evaluation code and the canonical dataset reproduce the published
-Moth 0.8.1 numbers before any new model is trained.
+**Status: done (2026-11-17), gate passed.** This is the first experiment of
+`MOTH-50`: establish that the vendored evaluation code and the canonical dataset
+reproduce the published Moth 0.8.1 numbers before any new model is trained.
+Result: **24.0826 % WER / 55.2253 % ETA**, exactly matching E-038; see
+`runs/E-001/RESULT.md`.
 
 ## Hypothesis
 

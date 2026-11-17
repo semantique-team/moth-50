@@ -34,7 +34,7 @@ external evidence.
 
 | ID | Question | Status |
 |---|---|---|
-| E-001 | Reproduce Moth 0.8.1 on the canonical dataset with the vendored evaluator | planned |
+| E-001 | Reproduce Moth 0.8.1 on the canonical dataset with the vendored evaluator | done: 24.0826 / 55.2253, matches E-038 |
 | E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_activations.py`) | planned |
 | E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | planned |
 | E-004 | Package-budget trade-off: base+6 + 5.38 MB LM vs base+4 + 12 MB LM | planned |
