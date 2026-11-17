@@ -23,9 +23,9 @@ was evaluated and rejected. The model must remain commercially usable.
 - **Architecture**: Whisper-base encoder + 6 extra pre-LN transformer blocks +
   linear CTC over the 1,024-piece BPE + E-031 LM + Silero VAD. **39.3 M acoustic
   parameters, 47.74 MB package** (measured graph size; 2.26 MB under the
-  ceiling). Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.95 MB),
-  decided by E-004. Training needs activation checkpointing to fit in 16 GB
-  (`docs/review-2026-11-17.md`).
+  ceiling). Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.94 MB),
+  decided by E-004. Memory is the training risk: base+6 is projected at
+  12–21 GB without activation checkpointing (`docs/review-2026-11-17.md`, P1).
 - **No 100 MB tier**; no from-scratch Conformer, transducer or AED backbone.
 - **No streaming**: encoder-only CTC, record-then-transcribe, like Moth.
 - **Data**: public CC0/CC-BY corpora, 2–5 h of new **S1** recordings, and

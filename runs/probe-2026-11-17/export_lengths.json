@@ -1,0 +1,67 @@
+{
+  "tool": "tools/probe_export.py",
+  "recipe": "stt.export.export_fp32 + quantize_int8 (dynamic, per-channel QInt8)",
+  "weights": "random (size is value-independent)",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "Intel64 Family 6 Model 189 Stepping 1, GenuineIntel",
+  "versions": {
+    "python": "3.12.10",
+    "torch": "2.14.1+cpu",
+    "onnx": "1.23.2",
+    "onnxruntime": "1.31.0"
+  },
+  "reps": 9,
+  "candidates": [
+    {
+      "candidate": "tiny+2",
+      "params": 11575169,
+      "fp32_bytes": 46333455,
+      "int8_bytes": 11876257,
+      "int8_bytes_per_param": 1.02601,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 37
+      },
+      "latency_s": {
+        "5s_1t": 0.0245,
+        "10s_1t": 0.0607,
+        "20s_1t": 0.168,
+        "30s_1t": 0.3021
+      }
+    },
+    {
+      "candidate": "base+4",
+      "params": 32955905,
+      "fp32_bytes": 131856035,
+      "int8_bytes": 33530165,
+      "int8_bytes_per_param": 1.01743,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 61
+      },
+      "latency_s": {
+        "5s_1t": 0.0583,
+        "10s_1t": 0.1389,
+        "20s_1t": 0.3763,
+        "30s_1t": 0.7348
+      }
+    },
+    {
+      "candidate": "base+6",
+      "params": 39259649,
+      "fp32_bytes": 157078048,
+      "int8_bytes": 39946582,
+      "int8_bytes_per_param": 1.0175,
+      "quantized_ops": {
+        "ConvInteger": 2,
+        "MatMulInteger": 73
+      },
+      "latency_s": {
+        "5s_1t": 0.0686,
+        "10s_1t": 0.1675,
+        "20s_1t": 0.4448,
+        "30s_1t": 0.8605
+      }
+    }
+  ]
+}
