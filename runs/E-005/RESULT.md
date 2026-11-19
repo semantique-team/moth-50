@@ -86,6 +86,56 @@ Per-category WER/ETA on S1-dev (INT8 vs 0.8.1):
 Both halves of the E-002 gate are now met: dev-macro ≥ 1.0 pp better with a CI
 excluding zero, and no S1-dev WER or ETA regression outside its CI.
 
+## S1-dev error analysis (post-hoc, 2026-11-19)
+
+Descriptive, not a gate: it reads the 2,048 English reference words of S1-dev
+and classifies every miss in the frozen readouts with `tools/eta_breakdown.py`
+(classes and flags are defined in its docstring). Evidence:
+`runs/E-005/eta-breakdown.json`.
+
+```bash
+python tools/eta_breakdown.py runs/E-005/s1-dev-a3-int8.json \
+  --compare runs/E-005/s1-dev-0.8.1.json --out runs/E-005/eta-breakdown.json
+# with per-flag denominators and per-category classes (needs the manifest):
+#   --manifest ../moth-cs-dataset/manifests/R-S1-dev.jsonl
+```
+
+| Miss class | 0.8.1 INT8 + A3 | MOTH-50 INT8 + A3 |
+|---|---:|---:|
+| deleted (no word aligned) | 151 | **53** |
+| substituted | 518 | **335** |
+| truncated (prefix of the term: `path` → `pat`) | 64 | 73 |
+| glued to a neighbour (`bucket` → `storagebucket`) | 41 | 37 |
+| apostrophe only (`l'opex` → `lopex`) | 2 | 3 |
+| **Total misses** | **776** | **501** |
+
+| Flag (any class) | 0.8.1 | MOTH-50 |
+|---|---:|---:|
+| English function word (`too`, `it`, `a`, …) | 140 | **59** |
+| elided term (`l'sdk`, `l'hr`, `let's`) | 32 | 34 |
+| no vowel after the elision (`mcv`, `l'hr`; acronym lower bound) | 30 | 24 |
+
+Paired by (clip, term): MOTH-50 fixes 361 of 0.8.1's misses and adds 86.
+
+- **Term deletions are mostly gone** (151 → 53). The old failure mode, dropping
+  the English word, is no longer the main error.
+- **Function words fell from 140 to 59.** The remainder is largely homophones
+  (`too` → `to` five times), where little is left to gain.
+- **Elided acronyms did not improve** (32 → 34). `l'sdk`, `l'ebitda`, `l'rfid`
+  fail as a unit: the article, the letter names and the orthography all have to
+  be right. With the manifest the tool reports how many elided terms S1-dev has
+  in total, i.e. their accuracy.
+- **Acronyms and brands are the weakest categories**: ETA 29.2 % and 48.1 %,
+  with the highest insertion rates (4.70 and 3.13 per 100 words against 0.71 on
+  `control_it`) — spelled letters turn into extra tokens.
+- **Truncations rose** (64 → 73): final consonants or suffixes lost (`growth` →
+  `grow`, `planned` → `plan`, `benchmarkato` → `benchmark`). Whether this is the
+  speaker's pronunciation or the model needs listening, not more statistics.
+
+These are data and LM problems rather than schedule problems. They motivate
+E-019 (teacher labels), E-020 (LM text) and E-021 (targeted acronym, brand and
+elision data) in `experiments/next-experiments.md`.
+
 ## Greedy curve (monitoring)
 
 | Step | Greedy dev-macro WER |
