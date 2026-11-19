@@ -27,6 +27,7 @@ import sys
 from pathlib import Path
 
 from release_assets import resolve_lm
+from release_notice import compose_notice, moth_dataset_lines
 
 REPO = Path(__file__).resolve().parents[1]
 MOTH_STT = REPO.parent / "moth-stt"
@@ -71,7 +72,15 @@ def main(argv: list[str] | None = None) -> int:
     sys.path.insert(0, str(REPO / "vendor/moth-stt"))
     import torch
     from moth_release import validate_release
-    from stt.export import _config, _logit_gap, build_notice, export_fp32, quantize_int8
+    from stt.data.sources import SOURCES
+    from stt.export import (
+        _SILERO_MIT,
+        _WHISPER_MIT,
+        _config,
+        _logit_gap,
+        export_fp32,
+        quantize_int8,
+    )
     from stt.features import DEFAULT_FILTERS
     from stt.tokenizer import load_tokenizer, vocab_json
     from stt.vad import ASSET_PATH as VAD_ASSET
@@ -130,7 +139,17 @@ def main(argv: list[str] | None = None) -> int:
     (out / "config.json").write_text(
         json.dumps(release_config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    (out / "NOTICE").write_text(build_notice(), encoding="utf-8")
+    notice = compose_notice(
+        whisper_mit=_WHISPER_MIT,
+        silero_mit=_SILERO_MIT,
+        lock=json.loads((REPO / "data/sources.lock.json").read_text(encoding="utf-8")),
+        moth_lines=moth_dataset_lines(SOURCES.values()),
+        encoder_preset=model_config.preset,
+        head_blocks=model_config.head_blocks,
+        lm_sha256=lm_info["sha256"],
+        vad_description="the 8 kHz + 16 kHz graph shipped by Moth 0.8.1",
+    )
+    (out / "NOTICE").write_text(notice, encoding="utf-8")
 
     _, budget = validate_release(out, budget_bytes=args.budget)
     result = {
