@@ -1,11 +1,13 @@
 # MOTH-50 — scaffold
 
-**Status (2026-11-19): E-005 complete.** Frozen beam+A3 dev-macro **17.66 %**
+**Status (2026-11-19): E-005 complete.** Frozen beam+LM dev-macro **17.66 %**
 (INT8) / **17.58 %** (FP32) against the **23.02 %** 0.8.1 reference; the INT8
-package is **47.57 MB**, 2.43 MB under the 50 MB ceiling, and the browser run
-transcribed a T-600 clip exactly at **RTFx 22.7** (4 threads, SIMD, isolated).
-The only missing artifact is the S1-dev session (300/960 clips). Read
-`STATUS.md` first when resuming.
+package is **47.57 MB**, and the browser run transcribed a T-600 clip exactly at
+**RTFx 22.7** (4 threads, SIMD, isolated). **Erratum:** that readout and package
+used the pre-A3 LM and Moth's NOTICE; the verdict stands, and the A3 rebuild
+(~47.84 MB) is the E-005 addendum (D17). The S1-dev session is at ~660/960 clips.
+The post-E-005 plan is `experiments/next-experiments.md`. Read `STATUS.md` first
+when resuming.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
@@ -109,13 +111,16 @@ experiments/README.md     new experiment ledger, starts at E-001
 experiments/E-001-baseline.md
 experiments/E-002-protocol.md  frozen evaluation protocol and data mixture
 experiments/E-002-s1-dev.md   S1-dev recording runbook and manifest patch
-experiments/E-003-plan.md     pre-registered architecture screen; not started
+experiments/E-003-plan.md     pre-registered architecture screen and its result
+experiments/next-experiments.md  post-E-005 plan: E-009–E-016, gates, commands
 runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
+runs/probe-2026-11-19/    16 kHz Silero graph parity preflight
 runs/E-001/               Moth 0.8.1 baseline reproduction
 runs/E-002/               real 200-step MPS training probe
+runs/E-003/, runs/E-005/  depth screen; long fine-tune, package, browser run
 tests/                    tests for tools/ and the vendored code
-training/                 MOTH-50 trainer port (config, data, model, loop)
-training/configs/         base+6 E-003 config and the 20-step smoke config
+training/                 MOTH-50 trainer port (config, data, model, EMA, loop)
+training/configs/         E-003/E-005 configs, the E-010 arm, smoke configs
 training/fixtures/        tiny smoke manifests (audio not included)
 tools/architecture_budget.py  parameter/size/compute estimator
 tools/probe_export.py     real INT8 export size and CPU latency (needs moth-stt)
@@ -124,8 +129,12 @@ tools/probe_training.py   200-step MPS training memory/throughput probe
 tools/build_noisy_cv.py   noisy Common Voice half (E-024 mixer, MOTH-50 paths)
 tools/s1_dev_qc.py        S1-dev session QC: takes, coverage, levels, projection
 tools/finalize_s1_dev.py  patch build_manifest output to split:dev + session paths
-tools/frozen_readout.py   E-002 gate readout: beam 12 + A3 LM, FP32 or `--onnx`
-tools/export_release.py   INT8 release folder + 50 MB package check
+tools/release_assets.py   pinned A3 LM, 0.8.1 graph and Silero graphs (fetch/check)
+tools/frozen_readout.py   E-002 gate readout: beam 12 + A3 LM; dev-macro or a mixed set
+tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
+tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
+tools/release_notice.py   the MOTH-50 package NOTICE
+tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0

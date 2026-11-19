@@ -200,14 +200,27 @@ Before E-003, add the held-out S1-dev source to `base6.toml` as documented in
   `ckpt_best.pt`.
 - Checkpoints are private and gitignored (`runs/**/checkpoints/`).
 
+## Weight EMA (optional)
+
+`train.ema_decay` (default 0 = off, as in E-003/E-005) keeps an exponential
+moving average of the weights with a step warm-up (`training/ema.py`). When it
+is on, the greedy dev evaluation and `ckpt_best.pt` use the averaged weights,
+and every checkpoint stores them as `ema_model` next to the raw `model` weights;
+`--resume` continues from the raw weights and the stored average. The readout,
+calibration and export tools take `--weights auto|model|ema` (`auto` = EMA when
+present). E-011 plans `ema_decay = 0.9998`.
+
 ## What is deliberately not here yet
 
-- The beam + A3 LM decoder and the frozen `moth_eval` readout: use the E-002
-  protocol for the real gate.
-- The browser export/latency path.
+- The browser export/latency path beyond `tools/export_release.py`; the web
+  runtime still lives in the archived `moth-stt` checkout (E-016).
 - Distillation, TTS and pseudo-labelling; those are E-006.
 - A production data loader for the final 2–5 h S1 set; the current loader reads
   Moth mel shards by design.
+
+The beam + A3 readouts are `tools/frozen_readout.py` (dev-macro gate and
+`--mode mixed` for S1-dev) and `tools/calibrate_decoder.py` (E-009); the A3 LM is
+fetched and checked by `tools/release_assets.py`.
 
 If a run uses a different mixture or encoder, create a new dated config and
 record it in the experiment directory; do not edit `base6.toml` in place after
