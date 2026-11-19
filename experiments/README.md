@@ -38,10 +38,10 @@ external evidence.
 | E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_training.py`) | protocol frozen; 200-step probe passed (13.37 / 3.68 GB); 0.8.1 dev reference re-scored (23.0170 macro); data mixture and shards ready; S1-dev **960/960 (51.30 min, 2026-11-19)**, QC clean |
 | E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | **done**: base+6 wins; greedy dev 48.12 / 36.90 / 34.73 / 33.46 %, two seeds on +4/+6 (33.55 % / 34.74 %); E-005 long run and gate complete |
 | E-004 | Package-budget trade-off; re-scoped after E-005: where the E-012 headroom goes (unpruned LM vs base+7 vs base+4 + large LM) | planned (`next-experiments.md`) |
-| E-005 | Full fine-tune of the winner; INT8 export; browser run | **done, gate PASS**: A3 readout **17.5565 / 17.6212 %** FP32/INT8 vs 23.0170 % (paired **−5.4605 / −5.3957 pp**); S1-dev **13.9956 / 14.0541 %** vs **22.2498 %**, ETA **75.34 / 75.54 %** vs **62.11 %**, no regression; **47,836,502 B** package (2.16 MB headroom); browser exact, **RTFx 22.3**. Pre-A3 erratum fixed (D17) |
-| E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned, re-scoped as fine-tune arms from E-011 |
+| E-005 | Full fine-tune of the winner; INT8 export; browser run | **done, gate PASS**: A3 readout **17.5565 / 17.6212 %** FP32/INT8 vs 23.0170 % (paired **−5.4605 / −5.3957 pp**); S1-dev **13.9956 / 14.0541 %** vs **22.2498 %**, ETA **75.34 / 75.54 %** vs **62.11 %**, no regression; **47,836,502 B** package (2.16 MB headroom); browser exact, **RTFx 22.3**. Pre-A3 erratum fixed (D17). S1-dev term-error analysis added (`tools/eta_breakdown.py`); **T-600/FLEURS product readout still owed, next** |
+| E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned, re-scoped as fine-tune arms from E-011; pseudo-labels → E-018/E-019, S1 sessions and TTS → E-019/E-021 |
 | E-007 | Optional architecture: 25 Hz extra blocks, conv adapters, dropout/EMA, LID auxiliary | split into E-011 (EMA), E-013, E-014, E-015 |
-| E-008 | External evaluation: CS-FLEURS-READ (test-only), FLEURS, per-speaker ranges | planned |
+| E-008 | External evaluation: CS-FLEURS-READ (test-only), FLEURS, per-speaker ranges; ceilings from the E-018 teacher and frontier APIs (evaluation-only) | planned |
 | E-009 | Decoder recalibration (LM weight × token bonus) on dev-macro + S1-dev | **done 2026-11-19**: dev-macro best **0.45 / 2.0** (17.3427 %, −0.2786 pp) **rejected by the S1-dev veto** (+0.5844 pp WER / −1.1230 pp ETA); frozen **0.55 / 2.7** stays; `runs/E-009/RESULT.md` |
 | E-010 | Encoder-LR screen: 1e-4 vs 3e-5 on base+4/base+6 | planned; `training/configs/base6-enc1e-4.toml` |
 | E-011 | ~3 epochs + weight EMA, two seeds | planned; needs E-010 (E-009 kept the frozen decoder) |
@@ -50,12 +50,19 @@ external evidence.
 | E-014 | Conformer-style convolution in the extra blocks at equal bytes | planned |
 | E-015 | 25 Hz extra blocks (review P7) | conditional on E-016 |
 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | planned |
+| E-017 | Mixed calibration set separate from the S1-dev gate (new session or S1-dev split) | proposed; owner decision before E-004/E-020/E-022 |
+| E-018 | Teacher bake-off on the gold train set (Parakeet, Canary, Whisper-turbo, Voxtral; optional SOV/Nemotron) | proposed; no training |
+| E-019 | Teacher labels: Granary Italian, VoxPopuli unlabelled, unscripted S1 sessions | proposed; needs E-018, E-011 |
+| E-020 | LLM-written mixed IT–EN text for the A3-style LM | proposed; needs E-017 |
+| E-021 | Targeted acronym, brand and elision data (recordings + permissive TTS) | proposed; needs E-011 |
+| E-022 | Keyterm (contextual) biasing re-test as a product feature | proposed, conditional; Moth E-027 was negative |
 
 The rationale, parameter counts and gates for E-003–E-008 are in
 `docs/architecture-options.md`; the corrected Moth evidence, the measurements
 and the proposals that may change them are in `docs/review-2026-11-17.md`. The
-post-E-005 plan (E-009–E-016 and the re-scoped E-004/E-006) and its gates are in
-`experiments/next-experiments.md`. Do
+post-E-005 plan (E-009–E-022 and the re-scoped E-004/E-006) and its gates are in
+`experiments/next-experiments.md`; the frontier-model review behind E-017–E-022
+is `docs/frontier-stt-2026-11-19.md` (D19). Do
 not start E-003 before E-002 has frozen the evaluation protocol; T is a
 comparability set, not a clean test. There is no 100 MB experiment: the tier is
 rejected. No CC-BY-NC data in training.

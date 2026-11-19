@@ -15,6 +15,12 @@ E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
 0.55 / 2.7 stays. `runs/E-009/RESULT.md`.
 
+The frontier-model review (2026-11-19, `docs/frontier-stt-2026-11-19.md`, D19
+proposed) keeps the architecture and adds E-017–E-022: a mixed calibration set,
+a teacher bake-off, teacher labels, LLM-written LM text, targeted
+acronym/brand data and a keyterm-biasing re-test. The owed T-600 readout comes
+first.
+
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
 `moth-stt` 0.8.1); its repository name is deliberately unchanged, because it is
@@ -113,12 +119,13 @@ data/tokenizer/           pinned Moth 1,024-piece BPE model and provenance
 docs/decisions.md         decisions and open questions
 docs/architecture-options.md  architecture analysis and planned sequence
 docs/review-2026-11-17.md evidence check, measurements and proposals
+docs/frontier-stt-2026-11-19.md  frontier STT models: teachers, licences, limits
 experiments/README.md     new experiment ledger, starts at E-001
 experiments/E-001-baseline.md
 experiments/E-002-protocol.md  frozen evaluation protocol and data mixture
 experiments/E-002-s1-dev.md   S1-dev recording runbook and manifest patch
 experiments/E-003-plan.md     pre-registered architecture screen and its result
-experiments/next-experiments.md  post-E-005 plan: E-009–E-016, gates, commands
+experiments/next-experiments.md  post-E-005 plan: E-009–E-022, gates, commands
 runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
 runs/probe-2026-11-19/    16 kHz Silero graph parity preflight
 runs/E-001/               Moth 0.8.1 baseline reproduction
@@ -141,6 +148,7 @@ tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
 tools/release_notice.py   the MOTH-50 package NOTICE
 tools/probe_vad.py        Silero graph parity probe (E-012)
+tools/eta_breakdown.py    classify English-term misses of a mixed-set readout
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0

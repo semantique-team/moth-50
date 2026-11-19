@@ -17,10 +17,12 @@ running, and the exact next commands. Update it at the end of each session.
   **pre-A3 LM** (`dcf1d59f…`) and Moth 0.8.1's NOTICE. The verdict stood, and
   the final A3 numbers above supersede the old ones. The tools pin A3 by sha256
   (`tools/release_assets.py`).
-- **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-016.
-  **E-009 ran on 2026-11-19 and kept the frozen decoder; E-010–E-016 have not
-  run.** No training starts without an explicit go-ahead.
-- **Tests:** 84 passed in the training env, 74 passed + 2 skipped (the torch
+- **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-022.
+  **E-009 ran on 2026-11-19 and kept the frozen decoder; E-010–E-022 have not
+  run.** E-017–E-022 come from the frontier-model review
+  (`docs/frontier-stt-2026-11-19.md`, D19 proposed). No training starts without
+  an explicit go-ahead.
+- **Tests:** 98 passed in the training env, 88 passed + 2 skipped (the torch
   tests) in a plain venv; `ruff check` and `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
@@ -56,25 +58,34 @@ running, and the exact next commands. Update it at the end of each session.
 | S1-dev readout tool | `frozen_readout.py --mode mixed`: WER/ETA + paired no-regression vs 0.8.1 | `tools/frozen_readout.py`, E-002 §6 |
 | Post-E-005 tooling | decoder grid (E-009), EMA (`train.ema_decay`), E-010 config, VAD probe | `experiments/next-experiments.md` |
 | VAD 16 kHz preflight | bit-identical on 23 synthetic clips, −1,037,921 B | `runs/probe-2026-11-19/` |
+| S1-dev term-error analysis | 501 misses (0.8.1: 776); deletions 151 → 53; acronyms 29.2 % / brands 48.1 % ETA; elided acronyms not improved | `runs/E-005/RESULT.md`, `runs/E-005/eta-breakdown.json`, `tools/eta_breakdown.py` |
+| Frontier-model review (D19, proposed) | teachers, LM text and ceilings, not architectures; E-017–E-022 pre-registered | `docs/frontier-stt-2026-11-19.md` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: E-010/E-012, no training without go-ahead
+## Next step: the T-600 readout, then E-017/E-018; no training without go-ahead
 
 The gate is complete and **E-009 kept the frozen decoder**: the dev-macro winner
 0.45 / 2.0 (−0.2786 pp) was rejected by the S1-dev veto (+0.5844 pp WER,
 −1.1230 pp ETA), so 0.55 / 2.7 stays (`runs/E-009/RESULT.md`). Nothing is
-running. The remaining items, with their pre-registered gates, are in
+running. The order, with the pre-registered gates, is in
 `experiments/next-experiments.md`:
 
-1. **E-010 encoder-LR screen** — 2 arms × 4,000 steps, ~3 h on MPS.
-2. **E-011 long schedule + EMA** — ~17 h per seed, 2 seeds.
-3. **E-012 bytes** — 16 kHz VAD on real audio + browser, and lossless LM packing;
+1. **E-005 product readout** — T-600 and FLEURS once, as a report, with 0.8.1
+   and Parakeet (10.98 % / 83.60 % on T-600) as references; ~20 min CPU after
+   the T/FLEURS mel shards. The only measurement on speakers other than S1.
+2. **E-017 calibration set** — owner decision: a new ~15–20 min `R-S1-cal`
+   session (recommended) or a fixed split of S1-dev. Needed before any LM or
+   decoder change.
+3. **E-018 teacher bake-off** — permissive open models on the gold train set;
    no training.
-4. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
-5. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
-   the runtime with the `budget_bytes` change.
+4. **E-010 encoder-LR screen** — 2 arms × 4,000 steps, ~3 h on MPS.
+5. **E-012 bytes** — 16 kHz VAD on real audio + browser, and lossless LM packing;
+   no training, can run in parallel.
+6. **E-011 long schedule + EMA** — ~17 h per seed, 2 seeds.
+7. **E-019–E-021** — teacher labels, LLM text for the LM, targeted acronym/brand
+   data; then E-004, E-016, the architecture screens and E-022.
 
 Reproduction of the final readouts (assets must be fetched once):
 
@@ -163,17 +174,22 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D18, including checkpointing (D15), init (D16),
-  release asset pins (D17) and the post-E-005 plan (D18).
+- `docs/decisions.md` — D1–D19, including checkpointing (D15), init (D16),
+  release asset pins (D17), the post-E-005 plan (D18) and frontier models as
+  teachers (D19, proposed).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
+- `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
+  cannot give MOTH-50; licences; teachers.
 - `docs/review-2026-11-17.md` — evidence corrections and P1–P7.
 - `experiments/E-001-baseline.md` — baseline reproduction.
 - `experiments/E-002-protocol.md` — frozen evaluation/data protocol.
 - `experiments/E-002-s1-dev.md` — S1-dev recording and manifest runbook.
 - `experiments/E-003-plan.md` — arms, screen result and E-005 follow-up.
-- `experiments/next-experiments.md` — post-E-005 plan: E-005 addendum,
-  E-009–E-016, re-scoped E-004/E-006, gates and commands.
-- `runs/E-005/RESULT.md` — long fine-tune, A3 readout, S1-dev, package, browser.
+- `experiments/next-experiments.md` — post-E-005 plan: E-005 addendum and
+  product readout, E-009–E-022, re-scoped E-004/E-006, gates and commands.
+- `runs/E-005/RESULT.md` — long fine-tune, A3 readout, S1-dev, term-error
+  analysis, package, browser.
+- `runs/E-009/RESULT.md` — decoder grid, S1-dev veto, post-hoc analysis.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `training/README.md` — trainer, data build, initialization, preflight, resume.
 - `data/README.md`, `data/sources.lock.json` — pins and provenance.
