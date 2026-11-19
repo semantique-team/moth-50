@@ -234,7 +234,8 @@ NOTICE, which names `openai/whisper-tiny`. Accepted as fixes, not choices:
 
 `experiments/next-experiments.md` pre-registers E-009–E-016 and re-scopes E-004
 and E-006 after the review of E-005 (`docs/architecture-options.md` §11). The
-tooling exists; the E-005 addendum ran on 2026-11-19, E-009–E-016 have not:
+tooling exists; the E-005 addendum and E-009 ran on 2026-11-19, E-010–E-016
+have not:
 
 - `tools/frozen_readout.py --mode mixed`: S1-dev WER/ETA and the no-regression
   verdict (E-002 §6);
