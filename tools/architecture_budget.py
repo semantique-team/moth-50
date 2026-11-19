@@ -36,9 +36,9 @@ import argparse
 from dataclasses import dataclass
 
 BUDGET_BYTES = 50_000_000
-LM_BYTES = 5_381_992  # E-031 A3 trigram, Moth 0.8.1 lm_bpe3.bin
-VAD_BYTES = 2_327_524  # Silero VAD v5, Moth 0.8.1 silero_vad.onnx
-MISC_BYTES = 86_096  # vocab.json + mel_filters.bin + config.json + NOTICE (0.8.1)
+LM_BYTES = 3_353_840  # E-012(b) MOTHLMB2 A3 (lossless 10-bit codebook)
+VAD_BYTES = 1_289_603  # Silero VAD v5 16 kHz-only graph (D19)
+MISC_BYTES = 86_993  # vocab.json + mel_filters.bin + config.json + NOTICE (E-012 package)
 
 #: Measured INT8 bytes per parameter by model width (random-weight exports).
 MEASURED_BYTES_PER_PARAM = {384: 1.0260, 512: 1.0175}

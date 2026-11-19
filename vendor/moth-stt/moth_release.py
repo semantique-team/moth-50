@@ -28,7 +28,7 @@ def validate_release(path: Path | str, budget_bytes: int = MAX_BUDGET_BYTES) -> 
     referenced runtime assets, config and NOTICE. An explicit budget may select a
     smaller tier (Moth-20: 20,000,000), but must never exceed 50,000,000 bytes. Binary
     format parsing is left to the runtime readers; the LM must at least carry the
-    MOTHLMB1 signature.
+    MOTHLMB1 or MOTHLMB2 signature.
     """
     if type(budget_bytes) is not int or not 0 < budget_bytes <= MAX_BUDGET_BYTES:
         raise ValueError(f"budget_bytes must be a positive integer <= {MAX_BUDGET_BYTES}")
@@ -163,8 +163,8 @@ def validate_release(path: Path | str, budget_bytes: int = MAX_BUDGET_BYTES) -> 
                     raise ValueError(f"sha256 mismatch for {name}")
             files[name] = {"bytes": size, "sha256": digest, "hash_verified": name in hashes}
         with safe_file(decode["lm"]).open("rb") as stream:
-            if stream.read(8) != b"MOTHLMB1":
-                raise ValueError("LM must use the MOTHLMB1 binary format, not pickle")
+            if stream.read(8) not in (b"MOTHLMB1", b"MOTHLMB2"):
+                raise ValueError("LM must use MOTHLMB1 or MOTHLMB2, not pickle")
         total = sum(entry["bytes"] for entry in files.values())
         if total > budget_bytes:
             raise ValueError(f"release size {total} bytes exceeds budget {budget_bytes} bytes")

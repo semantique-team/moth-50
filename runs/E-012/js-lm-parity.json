@@ -1,0 +1,22 @@
+{
+  "tool": "node + moth-stt/web/lm.js (local MOTHLMB2 patch)",
+  "lm": {
+    "path": "runs/E-012/lm_a3_mothlmb2.bin",
+    "bytes": 3353840,
+    "sha256": "6b57bb41e2b05df50df08f665444a6126e0eabb64c7cfef05de23cdf07b4d821",
+    "bits": 10
+  },
+  "fixture": "runs/E-012/lm_scores_mothlmb2.json",
+  "cases": 980,
+  "packed": {
+    "load_ms": 33.9,
+    "mismatches": 0,
+    "max_abs": 0.0
+  },
+  "mothlmb1_regression": {
+    "cases": 980,
+    "load_ms": 5.9,
+    "mismatches": 0
+  },
+  "note": "Exact equality on stored trigram entries, bigram-only hits, random contexts and unigram fallbacks. The JS scores are float64 products of int16 codebook values and the float32 log scale, the same arithmetic as stt.lm.BinaryBPELM."
+}

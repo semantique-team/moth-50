@@ -4,16 +4,21 @@
 Frozen beam+A3 dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against the
 **23.02 %** 0.8.1 reference; held-out S1-dev (960/960 takes) **14.05 % / 14.00 %**
 vs **22.25 %**, ETA **75.5 / 75.3 %** vs **62.1 %**, with no regression outside
-its CI. The INT8 package is **47.84 MB** (2.16 MB under the ceiling), and the
-browser run transcribed a T-600 clip exactly at **RTFx 22.3** (4 threads, SIMD,
-isolated). The first readout/package used the pre-A3 LM and Moth's NOTICE; the
-erratum and the final A3 numbers are in `runs/E-005/RESULT.md` (D17). The
-post-E-005 plan is `experiments/next-experiments.md`; E-009 has run, the rest has
-not. Read `STATUS.md` first when resuming.
+its CI. E-012 cut the INT8 package to **44.77 MB** (5.23 MB under the ceiling)
+with the 16 kHz VAD and the lossless `MOTHLMB2` LM; the dev and S1-dev
+hypotheses are byte-identical to the 47.84 MB A3 package. The browser run
+transcribed a T-600 clip exactly at **RTFx 24.6** (4 threads, SIMD, isolated).
+The first readout/package used the pre-A3 LM and Moth's NOTICE; the erratum and
+the final numbers are in `runs/E-005/RESULT.md` (D17). The post-E-005 plan is
+`experiments/next-experiments.md`; E-009 and E-012 have run, the rest has not.
+Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
-0.55 / 2.7 stays. `runs/E-009/RESULT.md`.
+0.55 / 2.7 stays. `runs/E-009/RESULT.md`. E-012 (2026-11-19) adopted the
+16 kHz-only Silero graph (bit-identical on 2,040 real clips) and the lossless
+packed A3 LM (3,353,840 B, −2.03 MB), with no hypothesis changes;
+`runs/E-012/RESULT.md`.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
@@ -31,10 +36,11 @@ was evaluated and rejected. The model must remain commercially usable.
 
 - **Architecture**: Whisper-base encoder + 6 extra pre-LN transformer blocks +
   linear CTC over the 1,024-piece BPE + E-031 LM + Silero VAD. **39.3 M acoustic
-  parameters, 47.74 MB package** (measured graph size; 2.26 MB under the
-  ceiling). Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.94 MB),
-  decided by E-004. Memory: E-002 measured 13.37 GB without checkpointing and
-  3.68 GB with per-block checkpointing; checkpointing is the default (D15).
+  parameters, 47.74 MB initial package** (measured graph size; now **44.77 MB**
+  with the E-012 16 kHz VAD and packed LM, 5.23 MB under the ceiling).
+  Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.94 MB), decided by
+  E-004. Memory: E-002 measured 13.37 GB without checkpointing and 3.68 GB with
+  per-block checkpointing; checkpointing is the default (D15).
 - **No 100 MB tier**; no from-scratch Conformer, transducer or AED backbone.
 - **No streaming**: encoder-only CTC, record-then-transcribe, like Moth.
 - **Data**: public CC0/CC-BY corpora, 2–5 h of new **S1** recordings, and
@@ -141,6 +147,8 @@ tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
 tools/release_notice.py   the MOTH-50 package NOTICE
 tools/probe_vad.py        Silero graph parity probe (E-012)
+tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer
+tools/pack_lm.py          lossless A3 → MOTHLMB2 packing with an exact round trip
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0

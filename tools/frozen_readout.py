@@ -156,14 +156,17 @@ def sha256(path: Path) -> str:
         return hashlib.file_digest(handle, "sha256").hexdigest()
 
 
-def decoder_assets(config, lm_path: Path):
+def decoder_assets(config, lm_path: Path, lm_format: str = "mothlmb2"):
     """Tokenizer pieces and the decoder LM, shared by the PyTorch and ONNX paths."""
-    from stt.lm import BinaryBPELM
+    from moth_lm import MothLMB2, load_lm, read_mothlmb1, write_mothlmb2
     from stt.tokenizer import load_tokenizer, vocab_json
 
     tokenizer = load_tokenizer(config.data.tokenizer)
     pieces = {int(key): piece for key, piece in vocab_json(tokenizer).items()}
-    return pieces, BinaryBPELM.load(lm_path)
+    if lm_format == "mothlmb2":
+        packed = write_mothlmb2(read_mothlmb1(Path(lm_path).read_bytes()), bits=10)
+        return pieces, MothLMB2(packed)
+    return pieces, load_lm(lm_path)
 
 
 def load_model(checkpoint: Path, config, device: str, weights: str = "auto"):
@@ -334,6 +337,12 @@ def main(argv: list[str] | None = None) -> int:
         "--lm", type=Path, default=None, help="decoder LM (default: the pinned 0.8.1 A3 LM)"
     )
     parser.add_argument(
+        "--lm-format",
+        default="mothlmb2",
+        choices=("mothlmb1", "mothlmb2"),
+        help="LM encoding; mothlmb2 is the lossless packed format (default since D20)",
+    )
+    parser.add_argument(
         "--allow-other-lm",
         action="store_true",
         help="accept an LM that is not A3 (LM experiments only; the gate is then not comparable)",
@@ -384,6 +393,17 @@ def main(argv: list[str] | None = None) -> int:
     lm_info = resolve_lm(args.lm, allow_other=args.allow_other_lm)
     if not lm_info["is_a3"]:
         print(f"warning: decoding with a non-A3 LM ({lm_info['label']})", flush=True)
+    lm_packed = None
+    if args.lm_format == "mothlmb2":
+        from moth_lm import read_mothlmb1, write_mothlmb2
+
+        packed = write_mothlmb2(read_mothlmb1(lm_info["path"].read_bytes()), bits=10)
+        lm_packed = {
+            "format": "MOTHLMB2",
+            "bits": 10,
+            "bytes": len(packed),
+            "sha256": hashlib.sha256(packed).hexdigest(),
+        }
 
     sys.path.insert(0, str(REPO))
     sys.path.insert(0, str(MOTH_STT))
@@ -394,7 +414,7 @@ def main(argv: list[str] | None = None) -> int:
     from training.data import MultiMelDataset
 
     config = load_config(args.config)
-    pieces, lm = decoder_assets(config, lm_info["path"])
+    pieces, lm = decoder_assets(config, lm_info["path"], args.lm_format)
     if args.onnx:
         import onnxruntime as ort
 
@@ -451,6 +471,8 @@ def main(argv: list[str] | None = None) -> int:
             "lm_sha256": lm_info["sha256"],
             "lm_label": lm_info["label"],
             "lm_is_a3": lm_info["is_a3"],
+            "lm_format": args.lm_format,
+            "lm_packed": lm_packed,
         },
     }
 

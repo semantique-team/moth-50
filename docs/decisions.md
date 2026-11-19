@@ -267,8 +267,40 @@ median of 5) versus 22.29 for the E-005 A3 package. It totals **46,798,588 B**
 VAD and +7 B is the longer version string in `config.json`.
 
 `export_release.py --vad` now defaults to `16k`; `--vad full` remains for
-0.8.1-shaped packages. This is (a) only: E-012(b) lossless LM packing and the
-runtime vendor (E-016) are still open. Artifacts: `runs/E-012/`.
+0.8.1-shaped packages. This covers (a) only; (b) is D20. Artifacts:
+`runs/E-012/`.
+
+## D20 — Lossless MOTHLMB2 LM and its adoption (2026-11-19)
+
+E-012(b) passed its pre-registered gate. The A3 LM has **1,018 distinct bigram
+and 859 distinct trigram log-probs**, so a 10-bit codebook is lossless. The new
+`MOTHLMB2` format (`tools/moth_lm.py`, `tools/pack_lm.py`) stores an int16
+codebook per order, 11-bit tokens, bit-packed entries, an 11-bit `prev1` array
+and minimal-width trigram row offsets. A3 packs from 5,381,992 to **3,353,840 B**
+(sha256 `6b57bb41…d821`, ratio 0.62316), saving **2,028,152 B**.
+
+The encoding is value-preserving, not approximating: every array and header
+field round-trips exactly; 225,818 Python score queries and 980 JS cases are
+identical; the dev-macro and S1-dev hypothesis files are byte-identical to the
+`MOTHLMB1` runs (macro **17.6212 %**, S1-dev **14.0541 % WER / 75.5371 % ETA**).
+The final package (packed LM + 16 kHz VAD) is **44,770,433 B**, with
+**5,229,567 B** of room. The browser loads it in 413 ms, transcribes
+`T/S1/S1_0001.wav` exactly and benchmarks at **RTFx 24.63** (4 threads).
+
+Adopted:
+
+- `export_release.py --lm-format` and `frozen_readout.py --lm-format` default to
+  `mothlmb2`; `--lm-format mothlmb1` remains for reproduction.
+- The release validator accepts `MOTHLMB1` or `MOTHLMB2` (packaging-only change,
+  recorded in `vendor/moth-stt/PROVENANCE.md`).
+- The JS reader lives in the archived Moth checkout as local commit `0e15442`
+  (with `b0fa11c` for `budget_bytes`); vendoring it is E-016.
+- `tools/architecture_budget.py` now uses the packed LM and 16 kHz VAD, so
+  base+7 is estimated at 47.88 MB — E-004's depth arm fits.
+
+Artifacts: `runs/E-012/` (`RESULT.md`, `lm-pack.json`, `js-lm-parity.json`,
+`readout-dev-mothlmb2.json`, `s1-dev-mothlmb2.json`,
+`export-report-mothlmb2.json`, `browser-run-mothlmb2.json`).
 
 ## Open questions
 
@@ -276,9 +308,9 @@ runtime vendor (E-016) are still open. Artifacts: `runs/E-012/`.
   session is the dev set?
 - TTS mixture weight and voice selection; how much synthetic data survives the
   real-data readout without hurting S2/S3/FLEURS?
-- Does the headroom go to a larger LM, a deeper model, or nothing? With A3 it is
-  ~2.16 MB; after E-012 (16 kHz VAD, lossless packed A3) ~5.2 MB. E-004
-  (re-scoped) decides.
+- Does the headroom go to a larger LM, a deeper model, or nothing? With A3 it was
+  ~2.16 MB; after E-012 (16 kHz VAD, lossless packed A3) it is **5.23 MB
+  measured**. E-004 (re-scoped) decides.
 - ~~Should the extra blocks be identity-initialized (review P3), randomly
   initialized as in Moth E-006, or copied from the last Whisper-base block?~~
   Resolved in D16: identity, for every E-003 arm.

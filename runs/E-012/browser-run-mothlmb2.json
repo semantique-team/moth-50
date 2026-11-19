@@ -1,0 +1,61 @@
+{
+  "tool": "OpenCode in-app browser (browser tools)",
+  "release": "runs/E-012/release-lm2",
+  "package_bytes": 44770433,
+  "budget_bytes": 50000000,
+  "remaining_bytes": 5229567,
+  "config": {
+    "name": "moth-stt",
+    "version": "0.9.3-e012-lm2",
+    "decode": {"beam": 12, "top_k": 10, "lm_weight": 0.55, "token_bonus": 2.7}
+  },
+  "lm": {
+    "format": "MOTHLMB2",
+    "bits": 10,
+    "sha256": "6b57bb41e2b05df50df08f665444a6126e0eabb64c7cfef05de23cdf07b4d821",
+    "bytes": 3353840,
+    "source_sha256": "3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1",
+    "source_label": "a3-0.8.1"
+  },
+  "vad": {
+    "variant": "16k",
+    "sha256": "7ed98ddbad84ccac4cd0aeb3099049280713df825c610a8ed34543318f1b2c49",
+    "bytes": 1289603
+  },
+  "browser": {
+    "cross_origin_isolated": true,
+    "threads": 4,
+    "simd": true,
+    "load_ms": 413.3900000154972
+  },
+  "sample": {
+    "audio": "../moth-cs-dataset/audio/T/S1/S1_0001.wav",
+    "reference": "ho spostato il meeting a domani",
+    "seconds": 3.9893125
+  },
+  "transcript": "ho spostato il meeting a domani",
+  "transcript_exact_match": true,
+  "timings_ms": {
+    "vad": 50.93000000715256,
+    "feature": 74.21500000357628,
+    "inference": 138.8900000154972,
+    "decode": 12.655000001192093,
+    "total": 277.7650000154972
+  },
+  "rtfx": 14.362185659739083,
+  "benchmark": {
+    "runs": 5,
+    "total_ms_median": 161.99500000476837,
+    "total_ms_min": 161.46000000834465,
+    "vad_ms_median": 12.6700000166893,
+    "feature_ms_median": 54.43500000458622,
+    "inference_ms_median": 84.0949999988079,
+    "decode_ms_median": 9.965000003576279,
+    "rtfx_median": 24.626145867974774,
+    "rtfx_inference": 47.43816517101553,
+    "num_threads": 4,
+    "cross_origin_isolated": true,
+    "simd": true
+  },
+  "runtime_note": "moth-stt web/ at local commit 0e15442 (MOTHLMB2 reader); the budget_bytes patch is b0fa11c. Vendoring is E-016."
+}

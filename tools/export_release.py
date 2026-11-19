@@ -26,6 +26,7 @@ import shutil
 import sys
 from pathlib import Path
 
+from moth_lm import read_mothlmb1, write_mothlmb2
 from release_assets import SILERO_VAD, SILERO_VAD_16K, resolve_lm, verify
 from release_notice import compose_notice, moth_dataset_lines
 
@@ -79,6 +80,12 @@ def main(argv: list[str] | None = None) -> int:
         default="16k",
         choices=sorted(VAD_VARIANTS),
         help="Silero graph: 16k (default since D19, -1.04 MB) or full (8+16 kHz, as in 0.8.1)",
+    )
+    parser.add_argument(
+        "--lm-format",
+        default="mothlmb2",
+        choices=("mothlmb1", "mothlmb2"),
+        help="LM encoding: mothlmb2 is the lossless packed format (default since D20)",
     )
     args = parser.parse_args(argv)
 
@@ -143,7 +150,23 @@ def main(argv: list[str] | None = None) -> int:
     shutil.copyfile(DEFAULT_FILTERS, out / "mel_filters.bin")
     vad_path = verify(vad_asset, VAD_ASSET if args.vad == "full" else None)
     shutil.copyfile(vad_path, out / "silero_vad.onnx")
-    shutil.copyfile(lm_info["path"], out / "lm_bpe3.bin")
+    if args.lm_format == "mothlmb2":
+        lm_bytes = write_mothlmb2(read_mothlmb1(lm_info["path"].read_bytes()), bits=10)
+        (out / "lm_bpe3.bin").write_bytes(lm_bytes)
+        lm_packed = {
+            "format": "MOTHLMB2",
+            "bits": 10,
+            "bytes": len(lm_bytes),
+            "sha256": sha256(out / "lm_bpe3.bin"),
+        }
+    else:
+        shutil.copyfile(lm_info["path"], out / "lm_bpe3.bin")
+        lm_packed = {
+            "format": "MOTHLMB1",
+            "bits": None,
+            "bytes": (out / "lm_bpe3.bin").stat().st_size,
+            "sha256": sha256(out / "lm_bpe3.bin"),
+        }
 
     release_config = _config(args.version)
     # The web runtime's release contract checks this name; MOTH-50 is the model
@@ -182,6 +205,7 @@ def main(argv: list[str] | None = None) -> int:
         "checkpoint_weights": weights,
         "version": args.version,
         "lm": {"sha256": lm_info["sha256"], "label": lm_info["label"], "is_a3": lm_info["is_a3"]},
+        "lm_packed": lm_packed,
         "vad": {"variant": args.vad, "sha256": vad_asset.sha256},
         "gaps": {"fp32": fp32_gap, "int8": int8_gap},
         "budget": budget,

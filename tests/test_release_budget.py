@@ -13,8 +13,9 @@ ASSETS = {
 }
 
 
-def _release(root, name="moth-50", extra_bytes=0):
-    for file, payload in ASSETS.items():
+def _release(root, name="moth-50", extra_bytes=0, lm_magic=b"MOTHLMB1"):
+    assets = {**ASSETS, "lm_bpe3.bin": lm_magic + b"\0" * 8}
+    for file, payload in assets.items():
         (root / file).write_bytes(payload + b"\0" * (extra_bytes if file == "lm_bpe3.bin" else 0))
     config = {
         "name": name,
@@ -84,3 +85,14 @@ def test_explicit_smaller_budget_is_enforced(tmp_path):
     root = _release(tmp_path, extra_bytes=2_000)
     with pytest.raises(ValueError, match="exceeds budget"):
         validate_release(root, 1_000)
+
+
+@pytest.mark.parametrize("magic", [b"MOTHLMB1", b"MOTHLMB2"])
+def test_both_lm_formats_validate(tmp_path, magic):
+    _, report = validate_release(_release(tmp_path, lm_magic=magic))
+    assert "lm_bpe3.bin" in report["files"]
+
+
+def test_unknown_lm_format_is_rejected(tmp_path):
+    with pytest.raises(ValueError, match="MOTHLMB1 or MOTHLMB2"):
+        validate_release(_release(tmp_path, lm_magic=b"PICKLE!!"))

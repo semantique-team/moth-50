@@ -150,9 +150,9 @@ def _init_worker(paths: list[str], lm_path: str, pieces: dict, settings: list) -
     for path in reversed(paths):
         if path not in sys.path:
             sys.path.insert(0, path)
-    from stt.lm import BinaryBPELM
+    from moth_lm import load_lm
 
-    _WORKER.update(pieces=pieces, lm=BinaryBPELM.load(lm_path), settings=settings)
+    _WORKER.update(pieces=pieces, lm=load_lm(lm_path), settings=settings)
 
 
 def _decode_clip(uid: str, log_probs) -> tuple[str, list[str]]:

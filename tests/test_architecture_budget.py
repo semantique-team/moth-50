@@ -9,13 +9,14 @@ def test_parameter_counts_match_the_moth_model():
     assert budget.acoustic_params(base6) == 39_259_649
 
 
-def test_base6_fits_and_base7_does_not():
+def test_base6_fits_and_base7_now_also_fits_with_the_packed_lm():
     base6 = budget.estimate(budget.Candidate("base +6", 512, 6, 2048, extra=6))
     base7 = budget.estimate(budget.Candidate("base +7", 512, 6, 2048, extra=7))
     assert base6["fits"] == 1.0
-    assert base6["headroom_mb"] == pytest.approx(2.26, abs=0.02)
-    assert base6["max_lm_mb"] == pytest.approx(7.64, abs=0.02)
-    assert base7["fits"] == 0.0
+    assert base6["headroom_mb"] == pytest.approx(5.32, abs=0.02)
+    assert base6["max_lm_mb"] == pytest.approx(8.68, abs=0.02)
+    assert base7["fits"] == 1.0
+    assert base7["headroom_mb"] == pytest.approx(2.12, abs=0.02)
 
 
 def test_unmeasured_width_uses_the_conservative_ratio():

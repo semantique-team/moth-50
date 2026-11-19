@@ -1,7 +1,7 @@
 # Post-E-005 experiment plan
 
-**Status: proposed 2026-11-19; the E-005 addendum, E-009 and E-012(a) ran on
-2026-11-19, E-012(b) and E-010–E-016 have not run.** This file pre-registers the
+**Status: proposed 2026-11-19; the E-005 addendum, E-009 and E-012 ran on
+2026-11-19, E-010/E-011/E-013–E-016 have not run.** This file pre-registers the
 experiments that follow E-005, with their gates, so they cannot be moved after
 seeing results. It comes from the 2026-11-19 review of the E-005 model and package
 (`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
@@ -34,18 +34,18 @@ ledger; Moth's own IDs are cited as "Moth E-0NN".
 
 ## Byte budget
 
-| Component | E-005 as shipped | E-005 with A3 (measured) | After E-012 (estimate) |
+| Component | E-005 as shipped | E-005 with A3 (measured) | After E-012 (measured) |
 |---|---:|---:|---:|
 | `model.int8.onnx` | 40,039,997 | 40,039,997 | 40,039,997 |
-| `lm_bpe3.bin` | 5,116,464 (pre-A3) | 5,381,992 (A3) | ~3,357,932 (A3, lossless 10-bit, P5) |
+| `lm_bpe3.bin` | 5,116,464 (pre-A3) | 5,381,992 (A3) | 3,353,840 (A3, lossless 10-bit) |
 | `silero_vad.onnx` | 2,327,524 | 2,327,524 | 1,289,603 (16 kHz-only) |
-| vocab, mel filters, config, NOTICE | 86,129 | 86,989 | 86,989 |
-| **Total** | **47,570,114** | **47,836,502** | **~44,774,521** |
-| **Room to 50,000,000 B** | 2,429,886 | **2,163,498** | **~5,225,479** |
+| vocab, mel filters, config, NOTICE | 86,129 | 86,989 | 86,993 |
+| **Total** | **47,570,114** | **47,836,502** | **44,770,433** |
+| **Room to 50,000,000 B** | 2,429,886 | **2,163,498** | **5,229,567** |
 
-The packed-A3 size scales the measured 0.7.0-LM ratio (`runs/probe-2026-11-17`
-§4); it is lossless only if A3 has ≤ 1,024 distinct log-probs per order, which
-E-012 must check on the file.
+The A3 10-bit codebook is lossless: 1,018 distinct bigram and 859 distinct
+trigram log-probs. The packed file and both readouts are in `runs/E-012/`; the
+old ~44.77 MB estimate was within 1 KB of the measured package.
 
 ## Order
 
@@ -57,7 +57,7 @@ after the session.
 |---:|---|---|---|---|---:|
 | 1 | E-005 addendum | A3 readout, A3 release, S1-dev no-regression | S1-dev complete | **done 2026-11-19** | +0.27 MB |
 | 2 | E-009 | Decoder recalibration on dev | 1 | **done 2026-11-19: frozen stays** | 0 |
-| 3 | E-012 | 16 kHz VAD and lossless LM packing | — | (a) **done 2026-11-19**; (b) ~1 day engineering | −1.04 / −2.02 MB |
+| 3 | E-012 | 16 kHz VAD and lossless LM packing | — | **done 2026-11-19, both gates pass** | −1.04 / −2.03 MB |
 | 4 | E-010 | Encoder-LR screen | — | ~3 h MPS | 0 |
 | 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | ~17 h MPS per seed | 0 |
 | 6 | E-004 | Where the freed bytes go | 3, 5 | LM builds + readouts | ≤ 50 MB |
@@ -223,28 +223,33 @@ done
   codebook: writer, Python reader, JS reader, validator magic. **Gate:** A3 has
   ≤ 1,024 distinct values per order, the packed file round-trips exactly, and the
   dev-macro + S1-dev hypotheses are identical to `MOTHLMB1`. Saves ~2.02 MB.
-- **Result (2026-11-19, (a)): PASS; 16 kHz is the export default (D19).** The
-  probe ran on 2,040 real clips, 9,268.29 s (S1-dev 960, T 600, noise 480):
-  **bit-identical** (max window-probability gap 0.0, 0 flips, 0 gate or segment
-  disagreements), `drop_in: true`. A package with the 16 kHz graph loads in
-  393 ms, transcribes `T/S1/S1_0001.wav` **exactly**, and benchmarks at
-  **RTFx 23.90** (4 threads, 5-run median) vs 22.29 for E-005. Total
-  **46,798,588 B** (3,201,412 B of room), −1,037,914 B vs E-005. (b) has not run.
-  Artifacts: `runs/E-012/`.
-- **Runtime:** `moth-stt` is archived, and the `budget_bytes` patch exists only
-  as a local commit; (b) needs a JS change too. MOTH-50 should vendor the web
-  runtime at a pinned commit with both changes (E-016).
+- **Result (2026-11-19): both gates PASS (D19, D20).** (a) The probe ran on
+  2,040 real clips, 9,268.29 s (S1-dev 960, T 600, noise 480): **bit-identical**
+  (max window-probability gap 0.0, 0 flips, 0 gate or segment disagreements),
+  `drop_in: true`; a package with the graph loads in 393 ms, transcribes
+  `T/S1/S1_0001.wav` **exactly**, and benchmarks at 23.90 RTFx (4 threads).
+  (b) A3 has 1,018 distinct bigram and 859 trigram log-probs; the lossless
+  10-bit `MOTHLMB2` is **3,353,840 B** (from 5,381,992, −2,028,152) and leaves
+  the dev-macro and S1-dev hypothesis files **byte-identical** (macro 17.6212 %,
+  S1-dev 14.0541 % WER / 75.5371 % ETA). The final package is **44,770,433 B**
+  (5,229,567 B of room); the browser loads it in 413 ms and reaches **RTFx
+  24.63**. Both formats default to the new encoding; `--vad full` and
+  `--lm-format mothlmb1` remain for reproduction. Artifacts: `runs/E-012/`.
+- **Runtime:** `moth-stt` is archived. The `budget_bytes` patch is local commit
+  `b0fa11c` and the `MOTHLMB2` JS reader is local commit `0e15442`; (b) needs
+  both. MOTH-50 must vendor the web runtime at those local commits (E-016).
 
 ## E-004 — Where the freed bytes go (re-scoped)
 
 The original question (base+6 + 5.38 MB LM vs base+4 + 12 MB LM) assumed no
-headroom. After E-012 the room is ~5.2 MB, so the arms at ≤ 50,000,000 B are:
+headroom. After E-012 the room is **5,229,567 B**, so the arms at ≤ 50,000,000 B
+are:
 
 | Arm | Acoustic | LM | Package (est.) |
 |---|---|---|---:|
-| A (control) | base+6 | A3, packed | ~44.8 MB |
+| A (control) | base+6 | A3, packed | **44.77 MB (measured)** |
 | B | base+6 | unpruned Moth E-034 LM, packed (8-bit 7.16 MB / 10-bit 7.80 MB) | ~48.6 / 49.2 MB |
-| C | base+7 | A3, packed | ~48.0 MB |
+| C | base+7 | A3, packed | ~47.88 MB |
 | D | base+4 | 12–14 MB LM | only if E-010 makes base+4 competitive |
 
 Recalibrate the decoder per arm on dev-macro with the E-009 procedure and its
@@ -262,9 +267,9 @@ for perplexity, and S1-dev ETA decides.
 - **Browser vs Python WER** on S1-dev: the comparison Moth's E-041
   pre-registered and never ran. Gate: identical hypotheses, or every difference
   explained.
-- **Runtime ownership:** vendor `moth-stt/web/` into this repository at a pinned
-  commit with the `budget_bytes` change, so the package no longer depends on a
-  local commit in an archived repository.
+- **Runtime ownership:** vendor `moth-stt/web/` into this repository at local
+  commits `b0fa11c` (`budget_bytes`) and `0e15442` (`MOTHLMB2` reader), so the
+  package no longer depends on a local commit in an archived repository.
 
 ## E-013 — Extra blocks before `final_ln`
 

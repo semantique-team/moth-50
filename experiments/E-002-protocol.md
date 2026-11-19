@@ -169,3 +169,11 @@ These make the frozen rules executable; they do not move a gate.
    0.8.1 number keeps its own settings as a historical reference. First
    application (2026-11-19): 0.45 / 2.0 won dev-macro but failed the S1-dev veto
    (+0.58 pp WER, −1.12 pp ETA), so 0.55 / 2.7 stays.
+4. **The A3 LM may be encoded as MOTHLMB2** (amended 2026-11-19, after
+   E-012(b)). `MOTHLMB2` is a lossless encoding of the same A3 content, not a
+   different LM: 1,018/859 distinct log-probs fit the 10-bit codebook, every
+   array and score is identical, and the dev-macro and S1-dev hypotheses are
+   byte-identical. "A3 LM" therefore identifies the content (source sha256
+   `3be1177b…`), while the tools record `lm_format` and the packed sha256. A
+   paired gate still decodes both systems with the same encoding (or relies on
+   the byte-identical proof).
