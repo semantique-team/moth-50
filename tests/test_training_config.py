@@ -1,3 +1,4 @@
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -108,3 +109,38 @@ def test_long_config_is_the_e005_schedule():
     assert config.eval_every_steps == 2000
     assert config.checkpoint_every_steps == 100
     assert len(config.data.train) == 6
+    assert config.ema_decay == 0.0
+
+
+def test_e010_config_only_moves_the_encoder_lr():
+    base = load_config(ROOT / "training" / "configs" / "base6.toml")
+    screen = load_config(ROOT / "training" / "configs" / "base6-enc1e-4.toml")
+    assert screen.optimizer.lr_encoder == 1e-4
+    assert base.optimizer.lr_encoder == 3e-5
+    assert replace(screen, path=base.path, optimizer=base.optimizer) == base
+
+
+def _with_train(tmp_path, train: str) -> Path:
+    path = tmp_path / "ema.toml"
+    path.write_text(
+        f"""
+[model]
+preset = "base"
+[data]
+tokenizer = "x"
+[[data.train]]
+manifest = "m.jsonl"
+shards = "s"
+[train]
+{train}
+""",
+        encoding="utf-8",
+    )
+    return path
+
+
+def test_ema_decay_is_off_by_default_and_validated(tmp_path):
+    assert load_config(_with_train(tmp_path, "seed = 0")).ema_decay == 0.0
+    assert load_config(_with_train(tmp_path, "ema_decay = 0.9998")).ema_decay == 0.9998
+    with pytest.raises(ValueError, match="ema_decay"):
+        load_config(_with_train(tmp_path, "ema_decay = 1.0"))

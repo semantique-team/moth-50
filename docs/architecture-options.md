@@ -433,6 +433,9 @@ and re-run the parity tests rather than importing the frozen training code.
 There is no 100 MB experiment in this ledger: the tier is rejected (D5). E-008 is
 an evaluation experiment, not a capacity experiment.
 
+E-009–E-016 and the re-scoped E-004/E-006 were added after E-005; see §11 and
+`experiments/next-experiments.md`.
+
 ## 8. Data: the other half of the architecture decision
 
 ### 8.1 What is available now
@@ -607,3 +610,47 @@ a later 25 Hz or conv-adapter variant is worth testing.
 - **Most important discipline**: commercial-only training data, Moth's evaluation
   semantics, pre-registered gates, per-speaker and seed variation, and the
   shipped INT8/browser artifact — not only the fp32 checkpoint.
+
+## 11. Post-E-005 review (2026-11-19)
+
+E-005 trained the primary configuration: base+6, 16,000 steps, frozen beam+LM
+dev-macro 17.58 % FP32 / 17.66 % INT8 against the 23.02 % 0.8.1 reference, a
+47.57 MB package and a 22.7× browser run at 4 threads (`runs/E-005/RESULT.md`).
+This section records the review of that result; the experiments it implies are
+pre-registered in `experiments/next-experiments.md`.
+
+**Verdict: the architecture is confirmed.** Nothing measured so far argues for a
+different family under 50 MB. The pretrained encoder is essential (a random
+encoder stayed at 99 % WER), identity-initialized depth paid monotonically
+(48.12 → 36.90 → 34.73 → 33.46 % greedy at 4,000 steps), INT8 costs 0.08 pp, and
+the package runs in the browser. The remaining gains are in the training
+schedule, the decoder, the byte allocation and the data, roughly in that order of
+cost.
+
+**Corrections.** The E-005 readout and package used the pre-A3 LM, not A3, and
+shipped Moth 0.8.1's NOTICE (D17); 16,000 steps are 1.19 epochs, not ~1.4.
+
+**Where the next gains are, cheapest first:**
+
+1. **Decoder (0 bytes, E-009).** LM weight and token bonus are Moth's settings
+   for a 3.4× smaller acoustic model; recalibrate on dev-macro + S1-dev.
+2. **Schedule (0 bytes, E-010/E-011).** The encoder LR was never screened (3e-5
+   only), the model stopped at 1.19 epochs while still improving, and there is no
+   EMA or checkpoint averaging.
+3. **Bytes (E-012, then E-004).** The 16 kHz-only Silero graph is bit-identical
+   on the synthetic preflight and 1.04 MB smaller; lossless packing of A3 saves
+   ~2.0 MB more. That turns ~2.2 MB of room into ~5.2 MB, enough for the unpruned
+   LM or a seventh block. Depth has diminishing returns (+4 → +6 bought 1.2 pp at
+   4,000 steps), so the LM — which also carries the English terms — is the first
+   candidate, decided on S1-dev ETA.
+4. **Small architecture variants (E-013/E-014/E-015).** Extra blocks before
+   `final_ln` (no closing LayerNorm today), a Conformer-style convolution module
+   in the extra blocks at equal bytes, and 25 Hz extra blocks only if the 1-thread
+   browser gate fails.
+5. **Data (E-006).** Still the largest lever: VoxPopuli Italian (91 h, CC0, not
+   in the mixture), gold-repetition and gentle-gold-stage checks, word-level
+   splicing, Parakeet pseudo-labels.
+
+**Still rejected:** INT4 weights (WASM `MatMulNBits` dequantizes per call and the
+quality at 40 M is unproven), Whisper-small, transducer/AED backbones and
+from-scratch encoders.

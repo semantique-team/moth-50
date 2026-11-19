@@ -11,6 +11,8 @@ that differ for MOTH-50:
 - the 192 audio-s / 32-clip batch cap is explicit;
 - checkpoints, resume, JSONL logs, MPS memory and a greedy dev readout are
   built in;
+- an optional weight EMA (``train.ema_decay``, off by default): when on, dev
+  evaluation and ``ckpt_best`` use the averaged weights (``training/ema.py``);
 - the final beam+LM evaluation remains the frozen E-002 protocol, not this
   monitoring metric.
 
@@ -115,11 +117,14 @@ def _save_checkpoint(
     global_step: int,
     total_steps: int,
     best_dev_wer: float | None,
+    ema=None,
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     torch.save(
         {
             "model": _to_cpu(model.state_dict()),
+            "ema_model": _to_cpu(ema.state_dict()) if ema is not None else None,
+            "ema_decay": config.ema_decay,
             "optimizer": _to_cpu(optimizer.state_dict()),
             "config_text": config.path.read_text(encoding="utf-8"),
             "model_config": asdict(config.model),
@@ -183,6 +188,7 @@ def main(argv: list[str] | None = None) -> int:
     from stt.tokenizer import load_tokenizer
 
     from training.data import load_datasets
+    from training.ema import WeightEMA
     from training.evaluate import evaluate
     from training.model import (
         build_model,
@@ -230,6 +236,7 @@ def main(argv: list[str] | None = None) -> int:
         "encoder": config.model.encoder(),
         "head_blocks": config.model.head_blocks,
         "checkpointing": config.model.checkpointing,
+        "ema_decay": config.ema_decay,
         "tokenizer": str(config.data.tokenizer),
         "tokenizer_sha256": _sha256(config.data.tokenizer),
         "train_clips": len(train_data),
@@ -267,6 +274,12 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"resumed {args.resume} at step {global_step}, epoch {start_epoch}, batch {start_batch}"
         )
+    ema = WeightEMA(model, config.ema_decay) if config.ema_decay else None
+    if ema is not None and args.resume:
+        if payload.get("ema_model") is not None:
+            ema.load_state_dict(payload["ema_model"])
+        else:
+            print("warning: resumed checkpoint has no EMA weights; the average restarts here")
 
     log_path = args.out / "train.log.jsonl"
     log_handle = log_path.open("a", encoding="utf-8")
@@ -332,6 +345,8 @@ def main(argv: list[str] | None = None) -> int:
                     loss.backward()
                     torch.nn.utils.clip_grad_norm_(model.parameters(), config.optimizer.grad_clip)
                     optimizer.step()
+                    if ema is not None:
+                        ema.update(model, global_step)
                     last_loss = float(loss.detach())
                 else:
                     nonfinite += 1
@@ -365,7 +380,7 @@ def main(argv: list[str] | None = None) -> int:
                 ):
                     print(f"evaluating dev at step {global_step}", flush=True)
                     metrics = evaluate(
-                        model,
+                        ema.model if ema is not None else model,
                         dev_data,
                         tokenizer=tokenizer,
                         device=device,
@@ -373,6 +388,7 @@ def main(argv: list[str] | None = None) -> int:
                         max_clips=config.data.eval_max_clips,
                         autocast=config.autocast,
                     )
+                    metrics["weights"] = "ema" if ema is not None else "model"
                     metrics_path = args.out / f"dev-{global_step:07d}.json"
                     metrics_path.write_text(json.dumps(metrics, indent=2) + "\n", encoding="utf-8")
                     print(f"dev step {global_step}: {metrics}", flush=True)
@@ -389,6 +405,7 @@ def main(argv: list[str] | None = None) -> int:
                             global_step=global_step,
                             total_steps=total_steps,
                             best_dev_wer=best_dev_wer,
+                            ema=ema,
                         )
                 if (
                     config.checkpoint_every_steps
@@ -404,6 +421,7 @@ def main(argv: list[str] | None = None) -> int:
                         global_step=global_step,
                         total_steps=total_steps,
                         best_dev_wer=best_dev_wer,
+                        ema=ema,
                     )
                 if max_steps and global_step >= max_steps:
                     break
@@ -417,6 +435,7 @@ def main(argv: list[str] | None = None) -> int:
                 global_step=global_step,
                 total_steps=total_steps,
                 best_dev_wer=best_dev_wer,
+                ema=ema,
             )
             if max_steps and global_step >= max_steps:
                 break
@@ -430,6 +449,8 @@ def main(argv: list[str] | None = None) -> int:
         "last_loss": None if math.isnan(last_loss) else round(last_loss, 5),
         "nonfinite_steps": nonfinite,
         "best_dev_wer": best_dev_wer,
+        "eval_weights": "ema" if ema is not None else "model",
+        "ema_decay": config.ema_decay,
         "peak_memory_gb": round(peak_memory, 3),
         "elapsed_seconds": round(time.perf_counter() - started, 2),
         "checkpoint_last": str(args.out / "checkpoints" / "ckpt_last.pt"),

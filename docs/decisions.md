@@ -209,20 +209,58 @@ From E-003 on:
 
 The identity initialization resolves the open question below (review P3).
 
+## D17 — Pinned release assets and a MOTH-50 NOTICE (2026-11-19)
+
+The E-005 readout and package used a stale `../moth-stt/release/lm_bpe3.bin`:
+the pre-A3 LM (`dcf1d59f…`, 5,116,464 B), not the 0.8.1 A3 LM (`3be1177b…`,
+5,381,992 B) behind the E-002 reference. The package also shipped Moth 0.8.1's
+NOTICE, which names `openai/whisper-tiny`. Accepted as fixes, not choices:
+
+- `tools/release_assets.py` pins the A3 LM and the 0.8.1 INT8 graph (Hugging Face
+  `semantique-team/moth-stt` revision `1257327e…`) and the Silero graphs (commit
+  `bfdc019`) by size and sha256, fetches them into `data/raw/`, and every readout
+  and export resolves the LM through it. Another LM needs `--allow-other-lm` and
+  is recorded as not comparable.
+- `tools/release_notice.py` writes the package NOTICE from the run's encoder
+  preset and revision, the extra blocks, the Silero commit, the reused Moth LM
+  and tokenizer, and the MOTH-50 training sources in `data/sources.lock.json`.
+- The E-005 dev-macro verdict stands (A3 vs pre-A3 was −0.097 pp in Moth E-031;
+  the margin is 5.35 pp). The A3 readout, the A3 release (~47.84 MB, 2.16 MB of
+  room) and S1-dev are the E-005 addendum. E-002 §6 records the amendment.
+
+## D18 — Post-E-005 plan and tooling (proposed 2026-11-19)
+
+`experiments/next-experiments.md` pre-registers E-009–E-016 and re-scopes E-004
+and E-006 after the review of E-005 (`docs/architecture-options.md` §11). The
+tooling exists; none of the experiments has run:
+
+- `tools/frozen_readout.py --mode mixed`: S1-dev WER/ETA and the no-regression
+  verdict (E-002 §6);
+- `tools/calibrate_decoder.py`: the E-009 decoder grid and selection rule;
+- `train.ema_decay` (`training/ema.py`), off by default; tools choose weights
+  with `--weights`;
+- `training/configs/base6-enc1e-4.toml`: the E-010 encoder-LR arm;
+- `tools/probe_vad.py` and `export_release.py --vad 16k`: E-012(a). The default
+  VAD stays the full graph until E-012 passes on real audio and in the browser.
+
+Status: proposed. Each experiment's gate is in that file.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out
   session is the dev set?
 - TTS mixture weight and voice selection; how much synthetic data survives the
   real-data readout without hurting S2/S3/FLEURS?
-- Does the 2.26 MB headroom in the primary package go to a larger trigram, a
-  more tightly packed LM (review P5), or nothing?
+- Does the headroom go to a larger LM, a deeper model, or nothing? With A3 it is
+  ~2.16 MB; after E-012 (16 kHz VAD, lossless packed A3) ~5.2 MB. E-004
+  (re-scoped) decides.
 - ~~Should the extra blocks be identity-initialized (review P3), randomly
   initialized as in Moth E-006, or copied from the last Whisper-base block?~~
   Resolved in D16: identity, for every E-003 arm.
 - Which adaptation schedule from Whisper-base (review P2): frozen-encoder warm-up
-  first, and which encoder LR?
+  first, and which encoder LR? The encoder LR is E-010.
 - Is a later 25 Hz / conv-adapter variant worth testing once the 50 MB baseline
-  exists?
+  exists? E-015 (25 Hz, only if the 1-thread browser gate fails) and E-014
+  (convolution in the extra blocks).
 - Which NC external test set is acceptable for the paper, and how is it labelled
   in the model card?

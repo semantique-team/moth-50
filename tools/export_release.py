@@ -1,12 +1,14 @@
 """Build the MOTH-50 release folder from an E-005 checkpoint and check the 50 MB budget.
 
 Uses Moth's exact 0.8.1 recipe (fp32 ONNX → dynamic per-channel QInt8) and the
-release layout, then adds the A3 LM and the frozen decode settings. The FP32
+release layout, then adds the 0.8.1 A3 LM (pinned and sha256-checked by
+`tools/release_assets.py`) and the frozen decode settings. The FP32
 export gate in `stt.export` was calibrated on the 4-layer tiny model; a 12-layer
 encoder accumulates ~3e-3 median logit drift, so this tool **does not skip the
 measurement**: it reports the FP32/INT8 logit gaps and the top-1 agreement, and
 the real quality check is the beam+A3 WER on the dev sets.
 
+    python tools/release_assets.py fetch lm
     uv run --frozen --project ../moth-stt --extra export -- \
       python tools/export_release.py \
       --checkpoint runs/E-005/base+6-16k/checkpoints/ckpt_best.pt \
@@ -24,9 +26,18 @@ import shutil
 import sys
 from pathlib import Path
 
+from release_assets import SILERO_VAD, SILERO_VAD_16K, resolve_lm, verify
+from release_notice import compose_notice, moth_dataset_lines
+
 REPO = Path(__file__).resolve().parents[1]
 MOTH_STT = REPO.parent / "moth-stt"
-LM = MOTH_STT / "release/lm_bpe3.bin"
+
+#: ``--vad`` choices: the asset and the NOTICE wording. The file is always
+#: shipped as ``silero_vad.onnx`` so the runtime contract does not change.
+VAD_VARIANTS = {
+    "full": (SILERO_VAD, "the 8 kHz + 16 kHz graph shipped by Moth 0.8.1"),
+    "16k": (SILERO_VAD_16K, "the 16 kHz-only graph silero_vad_16k_op15.onnx"),
+}
 
 FILES = (
     "model.int8.onnx",
@@ -49,22 +60,53 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out-dir", required=True, type=Path)
     parser.add_argument("--version", default="0.9.0-e005")
     parser.add_argument("--budget", type=int, default=50_000_000)
+    parser.add_argument(
+        "--lm", type=Path, default=None, help="decoder LM (default: the pinned 0.8.1 A3 LM)"
+    )
+    parser.add_argument(
+        "--allow-other-lm",
+        action="store_true",
+        help="package an LM that is not A3 (E-004 LM arms only)",
+    )
+    parser.add_argument(
+        "--weights",
+        default="auto",
+        choices=["auto", "model", "ema"],
+        help="checkpoint weights: auto = EMA when present (training/ema.py)",
+    )
+    parser.add_argument(
+        "--vad",
+        default="full",
+        choices=sorted(VAD_VARIANTS),
+        help="Silero graph: full (8+16 kHz, as in 0.8.1) or 16k (E-012 candidate, -1.04 MB)",
+    )
     args = parser.parse_args(argv)
 
     if args.out_dir.exists() and any(args.out_dir.iterdir()):
         raise SystemExit(f"refusing to write into a non-empty {args.out_dir}")
+    lm_info = resolve_lm(args.lm, allow_other=args.allow_other_lm)
+    vad_asset, vad_description = VAD_VARIANTS[args.vad]
 
     sys.path.insert(0, str(REPO))
     sys.path.insert(0, str(MOTH_STT))
     sys.path.insert(0, str(REPO / "vendor/moth-stt"))
     import torch
     from moth_release import validate_release
-    from stt.export import _config, _logit_gap, build_notice, export_fp32, quantize_int8
+    from stt.data.sources import SOURCES
+    from stt.export import (
+        _SILERO_MIT,
+        _WHISPER_MIT,
+        _config,
+        _logit_gap,
+        export_fp32,
+        quantize_int8,
+    )
     from stt.features import DEFAULT_FILTERS
     from stt.tokenizer import load_tokenizer, vocab_json
     from stt.vad import ASSET_PATH as VAD_ASSET
 
     from training.config import load_config
+    from training.ema import checkpoint_weights
     from training.model import build_model
 
     config = load_config(args.config)
@@ -73,7 +115,8 @@ def main(argv: list[str] | None = None) -> int:
         config.model.__class__(**payload["model_config"]), init=None, identity_heads=False
     )
     model = build_model(model_config)
-    model.load_state_dict(payload["model"], strict=True)
+    state, weights = checkpoint_weights(payload, args.weights)
+    model.load_state_dict(state, strict=True)
     model = model.cpu().eval()
 
     out = args.out_dir
@@ -98,8 +141,9 @@ def main(argv: list[str] | None = None) -> int:
         encoding="utf-8",
     )
     shutil.copyfile(DEFAULT_FILTERS, out / "mel_filters.bin")
-    shutil.copyfile(VAD_ASSET, out / "silero_vad.onnx")
-    shutil.copyfile(LM, out / "lm_bpe3.bin")
+    vad_path = verify(vad_asset, VAD_ASSET if args.vad == "full" else None)
+    shutil.copyfile(vad_path, out / "silero_vad.onnx")
+    shutil.copyfile(lm_info["path"], out / "lm_bpe3.bin")
 
     release_config = _config(args.version)
     # The web runtime's release contract checks this name; MOTH-50 is the model
@@ -118,14 +162,27 @@ def main(argv: list[str] | None = None) -> int:
     (out / "config.json").write_text(
         json.dumps(release_config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    (out / "NOTICE").write_text(build_notice(), encoding="utf-8")
+    notice = compose_notice(
+        whisper_mit=_WHISPER_MIT,
+        silero_mit=_SILERO_MIT,
+        lock=json.loads((REPO / "data/sources.lock.json").read_text(encoding="utf-8")),
+        moth_lines=moth_dataset_lines(SOURCES.values()),
+        encoder_preset=model_config.preset,
+        head_blocks=model_config.head_blocks,
+        lm_sha256=lm_info["sha256"],
+        vad_description=vad_description,
+    )
+    (out / "NOTICE").write_text(notice, encoding="utf-8")
 
     _, budget = validate_release(out, budget_bytes=args.budget)
     result = {
         "checkpoint": str(args.checkpoint),
         "checkpoint_sha256": sha256(args.checkpoint),
         "checkpoint_step": payload.get("global_step"),
+        "checkpoint_weights": weights,
         "version": args.version,
+        "lm": {"sha256": lm_info["sha256"], "label": lm_info["label"], "is_a3": lm_info["is_a3"]},
+        "vad": {"variant": args.vad, "sha256": vad_asset.sha256},
         "gaps": {"fp32": fp32_gap, "int8": int8_gap},
         "budget": budget,
         "files": {name: budget["files"][name]["bytes"] for name in sorted(budget["files"])},
