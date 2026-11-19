@@ -1,9 +1,9 @@
 # Post-E-005 experiment plan
 
-**Status: proposed 2026-11-19; the E-005 addendum and E-009 ran on 2026-11-19,
-the rest (E-010–E-016) has not run.** This file pre-registers the experiments
-that follow E-005, with their gates, so they cannot be moved after seeing
-results. It comes from the 2026-11-19 review of the E-005 model and package
+**Status: proposed 2026-11-19; the E-005 addendum, E-009 and E-012(a) ran on
+2026-11-19, E-012(b) and E-010–E-016 have not run.** This file pre-registers the
+experiments that follow E-005, with their gates, so they cannot be moved after
+seeing results. It comes from the 2026-11-19 review of the E-005 model and package
 (`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
 ledger; Moth's own IDs are cited as "Moth E-0NN".
 
@@ -57,7 +57,7 @@ after the session.
 |---:|---|---|---|---|---:|
 | 1 | E-005 addendum | A3 readout, A3 release, S1-dev no-regression | S1-dev complete | **done 2026-11-19** | +0.27 MB |
 | 2 | E-009 | Decoder recalibration on dev | 1 | **done 2026-11-19: frozen stays** | 0 |
-| 3 | E-012 | 16 kHz VAD and lossless LM packing | — | ~1 day engineering + browser | −1.04 / −2.02 MB |
+| 3 | E-012 | 16 kHz VAD and lossless LM packing | — | (a) **done 2026-11-19**; (b) ~1 day engineering | −1.04 / −2.02 MB |
 | 4 | E-010 | Encoder-LR screen | — | ~3 h MPS | 0 |
 | 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | ~17 h MPS per seed | 0 |
 | 6 | E-004 | Where the freed bytes go | 3, 5 | LM builds + readouts | ≤ 50 MB |
@@ -223,6 +223,14 @@ done
   codebook: writer, Python reader, JS reader, validator magic. **Gate:** A3 has
   ≤ 1,024 distinct values per order, the packed file round-trips exactly, and the
   dev-macro + S1-dev hypotheses are identical to `MOTHLMB1`. Saves ~2.02 MB.
+- **Result (2026-11-19, (a)): PASS; 16 kHz is the export default (D19).** The
+  probe ran on 2,040 real clips, 9,268.29 s (S1-dev 960, T 600, noise 480):
+  **bit-identical** (max window-probability gap 0.0, 0 flips, 0 gate or segment
+  disagreements), `drop_in: true`. A package with the 16 kHz graph loads in
+  393 ms, transcribes `T/S1/S1_0001.wav` **exactly**, and benchmarks at
+  **RTFx 23.90** (4 threads, 5-run median) vs 22.29 for E-005. Total
+  **46,798,588 B** (3,201,412 B of room), −1,037,914 B vs E-005. (b) has not run.
+  Artifacts: `runs/E-012/`.
 - **Runtime:** `moth-stt` is archived, and the `budget_bytes` patch exists only
   as a local commit; (b) needs a JS change too. MOTH-50 should vendor the web
   runtime at a pinned commit with both changes (E-016).

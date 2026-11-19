@@ -18,8 +18,9 @@ running, and the exact next commands. Update it at the end of each session.
   the final A3 numbers above supersede the old ones. The tools pin A3 by sha256
   (`tools/release_assets.py`).
 - **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-016.
-  **E-009 ran on 2026-11-19 and kept the frozen decoder; E-010–E-016 have not
-  run.** No training starts without an explicit go-ahead.
+  **E-009 ran on 2026-11-19 and kept the frozen decoder; E-012(a) passed and
+  made the 16 kHz VAD the export default (D19). E-012(b) and E-010–E-016 have
+  not run.** No training starts without an explicit go-ahead.
 - **Tests:** 84 passed in the training env, 74 passed + 2 skipped (the torch
   tests) in a plain venv; `ruff check` and `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
@@ -56,24 +57,29 @@ running, and the exact next commands. Update it at the end of each session.
 | S1-dev readout tool | `frozen_readout.py --mode mixed`: WER/ETA + paired no-regression vs 0.8.1 | `tools/frozen_readout.py`, E-002 §6 |
 | Post-E-005 tooling | decoder grid (E-009), EMA (`train.ema_decay`), E-010 config, VAD probe | `experiments/next-experiments.md` |
 | VAD 16 kHz preflight | bit-identical on 23 synthetic clips, −1,037,921 B | `runs/probe-2026-11-19/` |
+| E-012(a) VAD 16 kHz | **done, default**: 2,040 real clips bit-identical; browser exact, RTFx 23.90; 46,798,588 B package | `runs/E-012/` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: E-010/E-012, no training without go-ahead
+## Next step: E-012(b), then E-010; no training without go-ahead
 
 The gate is complete and **E-009 kept the frozen decoder**: the dev-macro winner
 0.45 / 2.0 (−0.2786 pp) was rejected by the S1-dev veto (+0.5844 pp WER,
-−1.1230 pp ETA), so 0.55 / 2.7 stays (`runs/E-009/RESULT.md`). Nothing is
-running. The remaining items, with their pre-registered gates, are in
+−1.1230 pp ETA), so 0.55 / 2.7 stays (`runs/E-009/RESULT.md`). **E-012(a) also
+passed**: the 16 kHz-only Silero graph is bit-identical on 2,040 real clips and
+in the browser, the candidate package is **46,798,588 B** (3,201,412 B of room),
+and `export_release.py` now defaults to `--vad 16k` (D19). Nothing is running.
+The remaining items, with their pre-registered gates, are in
 `experiments/next-experiments.md`:
 
-1. **E-010 encoder-LR screen** — 2 arms × 4,000 steps, ~3 h on MPS.
-2. **E-011 long schedule + EMA** — ~17 h per seed, 2 seeds.
-3. **E-012 bytes** — 16 kHz VAD on real audio + browser, and lossless LM packing;
-   no training.
-4. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
-5. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
+1. **E-012(b) lossless LM packing** — `MOTHLMB2` writer/reader/JS reader;
+   no training. The ~2.02 MB saving is still an estimate.
+2. **E-010 encoder-LR screen** — 2 arms × 4,000 steps, ~3 h on MPS.
+3. **E-011 long schedule + EMA** — ~17 h per seed, 2 seeds.
+4. **E-004** — where the freed bytes go (≤ 50 MB arms).
+5. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
+6. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
    the runtime with the `budget_bytes` change.
 
 Reproduction of the final readouts (assets must be fetched once):
@@ -138,6 +144,10 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   pushed. If MOTH-50 ships its own web runtime, carry this one-line change
   there (or vendor the runtime); without it the page rejects the 47.84 MB
   package. Vendoring the runtime is part of E-016.
+- **The 16 kHz VAD is the export default (D19).** `export_release.py` ships
+  `silero_vad_16k_op15.onnx` as `silero_vad.onnx` (1,289,603 B); `--vad full`
+  remains only for 0.8.1-shaped packages. Parity is measured on 2,040 real clips
+  (S1-dev, T, noise) and in the browser (`runs/E-012/`).
 - **Never take the LM from `../moth-stt/release/`.** That gitignored copy is the
   pre-A3 LM (`dcf1d59f…`). The readout, calibration and export tools resolve the
   LM through `tools/release_assets.py` (A3, `3be1177b…`) and refuse anything
@@ -175,5 +185,6 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   E-009–E-016, re-scoped E-004/E-006, gates and commands.
 - `runs/E-005/RESULT.md` — long fine-tune, A3 readout, S1-dev, package, browser.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
+- `runs/E-012/` — E-012(a) real-audio parity, 16 kHz package and browser run.
 - `training/README.md` — trainer, data build, initialization, preflight, resume.
 - `data/README.md`, `data/sources.lock.json` — pins and provenance.

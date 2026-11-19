@@ -251,6 +251,25 @@ have not:
 
 Status: proposed. Each experiment's gate is in that file.
 
+## D19 — 16 kHz-only Silero VAD as the export default (2026-11-19)
+
+E-012(a) passed its pre-registered gate. `tools/probe_vad.py` compared the
+shipped 8+16 kHz graph (2,327,524 B) with `silero_vad_16k_op15.onnx`
+(1,289,603 B) through Moth's own VAD path on 2,040 real clips, 9,268.29 s:
+S1-dev (960), T (600) and the 480-clip noise set. Outputs were **bit-identical**
+(max window-probability gap 0.0, 0 window flips, 0 gate or segment
+disagreements), so `drop_in` is true.
+
+A package built with the 16 kHz graph loads in the browser in 393 ms,
+transcribes `T/S1/S1_0001.wav` exactly, and benchmarks at RTFx 23.90 (4 threads,
+median of 5) versus 22.29 for the E-005 A3 package. It totals **46,798,588 B**
+(3,201,412 B of room): −1,037,914 B versus E-005, of which 1,037,921 B is the
+VAD and +7 B is the longer version string in `config.json`.
+
+`export_release.py --vad` now defaults to `16k`; `--vad full` remains for
+0.8.1-shaped packages. This is (a) only: E-012(b) lossless LM packing and the
+runtime vendor (E-016) are still open. Artifacts: `runs/E-012/`.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

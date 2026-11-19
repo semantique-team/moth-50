@@ -76,9 +76,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--vad",
-        default="full",
+        default="16k",
         choices=sorted(VAD_VARIANTS),
-        help="Silero graph: full (8+16 kHz, as in 0.8.1) or 16k (E-012 candidate, -1.04 MB)",
+        help="Silero graph: 16k (default since D19, -1.04 MB) or full (8+16 kHz, as in 0.8.1)",
     )
     args = parser.parse_args(argv)
 
