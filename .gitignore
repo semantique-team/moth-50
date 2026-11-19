@@ -16,3 +16,6 @@ runs/**/checkpoints/
 .DS_Store
 .idea/
 .vscode/
+
+# Derived release packages (large binaries); keep the export report
+runs/**/release/

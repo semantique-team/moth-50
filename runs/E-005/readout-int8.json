@@ -1,0 +1,68 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "onnx": "runs/E-005/release/model.int8.onnx",
+  "onnx_sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "lm": "/Users/tancredi/Desktop/semantique/moth-stt/release/lm_bpe3.bin",
+    "lm_sha256": "dcf1d59f075858c7e5f210804b5aabde847fb5d33e8d716e0d534f7c7886003e"
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.2349097928576732,
+      "wer_ci": [
+        0.2279082428051768,
+        0.24196927374301677
+      ],
+      "seconds": 200.6
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.11834573287837258,
+      "wer_ci": [
+        0.11483827442749522,
+        0.1221042113833173
+      ],
+      "seconds": 226.7
+    }
+  },
+  "macro_wer": 0.1766277628680229,
+  "reference": {
+    "macro_wer": 0.2301698498252397,
+    "sets": {
+      "it": 0.2810404137896899,
+      "en": 0.17929928586078947
+    },
+    "hyp_sha256": "8d31eef0e0c659d67a5691b3161261d920ad0254b4d9e6361031e3737a322fb1",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.053542086957216795,
+    "ci": [
+      -0.056166022723965675,
+      -0.05073456459172568
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 5.3542,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true
+  },
+  "elapsed_seconds": 427.3
+}

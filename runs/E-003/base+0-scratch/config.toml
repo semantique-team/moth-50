@@ -1,0 +1,90 @@
+# MOTH-50 E-003 trainer: Whisper-base + 6 extra blocks, CTC, 192 audio-s cap.
+# Paths are relative to this file (training/configs/).
+# Build the mel shards first; see training/README.md.
+
+[model]
+preset = "base"
+head_blocks = 6
+vocab_size = 1024
+checkpointing = true
+
+[data]
+tokenizer = "../../data/tokenizer/moth_bpe.model"
+max_seconds = 192
+max_clips = 32
+augment = true
+seed = 0
+eval_max_seconds = 192
+eval_max_clips = 32
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/cv_it_train_clean50.jsonl"
+shards = "../../data/shards/cv_it_train"
+repeat = 1
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/cv_it_train_noisy50.jsonl"
+shards = "../../data/shards/cv_it_noisy50"
+repeat = 1
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/mls_it_train.jsonl"
+shards = "../../data/shards/mls_it_train"
+repeat = 1
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/ls_en_train.jsonl"
+shards = "../../data/shards/ls_en_train"
+repeat = 1
+
+[[data.train]]
+manifest = "../../data/manifests/spliced_it_en.jsonl"
+shards = "../../data/shards/spliced_it_en"
+repeat = 1
+
+# Gold v1.0.0: the full 1,413 clips, repeated like E-028's base gold (x50).
+# The term addenda are inside v1.0.0 here; a separate x20 manifest is a
+# mixture experiment, not a silent default.
+[[data.train]]
+manifest = "../../../moth-cs-dataset/manifests/train.jsonl"
+shards = "../../data/shards/gold-train"
+repeat = 50
+
+[[data.dev]]
+manifest = "../../../moth-stt/data/manifests/mls_it_dev.jsonl"
+shards = "../../data/shards/mls_it_dev"
+
+[[data.dev]]
+manifest = "../../../moth-stt/data/manifests/ls_en_dev.jsonl"
+shards = "../../data/shards/ls_en_dev"
+
+# After recording the held-out S1 session (experiments/E-002-s1-dev.md):
+# [[data.dev]]
+# manifest = "../../../moth-cs-dataset/manifests/R-S1-dev.jsonl"
+# shards = "../../data/shards/s1-dev"
+
+[optimizer]
+# E-003 starting point from review P2: adaptation from Whisper-base, screen the
+# encoder LR in 3e-5–1e-4. Not E-028's gentle fine-tune values.
+lr_head = 3e-4
+lr_encoder = 3e-5
+betas = [0.9, 0.98]
+eps = 1e-8
+weight_decay = 0.01
+grad_clip = 1.0
+
+[schedule]
+warmup_steps = 1500
+min_factor = 0.05
+
+[train]
+epochs = 4
+max_steps = 0
+log_every = 50
+eval_every_steps = 1000
+# Recovery cadence, not a protocol parameter: ~100 steps is a few minutes, so a
+# thermal/memory stop loses at most that. --resume ckpt_last.pt continues exactly.
+checkpoint_every_steps = 100
+empty_cache_every = 10
+autocast = "bf16"
+seed = 0

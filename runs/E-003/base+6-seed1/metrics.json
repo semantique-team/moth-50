@@ -1,0 +1,12 @@
+{
+  "steps": 4000,
+  "epochs_configured": 4,
+  "total_steps": 4000,
+  "last_loss": 1.46773,
+  "nonfinite_steps": 0,
+  "best_dev_wer": 0.33546013313766776,
+  "peak_memory_gb": 8.54,
+  "elapsed_seconds": 5970.32,
+  "checkpoint_last": "runs/E-003/base+6-seed1/checkpoints/ckpt_last.pt",
+  "checkpoint_best": "runs/E-003/base+6-seed1/checkpoints/ckpt_best.pt"
+}
