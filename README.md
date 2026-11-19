@@ -1,13 +1,15 @@
 # MOTH-50 — scaffold
 
-**Status (2026-11-19): E-005 complete.** Frozen beam+LM dev-macro **17.66 %**
-(INT8) / **17.58 %** (FP32) against the **23.02 %** 0.8.1 reference; the INT8
-package is **47.57 MB**, and the browser run transcribed a T-600 clip exactly at
-**RTFx 22.7** (4 threads, SIMD, isolated). **Erratum:** that readout and package
-used the pre-A3 LM and Moth's NOTICE; the verdict stands, and the A3 rebuild
-(~47.84 MB) is the E-005 addendum (D17). The S1-dev session is at 801/960 clips.
-The post-E-005 plan is `experiments/next-experiments.md`. Read `STATUS.md` first
-when resuming.
+**Status (2026-11-19): E-005 complete, E-002 gate passed on both halves.**
+Frozen beam+A3 dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against the
+**23.02 %** 0.8.1 reference; held-out S1-dev (960/960 takes) **14.05 % / 14.00 %**
+vs **22.25 %**, ETA **75.5 / 75.3 %** vs **62.1 %**, with no regression outside
+its CI. The INT8 package is **47.84 MB** (2.16 MB under the ceiling), and the
+browser run transcribed a T-600 clip exactly at **RTFx 22.3** (4 threads, SIMD,
+isolated). The first readout/package used the pre-A3 LM and Moth's NOTICE; the
+erratum and the final A3 numbers are in `runs/E-005/RESULT.md` (D17). The
+post-E-005 plan is `experiments/next-experiments.md`; nothing in it has run.
+Read `STATUS.md` first when resuming.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as

@@ -1,9 +1,10 @@
 # Post-E-005 experiment plan
 
-**Status: proposed 2026-11-19; nothing here has run.** This file pre-registers the
-experiments that follow E-005, with their gates, so they cannot be moved after
-seeing results. It comes from the 2026-11-19 review of the E-005 model and
-package (`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
+**Status: proposed 2026-11-19; the E-005 addendum ran on 2026-11-19, the rest
+(E-009–E-016) has not run.** This file pre-registers the experiments that follow
+E-005, with their gates, so they cannot be moved after seeing results. It comes
+from the 2026-11-19 review of the E-005 model and package
+(`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
 ledger; Moth's own IDs are cited as "Moth E-0NN".
 
 ## What the review found
@@ -11,14 +12,13 @@ ledger; Moth's own IDs are cited as "Moth E-0NN".
 - **The architecture holds.** Whisper-base + 6 identity-initialized blocks + CTC
   + n-gram LM + VAD is the right family for ≤ 50 MB, CPU/browser,
   record-then-transcribe and ~600 h of data. E-005 beat the 0.8.1 dev-macro
-  reference by 5.35 pp at INT8, with an INT8 cost of 0.08 pp.
-- **E-005 used the wrong LM.** The readout and the package used
+  reference by 5.40 pp at INT8, with an INT8 cost of 0.06 pp.
+- **E-005 used the wrong LM.** The first readout and package used
   `../moth-stt/release/lm_bpe3.bin`, a stale copy of the pre-A3 LM shipped from
   0.5.0 to 0.8.0 (sha256 `dcf1d59f…`, 5,116,464 B), not the 0.8.1 A3 LM
-  (`3be1177b…`, 5,381,992 B) behind the reference. The dev-macro verdict holds
-  (A3 vs pre-A3 was −0.097 pp on Moth's dev, E-031), but the package lacks
-  A3's term weighting (rare-term ETA 28.4 → 46.9 % in Moth E-031) and the S1-dev
-  readout must not run with it. Fixed by `tools/release_assets.py` (D17).
+  (`3be1177b…`, 5,381,992 B) behind the reference. Fixed by
+  `tools/release_assets.py` (D17) and re-measured in the addendum below: the
+  verdict stands and the A3 numbers are slightly better.
 - **The package NOTICE was Moth 0.8.1's** (it names `openai/whisper-tiny`). Fixed
   by `tools/release_notice.py` (D17).
 - **E-005 is under-trained.** 16,000 steps are **1.19 epochs** (epoch 0 ended
@@ -34,14 +34,14 @@ ledger; Moth's own IDs are cited as "Moth E-0NN".
 
 ## Byte budget
 
-| Component | E-005 as shipped | E-005 with A3 | After E-012 (estimate) |
+| Component | E-005 as shipped | E-005 with A3 (measured) | After E-012 (estimate) |
 |---|---:|---:|---:|
 | `model.int8.onnx` | 40,039,997 | 40,039,997 | 40,039,997 |
 | `lm_bpe3.bin` | 5,116,464 (pre-A3) | 5,381,992 (A3) | ~3,357,932 (A3, lossless 10-bit, P5) |
 | `silero_vad.onnx` | 2,327,524 | 2,327,524 | 1,289,603 (16 kHz-only) |
-| vocab, mel filters, config, NOTICE | 86,129 | ~86,900 | ~86,900 |
-| **Total** | **47,570,114** | **~47.84 MB** | **~44.77 MB** |
-| **Room to 50,000,000 B** | 2.43 MB | **~2.16 MB** | **~5.23 MB** |
+| vocab, mel filters, config, NOTICE | 86,129 | 86,989 | 86,989 |
+| **Total** | **47,570,114** | **47,836,502** | **~44,774,521** |
+| **Room to 50,000,000 B** | 2,429,886 | **2,163,498** | **~5,225,479** |
 
 The packed-A3 size scales the measured 0.7.0-LM ratio (`runs/probe-2026-11-17`
 §4); it is lossless only if A3 has ≤ 1,024 distinct log-probs per order, which
@@ -55,7 +55,7 @@ after the session.
 
 | Order | ID | Question | Needs | Cost | Bytes |
 |---:|---|---|---|---|---:|
-| 1 | E-005 addendum | A3 readout, A3 release, S1-dev no-regression | S1-dev complete | ~1–2 h CPU | +0.27 MB |
+| 1 | E-005 addendum | A3 readout, A3 release, S1-dev no-regression | S1-dev complete | **done 2026-11-19** | +0.27 MB |
 | 2 | E-009 | Decoder recalibration on dev | 1 | ~0.5–2.5 h CPU | 0 |
 | 3 | E-012 | 16 kHz VAD and lossless LM packing | — | ~1 day engineering + browser | −1.04 / −2.02 MB |
 | 4 | E-010 | Encoder-LR screen | — | ~3 h MPS | 0 |
@@ -103,12 +103,22 @@ uv run --frozen --project ../moth-stt --extra training -- python tools/frozen_re
   --out runs/E-005/s1-dev-int8.json --hyp-out runs/E-005/s1-dev-int8.hyp.jsonl
 ```
 
-Expected: dev-macro within ~0.1 pp of 17.58 / 17.66 %. Afterwards, the product
-readout that `docs/architecture-options.md` §7 pre-registered for E-005 (T-600
-≤ 22 % WER and ≥ 58 % ETA, FLEURS-IT ≤ 18 %), **once**, as a report: build the T
-and FLEURS mel shards and run `--mode mixed` with the retained 0.8.1 T-600
-hypotheses (`../moth-stt/runs/E-037/readout/paired-1/product/int8/t600.hyp.jsonl`)
-as the reference. Never select or tune on it.
+**Result (2026-11-19): gate complete.** Dev macro with A3: **17.5565 % FP32 /
+17.6212 % INT8** vs 23.0170 %, paired **−5.4605 / −5.3957 pp** (CIs exclude
+zero). S1-dev: 0.8.1 **22.2498 % WER / 62.1094 % ETA**; MOTH-50 FP32
+**13.9956 / 75.3418**, INT8 **14.0541 / 75.5371**; paired WER
+**−8.2542 / −8.1958 pp**, ETA **+13.2324 / +13.4277 pp**, no regression on
+either. The A3 package is **47,836,502 B** (2,163,498 B of room) with the
+MOTH-50 NOTICE; the browser transcript is exact at **RTFx 22.3**. Artifacts:
+`runs/E-005/readout-a3*.json`, `release-a3/`, `s1-dev-*.json`,
+`browser-run-a3.json`.
+
+The product readout that `docs/architecture-options.md` §7 pre-registered for
+E-005 (T-600 ≤ 22 % WER and ≥ 58 % ETA, FLEURS-IT ≤ 18 %) is still **once**, as a
+report: build the T and FLEURS mel shards and run `--mode mixed` with the retained
+0.8.1 T-600 hypotheses
+(`../moth-stt/runs/E-037/readout/paired-1/product/int8/t600.hyp.jsonl`) as the
+reference. Never select or tune on it.
 
 ## E-009 — Decoder recalibration
 
@@ -118,6 +128,11 @@ as the reference. Never select or tune on it.
   2.7, 3.5}; beam 12, top-k 10 and the A3 LM fixed. If the selected point lies on
   the edge of the grid, extend the grid once in that direction.
 - **Data:** dev-macro (MLS-IT + LS-EN) and S1-dev. Never T, FLEURS or CS-FLEURS.
+- **Open decision before running:** the rule below selects on S1-dev, which is
+  also the held-out no-regression set; tuning on all of it would make a later
+  S1-dev report optimistic. Amend first to either select on dev-macro and use
+  S1-dev only as a veto, or split S1-dev into calibration/evaluation halves. No
+  E-009 result exists yet, so this is the time to choose.
 - **Selection rule** (implemented in `tools/calibrate_decoder.py`): drop points
   significantly worse than the frozen point on dev-macro WER or S1-dev ETA
   (paired 95 % CI); pick the lowest S1-dev WER (ties: higher ETA, lower dev-macro,
@@ -214,7 +229,7 @@ for perplexity, and S1-dev ETA decides.
 ## E-016 — Browser runtime checks
 
 - **1-thread RTFx** without cross-origin isolation on 5 / 10 / 20 s clips. Gate:
-  ≥ 8× (the E-005 target; projected 7–9×). E-005 only measured 4 threads (22.7×).
+  ≥ 8× (the E-005 target; projected 7–9×). E-005 only measured 4 threads (22.3×).
 - **Browser vs Python WER** on S1-dev: the comparison Moth's E-041
   pre-registered and never ran. Gate: identical hypotheses, or every difference
   explained.

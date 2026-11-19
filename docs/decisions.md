@@ -225,14 +225,16 @@ NOTICE, which names `openai/whisper-tiny`. Accepted as fixes, not choices:
   preset and revision, the extra blocks, the Silero commit, the reused Moth LM
   and tokenizer, and the MOTH-50 training sources in `data/sources.lock.json`.
 - The E-005 dev-macro verdict stands (A3 vs pre-A3 was −0.097 pp in Moth E-031;
-  the margin is 5.35 pp). The A3 readout, the A3 release (~47.84 MB, 2.16 MB of
-  room) and S1-dev are the E-005 addendum. E-002 §6 records the amendment.
+  the margin is 5.35 pp). Measured on 2026-11-19: dev macro **17.5565 % FP32 /
+  17.6212 % INT8** (paired −5.4605 / −5.3957 pp), S1-dev **13.9956 / 14.0541 %**
+  vs **22.2498 %** with no regression, A3 package **47,836,502 B** (2.16 MB of
+  room). E-002 §6 records the amendment; `runs/E-005/RESULT.md` has the tables.
 
 ## D18 — Post-E-005 plan and tooling (proposed 2026-11-19)
 
 `experiments/next-experiments.md` pre-registers E-009–E-016 and re-scopes E-004
 and E-006 after the review of E-005 (`docs/architecture-options.md` §11). The
-tooling exists; none of the experiments has run:
+tooling exists; the E-005 addendum ran on 2026-11-19, E-009–E-016 have not:
 
 - `tools/frozen_readout.py --mode mixed`: S1-dev WER/ETA and the no-regression
   verdict (E-002 §6);

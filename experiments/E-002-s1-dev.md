@@ -165,17 +165,23 @@ format) and appended as `R-S1-DEV-0901`–`R-S1-DEV-0960`:
 - 8 `control_it` (Italian only), 6 `control_en` (English only),
 - 24–38 words each, ~8–17 s estimated, ~1778 words total (~15 min).
 
-They are **`reviewed: false`**. Review and mark them before recording index
-901+:
+They were reviewed and marked before recording; the final script has no
+unreviewed cues. Appending at 901+ is safe because the recorder and
+`build_manifest` join by position. If the finished session lands above 60 min,
+skip a few of the longest `control_en` cues; the protocol window is 30–60 min.
 
-```bash
-python -m scripts.generate_scripts review --kind R --speaker S1 \
-  --scripts-dir text-2026-11-dev --limit 60
-python -m scripts.generate_scripts mark-reviewed --kind R --speaker S1 \
-  --scripts-dir text-2026-11-dev --reviewer <name>
-```
+## Final session (2026-11-19, 960/960 takes)
 
-The script is now 960 cues, inside the accepted 600–1000 range. Appending at
-901+ is safe because the recorder and `build_manifest` join by position. If the
-finished session lands above 60 min, skip a few of the longest `control_en`
-cues; the protocol window is 30–60 min.
+| Quantity | Value |
+|---|---|
+| Clips | **960 / 960** |
+| Audio | **51.30 min**, mean 3.21 s, range 1.27–14.15 s |
+| Levels | peak −17.6 dBFS mean (max −3.8), RMS −34.3 dBFS, drift 1.6 dB |
+| QC | 0 errors; 2 advisory short takes: `S1_0563` 1.49 s, `S1_0886` 1.27 s (both four-word cues) |
+| Manifest | 960 rows, `split: dev`, `audio/R-S1-dev/` |
+| Mel shards | 960 clips, 1 shard, 0 errors |
+| Readout (A3) | 0.8.1 **22.2498 % WER / 62.1094 % ETA**; MOTH-50 FP32 **13.9956 / 75.3418**, INT8 **14.0541 / 75.5371** |
+
+The session is inside the 45–60 min window. `S1_0726` had a 0.0 dBFS peak and
+was re-recorded before the final QC; the final maximum is −3.8 dBFS. The
+no-regression verdict passes on both FP32 and INT8 (`runs/E-005/s1-dev-a3-*.json`).

@@ -35,10 +35,10 @@ external evidence.
 | ID | Question | Status |
 |---|---|---|
 | E-001 | Reproduce Moth 0.8.1 on the canonical dataset with the vendored evaluator | done: 24.0826 / 55.2253, matches E-038 |
-| E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_training.py`) | protocol frozen; 200-step probe passed (13.37 / 3.68 GB); 0.8.1 dev reference re-scored (23.0170 macro); data mixture and shards ready; S1-dev at ~660/960 (2026-11-19), 960/960 cues reviewed |
-| E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | **done**: base+6 wins; greedy dev 48.12 / 36.90 / 34.73 / 33.46 %, two seeds on +4/+6 (33.55 % / 34.74 %); gate needs a longer schedule; S1-dev readout pending |
+| E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_training.py`) | protocol frozen; 200-step probe passed (13.37 / 3.68 GB); 0.8.1 dev reference re-scored (23.0170 macro); data mixture and shards ready; S1-dev **960/960 (51.30 min, 2026-11-19)**, QC clean |
+| E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | **done**: base+6 wins; greedy dev 48.12 / 36.90 / 34.73 / 33.46 %, two seeds on +4/+6 (33.55 % / 34.74 %); E-005 long run and gate complete |
 | E-004 | Package-budget trade-off; re-scoped after E-005: where the E-012 headroom goes (unpruned LM vs base+7 vs base+4 + large LM) | planned (`next-experiments.md`) |
-| E-005 | Full fine-tune of the winner; INT8 export; browser run | **done**: 17.5816 / 17.6628 % frozen beam+LM vs 23.0170 % (paired −5.4354 / −5.3542 pp); 47.57 MB package; browser transcript exact, RTFx 22.7. **Erratum 2026-11-19:** decoded and packaged with the pre-A3 LM and Moth's NOTICE (D17); verdict stands, A3 readout/release and S1-dev no-regression pending (E-005 addendum) |
+| E-005 | Full fine-tune of the winner; INT8 export; browser run | **done, gate PASS**: A3 readout **17.5565 / 17.6212 %** FP32/INT8 vs 23.0170 % (paired **−5.4605 / −5.3957 pp**); S1-dev **13.9956 / 14.0541 %** vs **22.2498 %**, ETA **75.34 / 75.54 %** vs **62.11 %**, no regression; **47,836,502 B** package (2.16 MB headroom); browser exact, **RTFx 22.3**. Pre-A3 erratum fixed (D17) |
 | E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned, re-scoped as fine-tune arms from E-011 |
 | E-007 | Optional architecture: 25 Hz extra blocks, conv adapters, dropout/EMA, LID auxiliary | split into E-011 (EMA), E-013, E-014, E-015 |
 | E-008 | External evaluation: CS-FLEURS-READ (test-only), FLEURS, per-speaker ranges | planned |

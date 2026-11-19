@@ -613,22 +613,25 @@ a later 25 Hz or conv-adapter variant is worth testing.
 
 ## 11. Post-E-005 review (2026-11-19)
 
-E-005 trained the primary configuration: base+6, 16,000 steps, frozen beam+LM
-dev-macro 17.58 % FP32 / 17.66 % INT8 against the 23.02 % 0.8.1 reference, a
-47.57 MB package and a 22.7× browser run at 4 threads (`runs/E-005/RESULT.md`).
-This section records the review of that result; the experiments it implies are
-pre-registered in `experiments/next-experiments.md`.
+E-005 trained the primary configuration: base+6, 16,000 steps, frozen beam+A3
+dev-macro 17.56 % FP32 / 17.62 % INT8 against the 23.02 % 0.8.1 reference, a
+47.84 MB package, and 14.00 / 14.05 % WER on the held-out S1-dev session
+(22.25 % reference) with no regression; the browser run is 22.3× at 4 threads
+(`runs/E-005/RESULT.md`). This section records the review of that result; the
+experiments it implies are pre-registered in `experiments/next-experiments.md`.
 
 **Verdict: the architecture is confirmed.** Nothing measured so far argues for a
 different family under 50 MB. The pretrained encoder is essential (a random
 encoder stayed at 99 % WER), identity-initialized depth paid monotonically
-(48.12 → 36.90 → 34.73 → 33.46 % greedy at 4,000 steps), INT8 costs 0.08 pp, and
+(48.12 → 36.90 → 34.73 → 33.46 % greedy at 4,000 steps), INT8 costs 0.06 pp, and
 the package runs in the browser. The remaining gains are in the training
 schedule, the decoder, the byte allocation and the data, roughly in that order of
 cost.
 
-**Corrections.** The E-005 readout and package used the pre-A3 LM, not A3, and
-shipped Moth 0.8.1's NOTICE (D17); 16,000 steps are 1.19 epochs, not ~1.4.
+**Corrections.** The first E-005 readout and package used the pre-A3 LM, not A3,
+and shipped Moth 0.8.1's NOTICE (D17); 16,000 steps are 1.19 epochs, not ~1.4.
+The A3 re-measurement is slightly better than the first numbers, and S1-dev
+passes both the WER and ETA no-regression rules.
 
 **Where the next gains are, cheapest first:**
 
