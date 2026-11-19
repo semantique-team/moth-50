@@ -19,3 +19,4 @@ runs/**/checkpoints/
 
 # Derived release packages (large binaries); keep the export report
 runs/**/release/
+runs/**/release-*/

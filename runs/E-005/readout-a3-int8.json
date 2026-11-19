@@ -1,0 +1,73 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "macro",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-005/release-a3/model.int8.onnx",
+  "onnx_sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "lm": "/Users/tancredi/Desktop/semantique/moth-50/data/raw/moth-0.8.1/lm_bpe3.bin",
+    "lm_sha256": "3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1",
+    "lm_label": "a3-0.8.1",
+    "lm_is_a3": true
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.2344148291137674,
+      "wer_ci": [
+        0.22727495948534107,
+        0.24136130860637398
+      ],
+      "seconds": 211.3
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.1180101060953553,
+      "wer_ci": [
+        0.11451829751183307,
+        0.12182031643092749
+      ],
+      "seconds": 227.1
+    }
+  },
+  "macro_wer": 0.17621246760456136,
+  "reference": {
+    "macro_wer": 0.2301698498252397,
+    "sets": {
+      "it": 0.2810404137896899,
+      "en": 0.17929928586078947
+    },
+    "hyp_sha256": "8d31eef0e0c659d67a5691b3161261d920ad0254b4d9e6361031e3737a322fb1",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.053957382220678335,
+    "ci": [
+      -0.05663415784414072,
+      -0.051030960168388234
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 5.3957,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": true
+  },
+  "elapsed_seconds": 438.4
+}

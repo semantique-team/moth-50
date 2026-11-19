@@ -1,0 +1,53 @@
+{
+  "tool": "Superset in-app browser (tools.browser)",
+  "release": "runs/E-005/release-a3",
+  "package_bytes": 47836502,
+  "budget_bytes": 50000000,
+  "remaining_bytes": 2163498,
+  "config": {
+    "name": "moth-stt",
+    "version": "0.9.1-e005",
+    "decode": {"beam": 12, "top_k": 10, "lm_weight": 0.55, "token_bonus": 2.7}
+  },
+  "lm": {
+    "sha256": "3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1",
+    "bytes": 5381992,
+    "label": "a3-0.8.1"
+  },
+  "browser": {
+    "cross_origin_isolated": true,
+    "threads": 4,
+    "simd": true,
+    "load_ms": 280
+  },
+  "sample": {
+    "audio": "../moth-cs-dataset/audio/T/S1/S1_0001.wav",
+    "reference": "ho spostato il meeting a domani",
+    "seconds": 3.9893125
+  },
+  "transcript": "ho spostato il meeting a domani",
+  "transcript_exact_match": true,
+  "timings_ms": {
+    "vad": 41.93,
+    "feature": 74.435,
+    "inference": 151.375,
+    "decode": 22.01,
+    "total": 290.865
+  },
+  "rtfx": 13.715,
+  "benchmark": {
+    "runs": 5,
+    "total_ms_median": 179.015,
+    "total_ms_min": 177.19,
+    "vad_ms_median": 13.475,
+    "feature_ms_median": 58.48,
+    "inference_ms_median": 90.045,
+    "decode_ms_median": 15.43,
+    "rtfx_median": 22.285,
+    "rtfx_inference": 44.304,
+    "num_threads": 4,
+    "cross_origin_isolated": true,
+    "simd": true
+  },
+  "runtime_note": "web/ort.js reads optional config.budget_bytes (default 20,000,000); this release declares 50,000,000. Same runtime as the pre-A3 browser run, with the A3 LM."
+}
