@@ -136,3 +136,29 @@ initialization and real mels/texts, no augmentation and no checkpoint saving.
   result.
 - A protocol change gets a dated amendment in this file and a re-scored
   baseline; do not silently move a gate after seeing a result.
+
+## 6. Amendment 2026-11-19 (written before any S1-dev result exists)
+
+These make the frozen rules executable; they do not move a gate.
+
+1. **The LM is the pinned A3 file.** "A3 LM" means `lm_bpe3.bin` with sha256
+   `3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1`
+   (5,381,992 B), fetched and checked by `tools/release_assets.py`. The E-005
+   readout used the pre-A3 file `dcf1d59f…` by mistake (erratum in
+   `runs/E-005/RESULT.md`); its dev-macro verdict stands, its A3 label does not.
+   The readout and export tools now refuse any other LM unless
+   `--allow-other-lm` is given, which marks the result as not comparable.
+2. **"No dev-S1 regression outside its CI"** is computed by
+   `tools/frozen_readout.py --mode mixed`: the candidate and the reference are
+   decoded on the same S1-dev manifest with the same frozen decoder and the A3
+   LM; the reference is the Moth 0.8.1 INT8 graph (`7bbfad7e…`, pinned in
+   `data/sources.lock.json`). Moth's paired utterance bootstrap (1,000
+   resamples, seed 0) gives the 95 % CI of (candidate − reference) for WER and
+   for ETA. A **regression** is a WER difference whose CI lies entirely above
+   zero, or an ETA difference whose CI lies entirely below zero. A tie is not a
+   regression.
+3. **Decoder recalibration** (E-009) uses dev-macro and S1-dev only, with the
+   rule pre-registered in `experiments/next-experiments.md`; T, FLEURS and
+   CS-FLEURS are never used. If a new decoder setting is adopted, it applies to
+   later MOTH-50 readouts through a further dated amendment; the 0.8.1 reference
+   keeps its own settings.

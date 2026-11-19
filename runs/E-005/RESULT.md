@@ -2,7 +2,34 @@
 
 > Executed 2026-11-18 07:43–14:27 CET on the M5 Pro. `base+6`, 16,000 optimizer
 > steps, pretrained Whisper-base encoder, identity-initialized extra blocks,
-> frozen E-002 data mixture. The frozen beam+A3 readout was run on 2026-11-19.
+> frozen E-002 data mixture. The frozen beam+LM readout was run on 2026-11-19.
+
+## Erratum (2026-11-19): the readout and the package used the pre-A3 LM
+
+Every "A3" below is wrong. `tools/frozen_readout.py` and
+`tools/export_release.py` loaded `../moth-stt/release/lm_bpe3.bin`, a stale,
+gitignored copy of the LM that Moth shipped from 0.5.0 to 0.8.0 (sha256
+`dcf1d59f…`, 5,116,464 B). The 0.8.1 A3 LM, which decoded the 23.0170 %
+reference, is `3be1177b…` (5,381,992 B; `data/sources.lock.json`). The package
+also shipped Moth 0.8.1's NOTICE byte for byte (sha256 `6ca7672f…`), which names
+`openai/whisper-tiny` as the encoder.
+
+- **The gate verdict stands.** A3 against the pre-A3 LM was −0.097 pp on Moth's
+  dev (Moth E-031: 22.9463 → 22.8494 %), and the comparison here handicapped
+  MOTH-50, not the reference; the margin is 5.35 pp.
+- **The numbers are not A3 numbers.** They are MOTH-50 + pre-A3 LM against
+  0.8.1 + A3. The package lacks A3's ×3 term weighting (rare-term ETA 28.4 →
+  46.9 % in Moth E-031), so it must not be used for S1-dev, T-600 or ETA claims.
+- **With A3 the package is ~47.84 MB** (2.16 MB of room, not 2.43), and its
+  NOTICE must be the MOTH-50 one.
+- **16,000 steps are 1.19 epochs**, not ~1.4: epoch 0 ended after 13,458
+  batches (`base+6-16k/train.log.jsonl`).
+
+Fixed in the tools (D17): the LM is pinned by sha256 and fetched by
+`tools/release_assets.py`, any other LM needs `--allow-other-lm`, and
+`tools/release_notice.py` writes the MOTH-50 NOTICE. The A3 readout, the A3
+release and the S1-dev readout are the E-005 addendum in
+`experiments/next-experiments.md`.
 
 ## Verdict
 
@@ -32,7 +59,7 @@ The last 2,000 steps bought 0.48 pp, so the curve is flattening but not flat.
 ## Frozen readout (E-002 gate)
 
 Decoder: beam 12, top-k 10, lm_weight 0.55, token_bonus 2.7, `release/lm_bpe3.bin`
-(sha256 `dcf1d59f…`). Same dev manifests and same reference hypotheses as
+(sha256 `dcf1d59f…`: the pre-A3 LM, see the erratum). Same dev manifests and same reference hypotheses as
 `runs/E-002/dev-reference.json`; 1,000 bootstrap resamples, seed 0.
 
 | Set | n | Ours WER | 95 % CI | 0.8.1 reference |
@@ -53,7 +80,7 @@ settings.
 | File | Bytes |
 |---|---:|
 | `model.int8.onnx` | 40,039,997 |
-| `lm_bpe3.bin` | 5,116,464 |
+| `lm_bpe3.bin` | 5,116,464 (pre-A3; A3 is 5,381,992) |
 | `silero_vad.onnx` | 2,327,524 |
 | `mel_filters.bin` | 64,320 |
 | `vocab.json` | 17,193 |
@@ -123,6 +150,8 @@ old 20 MB ceiling. Evidence: `runs/E-005/browser-run.json`.
 
 ## Next
 
+0. The E-005 addendum (`experiments/next-experiments.md`): A3 readout, A3
+   release with the MOTH-50 NOTICE, S1-dev no-regression readout.
 1. Finish S1-dev, then run its readout (same decoder) and the no-regression
    comparison.
 2. E-004 package/LM trade-off (base+6 + 5.38 MB LM vs base+4 + 12 MB LM) can now

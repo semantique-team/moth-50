@@ -56,6 +56,24 @@ had not retained a checksum, so this closes that gap. FLEURS's current HF
 revision is not the unrecorded 2026-10-19 Moth snapshot, so re-score a baseline
 before comparing across revisions.
 
+## Release assets
+
+The decoder LM and the reference graph are not rebuilt: they are Moth 0.8.1's
+published files, pinned in `data/sources.lock.json` by Hugging Face revision,
+size and sha256, together with the Silero VAD graphs:
+
+```bash
+python tools/release_assets.py fetch    # into data/raw/moth-0.8.1/ and data/raw/silero-vad/
+python tools/release_assets.py check
+```
+
+- `lm_bpe3.bin` — the 0.8.1 **A3** LM, sha256 `3be1177b…`, 5,381,992 B. Do not use
+  `../moth-stt/release/lm_bpe3.bin`: that copy is the pre-A3 LM (`dcf1d59f…`)
+  that E-005 used by mistake (D17).
+- `model.int8.onnx` — the 0.8.1 graph (`7bbfad7e…`), the S1-dev reference.
+- `silero_vad.onnx` (`1a153a22…`, shipped) and `silero_vad_16k_op15.onnx`
+  (`7ed98ddb…`, the E-012 candidate), Silero commit `bfdc019`.
+
 ## Splits
 
 | Split | Content | Use |
