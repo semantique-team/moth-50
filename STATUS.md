@@ -19,8 +19,8 @@ running, and the exact next commands. Update it at the end of each session.
   (`tools/release_assets.py`).
 - **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-016.
   **E-009 kept the frozen decoder; E-012 passed both gates (16 kHz VAD + lossless
-  MOTHLMB2, D19/D20). E-010/E-011/E-013–E-016 have not run.** No training starts
-  without an explicit go-ahead.
+  MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21). E-011 and E-013–E-016
+  have not run.** No training starts without an explicit go-ahead.
 - **E-012 package:** **44,770,433 B** (5,229,567 B of room) with the 16 kHz VAD
   and the packed A3 LM; dev-macro and S1-dev hypotheses are byte-identical to
   the MOTHLMB1 runs. Browser: exact transcript, RTFx 24.63. `runs/E-012/`.
@@ -63,29 +63,37 @@ running, and the exact next commands. Update it at the end of each session.
 | E-012(a) VAD 16 kHz | **done, default**: 2,040 real clips bit-identical; browser exact, RTFx 23.90; 46,798,588 B package | `runs/E-012/` |
 | E-012(b) LM packing | **done, default**: A3 → 3,353,840 B lossless; dev/S1-dev hypotheses byte-identical; browser RTFx 24.63 | `tools/moth_lm.py`, `tools/pack_lm.py`, `runs/E-012/` |
 | E-012 final package | **44,770,433 B**, 5,229,567 B of room; base+7 now fits (est. 47.88 MB) | `runs/E-012/export-report-mothlmb2.json` |
+| E-010 base+4, 1e-4 | **done**: greedy dev 33.4003 % vs 34.7306 at 3e-5 (−1.33 pp) | `runs/E-010/base+4-enc1e-4/` |
+| E-010 base+6, 1e-4 | **done, winner**: 32.3912 % vs 33.4588 at 3e-5 (−1.07 pp) | `runs/E-010/base+6-enc1e-4/`, `runs/E-010/RESULT.md` |
+| E-011 config | preflight ready: base+6, 1e-4, 40k steps, EMA 0.9998, 2 seeds | `training/configs/base6-e011.toml` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: E-010, no training without go-ahead
+## Next step: E-011, no training without go-ahead
 
-The gate is complete and **E-009 kept the frozen decoder**: the dev-macro winner
-0.45 / 2.0 (−0.2786 pp) was rejected by the S1-dev veto (+0.5844 pp WER,
-−1.1230 pp ETA), so 0.55 / 2.7 stays (`runs/E-009/RESULT.md`). **E-012 also
-passed both gates**: the 16 kHz-only Silero graph is bit-identical on 2,040 real
-clips and in the browser; the lossless `MOTHLMB2` LM leaves every hypothesis
-byte-identical; the final package is **44,770,433 B** (5,229,567 B of room).
-`export_release.py` now defaults to `--vad 16k --lm-format mothlmb2` (D19, D20).
-Nothing is running. The remaining items, with their pre-registered gates, are in
+**E-010 is complete**: encoder LR 1e-4 beat 3e-5 at both depths. base+4
+**33.4003 %** (−1.33 pp) and base+6 **32.3912 %** (−1.07 pp) greedy dev-macro at
+4,000 steps, 0 non-finite; base+4 at 1e-4 is 0.06 pp better than base+6 at 3e-5,
+so it is an E-004 depth candidate. **E-011 uses base+6 with `lr_encoder = 1e-4`**;
+`training/configs/base6-e011.toml` is written and its preflight is ready.
+Nothing is running. Remaining items, with their pre-registered gates, are in
 `experiments/next-experiments.md`:
 
-1. **E-010 encoder-LR screen** — 2 arms × 4,000 steps, ~3 h on MPS.
-2. **E-011 long schedule + EMA** — ~17 h per seed, 2 seeds.
-3. **E-004** — where the freed bytes go; base+7 estimates at 47.88 MB, the
-   unpruned E-034 LM at ~48.6/49.2 MB.
-4. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
-5. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
+1. **E-011 long schedule + EMA** — 40,000 steps, warm-up 1,000, EMA 0.9998,
+   2 seeds (`--seed 0`, `--seed 1`), ~17 h per seed. Gate: frozen beam+A3 readout
+   ≥ 1.0 pp better than E-005, no S1-dev regression, INT8 cost ≤ 0.2 pp.
+2. **E-004** — where the freed bytes go; base+7 estimates at 47.88 MB, base+4 at
+   1e-4 is now a depth candidate, the unpruned E-034 LM at ~48.6/49.2 MB.
+3. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
+4. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
    `moth-stt/web/` at local commits `b0fa11c` + `0e15442`.
+
+```bash
+uv run --frozen --project ../moth-stt --extra training -- \
+  python -m training.train --config training/configs/base6-e011.toml \
+  --moth-stt ../moth-stt --seed 0 --out runs/E-011/base+6-e011-s0 --device mps
+```
 
 Reproduction of the final readouts (assets must be fetched once):
 
@@ -197,6 +205,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `experiments/next-experiments.md` — post-E-005 plan: E-005 addendum,
   E-009–E-016, re-scoped E-004/E-006, gates and commands.
 - `runs/E-005/RESULT.md` — long fine-tune, A3 readout, S1-dev, package, browser.
+- `runs/E-010/RESULT.md` — encoder-LR screen; base+6 at 1e-4 wins.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and
   browser runs.

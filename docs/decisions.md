@@ -302,6 +302,26 @@ Artifacts: `runs/E-012/` (`RESULT.md`, `lm-pack.json`, `js-lm-parity.json`,
 `readout-dev-mothlmb2.json`, `s1-dev-mothlmb2.json`,
 `export-report-mothlmb2.json`, `browser-run-mothlmb2.json`).
 
+## D21 — Encoder LR 1e-4 for E-011 (2026-11-19)
+
+E-010 screened the review P2 range on the E-003 recipe. At 4,000 steps and seed
+0, `lr_encoder = 1e-4` beat `3e-5` at both depths:
+
+| Arm | 3e-5 (E-003) | 1e-4 (E-010) | Δ |
+|---|---:|---:|---:|
+| base+4 | 34.7306 % | **33.4003 %** | −1.3303 pp |
+| base+6 | 33.4588 % | **32.3912 %** | −1.0677 pp |
+
+Both runs had 0 non-finite steps. The gain is present at every 1k dev checkpoint,
+not only at the end. base+4 at 1e-4 is 0.0585 pp better than base+6 at 3e-5, so
+it becomes an E-004 depth candidate at 6.4 MB less acoustic weight; base+6 at
+1e-4 remains the best arm and is the **E-011 recipe**.
+
+Accepted as the optimizer choice for E-011; the frozen decoder, the evaluation
+protocol and the package format are unchanged. `training/configs/base6-e011.toml`
+holds the long recipe (40,000 steps, warm-up 1,000, EMA 0.9998, 2 seeds).
+Artifacts: `runs/E-010/RESULT.md`.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

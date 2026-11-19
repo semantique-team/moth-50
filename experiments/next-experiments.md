@@ -1,7 +1,7 @@
 # Post-E-005 experiment plan
 
-**Status: proposed 2026-11-19; the E-005 addendum, E-009 and E-012 ran on
-2026-11-19, E-010/E-011/E-013–E-016 have not run.** This file pre-registers the
+**Status: proposed 2026-11-19; the E-005 addendum, E-009, E-012 and E-010 ran on
+2026-11-19, E-011 and E-013–E-016 have not run.** This file pre-registers the
 experiments that follow E-005, with their gates, so they cannot be moved after
 seeing results. It comes from the 2026-11-19 review of the E-005 model and package
 (`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
@@ -58,7 +58,7 @@ after the session.
 | 1 | E-005 addendum | A3 readout, A3 release, S1-dev no-regression | S1-dev complete | **done 2026-11-19** | +0.27 MB |
 | 2 | E-009 | Decoder recalibration on dev | 1 | **done 2026-11-19: frozen stays** | 0 |
 | 3 | E-012 | 16 kHz VAD and lossless LM packing | — | **done 2026-11-19, both gates pass** | −1.04 / −2.03 MB |
-| 4 | E-010 | Encoder-LR screen | — | ~3 h MPS | 0 |
+| 4 | E-010 | Encoder-LR screen | — | **done 2026-11-19: 1e-4 wins both arms** | 0 |
 | 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | ~17 h MPS per seed | 0 |
 | 6 | E-004 | Where the freed bytes go | 3, 5 | LM builds + readouts | ≤ 50 MB |
 | 7 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER | a release | ~1 h | 0 |
@@ -193,15 +193,29 @@ for blocks in 4 6; do
 done
 ```
 
+**Result (2026-11-19): 1e-4 wins both depths; base+6 at 1e-4 is the best arm.**
+Greedy dev-macro at 4,000 steps:
+
+| Arm | 3e-5 (E-003) | 1e-4 (E-010) | Δ |
+|---|---:|---:|---:|
+| base+4 | 34.7306 % | **33.4003 %** | **−1.3303 pp** |
+| base+6 | 33.4588 % | **32.3912 %** | **−1.0677 pp** |
+
+Both pass the ≥ 0.5 pp gate with 0 non-finite steps (87.7 / 101.8 min, peak
+8.473 / 9.648 GB). base+4 at 1e-4 is 0.0585 pp *better* than base+6 at 3e-5
+(≤ 33.66 %), so it becomes an E-004 depth candidate. **E-011 uses base+6 +
+`lr_encoder = 1e-4`**; the config is `training/configs/base6-e011.toml`.
+Artifacts: `runs/E-010/`, `runs/E-010/RESULT.md`.
+
 ## E-011 — Long schedule with EMA
 
 - **Hypothesis:** ~3 epochs with a weight EMA beat E-005 by ≥ 1.0 pp dev-macro
   with the same decoder.
-- **Recipe:** the E-010 winner (depth and encoder LR), 40,000 steps (~2.97
-  epochs at 13,458 steps per epoch), warm-up 1,000, cosine to 0.05,
+- **Recipe:** the E-010 winner — **base+6, `lr_encoder = 1e-4`** — 40,000 steps
+  (~2.97 epochs at 13,458 steps per epoch), warm-up 1,000, cosine to 0.05,
   `train.ema_decay = 0.9998` (horizon ~5,000 steps; `training/ema.py`), eval every
   4,000 steps, dev sets as in E-005. Two seeds (the final recipe needs 2–3,
-  E-002 §3). The config is written after E-010 as `training/configs/base6-e011.toml`.
+  E-002 §3). Config: `training/configs/base6-e011.toml` (preflight ready).
 - **Gate:** frozen beam+A3 readout (the frozen E-002 decoder, since E-009 kept
   it, applied to both E-011 and E-005) ≥ 1.0 pp better dev-macro than E-005,
   paired CI excluding zero; no S1-dev regression against E-005; INT8 cost
