@@ -1,3 +1,4 @@
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -109,6 +110,14 @@ def test_long_config_is_the_e005_schedule():
     assert config.checkpoint_every_steps == 100
     assert len(config.data.train) == 6
     assert config.ema_decay == 0.0
+
+
+def test_e010_config_only_moves_the_encoder_lr():
+    base = load_config(ROOT / "training" / "configs" / "base6.toml")
+    screen = load_config(ROOT / "training" / "configs" / "base6-enc1e-4.toml")
+    assert screen.optimizer.lr_encoder == 1e-4
+    assert base.optimizer.lr_encoder == 3e-5
+    assert replace(screen, path=base.path, optimizer=base.optimizer) == base
 
 
 def _with_train(tmp_path, train: str) -> Path:
