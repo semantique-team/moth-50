@@ -134,7 +134,11 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   (D16), so base+0/+2/+4/+6 start as the same function.
 - **The web runtime reads `config.budget_bytes`.** `moth-stt/web/ort.js` uses it
   when present (default 20,000,000, so 0.8.1 is unchanged); the MOTH-50 release
-  declares 50,000,000. The patch lives in the `moth-stt` checkout.
+  declares 50,000,000. The patch is local commit `b0fa11c` in the `moth-stt`
+  checkout: that repository is **archived and read-only**, so it cannot be
+  pushed. If MOTH-50 ships its own web runtime, carry this one-line change
+  there (or vendor the runtime); without it the page rejects the 47.57 MB
+  package.
 - **The gate readout is `tools/frozen_readout.py`.** It loads `ckpt_best.pt`
   directly, or the INT8 graph with `--onnx`, and writes `readout.json` +
   hypotheses. FP32 and INT8 differ by 0.08 pp; the release is 47.57 MB. Run it

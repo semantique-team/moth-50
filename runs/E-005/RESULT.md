@@ -127,5 +127,6 @@ old 20 MB ceiling. Evidence: `runs/E-005/browser-run.json`.
    comparison.
 2. E-004 package/LM trade-off (base+6 + 5.38 MB LM vs base+4 + 12 MB LM) can now
    use the measured +6 acoustic advantage.
-3. If the product adopts MOTH-50, keep the `budget_bytes` runtime patch in the
-  release branch.
+3. If the product adopts MOTH-50, carry the `budget_bytes` runtime change in
+   the MOTH-50 tree: `moth-stt` is archived and read-only, so the local commit
+   there (`b0fa11c`) cannot be pushed.
