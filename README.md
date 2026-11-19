@@ -1,10 +1,11 @@
 # MOTH-50 — scaffold
 
-**Status (2026-11-17): remote `semantique-team/moth-50`, `main`; no model
-trained yet.** E-001 is done, the E-002 protocol and memory probe are complete,
-all E-003 data shards are built and the E-003 preflight is green. The only
-missing E-002 artifact is the held-out S1-dev session (200/900 clips recorded).
-Read `STATUS.md` first when resuming.
+**Status (2026-11-19): E-005 complete.** Frozen beam+A3 dev-macro **17.66 %**
+(INT8) / **17.58 %** (FP32) against the **23.02 %** 0.8.1 reference; the INT8
+package is **47.57 MB**, 2.43 MB under the 50 MB ceiling, and the browser run
+transcribed a T-600 clip exactly at **RTFx 22.7** (4 threads, SIMD, isolated).
+The only missing artifact is the S1-dev session (300/960 clips). Read
+`STATUS.md` first when resuming.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
@@ -121,6 +122,10 @@ tools/probe_export.py     real INT8 export size and CPU latency (needs moth-stt)
 tools/probe_activations.py  activation memory, CPU or MPS (needs moth-stt)
 tools/probe_training.py   200-step MPS training memory/throughput probe
 tools/build_noisy_cv.py   noisy Common Voice half (E-024 mixer, MOTH-50 paths)
+tools/s1_dev_qc.py        S1-dev session QC: takes, coverage, levels, projection
+tools/finalize_s1_dev.py  patch build_manifest output to split:dev + session paths
+tools/frozen_readout.py   E-002 gate readout: beam 12 + A3 LM, FP32 or `--onnx`
+tools/export_release.py   INT8 release folder + 50 MB package check
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0

@@ -185,6 +185,30 @@ time. Keep the 192 audio-s batch cap. Fall back to a 128 s batch or base+4 only
 if a later real run exceeds 12.5 GB; this probe did not need the fallback.
 Throughput is worst-case padded and is not the final training estimate.
 
+## D16 — Pretrained initialization for E-003 (2026-11-17)
+
+The trainer port had no initializer: `build_model` created the encoder from
+random weights. The first `base+0` run exposed this after 4,000 steps — dev WER
+stayed at ~99 %, CTC loss flat at ~6.1 (≈ ln 1024), i.e. the model only learned
+the output prior. That run is kept as a checkpoint/throughput probe
+(`runs/E-003/base+0-scratch/`), not as an E-003 result. Moth's own evidence says
+the same: pretrained initialization is essential at this data scale
+(`docs/architecture-options.md` §5.1).
+
+From E-003 on:
+
+- every arm loads the same converted **`openai/whisper-base`** encoder
+  (`tools/convert_whisper_encoder.py`, HF revision
+  `e37978b90ca9030d5170a5c07aadb050351a65bb`, state sha256
+  `fa339cfe…e0dd`, parity 4.8e-4 with the position table matched);
+- the extra blocks start as **exact identity** (`out` and `mlp2` zeroed), so at
+  step 0 base+0/+2/+4/+6 compute the same function and depth is the only
+  difference;
+- Moth's fixed sinusoidal positions are kept (the learned `embed_positions`
+  table is skipped, exactly as in Moth 0.8.1).
+
+The identity initialization resolves the open question below (review P3).
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out
@@ -193,8 +217,9 @@ Throughput is worst-case padded and is not the final training estimate.
   real-data readout without hurting S2/S3/FLEURS?
 - Does the 2.26 MB headroom in the primary package go to a larger trigram, a
   more tightly packed LM (review P5), or nothing?
-- Should the extra blocks be identity-initialized (review P3), randomly
-  initialized as in Moth E-006, or copied from the last Whisper-base block?
+- ~~Should the extra blocks be identity-initialized (review P3), randomly
+  initialized as in Moth E-006, or copied from the last Whisper-base block?~~
+  Resolved in D16: identity, for every E-003 arm.
 - Which adaptation schedule from Whisper-base (review P2): frozen-encoder warm-up
   first, and which encoder LR?
 - Is a later 25 Hz / conv-adapter variant worth testing once the 50 MB baseline
