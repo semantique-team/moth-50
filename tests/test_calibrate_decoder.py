@@ -51,7 +51,7 @@ def test_s1_dev_decides_and_dev_macro_guards():
     best_s1_but_macro_worse = _point(
         0.25, 1.5, macro=0.190, macro_ci=[0.008, 0.020], s1=_s1(0.17, 0.63, (-0.04, -0.01))
     )
-    selection = select_setting([frozen, better, best_s1_but_macro_worse])
+    selection = select_setting([frozen, better, best_s1_but_macro_worse], objective="s1")
     assert selection["objective"] == "s1-dev WER"
     assert selection["eligible"] == 2
     assert selection["best"] == {"lm_weight": 0.45, "token_bonus": 2.0}
@@ -68,7 +68,7 @@ def test_s1_eta_regression_is_excluded():
         macro_ci=[-0.001, 0.001],
         s1=_s1(0.18, 0.50, (-0.03, -0.01), eta_ci=(-0.15, -0.05)),
     )
-    selection = select_setting([frozen, eta_worse])
+    selection = select_setting([frozen, eta_worse], objective="s1")
     assert selection["eligible"] == 1
     assert selection["adopt"] is False
     assert selection["selected"] == {"lm_weight": 0.55, "token_bonus": 2.7}
@@ -79,7 +79,7 @@ def test_a_tie_keeps_the_frozen_settings():
     tie = _point(
         0.45, 2.7, macro=0.176, macro_ci=[-0.002, 0.002], s1=_s1(0.199, 0.60, (-0.01, 0.01))
     )
-    selection = select_setting([frozen, tie])
+    selection = select_setting([frozen, tie], objective="s1")
     assert selection["best"] == {"lm_weight": 0.45, "token_bonus": 2.7}
     assert selection["adopt"] is False
     assert selection["selected"] == {"lm_weight": 0.55, "token_bonus": 2.7}
@@ -92,3 +92,28 @@ def test_without_s1_dev_macro_decides():
     assert selection["objective"] == "dev-macro WER"
     assert selection["adopt"] is True
     assert selection["selected"] == {"lm_weight": 0.35, "token_bonus": 2.0}
+
+
+def test_macro_objective_ignores_the_s1_ranking():
+    frozen = _point(0.55, 2.7, macro=0.176, frozen=True, s1=_s1(0.20, 0.60, (0, 0)))
+    s1_best = _point(
+        0.25, 1.5, macro=0.180, macro_ci=[-0.002, 0.002], s1=_s1(0.16, 0.65, (-0.05, -0.02))
+    )
+    macro_best = _point(
+        0.35,
+        2.0,
+        macro=0.170,
+        macro_ci=[-0.008, -0.004],
+        s1=_s1(0.21, 0.58, (-0.01, 0.01), eta_ci=(-0.20, -0.10)),
+    )
+    selection = select_setting([frozen, s1_best, macro_best], objective="macro")
+    assert selection["objective"] == "dev-macro WER"
+    assert selection["eligible"] == 3
+    assert selection["best"] == {"lm_weight": 0.35, "token_bonus": 2.0}
+    assert selection["adopt"] is True
+    assert selection["selected"] == {"lm_weight": 0.35, "token_bonus": 2.0}
+
+
+def test_objective_must_be_known():
+    with pytest.raises(ValueError, match="objective"):
+        select_setting([_point(0.55, 2.7, macro=0.176, frozen=True)], objective="product")

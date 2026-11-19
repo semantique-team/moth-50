@@ -37,6 +37,11 @@ This is the gate decoder, not the trainer's greedy metric. Two modes share it:
 Fixed decoder (experiments/E-002-protocol.md): beam 12, top-k 10, lm_weight
 0.55, token_bonus 2.7 and the 0.8.1 A3 LM, resolved and sha256-checked by
 ``tools/release_assets.py`` (``data/raw/moth-0.8.1/lm_bpe3.bin``).
+
+A gate readout always uses the frozen decoder. E-009's S1-dev veto reads the
+selected point **once** with ``--experiment-decoder --lm-weight … --token-bonus …``
+against the frozen MOTH-50 hypotheses on the same model; the output marks that
+readout ``decoder_frozen=false`` and ``gate_eligible=false``.
 """
 
 from __future__ import annotations
@@ -77,6 +82,29 @@ class DecoderSettings:
 
 #: The E-002 protocol decoder; a gate readout never uses anything else.
 FROZEN = DecoderSettings()
+
+
+def resolve_decoder_settings(
+    *,
+    lm_weight: float | None = None,
+    token_bonus: float | None = None,
+    experiment: bool = False,
+) -> DecoderSettings:
+    """The frozen decoder, or an explicit E-009 experiment decoder.
+
+    Beam width and top-k are not overridable: E-009 fixes them. An override needs
+    ``experiment=True`` and both values, so a gate readout cannot change by
+    accident; the caller records ``decoder_frozen=False`` and ``gate_eligible=False``.
+    """
+    if (lm_weight is None) != (token_bonus is None):
+        raise ValueError("pass both lm_weight and token_bonus, or neither")
+    if lm_weight is None:
+        return FROZEN
+    if not experiment:
+        raise ValueError("a non-frozen decoder needs experiment=True")
+    if lm_weight < 0 or token_bonus < 0:
+        raise ValueError("lm_weight and token_bonus must be non-negative")
+    return DecoderSettings(lm_weight=float(lm_weight), token_bonus=float(token_bonus))
 
 
 def macro_wer(per_set: dict[str, float]) -> float:
@@ -310,9 +338,41 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="accept an LM that is not A3 (LM experiments only; the gate is then not comparable)",
     )
+    parser.add_argument(
+        "--experiment-decoder",
+        action="store_true",
+        help="allow --lm-weight/--token-bonus (E-009 veto only; not a gate readout)",
+    )
+    parser.add_argument(
+        "--lm-weight",
+        type=float,
+        default=None,
+        help="E-009 experiment LM weight (needs --experiment-decoder and --token-bonus)",
+    )
+    parser.add_argument(
+        "--token-bonus",
+        type=float,
+        default=None,
+        help="E-009 experiment token bonus (needs --experiment-decoder and --lm-weight)",
+    )
     args = parser.parse_args(argv)
     if bool(args.checkpoint) == bool(args.onnx):
         parser.error("pass exactly one of --checkpoint or --onnx")
+    try:
+        settings = resolve_decoder_settings(
+            lm_weight=args.lm_weight,
+            token_bonus=args.token_bonus,
+            experiment=args.experiment_decoder,
+        )
+    except ValueError as error:
+        parser.error(str(error))
+    decoder_frozen = settings == FROZEN
+    if not decoder_frozen:
+        print(
+            f"warning: E-009 experiment decoder lm_weight={settings.lm_weight} "
+            f"token_bonus={settings.token_bonus}; this is not a frozen gate readout",
+            flush=True,
+        )
     if args.mode == "mixed" and not (args.manifest and args.shards):
         parser.error("--mode mixed needs --manifest and --shards")
     if args.mode == "macro" and (args.manifest or args.shards):
@@ -371,7 +431,7 @@ def main(argv: list[str] | None = None) -> int:
                 max_seconds=config.data.max_seconds,
                 max_clips=config.data.max_clips,
             )
-        return decode_set(clips, pieces, lm, FROZEN, total=len(dataset))
+        return decode_set(clips, pieces, lm, settings, total=len(dataset))
 
     output = {
         "tool": "tools/frozen_readout.py",
@@ -384,7 +444,9 @@ def main(argv: list[str] | None = None) -> int:
         "onnx_sha256": sha256(args.onnx) if args.onnx else None,
         "decoder": {
             "mode": "beam",
-            **dataclasses.asdict(FROZEN),
+            **dataclasses.asdict(settings),
+            "frozen": decoder_frozen,
+            "gate_eligible": lm_info["is_a3"] and decoder_frozen,
             "lm": str(lm_info["path"]),
             "lm_sha256": lm_info["sha256"],
             "lm_label": lm_info["label"],
@@ -428,6 +490,8 @@ def main(argv: list[str] | None = None) -> int:
             paired = _compare(scored, ref_scored, bootstrap=args.bootstrap, seed=0)
             verdict = no_regression_verdict(paired)
             verdict["comparable"] = lm_info["is_a3"]
+            verdict["decoder_frozen"] = decoder_frozen
+            verdict["gate_eligible"] = lm_info["is_a3"] and decoder_frozen
             output |= {
                 "reference": {
                     "hyp": str(args.reference_hyp),
@@ -444,6 +508,8 @@ def main(argv: list[str] | None = None) -> int:
             "wer": _pct(summary["wer"]),
             "wer_ci": [_pct(value) for value in summary["wer_ci"]] if summary["wer_ci"] else None,
             "eta": _pct(summary["eta"]),
+            "decoder_frozen": decoder_frozen,
+            "gate_eligible": lm_info["is_a3"] and decoder_frozen,
             "no_regression": output["no_regression"],
         }
     else:
@@ -489,6 +555,8 @@ def main(argv: list[str] | None = None) -> int:
         )
         verdict = gate_verdict(paired["point"], paired["ci"])
         verdict["comparable"] = lm_info["is_a3"]
+        verdict["decoder_frozen"] = decoder_frozen
+        verdict["gate_eligible"] = lm_info["is_a3"] and decoder_frozen
         output |= {
             "sets": results,
             "macro_wer": ours_macro,

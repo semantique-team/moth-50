@@ -120,35 +120,45 @@ report: build the T and FLEURS mel shards and run `--mode mixed` with the retain
 (`../moth-stt/runs/E-037/readout/paired-1/product/int8/t600.hyp.jsonl`) as the
 reference. Never select or tune on it.
 
-## E-009 — Decoder recalibration
+## E-009 — Decoder recalibration (dev-macro selection, S1-dev veto)
 
 - **Hypothesis:** the best (LM weight, token bonus) for base+6 differs from
   (0.55, 2.7); a stronger acoustic model usually wants a lighter LM.
 - **Grid:** LM weight {0.25, 0.35, 0.45, 0.55, 0.65} × token bonus {1.5, 2.0,
   2.7, 3.5}; beam 12, top-k 10 and the A3 LM fixed. If the selected point lies on
   the edge of the grid, extend the grid once in that direction.
-- **Data:** dev-macro (MLS-IT + LS-EN) and S1-dev. Never T, FLEURS or CS-FLEURS.
-- **Open decision before running:** the rule below selects on S1-dev, which is
-  also the held-out no-regression set; tuning on all of it would make a later
-  S1-dev report optimistic. Amend first to either select on dev-macro and use
-  S1-dev only as a veto, or split S1-dev into calibration/evaluation halves. No
-  E-009 result exists yet, so this is the time to choose.
-- **Selection rule** (implemented in `tools/calibrate_decoder.py`): drop points
-  significantly worse than the frozen point on dev-macro WER or S1-dev ETA
-  (paired 95 % CI); pick the lowest S1-dev WER (ties: higher ETA, lower dev-macro,
-  closer to frozen); adopt it only if its paired S1-dev WER CI against the frozen
-  point excludes zero. Otherwise the frozen settings stay.
+- **Data:** dev-macro (MLS-IT + LS-EN) for ranking. S1-dev is **not** a grid
+  input: it is a one-point veto. Never T, FLEURS or CS-FLEURS.
+- **Selection rule** (amended 2026-11-19, before any grid result; implemented in
+  `tools/calibrate_decoder.py`): drop points significantly worse than the frozen
+  point on dev-macro WER (paired 95 % CI); pick the lowest dev-macro WER (ties:
+  closer to frozen); adopt it only if its paired dev-macro WER CI against the
+  frozen point excludes zero. Otherwise the frozen settings stay.
+- **S1-dev veto:** one full readout of the selected point against the frozen
+  MOTH-50 hypotheses on the same model (`runs/E-005/s1-dev-a3-int8.hyp.jsonl`)
+  with the same A3 LM. If WER or ETA regresses with a CI excluding zero, keep the
+  frozen decoder. The veto is a gate, not a ranking: do **not** decode the full
+  grid on S1-dev.
 - **Adoption:** the selected pair goes into the release `config.json` and into
-  later gate readouts as a dated E-002 amendment; the 0.8.1 reference keeps its
-  own settings. T-600 is then read once with both settings, as a report.
-- **Cost:** one acoustic pass per clip and 20 beam decodes; ~20 min with 8
-  workers on the M5 Pro (the single-setting readout takes ~7 min on CPU).
+  later gate readouts as a dated E-002 amendment; any paired gate that compares
+  models uses the **same** decoder for both systems. The published 0.8.1 number
+  stays a historical reference in its own settings.
+- **Cost:** one acoustic pass and 20 beam decodes on 3,939 dev clips, ~20 min
+  with 8 workers on the M5 Pro; the S1-dev veto is ~1 min.
 
 ```bash
+# 1. rank on dev-macro only (no --s1-dev-*)
 uv run --frozen --project ../moth-stt --extra training -- python tools/calibrate_decoder.py \
   --onnx runs/E-005/release-a3/model.int8.onnx --config training/configs/base6-long.toml \
-  --s1-dev-manifest ../moth-cs-dataset/manifests/R-S1-dev.jsonl \
-  --s1-dev-shards data/shards/s1-dev --workers 8 --out runs/E-009/grid.json
+  --workers 8 --out runs/E-009/grid.json
+# 2. veto the selected point, once, against the frozen MOTH-50 readout
+uv run --frozen --project ../moth-stt --extra training -- python tools/frozen_readout.py \
+  --mode mixed --onnx runs/E-005/release-a3/model.int8.onnx \
+  --manifest ../moth-cs-dataset/manifests/R-S1-dev.jsonl --shards data/shards/s1-dev \
+  --config training/configs/base6-long.toml \
+  --experiment-decoder --lm-weight <selected> --token-bonus <selected> \
+  --reference-hyp runs/E-005/s1-dev-a3-int8.hyp.jsonl \
+  --out runs/E-009/s1-dev-veto.json --hyp-out runs/E-009/s1-dev-veto.hyp.jsonl
 ```
 
 ## E-010 — Encoder-LR screen

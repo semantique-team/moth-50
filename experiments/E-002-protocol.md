@@ -157,8 +157,13 @@ These make the frozen rules executable; they do not move a gate.
    for ETA. A **regression** is a WER difference whose CI lies entirely above
    zero, or an ETA difference whose CI lies entirely below zero. A tie is not a
    regression.
-3. **Decoder recalibration** (E-009) uses dev-macro and S1-dev only, with the
-   rule pre-registered in `experiments/next-experiments.md`; T, FLEURS and
+3. **Decoder recalibration** (E-009), amended 2026-11-19 **before any grid
+   result**: the grid is ranked on **dev-macro only** (MLS-IT + LS-EN). S1-dev is
+   not used for ranking; it is used once as a **veto** on the selected point,
+   against the frozen E-002 decoder on the same MOTH-50 model, with the
+   no-regression rule of point 2. A point that regresses S1-dev WER or ETA outside
+   its CI is not adopted, regardless of its dev-macro gain. T, FLEURS and
    CS-FLEURS are never used. If a new decoder setting is adopted, it applies to
-   later MOTH-50 readouts through a further dated amendment; the 0.8.1 reference
-   keeps its own settings.
+   later MOTH-50 readouts through a further dated amendment; any paired gate that
+   compares models decodes **both** systems with the same decoder. The published
+   0.8.1 number keeps its own settings as a historical reference.

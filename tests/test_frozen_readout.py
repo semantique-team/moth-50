@@ -3,10 +3,12 @@ import dataclasses
 import pytest
 from frozen_readout import (
     FROZEN,
+    DecoderSettings,
     gate_verdict,
     macro_wer,
     no_regression_verdict,
     read_hyps,
+    resolve_decoder_settings,
     write_hyps,
 )
 
@@ -73,3 +75,21 @@ def test_hypotheses_round_trip(tmp_path):
     path = tmp_path / "out" / "hyp.jsonl"
     write_hyps(path, hyps)
     assert read_hyps(path) == hyps
+
+
+def test_default_decoder_is_frozen():
+    assert resolve_decoder_settings() == FROZEN
+
+
+def test_experiment_decoder_needs_an_explicit_opt_in_and_both_values():
+    with pytest.raises(ValueError, match="experiment"):
+        resolve_decoder_settings(lm_weight=0.45, token_bonus=2.0)
+    with pytest.raises(ValueError, match="both"):
+        resolve_decoder_settings(lm_weight=0.45, experiment=True)
+    with pytest.raises(ValueError, match="non-negative"):
+        resolve_decoder_settings(lm_weight=-0.1, token_bonus=2.0, experiment=True)
+
+
+def test_experiment_decoder_keeps_beam_and_top_k():
+    settings = resolve_decoder_settings(lm_weight=0.45, token_bonus=2.0, experiment=True)
+    assert settings == DecoderSettings(beam_width=12, top_k=10, lm_weight=0.45, token_bonus=2.0)

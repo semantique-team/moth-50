@@ -4,16 +4,19 @@ The frozen settings (lm_weight 0.55, token_bonus 2.7) were calibrated by Moth E-
 for the 11.6 M tiny+2 model; a stronger acoustic model usually wants a lighter LM
 and a different length bonus. This tool runs the acoustic model once per clip,
 beam-decodes every grid point from the same log-probs (in worker processes if
-``--workers`` > 1), scores dev-macro (MLS-IT + LS-EN) and, when given, S1-dev,
-and applies the selection rule pre-registered in ``experiments/next-experiments.md``
-(E-009). Beam width, top-k and the A3 LM stay fixed.
+``--workers`` > 1), scores dev-macro (MLS-IT + LS-EN) and applies the amended
+E-009 rule: rank on **dev-macro only**.
+
+S1-dev is **not** a grid input. The selected point gets one veto readout
+(`tools/frozen_readout.py --experiment-decoder --lm-weight … --token-bonus …`)
+against the frozen MOTH-50 hypotheses; a significant WER or ETA regression keeps
+the frozen setting. ``--select-on s1`` is the old path and needs an explicit
+``--allow-s1-selection``. Beam width, top-k and the A3 LM stay fixed.
 
     uv run --frozen --project ../moth-stt --extra training -- \
       python tools/calibrate_decoder.py \
-      --onnx runs/E-005/release/model.int8.onnx \
+      --onnx runs/E-005/release-a3/model.int8.onnx \
       --config training/configs/base6-long.toml \
-      --s1-dev-manifest ../moth-cs-dataset/manifests/R-S1-dev.jsonl \
-      --s1-dev-shards data/shards/s1-dev \
       --out runs/E-009/grid.json --workers 8
 
 T-600, FLEURS and CS-FLEURS are test sets: never pass them here.
@@ -76,18 +79,24 @@ def _significantly_better(ci: list[float] | None) -> bool:
     return bool(ci is not None and ci[1] < 0)
 
 
-def select_setting(points: list[dict]) -> dict:
+def select_setting(points: list[dict], *, objective: str = "macro") -> dict:
     """The pre-registered E-009 rule.
 
+    ``objective="macro"`` (the amended default) ranks on dev-macro only; S1-dev
+    is a separate one-point veto, never a grid ranking. ``objective="s1"`` is the
+    old path and needs an explicit opt-in at the CLI.
+
     1. Drop points that are significantly worse than the frozen point on dev-macro
-       WER, or on S1-dev ETA (paired 95 % CI excluding zero).
-    2. With S1-dev, pick the lowest S1-dev WER (ties: higher ETA, lower dev-macro,
-       closer to frozen); without it, the lowest dev-macro WER.
+       WER, or (``objective="s1"``) on S1-dev ETA, paired 95 % CI excluding zero.
+    2. With ``objective="s1"``, pick the lowest S1-dev WER (ties: higher ETA, lower
+       dev-macro, closer to frozen); otherwise the lowest dev-macro WER.
     3. Adopt it only if it beats the frozen point on that objective with a paired
        CI excluding zero; otherwise keep the frozen settings (a tie is a tie).
     """
+    if objective not in ("macro", "s1"):
+        raise ValueError(f"objective must be 'macro' or 's1', got {objective!r}")
     frozen = next(point for point in points if point["frozen"])
-    with_s1 = frozen.get("s1") is not None
+    with_s1 = objective == "s1"
 
     def eligible(point: dict) -> bool:
         if point["frozen"]:
@@ -95,11 +104,12 @@ def select_setting(points: list[dict]) -> dict:
         macro = point.get("macro_vs_frozen")
         if macro is not None and _significantly_worse(macro["ci"]):
             return False
-        s1 = point.get("s1")
-        if s1 is not None:
-            eta_ci = s1["vs_frozen"].get("eta_diff_ci")
-            if eta_ci is not None and eta_ci[1] < 0:
-                return False
+        if with_s1:
+            s1 = point.get("s1")
+            if s1 is not None:
+                eta_ci = s1["vs_frozen"].get("eta_diff_ci")
+                if eta_ci is not None and eta_ci[1] < 0:
+                    return False
         return True
 
     def distance(point: dict) -> tuple[float, float]:
@@ -203,6 +213,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--token-bonuses", default=DEFAULT_TOKEN_BONUSES)
     parser.add_argument("--s1-dev-manifest", type=Path)
     parser.add_argument("--s1-dev-shards", type=Path)
+    parser.add_argument(
+        "--select-on",
+        choices=["macro", "s1"],
+        default="macro",
+        help="E-009 objective: macro (amended default) or s1 (old path, explicit opt-in)",
+    )
+    parser.add_argument(
+        "--allow-s1-selection",
+        action="store_true",
+        help="required for --select-on s1 (uses the product dev set for ranking)",
+    )
     parser.add_argument("--no-macro", action="store_true", help="skip MLS-IT + LS-EN dev")
     parser.add_argument("--limit", type=int, default=0, help="first N clips per set")
     parser.add_argument("--workers", type=int, default=1)
@@ -216,8 +237,16 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("pass exactly one of --checkpoint or --onnx")
     if bool(args.s1_dev_manifest) != bool(args.s1_dev_shards):
         parser.error("--s1-dev-manifest and --s1-dev-shards go together")
-    if args.no_macro and not args.s1_dev_manifest:
-        parser.error("--no-macro needs S1-dev")
+    if args.select_on == "s1" and not args.allow_s1_selection:
+        parser.error("--select-on s1 needs --allow-s1-selection (it ranks on S1-dev)")
+    if args.select_on == "s1" and not args.s1_dev_manifest:
+        parser.error("--select-on s1 needs --s1-dev-manifest and --s1-dev-shards")
+    if args.select_on == "macro" and args.s1_dev_manifest:
+        parser.error(
+            "the S1-dev veto is a separate one-point readout; do not pass S1-dev to the grid"
+        )
+    if args.no_macro and args.select_on != "s1":
+        parser.error("--no-macro is only for the --select-on s1 path")
     if args.out.exists():
         raise SystemExit(f"refusing to overwrite {args.out}")
     settings = grid_settings(parse_values(args.lm_weights), parse_values(args.token_bonuses))
@@ -329,10 +358,11 @@ def main(argv: list[str] | None = None) -> int:
             }
         points.append(point)
 
-    selection = select_setting(points)
+    selection = select_setting(points, objective=args.select_on)
     output = {
         "tool": "tools/calibrate_decoder.py",
         "experiment": "E-009",
+        "objective": args.select_on,
         "checkpoint": str(args.checkpoint) if args.checkpoint else None,
         "checkpoint_step": payload.get("global_step"),
         "checkpoint_weights": weights,
