@@ -8,8 +8,12 @@ its CI. The INT8 package is **47.84 MB** (2.16 MB under the ceiling), and the
 browser run transcribed a T-600 clip exactly at **RTFx 22.3** (4 threads, SIMD,
 isolated). The first readout/package used the pre-A3 LM and Moth's NOTICE; the
 erratum and the final A3 numbers are in `runs/E-005/RESULT.md` (D17). The
-post-E-005 plan is `experiments/next-experiments.md`; nothing in it has run.
-Read `STATUS.md` first when resuming.
+post-E-005 plan is `experiments/next-experiments.md`; E-009 has run, the rest has
+not. Read `STATUS.md` first when resuming.
+
+E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
+0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
+0.55 / 2.7 stays. `runs/E-009/RESULT.md`.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as

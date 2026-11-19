@@ -239,7 +239,9 @@ tooling exists; the E-005 addendum ran on 2026-11-19, E-009–E-016 have not:
 - `tools/frozen_readout.py --mode mixed`: S1-dev WER/ETA and the no-regression
   verdict (E-002 §6);
 - `tools/calibrate_decoder.py`: the E-009 decoder grid, ranked on dev-macro only
-  (amended 2026-11-19); S1-dev is a separate one-point veto in the readout;
+  (amended 2026-11-19); S1-dev is a separate one-point veto in the readout.
+  E-009 ran: 0.45 / 2.0 won dev-macro but was rejected by the veto, so the
+  frozen 0.55 / 2.7 stays;
 - `train.ema_decay` (`training/ema.py`), off by default; tools choose weights
   with `--weights`;
 - `training/configs/base6-enc1e-4.toml`: the E-010 encoder-LR arm;

@@ -166,4 +166,6 @@ These make the frozen rules executable; they do not move a gate.
    CS-FLEURS are never used. If a new decoder setting is adopted, it applies to
    later MOTH-50 readouts through a further dated amendment; any paired gate that
    compares models decodes **both** systems with the same decoder. The published
-   0.8.1 number keeps its own settings as a historical reference.
+   0.8.1 number keeps its own settings as a historical reference. First
+   application (2026-11-19): 0.45 / 2.0 won dev-macro but failed the S1-dev veto
+   (+0.58 pp WER, −1.12 pp ETA), so 0.55 / 2.7 stays.

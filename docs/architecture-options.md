@@ -635,8 +635,10 @@ passes both the WER and ETA no-regression rules.
 
 **Where the next gains are, cheapest first:**
 
-1. **Decoder (0 bytes, E-009).** LM weight and token bonus are Moth's settings
-   for a 3.4× smaller acoustic model; recalibrate on dev-macro + S1-dev.
+1. **Decoder (0 bytes, E-009) — measured, frozen stays.** The dev-macro grid
+   preferred 0.45 / 2.0 (−0.28 pp), but the S1-dev veto rejected it (+0.58 pp
+   WER, −1.12 pp ETA); the frozen 0.55 / 2.7 stays. This is the E-028
+   dev/product divergence again.
 2. **Schedule (0 bytes, E-010/E-011).** The encoder LR was never screened (3e-5
    only), the model stopped at 1.19 epochs while still improving, and there is no
    EMA or checkpoint averaging.

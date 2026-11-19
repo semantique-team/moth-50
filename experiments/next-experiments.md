@@ -1,9 +1,9 @@
 # Post-E-005 experiment plan
 
-**Status: proposed 2026-11-19; the E-005 addendum ran on 2026-11-19, the rest
-(E-009–E-016) has not run.** This file pre-registers the experiments that follow
-E-005, with their gates, so they cannot be moved after seeing results. It comes
-from the 2026-11-19 review of the E-005 model and package
+**Status: proposed 2026-11-19; the E-005 addendum and E-009 ran on 2026-11-19,
+the rest (E-010–E-016) has not run.** This file pre-registers the experiments
+that follow E-005, with their gates, so they cannot be moved after seeing
+results. It comes from the 2026-11-19 review of the E-005 model and package
 (`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
 ledger; Moth's own IDs are cited as "Moth E-0NN".
 
@@ -56,7 +56,7 @@ after the session.
 | Order | ID | Question | Needs | Cost | Bytes |
 |---:|---|---|---|---|---:|
 | 1 | E-005 addendum | A3 readout, A3 release, S1-dev no-regression | S1-dev complete | **done 2026-11-19** | +0.27 MB |
-| 2 | E-009 | Decoder recalibration on dev | 1 | ~0.5–2.5 h CPU | 0 |
+| 2 | E-009 | Decoder recalibration on dev | 1 | **done 2026-11-19: frozen stays** | 0 |
 | 3 | E-012 | 16 kHz VAD and lossless LM packing | — | ~1 day engineering + browser | −1.04 / −2.02 MB |
 | 4 | E-010 | Encoder-LR screen | — | ~3 h MPS | 0 |
 | 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | ~17 h MPS per seed | 0 |
@@ -161,6 +161,15 @@ uv run --frozen --project ../moth-stt --extra training -- python tools/frozen_re
   --out runs/E-009/s1-dev-veto.json --hyp-out runs/E-009/s1-dev-veto.hyp.jsonl
 ```
 
+**Result (2026-11-19):** the grid ran on dev-macro (3,939 clips, 18.9 min with
+8 workers). The best point was **0.45 / 2.0**: dev-macro **17.3427 %** vs
+17.6212 %, paired **−0.2786 pp**, CI [−0.3821, −0.1718]. The S1-dev veto
+**failed**: 14.6384 % WER / 74.4141 % ETA vs the frozen MOTH-50 14.0541 /
+75.5371, paired **+0.5844 pp WER** [0.2422, 0.9515] and **−1.1230 pp ETA**
+[−1.8408, −0.4764]. The frozen decoder **0.55 / 2.7 stays**; no package or
+readout changed. Artifacts: `runs/E-009/grid.json`, `s1-dev-veto.json`,
+`runs/E-009/RESULT.md`.
+
 ## E-010 — Encoder-LR screen
 
 - **Hypothesis:** an encoder LR of 3e-5 under-adapts the pretrained Whisper-base
@@ -193,10 +202,11 @@ done
   `train.ema_decay = 0.9998` (horizon ~5,000 steps; `training/ema.py`), eval every
   4,000 steps, dev sets as in E-005. Two seeds (the final recipe needs 2–3,
   E-002 §3). The config is written after E-010 as `training/configs/base6-e011.toml`.
-- **Gate:** frozen beam+A3 readout (with the E-009 settings if adopted, applied
-  to both E-011 and E-005) ≥ 1.0 pp better dev-macro than E-005, paired CI
-  excluding zero; no S1-dev regression against E-005; INT8 cost ≤ 0.2 pp. Report
-  both seeds; a sub-1 pp difference between seeds is noise, not a result.
+- **Gate:** frozen beam+A3 readout (the frozen E-002 decoder, since E-009 kept
+  it, applied to both E-011 and E-005) ≥ 1.0 pp better dev-macro than E-005,
+  paired CI excluding zero; no S1-dev regression against E-005; INT8 cost
+  ≤ 0.2 pp. Report both seeds; a sub-1 pp difference between seeds is noise, not
+  a result.
 - **Cost:** ~17 h per seed at the E-005 throughput (6.73 h per 16,000 steps);
   the EMA copy adds ~0.16 GB.
 
@@ -229,8 +239,9 @@ headroom. After E-012 the room is ~5.2 MB, so the arms at ≤ 50,000,000 B are:
 | C | base+7 | A3, packed | ~48.0 MB |
 | D | base+4 | 12–14 MB LM | only if E-010 makes base+4 competitive |
 
-Recalibrate the decoder per arm with the E-009 procedure on dev; decide on
-S1-dev WER/ETA with dev-macro as a guard; read T once at the end. Arm C needs an
+Recalibrate the decoder per arm on dev-macro with the E-009 procedure and its
+S1-dev veto; decide on S1-dev WER/ETA with dev-macro as a guard; read T once at
+the end. Arm C needs an
 E-011-length run, so run it only if E-011 shows depth still pays (E-003: +4 → +6
 bought 1.2 pp at 4,000 steps; +7 is likely ≤ 0.6 pp). B keeps A3's ×3 term
 weighting only if the unpruned LM is rebuilt with it; otherwise it trades terms

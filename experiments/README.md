@@ -42,9 +42,9 @@ external evidence.
 | E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned, re-scoped as fine-tune arms from E-011 |
 | E-007 | Optional architecture: 25 Hz extra blocks, conv adapters, dropout/EMA, LID auxiliary | split into E-011 (EMA), E-013, E-014, E-015 |
 | E-008 | External evaluation: CS-FLEURS-READ (test-only), FLEURS, per-speaker ranges | planned |
-| E-009 | Decoder recalibration (LM weight × token bonus) on dev-macro + S1-dev | planned; `tools/calibrate_decoder.py` |
+| E-009 | Decoder recalibration (LM weight × token bonus) on dev-macro + S1-dev | **done 2026-11-19**: dev-macro best **0.45 / 2.0** (17.3427 %, −0.2786 pp) **rejected by the S1-dev veto** (+0.5844 pp WER / −1.1230 pp ETA); frozen **0.55 / 2.7** stays; `runs/E-009/RESULT.md` |
 | E-010 | Encoder-LR screen: 1e-4 vs 3e-5 on base+4/base+6 | planned; `training/configs/base6-enc1e-4.toml` |
-| E-011 | ~3 epochs + weight EMA, two seeds | planned; needs E-009, E-010 |
+| E-011 | ~3 epochs + weight EMA, two seeds | planned; needs E-010 (E-009 kept the frozen decoder) |
 | E-012 | Package bytes: 16 kHz-only Silero graph, lossless packed A3 LM | planned; synthetic VAD preflight bit-identical (`runs/probe-2026-11-19/`) |
 | E-013 | Extra blocks before `final_ln` | planned |
 | E-014 | Conformer-style convolution in the extra blocks at equal bytes | planned |

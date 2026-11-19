@@ -18,8 +18,9 @@ running, and the exact next commands. Update it at the end of each session.
   the final A3 numbers above supersede the old ones. The tools pin A3 by sha256
   (`tools/release_assets.py`).
 - **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-016.
-  **Nothing in it has run**; no training starts without an explicit go-ahead.
-- **Tests:** 79 passed in the training env, 69 passed + 2 skipped (the torch
+  **E-009 ran on 2026-11-19 and kept the frozen decoder; E-010–E-016 have not
+  run.** No training starts without an explicit go-ahead.
+- **Tests:** 84 passed in the training env, 74 passed + 2 skipped (the torch
   tests) in a plain venv; `ruff check` and `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
@@ -49,6 +50,7 @@ running, and the exact next commands. Update it at the end of each session.
 | E-005 A3 readout | **gate PASS**: 17.5565 % FP32 / 17.6212 % INT8 vs 23.0170 | `runs/E-005/readout-a3*.json` |
 | E-005 A3 INT8 export | **done**: 47,836,502 B (47.84 MB), 2.16 MB headroom | `runs/E-005/release-a3/`, `export-report-a3.json` |
 | E-005 A3 browser run | **done**: exact transcript, RTFx 22.3 (4 threads, SIMD, isolated) | `runs/E-005/browser-run-a3.json` |
+| E-009 decoder grid | **done, no adoption**: dev-macro 0.45/2.0 17.3427 % (−0.2786 pp), but S1-dev veto +0.5844 pp WER / −1.1230 pp ETA; frozen 0.55/2.7 stays | `runs/E-009/` |
 | **S1-dev no-regression** | **PASS**: 13.9956 % FP32 / 14.0541 % INT8 vs 22.2498; ETA +13.23/+13.43 pp | `runs/E-005/s1-dev-a3-*.json` |
 | Release asset pins (D17) | A3 LM, 0.8.1 graph, Silero graphs pinned and fetched by sha256 | `tools/release_assets.py`, `data/sources.lock.json` |
 | S1-dev readout tool | `frozen_readout.py --mode mixed`: WER/ETA + paired no-regression vs 0.8.1 | `tools/frozen_readout.py`, E-002 §6 |
@@ -58,23 +60,20 @@ running, and the exact next commands. Update it at the end of each session.
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: decide the post-E-005 experiments (no training without go-ahead)
+## Next step: E-010/E-012, no training without go-ahead
 
-The gate is complete; nothing is running. The next items, with their
-pre-registered gates, are in `experiments/next-experiments.md`:
+The gate is complete and **E-009 kept the frozen decoder**: the dev-macro winner
+0.45 / 2.0 (−0.2786 pp) was rejected by the S1-dev veto (+0.5844 pp WER,
+−1.1230 pp ETA), so 0.55 / 2.7 stays (`runs/E-009/RESULT.md`). Nothing is
+running. The remaining items, with their pre-registered gates, are in
+`experiments/next-experiments.md`:
 
-1. **E-009 decoder recalibration** — no training, ~20 min with 8 workers.
-   **Open decision first:** the plan selects the (lm_weight, token_bonus) point
-   on S1-dev, which is also the held-out no-regression set. Before running it,
-   amend either to select on dev-macro with S1-dev only as a veto, or to split
-   S1-dev into calibration/evaluation halves. Do not tune on the full S1-dev and
-   then report it as held out.
-2. **E-010 encoder-LR screen** — 2 arms × 4,000 steps, ~3 h on MPS.
-3. **E-011 long schedule + EMA** — ~17 h per seed, 2 seeds.
-4. **E-012 bytes** — 16 kHz VAD on real audio + browser, and lossless LM packing;
+1. **E-010 encoder-LR screen** — 2 arms × 4,000 steps, ~3 h on MPS.
+2. **E-011 long schedule + EMA** — ~17 h per seed, 2 seeds.
+3. **E-012 bytes** — 16 kHz VAD on real audio + browser, and lossless LM packing;
    no training.
-5. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
-6. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
+4. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
+5. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
    the runtime with the `budget_bytes` change.
 
 Reproduction of the final readouts (assets must be fetched once):
@@ -143,6 +142,9 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   pre-A3 LM (`dcf1d59f…`). The readout, calibration and export tools resolve the
   LM through `tools/release_assets.py` (A3, `3be1177b…`) and refuse anything
   else without `--allow-other-lm`.
+- **E-009 kept the frozen decoder.** The dev-macro grid preferred 0.45 / 2.0
+  (−0.28 pp), but S1-dev regressed (+0.58 pp WER, −1.12 pp ETA), so 0.55 / 2.7
+  stays. Do not adopt a decoder on dev-macro without the S1-dev veto.
 - **The gate readout is `tools/frozen_readout.py`.** It loads `ckpt_best.pt`
   directly, or the INT8 graph with `--onnx`; `--mode mixed` reads one mixed set
   (S1-dev) and `--reference-hyp` adds the paired no-regression verdict. FP32 and
