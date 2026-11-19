@@ -251,15 +251,56 @@ have not:
 
 Status: proposed. Each experiment's gate is in that file.
 
+## D19 — Frontier STT models as teachers, data and ceilings (proposed 2026-11-19)
+
+The top of the Artificial Analysis speech-to-text leaderboard
+(`docs/frontier-stt-2026-11-19.md`) is English-only, 0.6 B to 34 B parameters,
+and mostly LLM-decoder models. None of it fits a ≤ 50 MB browser package, and
+its scores are not comparable with MOTH-50's mixed IT–EN numbers.
+
+Proposed:
+
+- **No architecture change.** Whisper-base + extra blocks + CTC + n-gram LM
+  stays (D8, D11, §11 of `docs/architecture-options.md`). LLM decoders and
+  from-scratch FastConformer/TDT students stay out.
+- **Frontier models enter as teachers, text generators and ceilings:** E-018
+  (teacher bake-off on the gold train set), E-019 (pseudo-label distillation:
+  Granary Italian, VoxPopuli, unscripted S1 sessions), E-020 (LLM-written mixed
+  text for the LM), E-022 (keyterm biasing, conditional), E-008 (ceilings).
+- **Licence rule.** Only permissively licensed models and data feed training
+  (CC-BY, MIT, Apache-2.0, OpenMDW-1.1, CC0); attribution goes into the NOTICE.
+  Commercial APIs are evaluation-only, because their terms generally forbid
+  training competing models on their outputs. Sending S2/S3 audio to a third
+  party needs their consent.
+- **A mixed calibration set** (E-017), separate from the S1-dev gate, must be
+  chosen before any further LM or decoder change: E-009 showed that dev-macro
+  calibrates the LM in the wrong direction for the product.
+- **The owed E-005 product readout (T-600, FLEURS) runs first**: it is the only
+  measurement of MOTH-50 on speakers other than S1 and against Parakeet
+  (10.98 % / 83.60 % on T-600).
+
+Evidence used: the 2026-11-19 leaderboard snapshot; Moth E-017 baselines (T-600
+and T-S3 for Parakeet, Whistle, Whisper-tiny), Moth E-027 (contextual bias
+negative), Moth D31 (unpruned LM ties on the held-out speaker), Moth D42 (S1-only
+term addenda regress S3); the S1-dev error analysis in `runs/E-005/RESULT.md`
+(`tools/eta_breakdown.py`) and the E-009 post-hoc analysis.
+
+Status: proposed. The owner decides E-017 (option A or B) before E-004, E-020
+or E-022 run.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out
-  session is the dev set?
+  session is the dev set? S1-dev is recorded (960 takes); open are the E-017
+  calibration session (option A), the unscripted sessions (E-019 arm B) and the
+  acronym/brand sessions (E-021).
 - TTS mixture weight and voice selection; how much synthetic data survives the
   real-data readout without hurting S2/S3/FLEURS?
 - Does the headroom go to a larger LM, a deeper model, or nothing? With A3 it is
   ~2.16 MB; after E-012 (16 kHz VAD, lossless packed A3) ~5.2 MB. E-004
-  (re-scoped) decides.
+  (re-scoped) decides, calibrated on the E-017 set.
+- Which teacher, if any, is good enough on mixed IT–EN dictation (E-018), and
+  does Granary's YouTube-sourced Italian audio pass a licence review?
 - ~~Should the extra blocks be identity-initialized (review P3), randomly
   initialized as in Moth E-006, or copied from the last Whisper-base block?~~
   Resolved in D16: identity, for every E-003 arm.
