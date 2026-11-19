@@ -5,7 +5,7 @@
 package is **47.57 MB**, and the browser run transcribed a T-600 clip exactly at
 **RTFx 22.7** (4 threads, SIMD, isolated). **Erratum:** that readout and package
 used the pre-A3 LM and Moth's NOTICE; the verdict stands, and the A3 rebuild
-(~47.84 MB) is the E-005 addendum (D17). The S1-dev session is at ~660/960 clips.
+(~47.84 MB) is the E-005 addendum (D17). The S1-dev session is at 801/960 clips.
 The post-E-005 plan is `experiments/next-experiments.md`. Read `STATUS.md` first
 when resuming.
 

@@ -34,8 +34,8 @@ running, and the exact next commands. Update it at the end of each session.
 | E-002 dev reference | 23.0170 % macro (MLS-IT 28.1040, LS-EN 17.9299) | `runs/E-002/dev-reference.json` |
 | Tokenizer pin (D14) | vendored and tested | `data/tokenizer/`, `docs/decisions.md` |
 | S1-dev script | 960 cues, all reviewed: 900 short-form + 60 long (0901–0960) | `../moth-cs-dataset/text-2026-11-dev/` |
-| S1-dev recording | **~660/960 WAV** (300 left on 2026-11-19), ~58 min projected, in progress | `../moth-cs-dataset/audio/R-S1-dev/S1/` |
-| S1-dev pipeline | QC + dev patch + mel/dev-loader dry-run on 300 takes | `tools/s1_dev_qc.py`, `tools/finalize_s1_dev.py` |
+| S1-dev recording | **801/960 WAV** (159 left on 2026-11-19), 37.09 min, ~19 min projected, in progress | `../moth-cs-dataset/audio/R-S1-dev/S1/` |
+| S1-dev pipeline | QC dry-run on 801 takes; manifest/mel/dev-loader dry-run on 300 | `tools/s1_dev_qc.py`, `tools/finalize_s1_dev.py` |
 | Public data | downloaded, verified, shards built | `data/raw/`, `data/shards/` |
 | Trainer port | base+6, pretrained init, identity heads, checkpointing, resume | `training/`, `docs/decisions.md` D16 |
 | E-003 preflight | **ready: true**, train guard ok | `runs/E-003/preflight.json` |
@@ -121,7 +121,7 @@ python tools/release_assets.py fetch
 | Spliced IT+EN | 20,623 | 109.90 | `data/shards/spliced_it_en` |
 | Gold v1.0.0 train | 1,413 | 0.96 | `data/shards/gold-train` |
 | MUSAN noise set | 480 | 1.33 | `data/raw/noise`, `data/manifests/noise.jsonl` |
-| S1-dev | ~660/960 | ~0.5 / ~0.97 | `../moth-cs-dataset/audio/R-S1-dev/S1` |
+| S1-dev | 801/960 | 0.62 / ~0.94 | `../moth-cs-dataset/audio/R-S1-dev/S1` |
 
 The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 `27e1ef0e…`, 10,542,669,746 B). It was extracted to `data/raw/cv_it_27`.
@@ -142,9 +142,12 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   (`R-S1-DEV-0901`–`0960`, 24–38 words, ~8–17 s) were appended and reviewed to
   cover the 8–20 s dictation mix. The projection is ~58 min, inside the 30–60
   min protocol; if it lands over 60, skip a few `control_en` cues.
-- S1-dev levels match the S1 corpus: peak −19.0 dBFS mean vs −19.0 on
-  `audio/R-S1/S1`, 0 clipped, drift 0.2 dB over 300 takes. Do not change the
-  input gain mid-session; the feature path has no loudness normalization.
+- S1-dev levels match the S1 corpus: peak −17.9 dBFS mean vs −19.0 on
+  `audio/R-S1/S1`, drift 1.2 dB over 800 takes. Do not change the input gain
+  mid-session; the feature path has no loudness normalization. Two QC warnings:
+  `S1_0563.wav` is 1.49 s (the cue is four words, so likely fine) and
+  `S1_0726.wav` peaks at 0.0 dBFS with ~58 full-scale samples in one run —
+  re-record that take before finalizing.
 - **Every training run needs `model.init`.** `base6.toml` points at
   `data/raw/whisper-base-encoder.pt` (gitignored; rebuild with
   `tools/convert_whisper_encoder.py`). A random-init run is invalid: measured
