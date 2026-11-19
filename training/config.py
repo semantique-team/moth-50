@@ -124,6 +124,8 @@ class TrainConfig:
     empty_cache_every: int = 10
     seed: int = 0
     autocast: str = "bf16"
+    #: Weight EMA decay (``training/ema.py``); 0 disables it, as in E-003/E-005.
+    ema_decay: float = 0.0
 
 
 def override_seed(config: TrainConfig, seed: int) -> TrainConfig:
@@ -266,6 +268,9 @@ def load_config(path: Path | str) -> TrainConfig:
     autocast = train_doc.get("autocast", "bf16")
     if autocast not in ("bf16", "fp16", "off"):
         raise ValueError("train.autocast must be bf16, fp16 or off")
+    ema_decay = _float(train_doc.get("ema_decay", 0.0), "train.ema_decay")
+    if not 0.0 <= ema_decay < 1.0:
+        raise ValueError("train.ema_decay must be 0 (off) or in (0, 1)")
     return TrainConfig(
         path=path,
         model=model,
@@ -282,4 +287,5 @@ def load_config(path: Path | str) -> TrainConfig:
         empty_cache_every=_int(train_doc.get("empty_cache_every", 10), "train.empty_cache_every"),
         seed=_int(train_doc.get("seed", data.seed), "train.seed"),
         autocast=autocast,
+        ema_decay=ema_decay,
     )

@@ -138,10 +138,16 @@ def decoder_assets(config, lm_path: Path):
     return pieces, BinaryBPELM.load(lm_path)
 
 
-def load_model(checkpoint: Path, config, device: str):
-    """Model from the checkpoint's own architecture; returns ``(model, payload)``."""
+def load_model(checkpoint: Path, config, device: str, weights: str = "auto"):
+    """Model from the checkpoint's own architecture; returns ``(model, payload, weights)``.
+
+    ``weights`` picks the raw or the EMA weights (``training/ema.py``); ``auto``
+    takes the EMA weights when the checkpoint has them, since ``ckpt_best`` was
+    selected on them.
+    """
     import torch
 
+    from training.ema import checkpoint_weights
     from training.model import build_model
 
     payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
@@ -149,9 +155,10 @@ def load_model(checkpoint: Path, config, device: str):
         config.model.__class__(**payload["model_config"]), init=None, identity_heads=False
     )
     model = build_model(model_config)
-    model.load_state_dict(payload["model"], strict=True)
+    state, chosen = checkpoint_weights(payload, weights)
+    model.load_state_dict(state, strict=True)
     model.to(device).eval()
-    return model, payload
+    return model, payload, chosen
 
 
 def iter_log_probs(
@@ -287,6 +294,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--shards", type=Path, help="mixed mode: mel shard directory")
     parser.add_argument("--name", default="s1-dev", help="mixed mode: set label")
     parser.add_argument("--device", default="cpu", choices=["cpu", "mps"])
+    parser.add_argument(
+        "--weights",
+        default="auto",
+        choices=["auto", "model", "ema"],
+        help="checkpoint weights: auto = EMA when present (training/ema.py)",
+    )
     parser.add_argument("--bootstrap", type=int, default=1000)
     parser.add_argument("--limit", type=int, default=0, help="smoke: first N clips per set")
     parser.add_argument(
@@ -327,16 +340,17 @@ def main(argv: list[str] | None = None) -> int:
 
         session = ort.InferenceSession(str(args.onnx), providers=["CPUExecutionProvider"])
         payload: dict = {}
+        weights = None
         print(
             f"onnx: {args.onnx} ({args.onnx.stat().st_size / 1e6:.2f} MB), "
             f"tokenizer {len(pieces)} pieces",
             flush=True,
         )
     else:
-        model, payload = load_model(args.checkpoint, config, args.device)
+        model, payload, weights = load_model(args.checkpoint, config, args.device, args.weights)
         print(
             f"model: {sum(p.numel() for p in model.parameters()):,} params, "
-            f"step {payload.get('global_step')}, tokenizer {len(pieces)} pieces",
+            f"step {payload.get('global_step')}, {weights} weights, tokenizer {len(pieces)} pieces",
             flush=True,
         )
 
@@ -365,6 +379,7 @@ def main(argv: list[str] | None = None) -> int:
         "checkpoint": str(args.checkpoint) if args.checkpoint else None,
         "checkpoint_sha256": sha256(args.checkpoint) if args.checkpoint else None,
         "checkpoint_step": payload.get("global_step"),
+        "checkpoint_weights": weights,
         "onnx": str(args.onnx) if args.onnx else None,
         "onnx_sha256": sha256(args.onnx) if args.onnx else None,
         "decoder": {

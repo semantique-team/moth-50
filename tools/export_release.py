@@ -61,6 +61,12 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="package an LM that is not A3 (E-004 LM arms only)",
     )
+    parser.add_argument(
+        "--weights",
+        default="auto",
+        choices=["auto", "model", "ema"],
+        help="checkpoint weights: auto = EMA when present (training/ema.py)",
+    )
     args = parser.parse_args(argv)
 
     if args.out_dir.exists() and any(args.out_dir.iterdir()):
@@ -86,6 +92,7 @@ def main(argv: list[str] | None = None) -> int:
     from stt.vad import ASSET_PATH as VAD_ASSET
 
     from training.config import load_config
+    from training.ema import checkpoint_weights
     from training.model import build_model
 
     config = load_config(args.config)
@@ -94,7 +101,8 @@ def main(argv: list[str] | None = None) -> int:
         config.model.__class__(**payload["model_config"]), init=None, identity_heads=False
     )
     model = build_model(model_config)
-    model.load_state_dict(payload["model"], strict=True)
+    state, weights = checkpoint_weights(payload, args.weights)
+    model.load_state_dict(state, strict=True)
     model = model.cpu().eval()
 
     out = args.out_dir
@@ -156,6 +164,7 @@ def main(argv: list[str] | None = None) -> int:
         "checkpoint": str(args.checkpoint),
         "checkpoint_sha256": sha256(args.checkpoint),
         "checkpoint_step": payload.get("global_step"),
+        "checkpoint_weights": weights,
         "version": args.version,
         "lm": {"sha256": lm_info["sha256"], "label": lm_info["label"], "is_a3": lm_info["is_a3"]},
         "gaps": {"fp32": fp32_gap, "int8": int8_gap},

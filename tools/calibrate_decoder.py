@@ -207,6 +207,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, default=0, help="first N clips per set")
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--device", default="cpu", choices=["cpu", "mps"])
+    parser.add_argument("--weights", default="auto", choices=["auto", "model", "ema"])
     parser.add_argument("--bootstrap", type=int, default=1000)
     parser.add_argument("--lm", type=Path, default=None)
     parser.add_argument("--allow-other-lm", action="store_true")
@@ -238,8 +239,9 @@ def main(argv: list[str] | None = None) -> int:
 
         session = ort.InferenceSession(str(args.onnx), providers=["CPUExecutionProvider"])
         payload: dict = {}
+        weights = None
     else:
-        model, payload = load_model(args.checkpoint, config, args.device)
+        model, payload, weights = load_model(args.checkpoint, config, args.device, args.weights)
 
     sets: dict[str, DataSource] = {}
     if not args.no_macro:
@@ -333,6 +335,7 @@ def main(argv: list[str] | None = None) -> int:
         "experiment": "E-009",
         "checkpoint": str(args.checkpoint) if args.checkpoint else None,
         "checkpoint_step": payload.get("global_step"),
+        "checkpoint_weights": weights,
         "onnx": str(args.onnx) if args.onnx else None,
         "onnx_sha256": sha256(args.onnx) if args.onnx else None,
         "fixed": {"beam_width": FROZEN.beam_width, "top_k": FROZEN.top_k},
