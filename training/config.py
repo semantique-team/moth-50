@@ -34,7 +34,7 @@ Example:
 from __future__ import annotations
 
 import tomllib
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 #: Encoder presets. ``base`` is the MOTH-50 primary; ``tiny`` exists for
@@ -62,6 +62,11 @@ class ModelConfig:
     vocab_size: int = 1024
     checkpointing: bool = True
     overrides: dict[str, int] = field(default_factory=dict)
+    #: Converted Whisper encoder to load before training (``tools/convert_whisper_encoder.py``).
+    init: Path | None = None
+    #: Start the extra blocks as exact identity (review P3) so every E-003 arm
+    #: begins from the same function and depth is the only difference.
+    identity_heads: bool = True
 
     def encoder(self) -> dict[str, int]:
         if self.preset not in ENCODER_PRESETS:
@@ -119,6 +124,11 @@ class TrainConfig:
     empty_cache_every: int = 10
     seed: int = 0
     autocast: str = "bf16"
+
+
+def override_seed(config: TrainConfig, seed: int) -> TrainConfig:
+    """Same recipe, different init/augmentation/batch seed (E-003 second-seed rule)."""
+    return replace(config, seed=seed, data=replace(config.data, seed=seed))
 
 
 def _table(document: dict, name: str, *, optional: bool = False) -> dict:
@@ -205,6 +215,12 @@ def load_config(path: Path | str) -> TrainConfig:
         vocab_size=_int(model_doc.get("vocab_size", 1024), "model.vocab_size", 1),
         checkpointing=_bool(model_doc.get("checkpointing", True), "model.checkpointing"),
         overrides=overrides,
+        init=(
+            _path(parent, model_doc["init"], "model.init")
+            if model_doc.get("init") is not None
+            else None
+        ),
+        identity_heads=_bool(model_doc.get("identity_heads", True), "model.identity_heads"),
     )
 
     data_doc = _table(document, "data")

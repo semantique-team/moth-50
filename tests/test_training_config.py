@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from training.config import load_config
+from training.config import load_config, override_seed
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,6 +17,8 @@ def test_base6_config_is_the_moth50_primary():
     }
     assert config.model.head_blocks == 6
     assert config.model.checkpointing is True
+    assert config.model.init == ROOT / "data" / "raw" / "whisper-base-encoder.pt"
+    assert config.model.identity_heads is True
     assert config.data.max_seconds == 192
     assert config.data.max_clips == 32
     assert len(config.data.train) == 6
@@ -86,3 +88,23 @@ repeat = 0
     )
     with pytest.raises(ValueError, match="repeat"):
         load_config(path)
+
+
+def test_seed_override_moves_every_seed():
+    config = load_config(ROOT / "training" / "configs" / "base6.toml")
+    moved = override_seed(config, 7)
+    assert moved.seed == 7
+    assert moved.data.seed == 7
+    assert moved.model == config.model
+    assert moved.data.train == config.data.train
+
+
+def test_long_config_is_the_e005_schedule():
+    config = load_config(ROOT / "training" / "configs" / "base6-long.toml")
+    assert config.model.head_blocks == 6
+    assert config.model.identity_heads is True
+    assert config.model.init == ROOT / "data" / "raw" / "whisper-base-encoder.pt"
+    assert config.schedule.warmup_steps == 1000
+    assert config.eval_every_steps == 2000
+    assert config.checkpoint_every_steps == 100
+    assert len(config.data.train) == 6

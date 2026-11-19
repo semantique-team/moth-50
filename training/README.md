@@ -24,6 +24,26 @@ uv run --frozen --project ../moth-stt --extra training -- \
   --moth-stt ../moth-stt --out runs/trainer-smoke --device mps
 ```
 
+## Pretrained initialization
+
+E-003 must start from the pretrained Whisper-base encoder: at this data scale a
+random encoder only learns the output prior (measured: 4,000 steps, 99 % dev
+WER). `data/raw` is gitignored, so build the initializer once:
+
+```bash
+cd ../moth-stt
+uv run --frozen --project . -- \
+  python ../moth-50/tools/convert_whisper_encoder.py \
+  --model openai/whisper-base \
+  --out ../moth-50/data/raw/whisper-base-encoder.pt
+```
+
+It reuses Moth's `stt.convert_whisper` name map, checks parity against the HF
+eager encoder (positions matched, gate 1e-3) and records the HF revision and
+state sha256. `base6.toml` sets `model.init` to that file and
+`identity_heads = true`: the extra blocks' `out`/`mlp2` are zeroed, so every
+arm is the same function at step 0.
+
 ## Smoke test (local, 30 clips)
 
 The committed `training/fixtures/` contain 20 train and 10 dev rows from the

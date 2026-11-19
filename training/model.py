@@ -7,6 +7,8 @@ base+6 run is not silently built as Whisper-tiny.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import torch
 import torch.nn.functional as F
 from stt.model import EncoderConfig, MothSTT, _padding_mask
@@ -17,11 +19,50 @@ from training.config import ModelConfig
 
 def build_model(config: ModelConfig) -> MothSTT:
     encoder = EncoderConfig(**config.encoder())
-    return MothSTT(
+    model = MothSTT(
         vocab_size=config.vocab_size,
         encoder_config=encoder,
         head_blocks=config.head_blocks,
     )
+    if config.init is not None:
+        load_encoder_init(model, config.init)
+    if config.identity_heads:
+        identity_heads(model)
+    return model
+
+
+def load_encoder_init(model: MothSTT, path: Path) -> None:
+    """Load a converted Whisper encoder produced by ``tools/convert_whisper_encoder.py``."""
+    path = Path(path)
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"model.init not found: {path}; build it with "
+            "tools/convert_whisper_encoder.py (see training/README.md)"
+        )
+    payload = torch.load(path, map_location="cpu", weights_only=False)
+    saved = payload.get("config") or {}
+    expected = {
+        "width": model.encoder.config.width,
+        "n_layers": model.encoder.config.n_layers,
+        "n_heads": model.encoder.config.n_heads,
+        "ffn_dim": model.encoder.config.ffn_dim,
+    }
+    mismatch = {
+        name: (saved[name], value)
+        for name, value in expected.items()
+        if name in saved and saved[name] != value
+    }
+    if mismatch:
+        raise ValueError(f"model.init {path} was built for a different encoder: {mismatch}")
+    model.encoder.load_state_dict(payload["state_dict"], strict=True)
+
+
+def identity_heads(model: MothSTT) -> None:
+    """Zero ``out``/``mlp2`` of every extra block: each block is an exact identity at step 0."""
+    for block in model.head_blocks:
+        for layer in (block.out, block.mlp2):
+            torch.nn.init.zeros_(layer.weight)
+            torch.nn.init.zeros_(layer.bias)
 
 
 def forward_checkpointed(

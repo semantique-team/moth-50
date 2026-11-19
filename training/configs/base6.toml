@@ -7,6 +7,13 @@ preset = "base"
 head_blocks = 6
 vocab_size = 1024
 checkpointing = true
+# Pretrained Whisper-base encoder (docs/architecture-options.md §5.2). The file
+# lives in gitignored data/raw: build it once with
+# tools/convert_whisper_encoder.py (training/README.md "Pretrained initialization").
+init = "../../data/raw/whisper-base-encoder.pt"
+# Extra blocks start as exact identity (review P3): at step 0 base+0/+2/+4/+6
+# are the same function, so the screen measures depth and nothing else.
+identity_heads = true
 
 [data]
 tokenizer = "../../data/tokenizer/moth_bpe.model"
@@ -82,7 +89,9 @@ epochs = 4
 max_steps = 0
 log_every = 50
 eval_every_steps = 1000
-checkpoint_every_steps = 1000
+# Recovery cadence, not a protocol parameter: ~100 steps is a few minutes, so a
+# thermal/memory stop loses at most that. --resume ckpt_last.pt continues exactly.
+checkpoint_every_steps = 100
 empty_cache_every = 10
 autocast = "bf16"
 seed = 0

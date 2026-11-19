@@ -44,7 +44,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from training.config import TrainConfig, load_config
+from training.config import TrainConfig, load_config, override_seed
 
 
 def _sha256(path: Path) -> str:
@@ -173,6 +173,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--head-blocks", type=int, default=None, help="override model.head_blocks (E-003 arms)"
     )
+    parser.add_argument("--seed", type=int, default=None, help="override train.seed and data.seed")
     parser.add_argument("--dry-run", action="store_true", help="build model/data and exit")
     args = parser.parse_args(argv)
 
@@ -194,6 +195,8 @@ def main(argv: list[str] | None = None) -> int:
     config = load_config(args.config)
     if args.head_blocks is not None:
         config = replace(config, model=replace(config.model, head_blocks=args.head_blocks))
+    if args.seed is not None:
+        config = override_seed(config, args.seed)
     device = torch.device(args.device)
     if device.type == "mps" and not torch.backends.mps.is_available():
         raise SystemExit("MPS is not available")
@@ -222,6 +225,7 @@ def main(argv: list[str] | None = None) -> int:
         "python": platform.python_version(),
         "torch": torch.__version__,
         "device": args.device,
+        "seed": config.seed,
         "params": params,
         "encoder": config.model.encoder(),
         "head_blocks": config.model.head_blocks,
