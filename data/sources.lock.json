@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-17",
+  "updated": "2026-11-19",
   "note": "Pins versions, URLs and checksums for the E-003 mixture. Audio is not vendored. Status 'pinned' means the identifier/checksum is recorded; it does not mean the archive was downloaded or re-verified in this checkout.",
   "sources": [
     {
@@ -105,6 +105,53 @@
       "sha256": "d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd",
       "license": "Apache-2.0 repository; Moth data CC-BY-4.0",
       "status": "vendored and tested"
+    },
+    {
+      "id": "moth-0.8.1-lm-a3",
+      "role": "decoder LM shipped in every MOTH-50 release and used by every gate readout",
+      "version": "Moth 0.8.1 (E-031 A3, terms x3)",
+      "url": "https://huggingface.co/semantique-team/moth-stt",
+      "revision": "1257327e3622f3ac6c5653a32f87b793049c36b7",
+      "file": "lm_bpe3.bin",
+      "bytes": 5381992,
+      "sha256": "3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1",
+      "path": "data/raw/moth-0.8.1/lm_bpe3.bin",
+      "license": "Apache-2.0 (moth-stt release); LM corpus attributions in the Moth NOTICE",
+      "status": "pinned; fetch and verify with tools/release_assets.py. Not the pre-A3 dcf1d59f... LM that E-005 used by mistake"
+    },
+    {
+      "id": "moth-0.8.1-model",
+      "role": "reference acoustic graph for the S1-dev no-regression readout; never shipped by MOTH-50",
+      "version": "Moth 0.8.1 INT8",
+      "url": "https://huggingface.co/semantique-team/moth-stt",
+      "revision": "1257327e3622f3ac6c5653a32f87b793049c36b7",
+      "file": "model.int8.onnx",
+      "bytes": 11910677,
+      "sha256": "7bbfad7e288640538c5c0147f81738bfd63021727b8760b1f3cbbcc4f939764d",
+      "path": "data/raw/moth-0.8.1/model.int8.onnx",
+      "license": "Apache-2.0 (moth-stt release; Whisper-tiny MIT)",
+      "status": "pinned; fetch and verify with tools/release_assets.py"
+    },
+    {
+      "id": "whisper-base",
+      "role": "pretrained encoder initialization (D16)",
+      "version": "openai/whisper-base",
+      "url": "https://huggingface.co/openai/whisper-base",
+      "revision": "e37978b90ca9030d5170a5c07aadb050351a65bb",
+      "license": "MIT (openai/whisper); the HF card metadata says Apache-2.0",
+      "status": "pinned by revision; converted with tools/convert_whisper_encoder.py into data/raw/whisper-base-encoder.pt"
+    },
+    {
+      "id": "silero-vad",
+      "role": "no-speech guard and long-form segmentation shipped in the release",
+      "version": "snakers4/silero-vad commit 'add v6.2 model'",
+      "url": "https://github.com/snakers4/silero-vad",
+      "revision": "bfdc0193023f121ea5b3cc7b176dbed570a68a59",
+      "file": "src/silero_vad/data/silero_vad.onnx",
+      "bytes": 2327524,
+      "sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
+      "license": "MIT",
+      "status": "pinned; byte-identical to the Moth 0.8.1 and E-005 asset. The 16 kHz-only graph silero_vad_16k_op15.onnx (1,289,603 B, sha256 7ed98ddb...) at the same commit is the E-012 candidate"
     }
   ]
 }

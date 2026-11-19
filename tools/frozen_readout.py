@@ -12,8 +12,9 @@ frozen settings and scores WER + a paired macro bootstrap against the retained
       --out runs/E-005/readout.json --device cpu
 
 Fixed decoder (experiments/E-002-protocol.md): beam 12, top-k 10, lm_weight
-0.55, token_bonus 2.7, release/lm_bpe3.bin. The dev sets and the reference
-hypotheses are the same ones behind the 23.0170 % reference.
+0.55, token_bonus 2.7 and the 0.8.1 A3 LM, resolved and sha256-checked by
+``tools/release_assets.py`` (``data/raw/moth-0.8.1/lm_bpe3.bin``). The dev sets
+and the reference hypotheses are the same ones behind the 23.0170 % reference.
 """
 
 from __future__ import annotations
@@ -25,6 +26,8 @@ import json
 import sys
 import time
 from pathlib import Path
+
+from release_assets import resolve_lm
 
 #: Frozen E-002 decoder settings.
 BEAM_WIDTH = 12
@@ -38,7 +41,6 @@ GATE_MARGIN = 0.010
 
 REPO = Path(__file__).resolve().parents[1]
 MOTH_STT = REPO.parent / "moth-stt"
-DEFAULT_LM = MOTH_STT / "release/lm_bpe3.bin"
 DEFAULT_REFERENCE_HYP = MOTH_STT / "runs/E-037/readout/paired-1/dev/int8/dev.hyp.jsonl"
 
 
@@ -66,17 +68,17 @@ def sha256(path: Path) -> str:
         return hashlib.file_digest(handle, "sha256").hexdigest()
 
 
-def decoder_assets(config):
-    """Tokenizer pieces and the A3 LM, shared by the PyTorch and ONNX paths."""
+def decoder_assets(config, lm_path: Path):
+    """Tokenizer pieces and the decoder LM, shared by the PyTorch and ONNX paths."""
     from stt.lm import BinaryBPELM
     from stt.tokenizer import load_tokenizer, vocab_json
 
     tokenizer = load_tokenizer(config.data.tokenizer)
     pieces = {int(key): piece for key, piece in vocab_json(tokenizer).items()}
-    return pieces, BinaryBPELM.load(DEFAULT_LM)
+    return pieces, BinaryBPELM.load(lm_path)
 
 
-def build_decoder(checkpoint: Path, config, device: str):
+def build_decoder(checkpoint: Path, config, device: str, lm_path: Path):
     """Model from the checkpoint's own architecture, plus LM and CTC pieces."""
     import torch
 
@@ -89,7 +91,7 @@ def build_decoder(checkpoint: Path, config, device: str):
     model = build_model(model_config)
     model.load_state_dict(payload["model"], strict=True)
     model.to(device).eval()
-    pieces, lm = decoder_assets(config)
+    pieces, lm = decoder_assets(config, lm_path)
     return model, pieces, lm, payload
 
 
@@ -187,11 +189,22 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--device", default="cpu", choices=["cpu", "mps"])
     parser.add_argument("--bootstrap", type=int, default=1000)
     parser.add_argument("--limit", type=int, default=0, help="smoke: first N clips per set")
+    parser.add_argument(
+        "--lm", type=Path, default=None, help="decoder LM (default: the pinned 0.8.1 A3 LM)"
+    )
+    parser.add_argument(
+        "--allow-other-lm",
+        action="store_true",
+        help="accept an LM that is not A3 (LM experiments only; the gate is then not comparable)",
+    )
     args = parser.parse_args(argv)
     if bool(args.checkpoint) == bool(args.onnx):
         parser.error("pass exactly one of --checkpoint or --onnx")
     if args.out.exists():
         raise SystemExit(f"refusing to overwrite {args.out}")
+    lm_info = resolve_lm(args.lm, allow_other=args.allow_other_lm)
+    if not lm_info["is_a3"]:
+        print(f"warning: decoding with a non-A3 LM ({lm_info['label']})", flush=True)
 
     sys.path.insert(0, str(REPO))
     sys.path.insert(0, str(MOTH_STT))
@@ -206,7 +219,7 @@ def main(argv: list[str] | None = None) -> int:
         import onnxruntime as ort
 
         session = ort.InferenceSession(str(args.onnx), providers=["CPUExecutionProvider"])
-        pieces, lm = decoder_assets(config)
+        pieces, lm = decoder_assets(config, lm_info["path"])
         payload = {}
         print(
             f"onnx: {args.onnx} ({args.onnx.stat().st_size / 1e6:.2f} MB), "
@@ -214,7 +227,9 @@ def main(argv: list[str] | None = None) -> int:
             flush=True,
         )
     else:
-        model, pieces, lm, payload = build_decoder(args.checkpoint, config, args.device)
+        model, pieces, lm, payload = build_decoder(
+            args.checkpoint, config, args.device, lm_info["path"]
+        )
         print(
             f"model: {sum(p.numel() for p in model.parameters()):,} params, "
             f"step {payload.get('global_step')}, tokenizer {len(pieces)} pieces",
@@ -298,8 +313,10 @@ def main(argv: list[str] | None = None) -> int:
             "top_k": TOP_K,
             "lm_weight": LM_WEIGHT,
             "token_bonus": TOKEN_BONUS,
-            "lm": str(DEFAULT_LM),
-            "lm_sha256": sha256(DEFAULT_LM),
+            "lm": str(lm_info["path"]),
+            "lm_sha256": lm_info["sha256"],
+            "lm_label": lm_info["label"],
+            "lm_is_a3": lm_info["is_a3"],
         },
         "sets": results,
         "macro_wer": ours_macro,

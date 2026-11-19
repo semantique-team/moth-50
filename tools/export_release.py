@@ -1,12 +1,14 @@
 """Build the MOTH-50 release folder from an E-005 checkpoint and check the 50 MB budget.
 
 Uses Moth's exact 0.8.1 recipe (fp32 ONNX → dynamic per-channel QInt8) and the
-release layout, then adds the A3 LM and the frozen decode settings. The FP32
+release layout, then adds the 0.8.1 A3 LM (pinned and sha256-checked by
+`tools/release_assets.py`) and the frozen decode settings. The FP32
 export gate in `stt.export` was calibrated on the 4-layer tiny model; a 12-layer
 encoder accumulates ~3e-3 median logit drift, so this tool **does not skip the
 measurement**: it reports the FP32/INT8 logit gaps and the top-1 agreement, and
 the real quality check is the beam+A3 WER on the dev sets.
 
+    python tools/release_assets.py fetch lm
     uv run --frozen --project ../moth-stt --extra export -- \
       python tools/export_release.py \
       --checkpoint runs/E-005/base+6-16k/checkpoints/ckpt_best.pt \
@@ -24,9 +26,10 @@ import shutil
 import sys
 from pathlib import Path
 
+from release_assets import resolve_lm
+
 REPO = Path(__file__).resolve().parents[1]
 MOTH_STT = REPO.parent / "moth-stt"
-LM = MOTH_STT / "release/lm_bpe3.bin"
 
 FILES = (
     "model.int8.onnx",
@@ -49,10 +52,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out-dir", required=True, type=Path)
     parser.add_argument("--version", default="0.9.0-e005")
     parser.add_argument("--budget", type=int, default=50_000_000)
+    parser.add_argument(
+        "--lm", type=Path, default=None, help="decoder LM (default: the pinned 0.8.1 A3 LM)"
+    )
+    parser.add_argument(
+        "--allow-other-lm",
+        action="store_true",
+        help="package an LM that is not A3 (E-004 LM arms only)",
+    )
     args = parser.parse_args(argv)
 
     if args.out_dir.exists() and any(args.out_dir.iterdir()):
         raise SystemExit(f"refusing to write into a non-empty {args.out_dir}")
+    lm_info = resolve_lm(args.lm, allow_other=args.allow_other_lm)
 
     sys.path.insert(0, str(REPO))
     sys.path.insert(0, str(MOTH_STT))
@@ -99,7 +111,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     shutil.copyfile(DEFAULT_FILTERS, out / "mel_filters.bin")
     shutil.copyfile(VAD_ASSET, out / "silero_vad.onnx")
-    shutil.copyfile(LM, out / "lm_bpe3.bin")
+    shutil.copyfile(lm_info["path"], out / "lm_bpe3.bin")
 
     release_config = _config(args.version)
     # The web runtime's release contract checks this name; MOTH-50 is the model
@@ -126,6 +138,7 @@ def main(argv: list[str] | None = None) -> int:
         "checkpoint_sha256": sha256(args.checkpoint),
         "checkpoint_step": payload.get("global_step"),
         "version": args.version,
+        "lm": {"sha256": lm_info["sha256"], "label": lm_info["label"], "is_a3": lm_info["is_a3"]},
         "gaps": {"fp32": fp32_gap, "int8": int8_gap},
         "budget": budget,
         "files": {name: budget["files"][name]["bytes"] for name in sorted(budget["files"])},
