@@ -1,0 +1,263 @@
+{
+  "tool": "tools/probe_vad.py",
+  "graphs": {
+    "reference": {
+      "path": "data/raw/silero-vad/silero_vad.onnx",
+      "bytes": 2327524,
+      "sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3"
+    },
+    "candidate": {
+      "path": "data/raw/silero-vad/silero_vad_16k_op15.onnx",
+      "bytes": 1289603,
+      "sha256": "7ed98ddbad84ccac4cd0aeb3099049280713df825c610a8ed34543318f1b2c49"
+    }
+  },
+  "saved_bytes": 1037921,
+  "audio_seconds": 190.66,
+  "vad_seconds": {
+    "reference": 0.85,
+    "candidate": 1.0
+  },
+  "tolerance": 0.0001,
+  "summary": {
+    "clips": 23,
+    "max_abs": 0.0,
+    "window_flips": 0,
+    "gate_disagreements": [],
+    "segment_disagreements": [],
+    "drop_in": true
+  },
+  "clips": [
+    {
+      "id": "file:en_01.wav",
+      "windows": 88,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:en_02.wav",
+      "windows": 82,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:en_03.wav",
+      "windows": 90,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:en_04.wav",
+      "windows": 83,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_01.wav",
+      "windows": 83,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_02.wav",
+      "windows": 85,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_03.wav",
+      "windows": 96,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_04.wav",
+      "windows": 82,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_05.wav",
+      "windows": 108,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_06.wav",
+      "windows": 104,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_07.wav",
+      "windows": 107,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_08.wav",
+      "windows": 87,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_09.wav",
+      "windows": 75,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_10.wav",
+      "windows": 89,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_11.wav",
+      "windows": 104,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:mix_12.wav",
+      "windows": 137,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:brown_10s.wav",
+      "windows": 313,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": false,
+      "gate_candidate": false,
+      "segments_equal": true
+    },
+    {
+      "id": "file:hum_100hz_10s.wav",
+      "windows": 313,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": false,
+      "gate_candidate": false,
+      "segments_equal": true
+    },
+    {
+      "id": "file:long_12_sentences.wav",
+      "windows": 1452,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:long_12_sentences_noise35.wav",
+      "windows": 1452,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": true,
+      "gate_candidate": true,
+      "segments_equal": true
+    },
+    {
+      "id": "file:silence_10s.wav",
+      "windows": 313,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": false,
+      "gate_candidate": false,
+      "segments_equal": true
+    },
+    {
+      "id": "file:white_-15dB_10s.wav",
+      "windows": 313,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": false,
+      "gate_candidate": false,
+      "segments_equal": true
+    },
+    {
+      "id": "file:white_-30dB_10s.wav",
+      "windows": 313,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "window_flips": 0,
+      "gate_reference": false,
+      "gate_candidate": false,
+      "segments_equal": true
+    }
+  ],
+  "note": "Synthetic audio only: 16 Windows SAPI TTS sentences (it-IT Elsa, en-US Zira; 12 mixed IT-EN, 4 EN), a 46 s concatenation of the 12 mixed sentences with 0.8 s gaps (clean and with -35 dBFS white noise), and five 10 s non-speech clips (digital silence, white noise at -30/-15 dBFS, brown noise, 100 Hz hum). Machine: Windows 11, Intel Core Ultra 7 268V, onnxruntime 1.31.0, Moth stt.vad from moth-stt-dev d5ae605."
+}

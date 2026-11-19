@@ -26,11 +26,18 @@ import shutil
 import sys
 from pathlib import Path
 
-from release_assets import resolve_lm
+from release_assets import SILERO_VAD, SILERO_VAD_16K, resolve_lm, verify
 from release_notice import compose_notice, moth_dataset_lines
 
 REPO = Path(__file__).resolve().parents[1]
 MOTH_STT = REPO.parent / "moth-stt"
+
+#: ``--vad`` choices: the asset and the NOTICE wording. The file is always
+#: shipped as ``silero_vad.onnx`` so the runtime contract does not change.
+VAD_VARIANTS = {
+    "full": (SILERO_VAD, "the 8 kHz + 16 kHz graph shipped by Moth 0.8.1"),
+    "16k": (SILERO_VAD_16K, "the 16 kHz-only graph silero_vad_16k_op15.onnx"),
+}
 
 FILES = (
     "model.int8.onnx",
@@ -67,11 +74,18 @@ def main(argv: list[str] | None = None) -> int:
         choices=["auto", "model", "ema"],
         help="checkpoint weights: auto = EMA when present (training/ema.py)",
     )
+    parser.add_argument(
+        "--vad",
+        default="full",
+        choices=sorted(VAD_VARIANTS),
+        help="Silero graph: full (8+16 kHz, as in 0.8.1) or 16k (E-012 candidate, -1.04 MB)",
+    )
     args = parser.parse_args(argv)
 
     if args.out_dir.exists() and any(args.out_dir.iterdir()):
         raise SystemExit(f"refusing to write into a non-empty {args.out_dir}")
     lm_info = resolve_lm(args.lm, allow_other=args.allow_other_lm)
+    vad_asset, vad_description = VAD_VARIANTS[args.vad]
 
     sys.path.insert(0, str(REPO))
     sys.path.insert(0, str(MOTH_STT))
@@ -127,7 +141,8 @@ def main(argv: list[str] | None = None) -> int:
         encoding="utf-8",
     )
     shutil.copyfile(DEFAULT_FILTERS, out / "mel_filters.bin")
-    shutil.copyfile(VAD_ASSET, out / "silero_vad.onnx")
+    vad_path = verify(vad_asset, VAD_ASSET if args.vad == "full" else None)
+    shutil.copyfile(vad_path, out / "silero_vad.onnx")
     shutil.copyfile(lm_info["path"], out / "lm_bpe3.bin")
 
     release_config = _config(args.version)
@@ -155,7 +170,7 @@ def main(argv: list[str] | None = None) -> int:
         encoder_preset=model_config.preset,
         head_blocks=model_config.head_blocks,
         lm_sha256=lm_info["sha256"],
-        vad_description="the 8 kHz + 16 kHz graph shipped by Moth 0.8.1",
+        vad_description=vad_description,
     )
     (out / "NOTICE").write_text(notice, encoding="utf-8")
 
@@ -167,6 +182,7 @@ def main(argv: list[str] | None = None) -> int:
         "checkpoint_weights": weights,
         "version": args.version,
         "lm": {"sha256": lm_info["sha256"], "label": lm_info["label"], "is_a3": lm_info["is_a3"]},
+        "vad": {"variant": args.vad, "sha256": vad_asset.sha256},
         "gaps": {"fp32": fp32_gap, "int8": int8_gap},
         "budget": budget,
         "files": {name: budget["files"][name]["bytes"] for name in sorted(budget["files"])},
