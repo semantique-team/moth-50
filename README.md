@@ -153,6 +153,8 @@ tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer
 tools/pack_lm.py          lossless A3 → MOTHLMB2 packing with an exact round trip
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
+tools/sample_resources.py  CPU/RAM/MPS sampler for long training runs
+tools/resource_dashboard.py  self-contained SVG dashboard from logs + samples
 vendor/moth-stt/          evaluation code copied from the frozen repo
 LICENSE                   Apache-2.0
 NOTICE                    attribution

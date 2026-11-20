@@ -22,3 +22,6 @@ runs/**/release/
 runs/**/release-*/
 # Derived LM binaries: regenerate with tools/pack_lm.py
 runs/**/*.bin
+# Live resource monitoring and its generated dashboard
+runs/**/resource-samples.jsonl
+runs/**/resource-dashboard.html
