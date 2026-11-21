@@ -42,6 +42,8 @@ uv run --frozen --project ../moth-stt --extra training -- \
   At this rate 40,000 steps is roughly 9–10 h plus dev evaluations; revise
   when the run settles.
 - Resource samples: `runs/E-023/resource-samples.jsonl` (60 s interval).
+- `caffeinate -dimsu -w 48613` (PID 48909) keeps the Mac awake while the
+  trainer lives.
 - Dev evaluations every 4,000 steps; `ckpt_best.pt` follows the greedy dev
   WER with EMA weights.
 

@@ -32,3 +32,4 @@ runs/**/console.log
 runs/**/launcher.pid
 runs/**/sampler.pid
 runs/**/sampler.log
+runs/**/caffeinate.pid
