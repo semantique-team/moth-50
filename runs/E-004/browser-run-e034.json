@@ -1,0 +1,61 @@
+{
+  "tool": "OpenCode in-app browser (browser tools)",
+  "release": "runs/E-004/release-e034",
+  "package_bytes": 49210224,
+  "budget_bytes": 50000000,
+  "remaining_bytes": 789776,
+  "config": {
+    "name": "moth-stt",
+    "version": "0.9.5-e004-lm",
+    "decode": {"beam": 12, "top_k": 10, "lm_weight": 0.55, "token_bonus": 2.7}
+  },
+  "lm": {
+    "format": "MOTHLMB2",
+    "bits": 10,
+    "sha256": "86aa7cbfc744b252b48f9fb6c7affb3eb0b864b30f9b507bf088d4e5386373c4",
+    "bytes": 7793632,
+    "source": "Moth E-034 N2_1_1 (unpruned, term weight x1)",
+    "source_sha256": "ffb5969fe633f43c2e537944d9d3f1408012f201fdf59a41684376ccf76fb581"
+  },
+  "vad": {
+    "variant": "16k",
+    "sha256": "7ed98ddbad84ccac4cd0aeb3099049280713df825c610a8ed34543318f1b2c49",
+    "bytes": 1289603
+  },
+  "browser": {
+    "cross_origin_isolated": true,
+    "threads": 4,
+    "simd": true,
+    "load_ms": 69.5349999666214
+  },
+  "sample": {
+    "audio": "../moth-cs-dataset/audio/T/S1/S1_0001.wav",
+    "reference": "ho spostato il meeting a domani",
+    "seconds": 3.9893125
+  },
+  "transcript": "ho spostato il meeting a domani",
+  "transcript_exact_match": true,
+  "timings_ms": {
+    "vad": 48.15499997138977,
+    "feature": 36.110000014305115,
+    "inference": 152.02499997615814,
+    "decode": 14.289999961853027,
+    "total": 251.60499995946884
+  },
+  "rtfx": 15.85545796245162,
+  "benchmark": {
+    "runs": 5,
+    "total_ms_median": 140.6700000166893,
+    "total_ms_min": 139.99500000476837,
+    "vad_ms_median": 12.504999995231628,
+    "feature_ms_median": 29.75,
+    "inference_ms_median": 87.96999996900558,
+    "decode_ms_median": 9.370000004768372,
+    "rtfx_median": 28.359369442857055,
+    "rtfx_inference": 45.34855634199786,
+    "num_threads": 4,
+    "cross_origin_isolated": true,
+    "simd": true
+  },
+  "runtime_note": "moth-stt web/ at local commit 0e15442 (MOTHLMB2 reader); budget_bytes patch b0fa11c. The 49.21 MB package loads and verifies every hash."
+}

@@ -60,7 +60,7 @@ after the session.
 | 3 | E-012 | 16 kHz VAD and lossless LM packing | — | **done 2026-11-19, both gates pass** | −1.04 / −2.03 MB |
 | 4 | E-010 | Encoder-LR screen | — | **done 2026-11-19: 1e-4 wins both arms** | 0 |
 | 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | **done 2026-11-21: dev pass, S1-dev ETA fail on seed 0** | 0 |
-| 6 | E-004 | Where the freed bytes go | 3, 5 | LM builds + readouts | ≤ 50 MB |
+| 6 | E-004 | Where the freed bytes go | 3, 5 | **done 2026-11-21: arm B (unpruned LM) adopted** | 49.21 MB |
 | 7 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER | a release | ~1 h | 0 |
 | 8 | E-013 | Extra blocks before `final_ln` | — | ~1.6 h MPS | 0 |
 | 9 | E-014 | Conformer-style convolution in the extra blocks | — | ~1.6 h MPS | ≈ 0 |
@@ -286,6 +286,15 @@ authorized without a new pre-registration. Start with B (readout-only) against
 the E-005 control.** B keeps A3's ×3 term weighting only if the unpruned LM is
 rebuilt with it; otherwise it trades terms for perplexity, and S1-dev ETA
 decides.
+- **Result (2026-11-21): arm B adopted.** The unpruned E-034 N2_1_1 LM
+  (12,313,440 B) packs losslessly to **7,793,632 B**; the package is
+  **49,210,224 B** (789,776 B of room), graph byte-identical to E-005. Decoder
+  calibration kept 0.55 / 2.7. Versus A3: dev-macro **16.9863 %** vs 17.6212 %
+  (−0.6349 pp), S1-dev **11.6289 % WER / 79.8340 % ETA** vs 14.0541 / 75.5371
+  (−2.4251 / +4.2969 pp), T-600 **13.4748 / 76.5101** vs 13.9908 / 75.3595.
+  Browser loads the package and transcribes exactly at RTFx 28.36. C and D were
+  not run (E-011 removed their precondition). Artifacts: `runs/E-004/`,
+  `runs/E-004/RESULT.md`.
 
 ## E-016 — Browser runtime checks
 
@@ -331,9 +340,10 @@ screen and ≥ 1.4× faster extra blocks.
 
 ## E-006 — Data arms (re-scoped)
 
-One variable at a time, each as a fine-tune from the E-011 checkpoint against a
-control fine-tune of the same length on the unchanged mixture; judged on S1-dev
-WER/ETA with dev-macro as a guard, S2/S3/FLEURS as diagnostics.
+One variable at a time, each as a fine-tune from the **E-005 acoustic + E-034
+LM product baseline** against a control fine-tune of the same length on the
+unchanged mixture; judged on S1-dev WER/ETA with dev-macro as a guard, S2/S3/
+FLEURS as diagnostics.
 
 1. **VoxPopuli Italian transcribed** (91 h, CC0): the cheapest new real Italian
    speech not yet in the mixture.

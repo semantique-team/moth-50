@@ -1,0 +1,84 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "macro",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-005/release-a3/model.int8.onnx",
+  "onnx_sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "../moth-stt/runs/E-034/build/N2_1_1.bin",
+    "lm_sha256": "ffb5969fe633f43c2e537944d9d3f1408012f201fdf59a41684376ccf76fb581",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7793632,
+      "sha256": "86aa7cbfc744b252b48f9fb6c7affb3eb0b864b30f9b507bf088d4e5386373c4"
+    }
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.22496102160516743,
+      "wer_ci": [
+        0.21835697083221836,
+        0.23207556525188416
+      ],
+      "seconds": 206.0
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.11476571385952154,
+      "wer_ci": [
+        0.11140503930507871,
+        0.11845435626300692
+      ],
+      "seconds": 224.0
+    }
+  },
+  "macro_wer": 0.16986336773234448,
+  "reference": {
+    "macro_wer": 0.17621246760456136,
+    "sets": {
+      "it": 0.2344148291137674,
+      "en": 0.1180101060953553
+    },
+    "hyp_sha256": "80b60da66b68ae47d5079dfee9044230bd600bcf02c92670b52cdde6490342b4",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.006349099872216879,
+    "ci": [
+      -0.007608605560678688,
+      -0.005055633686426808
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 0.6349,
+    "ci_excludes_zero": true,
+    "meets_1pp": false,
+    "pass": false,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  },
+  "elapsed_seconds": 430.0
+}

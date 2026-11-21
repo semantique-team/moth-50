@@ -344,6 +344,35 @@ The next step is E-004 (budget arms) with E-005 as the control, plus a
 pre-registered code-switch/term arm if the ETA loss is to be chased. Artifacts:
 `runs/E-011/RESULT.md`.
 
+## D23 — E-004 arm B: the product LM becomes E-034 N2_1_1 (2026-11-21)
+
+The 5.23 MB freed by E-012 go to **LM coverage**, not more depth. The unpruned
+Moth E-034 N2_1_1 LM (all bigrams/trigrams, term weight ×1) was rebuilt from the
+frozen E-031 corpus and packed losslessly as `MOTHLMB2`: 12,313,440 →
+**7,793,632 B** (sha256 `86aa7cbf…`, 1,015/873 distinct values). The package
+with the unchanged E-005 acoustic graph and the 16 kHz VAD is **49,210,224 B**
+(789,776 B of room); the graph is byte-identical to E-005.
+
+Decoder calibration kept **0.55 / 2.7** (best 0.45/2.0 was 0.06 pp better, not
+significant). Arm B versus the A3 control:
+
+| Set | A3 | E-034 N2_1_1 | Δ |
+|---|---:|---:|---:|
+| Dev macro | 17.6212 % | **16.9863 %** | **−0.6349 pp** (CI excludes 0) |
+| S1-dev | 14.0541 % / 75.5371 % | **11.6289 % / 79.8340 %** | **−2.4251 pp WER / +4.2969 pp ETA** |
+| T-600 | 13.9908 % / 75.3595 % | **13.4748 % / 76.5101 %** | −0.5161 pp / +1.1505 pp |
+
+The S1-dev result is a large product gain and the T-600 read was positive. The
+browser loads the 49.21 MB package in 70 ms, transcribes the exact T clip and
+benchmarks at **RTFx 28.36** (4 threads). **Adopted as the product package,
+version `0.9.5-e004-lm`.** The acoustic checkpoint, decoder 0.55/2.7 and VAD are
+unchanged. The historical A3 package remains for E-002/E-005 reproduction.
+
+E-004 arms C (base+7) and D (base+4 long) were not run: their precondition was
+that E-011 showed depth still pays on the product, and it did not. A ×3
+term-weighted unpruned LM is a possible later arm, not a prerequisite. Artifacts:
+`runs/E-004/RESULT.md`.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

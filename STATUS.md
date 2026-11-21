@@ -1,18 +1,24 @@
-# MOTH-50 — session status and handoff (2026-11-19)
+# MOTH-50 — session status and handoff (2026-11-21)
 
 This is the first file to read when resuming. It records what is done, what is
 running, and the exact next commands. Update it at the end of each session.
 
 - **Remote:** `semantique-team/moth-50`, branch `main`
-- **Model: E-005 is complete and the E-002 gate passes on both halves.**
-  `base+6`, 16,000 steps, pinned A3 LM. Frozen beam+A3 dev-macro **17.5565 %
-  FP32 / 17.6212 % INT8** against the **23.0170 %** reference (paired
-  **−5.4605 / −5.3957 pp**, CIs exclude zero). Held-out S1-dev (960/960 takes,
-  51.30 min): **13.9956 / 14.0541 %** vs **22.2498 %** for 0.8.1, ETA
-  **75.34 / 75.54 %** vs **62.11 %**, no WER or ETA regression outside its CI.
-  INT8 release **47,836,502 B (47.84 MB)**, **2.16 MB under** the 50 MB ceiling,
-  A3 LM + MOTH-50 NOTICE. Browser run exact transcript at **RTFx 22.3**
-  (4 threads, SIMD, isolated). `runs/E-005/RESULT.md`.
+- **Current product (2026-11-21, D23): E-005 acoustic + E-034 N2_1_1 LM.**
+  The unpruned E-034 LM is packed losslessly as MOTHLMB2 (7,793,632 B) and the
+  package is **49,210,224 B** (789,776 B of room). Versus the A3 package:
+  dev-macro **16.9863 %** vs 17.6212 % (−0.6349 pp), S1-dev **11.6289 % WER /
+  79.8340 % ETA** vs **14.0541 % / 75.5371 %**, T-600 **13.4748 % / 76.5101 %**
+  vs 13.9908 / 75.3595. Browser: exact transcript, **RTFx 28.36**. The acoustic
+  graph is byte-identical to E-005. `runs/E-004/RESULT.md`.
+- **E-005 A3 gate (historical):** `base+6`, 16,000 steps, pinned A3 LM. Frozen
+  beam+A3 dev-macro **17.5565 % FP32 / 17.6212 % INT8** against the **23.0170 %**
+  reference (paired **−5.4605 / −5.3957 pp**, CIs exclude zero). Held-out S1-dev
+  (960/960 takes, 51.30 min): **13.9956 / 14.0541 %** vs **22.2498 %** for 0.8.1,
+  ETA **75.34 / 75.54 %** vs **62.11 %**, no WER or ETA regression outside its
+  CI. A3 package **47,836,502 B (47.84 MB)**, **2.16 MB under** the 50 MB
+  ceiling. Browser exact at **RTFx 22.3** (4 threads, SIMD, isolated).
+  `runs/E-005/RESULT.md`.
 - **Erratum (2026-11-19, D17):** the first E-005 readout/package used the
   **pre-A3 LM** (`dcf1d59f…`) and Moth 0.8.1's NOTICE. The verdict stood, and
   the final A3 numbers above supersede the old ones. The tools pin A3 by sha256
@@ -20,15 +26,18 @@ running, and the exact next commands. Update it at the end of each session.
 - **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-016.
   **E-009 kept the frozen decoder; E-012 passed both gates (16 kHz VAD + lossless
   MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21); E-011 won dev-macro but
-  failed the S1-dev ETA rule on seed 0 and was not adopted (D22). E-013–E-016
-  have not run.** No training starts without an explicit go-ahead.
-- **E-012 package:** **44,770,433 B** (5,229,567 B of room) with the 16 kHz VAD
-  and the packed A3 LM; dev-macro and S1-dev hypotheses are byte-identical to
-  the MOTHLMB1 runs. Browser: exact transcript, RTFx 24.63. `runs/E-012/`.
+  failed the S1-dev ETA rule on seed 0 and was not adopted (D22); E-004 arm B
+  moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.** No
+  training starts without an explicit go-ahead.
+- **E-012 package (historical A3):** **44,770,433 B** (5,229,567 B of room) with
+  the 16 kHz VAD and the packed A3 LM; dev-macro and S1-dev hypotheses are
+  byte-identical to the MOTHLMB1 runs. Browser: exact transcript, RTFx 24.63.
+  Superseded by E-004 B (49.21 MB, better product metrics). `runs/E-012/`.
 - **E-011:** two seeds, dev-macro **15.8584 / 15.7945 %** vs E-005 17.5565 %
   (−1.70/−1.76 pp, CIs exclude zero), but S1-dev ETA **73.1445 / 73.9746 %** vs
   75.3418 %; seed 0's **−2.20 pp** CI excludes zero (seed 1 −1.37 pp includes
-  zero). **Not adopted; E-005 remains the product model.** `runs/E-011/RESULT.md`.
+  zero). **Not adopted**; E-005 acoustic remains and the product LM is E-034
+  (D23). `runs/E-011/RESULT.md`.
 - **Tests:** 92 passed in the training env, 81 passed + 3 skipped (torch and
   `stt.lm` parity) in a plain venv; `ruff check` and `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
@@ -73,43 +82,49 @@ running, and the exact next commands. Update it at the end of each session.
 | E-011 config | preflight ready: base+6, 1e-4, 40k steps, EMA 0.9998, 2 seeds | `training/configs/base6-e011.toml` |
 | E-011 training | **done**: seed 0 18.3373 %, seed 1 18.6531 % greedy; 0 non-finite | `runs/E-011/base+6-e011-s0/`, `...-s1/` |
 | E-011 gate | **dev PASS, not adopted**: FP32 15.8584/15.7945 vs 17.5565; S1-dev seed 0 ETA −2.20 pp (CI excludes 0) | `runs/E-011/RESULT.md` |
+| E-004 arm B | **done, adopted**: E-034 N2_1_1 LM packed lossless; S1-dev 11.6289/79.8340 vs 14.0541/75.5371; T-600 13.4748/76.5101 | `runs/E-004/RESULT.md` |
+| E-004 package | **49,210,224 B**, 789,776 B of room; graph byte-identical to E-005; browser RTFx 28.36 | `runs/E-004/export-report-e034.json` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: E-004, no training without go-ahead
+## Next step: E-016 / E-006, no training without go-ahead
 
-**E-011 is complete and not adopted.** The long schedule won dev-macro by
-~1.7 pp on both seeds (FP32 15.8584/15.7945 vs E-005 17.5565), but S1-dev WER is
-a tie and seed 0 loses **2.20 pp ETA** with a CI excluding zero (INT8: −2.49 pp).
-One of two seeds passing is not enough, and choosing the passing seed on S1-dev
-would be tuning. **E-005 remains the product model.** E-010 chose `lr_encoder =
-1e-4` and E-011 ran it; nothing is running now. Remaining items, with their
+**E-004 arm B is adopted.** The product package is E-005 acoustic + E-034
+N2_1_1 packed LM + 16 kHz VAD, **49,210,224 B**: S1-dev **11.6289 % WER /
+79.8340 % ETA** vs 14.0541 / 75.5371 for A3, T-600 13.4748 / 76.5101 vs 13.9908
+/ 75.3595, browser exact at RTFx 28.36. **E-011 is not adopted** (dev win,
+S1-dev ETA veto on seed 0). Nothing is running. Remaining items, with their
 pre-registered gates, are in `experiments/next-experiments.md`:
 
-1. **E-004** — where the freed bytes go, with **E-005 as the control**: A3
-   packed (44.77 MB), unpruned E-034 LM (~48.6/49.2 MB), base+7 (~47.88 MB);
-   base+4 at 1e-4 is a depth candidate. Use dev-macro for ranking and the
-   S1-dev veto, never T/FLEURS.
-2. **Optional E-011 follow-up** — a third seed or a code-switch/term-focused
-   E-006 arm to chase the ETA loss; pre-register it before running and do not
-   tune on S1-dev.
+1. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
+   `moth-stt/web/` at local commits `b0fa11c` + `0e15442`. No training.
+2. **E-006 data arms** — fine-tune from the E-005 acoustic + E-034 LM product
+   baseline; pre-register one variable at a time (gold repetition, code-switch
+   terms, VoxPopuli, splices, new S1 sessions, TTS). The E-011 ETA loss suggests
+   short English terms are the first target.
 3. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
-4. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
-   `moth-stt/web/` at local commits `b0fa11c` + `0e15442`.
+4. **E-004 C/D** — base+7 and base+4-long are **not authorized** after the E-011
+   product veto; a ×3-term unpruned LM would also be a new pre-registration.
 
 Reproduction of the final readouts (assets must be fetched once):
 
+
 ```bash
 python tools/release_assets.py fetch
+# product readout (E-004 arm B: E-005 graph + E-034 N2_1_1 LM)
 uv run --frozen --project ../moth-stt --extra training -- \
   python tools/frozen_readout.py --mode mixed \
-  --onnx runs/E-005/release-a3/model.int8.onnx \
+  --onnx runs/E-004/release-e034/model.int8.onnx \
+  --lm ../moth-stt/runs/E-034/build/N2_1_1.bin --allow-other-lm \
   --manifest ../moth-cs-dataset/manifests/R-S1-dev.jsonl --shards data/shards/s1-dev \
   --config training/configs/base6-long.toml \
-  --reference-hyp runs/E-005/s1-dev-0.8.1.hyp.jsonl \
-  --out runs/E-005/s1-dev-a3-int8-rerun.json
+  --reference-hyp runs/E-005/s1-dev-a3-int8.hyp.jsonl \
+  --out runs/E-004/s1-dev-e034-int8-rerun.json
 ```
+
+The A3 package/readout (`runs/E-005/`) remains the historical E-002 gate
+reference; do not overwrite it.
 
 ## Data inventory
 
@@ -210,6 +225,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-005/RESULT.md` — long fine-tune, A3 readout, S1-dev, package, browser.
 - `runs/E-010/RESULT.md` — encoder-LR screen; base+6 at 1e-4 wins.
 - `runs/E-011/RESULT.md` — long schedule + EMA; dev win, S1-dev ETA fail, not adopted.
+- `runs/E-004/RESULT.md` — arm B: unpruned E-034 LM adopted; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and
   browser runs.

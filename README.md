@@ -1,30 +1,33 @@
 # MOTH-50 — scaffold
 
-**Status (2026-11-19): E-005 complete, E-002 gate passed on both halves.**
-Frozen beam+A3 dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against the
-**23.02 %** 0.8.1 reference; held-out S1-dev (960/960 takes) **14.05 % / 14.00 %**
-vs **22.25 %**, ETA **75.5 / 75.3 %** vs **62.1 %**, with no regression outside
-its CI. E-012 cut the INT8 package to **44.77 MB** (5.23 MB under the ceiling)
-with the 16 kHz VAD and the lossless `MOTHLMB2` LM; the dev and S1-dev
-hypotheses are byte-identical to the 47.84 MB A3 package. The browser run
-transcribed a T-600 clip exactly at **RTFx 24.6** (4 threads, SIMD, isolated).
-The first readout/package used the pre-A3 LM and Moth's NOTICE; the erratum and
-the final numbers are in `runs/E-005/RESULT.md` (D17). The post-E-005 plan is
-`experiments/next-experiments.md`; E-009, E-010, E-011 and E-012 have run, the
-rest has not.
+**Status (2026-11-21): the product is E-005 acoustic + the unpruned E-034 LM.**
+The E-002 A3 gate remains the historical reference: frozen beam+A3 dev-macro
+**17.62 %** (INT8) / **17.56 %** (FP32) against the **23.02 %** 0.8.1 reference;
+held-out S1-dev **14.05 % / 14.00 %** vs **22.25 %**, ETA **75.5 / 75.3 %** vs
+**62.1 %**, no regression. E-012 cut that package to **44.77 MB** with the 16 kHz
+VAD and the lossless packed LM. E-004 arm B then spent the freed bytes on the
+**unpruned E-034 N2_1_1 LM** (packed lossless): S1-dev **11.63 % WER / 79.83 %
+ETA**, T-600 **13.47 % / 76.51 %**, dev-macro **16.99 %**, package
+**49.21 MB** (0.79 MB under the ceiling), browser exact at **RTFx 28.4**
+(4 threads, SIMD, isolated). The acoustic graph is byte-identical to E-005; the
+A3 package and its numbers remain for reproducing the E-002 gate. The first
+E-005 readout used the pre-A3 LM and Moth's NOTICE; the erratum is in
+`runs/E-005/RESULT.md` (D17). The plan is `experiments/next-experiments.md`;
+E-009, E-010, E-011, E-012 and E-004 have run, the rest has not.
 Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
 0.55 / 2.7 stays. `runs/E-009/RESULT.md`. E-012 (2026-11-19) adopted the
 16 kHz-only Silero graph (bit-identical on 2,040 real clips) and the lossless
-packed A3 LM (3,353,840 B, −2.03 MB), with no hypothesis changes;
-`runs/E-012/RESULT.md`. E-010 (2026-11-19) screened the encoder LR:
+packed A3 LM (3,353,840 B, −2.03 MB). E-010 (2026-11-19) screened the encoder LR:
 **1e-4 beat 3e-5** by 1.33 pp on base+4 and 1.07 pp on base+6 (greedy dev
 **32.39 %** at 4,000 steps). E-011 (2026-11-21) ran that recipe long: dev-macro
 **15.86 / 15.79 %** on two seeds vs 17.56 % for E-005, but S1-dev WER was a tie
-and seed 0 lost **2.20 pp ETA** (CI excluding zero), so **E-011 was not adopted;
-E-005 remains the product model**. `runs/E-010/RESULT.md`, `runs/E-011/RESULT.md`.
+and seed 0 lost **2.20 pp ETA** (CI excluding zero), so **E-011 was not adopted**.
+E-004 arm B (2026-11-21) then used the E-012 headroom for LM coverage: the
+unpruned E-034 LM gives **11.63 % / 79.83 %** S1-dev and is the current product
+package. `runs/E-010/RESULT.md`, `runs/E-011/RESULT.md`, `runs/E-004/RESULT.md`.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
@@ -41,9 +44,10 @@ was evaluated and rejected. The model must remain commercially usable.
 ## Decisions (2026-11-17)
 
 - **Architecture**: Whisper-base encoder + 6 extra pre-LN transformer blocks +
-  linear CTC over the 1,024-piece BPE + E-031 LM + Silero VAD. **39.3 M acoustic
-  parameters, 47.74 MB initial package** (measured graph size; now **44.77 MB**
-  with the E-012 16 kHz VAD and packed LM, 5.23 MB under the ceiling).
+  linear CTC over the 1,024-piece BPE + E-031/E-034 LM + Silero VAD. **39.3 M
+  acoustic parameters, 47.74 MB initial package** (measured graph size; the
+  current product package is **49.21 MB** with the E-004 unpruned LM and 16 kHz
+  VAD, 0.79 MB under the ceiling; the A3 package is 44.77 MB).
   Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.94 MB), decided by
   E-004. Memory: E-002 measured 13.37 GB without checkpointing and 3.68 GB with
   per-block checkpointing; checkpointing is the default (D15).

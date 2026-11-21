@@ -177,3 +177,13 @@ These make the frozen rules executable; they do not move a gate.
    `3be1177b…`), while the tools record `lm_format` and the packed sha256. A
    paired gate still decodes both systems with the same encoding (or relies on
    the byte-identical proof).
+5. **E-004 arm B changes the product LM** (amended 2026-11-21, after its
+   pre-registered readout). The shipped decoder LM becomes the **E-034 N2_1_1
+   unpruned LM**, packed lossless as `MOTHLMB2` (7,793,632 B, sha256
+   `86aa7cbf…`), not A3. The A3 reference and its 1 pp gate remain historical and
+   are not recomputed. E-004's own rule was dev-macro as a guard, one S1-dev
+   veto and T read once; arm B passed: dev macro **16.9863 %** vs 17.6212 %
+   (−0.6349 pp), S1-dev **11.6289 % WER / 79.8340 % ETA** vs 14.0541 / 75.5371
+   (no regression), T-600 **13.4748 / 76.5101** vs 13.9908 / 75.3595. Any later
+   paired model comparison decodes **both** systems with the same LM (A3 for
+   historical A3 results, E-034 for the product line).

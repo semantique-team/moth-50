@@ -1,0 +1,39 @@
+{
+  "tool": "tools/pack_lm.py",
+  "source": {
+    "path": "../moth-stt/runs/E-034/build/N2_1_1.bin",
+    "bytes": 12313440,
+    "sha256": "ffb5969fe633f43c2e537944d9d3f1408012f201fdf59a41684376ccf76fb581",
+    "distinct_bigram_values": 1015,
+    "distinct_trigram_values": 873,
+    "bigrams": 265868,
+    "trigrams": 2280427,
+    "contexts": 265001
+  },
+  "packed": {
+    "path": "runs/E-004/lm_e034_n2_mothlmb2.bin",
+    "bytes": 7793632,
+    "sha256": "86aa7cbfc744b252b48f9fb6c7affb3eb0b864b30f9b507bf088d4e5386373c4",
+    "bits": 10,
+    "lossless": true,
+    "saved_bytes": 4519808,
+    "ratio": 0.63294
+  },
+  "verification": {
+    "arrays_equal": [
+      "unigram",
+      "bigram_offsets",
+      "bigram_tokens",
+      "bigram_logq",
+      "trigram_keys",
+      "trigram_offsets",
+      "trigram_tokens",
+      "trigram_logq"
+    ],
+    "header_equal": [
+      "backoff",
+      "log_scale"
+    ],
+    "size_formula_matches": true
+  }
+}
