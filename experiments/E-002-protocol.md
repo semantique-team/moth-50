@@ -234,3 +234,10 @@ These make the frozen rules executable; they do not move a gate.
    diagnostics, then P10 (R1, encoder LR 3e-5) under a new pre-registration.
 
 Artifacts go to `runs/E-011/p6/`.
+
+**Result (2026-11-21, after the readout).** P6 **FAILS**: dev-macro seed mean
+15.3695 % vs 16.9897 (−1.6202 pp [−1.8215, −1.4417], gate a passes); clean
+S1-dev WER −0.5040 pp (CI includes 0) but **ETA −1.7578 pp [−3.1844, −0.1422]**
+on the seed mean (gate b fails). Per the outcome mapping: E-011 + E-034c is not
+adopted; E-005 + E-034c stays; P7 diagnostics, then P10 R1 under E-023.
+`runs/E-011/p6/RESULT.md`.

@@ -303,6 +303,12 @@ Artifacts: `runs/E-010/`, `runs/E-010/RESULT.md`.
   One seed passing is not enough to adopt, and choosing the seed on S1-dev would
   be tuning. **E-005 remains the product model.** Artifacts: `runs/E-011/`,
   `runs/E-011/RESULT.md`.
+- **P6 (2026-11-21): re-read with E-034c, still not adopted.** Under the E-002
+  §7 pre-registration and the seed-mean statistic: dev-macro 15.3695 % vs
+  16.9897 (−1.6202 pp, gate passes), clean S1-dev WER −0.5040 pp (CI includes 0)
+  but **ETA −1.7578 pp [−3.1844, −0.1422]** (gate fails; s0 −2.64, s1 −0.88).
+  The ETA loss is recipe-level, not an A3 artifact. E-005 + E-034c stays; next
+  P7, then P10 R1. `runs/E-011/p6/RESULT.md`.
 
 ## E-012 — Package bytes: 16 kHz VAD and lossless LM packing
 

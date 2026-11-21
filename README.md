@@ -29,7 +29,10 @@ packed A3 LM (3,353,840 B, −2.03 MB). E-010 (2026-11-19) screened the encoder 
 **32.39 %** at 4,000 steps). E-011 (2026-11-21) ran that recipe long: dev-macro
 **15.86 / 15.79 %** on two seeds vs 17.56 % for E-005, but S1-dev WER was a tie
 and seed 0 lost **2.20 pp ETA** (CI excluding zero), so **E-011 was not adopted**.
-E-004 arm B (2026-11-21) then used the E-012 headroom for LM coverage. Its
+P6 re-read it with E-034c (2026-11-21): dev-macro **−1.62 pp** but clean S1-dev
+ETA **−1.76 pp** on the seed mean (CI excludes zero), so the veto holds
+(`runs/E-011/p6/RESULT.md`). E-004 arm B (2026-11-21) then used the E-012
+headroom for LM coverage. Its
 S1-dev number was withdrawn by P2; E-034c is the corrected candidate. E-011's
 S1-dev absolute numbers are inflated by the same leak, but its veto compared
 E-011 and E-005 with the same A3 LM. `runs/E-010/RESULT.md`,
@@ -175,6 +178,7 @@ tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer
 tools/pack_lm.py          lossless A3 → MOTHLMB2 packing with an exact round trip
 tools/eta_breakdown.py    classify English-term misses of a mixed-set readout
+tools/seed_mean.py        seed-mean paired comparison for the E-002 §7 gate
 tools/lm_corpus_overlap.py  evaluation scripts vs the LM corpus (P2)
 tools/clean_lm_corpus.py  drop evaluation sentences from an LM corpus
 tools/build_lm_from_corpus.py  build a MOTHLMB1 LM from a corpus (E-034c, E-020)

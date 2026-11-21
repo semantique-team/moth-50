@@ -344,6 +344,12 @@ The next step is E-004 (budget arms) with E-005 as the control, plus a
 pre-registered code-switch/term arm if the ETA loss is to be chased. Artifacts:
 `runs/E-011/RESULT.md`.
 
+**P6 (2026-11-21).** Re-read with the product LM E-034c under the E-002 §7
+pre-registration: dev-macro seed mean 15.3695 % vs 16.9897 (−1.6202 pp, CI
+excludes zero), but clean S1-dev ETA −1.7578 pp [−3.1844, −0.1422] on the seed
+mean (s0 −2.64, s1 −0.88). **The veto holds; E-011 stays out and E-005 + E-034c
+remains the product.** `runs/E-011/p6/RESULT.md`.
+
 ## D23 — E-004 arm B: the product LM becomes E-034 N2_1_1 (2026-11-21)
 
 The 5.23 MB freed by E-012 go to **LM coverage**, not more depth. The unpruned
@@ -445,8 +451,9 @@ Browser check: load **68.7 ms** with every sha256 verified, transcript exactly
 single run 15.69). Readouts: dev-macro **16.9897 %** (−0.6355 pp vs A3c, CI
 excludes 0), S1-dev **14.9744 % / 73.9258 %** (−0.4381 pp WER / +1.1230 pp ETA
 vs A3c, CIs exclude 0), T-600 **13.7041 / 76.1266** (−0.4870 / +1.0550 vs A3c,
-CIs include 0; declared repeated read). E-034 B remains as history. P6 compares
-E-011 against E-005 + E-034c. Artifacts: `runs/E-004/export-report-e034c.json`,
+CIs include 0; declared repeated read). E-034 B remains as history. P6 compared
+E-011 against E-005 + E-034c and failed on S1-dev ETA (D22 note), so
+**E-005 + E-034c remains the product**. Artifacts: `runs/E-004/export-report-e034c.json`,
 `runs/E-004/browser-run-e034c.json`, `runs/E-004/release-e034c/`.
 
 ## Open questions

@@ -1,0 +1,83 @@
+{
+  "tool": "tools/seed_mean.py",
+  "mode": "macro",
+  "manifests": [
+    {
+      "path": "../moth-stt/data/manifests/mls_it_dev.jsonl",
+      "rows": 1248
+    },
+    {
+      "path": "../moth-stt/data/manifests/ls_en_dev.jsonl",
+      "rows": 2691
+    }
+  ],
+  "rows": 3939,
+  "groups": {
+    "it": 1248,
+    "en": 2691
+  },
+  "control": {
+    "path": "runs/E-004/readout-e034c-int8.hyp.jsonl",
+    "metrics": {
+      "wer": 0.1698974388857347,
+      "eta": null
+    }
+  },
+  "seeds": [
+    {
+      "path": "runs/E-011/p6/s0-dev-macro.hyp.jsonl",
+      "metrics": {
+        "wer": 0.15383941420048322,
+        "eta": null
+      }
+    },
+    {
+      "path": "runs/E-011/p6/s1-dev-macro.hyp.jsonl",
+      "metrics": {
+        "wer": 0.15355074141641412,
+        "eta": null
+      }
+    }
+  ],
+  "seed_mean": {
+    "metrics": {
+      "wer": 0.15369507780844865,
+      "eta": null
+    },
+    "seeds": 2
+  },
+  "comparisons": {
+    "seed_mean": {
+      "wer_diff": -0.016202361077286037,
+      "wer_ci": [
+        -0.01821517907932982,
+        -0.014417185733311189
+      ],
+      "eta_diff": null,
+      "eta_ci": null
+    },
+    "seed_0": {
+      "wer_diff": -0.01605802468525147,
+      "wer_ci": [
+        -0.018281653909935885,
+        -0.014123177319669944
+      ],
+      "eta_diff": null,
+      "eta_ci": null
+    },
+    "seed_1": {
+      "wer_diff": -0.016346697469320576,
+      "wer_ci": [
+        -0.018835641926985475,
+        -0.014264692422397862
+      ],
+      "eta_diff": null,
+      "eta_ci": null
+    }
+  },
+  "bootstrap": {
+    "resamples": 1000,
+    "seed": 0
+  },
+  "convention": "difference = candidate - control; negative WER better, positive ETA better"
+}

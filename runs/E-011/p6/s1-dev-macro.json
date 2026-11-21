@@ -1,0 +1,84 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "macro",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-011/release-s1/model.int8.onnx",
+  "onnx_sha256": "3b36a893adbd48e17dbd36a44ca69252abbff5be41e7c5257d9c9cffd0325fd8",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.2034300987452669,
+      "wer_ci": [
+        0.19678704918438575,
+        0.20989871775682284
+      ],
+      "seconds": 289.6
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.1036713840875613,
+      "wer_ci": [
+        0.1006175684394875,
+        0.10702557101213978
+      ],
+      "seconds": 251.6
+    }
+  },
+  "macro_wer": 0.15355074141641412,
+  "reference": {
+    "macro_wer": 0.1698974388857347,
+    "sets": {
+      "it": 0.22501051797955798,
+      "en": 0.1147843597919114
+    },
+    "hyp_sha256": "f7964648af15451db80cec34da8b67a0bccbeb8be58a668a9504b07f63641e08",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.016346697469320576,
+    "ci": [
+      -0.018489953458255937,
+      -0.014125304380668863
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 1.6347,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  },
+  "elapsed_seconds": 541.2
+}

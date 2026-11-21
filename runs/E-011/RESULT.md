@@ -121,3 +121,14 @@ uv run --frozen --project ../moth-stt --extra training -- \
   --reference-hyp runs/E-005/s1-dev-a3-fp32.hyp.jsonl \
   --out runs/E-011/s1-dev-s0.json
 ```
+
+## P6 — re-read with the product LM E-034c (2026-11-21)
+
+`runs/E-011/p6/RESULT.md`. Under D25 and the E-002 §7 pre-registration:
+dev-macro seed mean **15.3695 %** vs 16.9897 (−1.6202 pp [−1.8215, −1.4417],
+gate PASS); clean S1-dev seed mean **14.4704 % / 72.1680 %** vs
+14.9744 / 73.9258, WER −0.5040 (CI includes 0) and **ETA −1.7578 pp
+[−3.1844, −0.1422] (gate FAIL)**. **Not adopted; E-005 + E-034c stays.** The ETA
+loss is recipe-level (`control_en`, `switch`, `single_word`), not an A3 artifact
+and not one bad seed. Next: P7 diagnostics, then P10 R1 (encoder LR 3e-5) under
+E-023.
