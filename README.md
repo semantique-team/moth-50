@@ -8,7 +8,9 @@ memorisation. **E-034c** is the same recipe on the clean corpus: dev-macro
 the A3 recipe rebuilt on the same corpus it is −0.64 pp macro, −0.44 pp WER /
 +1.12 pp ETA on S1-dev and −0.49 / +1.06 on T-600 (the honest gain: ~0.4–0.5 pp
 WER, ~1.1 pp ETA). The package is **49,203,774 B** (796,226 B of room), browser
-exact at **RTFx 29.35** (4 threads, SIMD, isolated, load 68.7 ms). E-034 B is
+exact at **RTFx 29.35** (4 threads, SIMD, isolated, load 68.7 ms). FLEURS
+(unseen-speaker read speech, report-only): **IT 14.82 %** vs 20.16 % for 0.8.1,
+**EN 30.27 %** vs 49.81 %. E-034 B is
 history. The E-002 A3 gate remains the
 historical reference: dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against
 **23.02 %** for 0.8.1; S1-dev **14.05 % / 14.00 %**, ETA **75.5 / 75.3 %**

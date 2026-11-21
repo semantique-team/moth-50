@@ -108,6 +108,7 @@ running, and the exact next commands. Update it at the end of each session.
 | P6 E-011 + E-034c | **FAIL on S1-dev ETA**: dev-macro −1.6202 pp (pass); S1-dev WER −0.5040 (tie), ETA −1.7578 [−3.1844, −0.1422]; s0/eta −2.64, s1 −0.88; not adopted | `runs/E-011/p6/RESULT.md` |
 | P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
 | E-023 R1 pre-registration | **written, not run**: E-011 with encoder LR 3e-5; needs E-017 + go-ahead; R2 only if R1 fails | `experiments/next-experiments.md`, `training/configs/base6-e023-r1.toml` |
+| P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
@@ -127,9 +128,9 @@ Nothing is running.
    cause; the ETA misses are broad short-English substitutions. R1 (encoder LR
    3e-5, config `training/configs/base6-e023-r1.toml`) needs **E-017 first**
    and a go-ahead. R2 (gold ×20) only if R1 fails.
-2. **P3 — FLEURS** IT/EN once with the product LM (report-only, T-600 is
-   already a repeated read). **P4/E-016 — 1-thread RTFx** and vendoring
-   `moth-stt/web/` at `b0fa11c` + `0e15442`.
+2. **P3 is done** (FLEURS-IT 14.8238 %, EN 30.2675 %; both far better than
+   0.8.1, no ETA). **P4/E-016 — 1-thread RTFx** and vendoring `moth-stt/web/`
+   at `b0fa11c` + `0e15442` remain.
 3. **P5/E-017 — calibration set** (owner: option A, a new R-S1-cal session, or
    option B, a seeded 480/480 S1-dev split). New cues must **not** come from
    `text/pool.jsonl`, and future LM corpora must exclude the pool; write the
@@ -275,6 +276,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-011/RESULT.md` — long schedule + EMA; dev win, S1-dev ETA fail, not adopted.
 - `runs/E-011/p6/RESULT.md` — P6 re-read with E-034c: dev pass, S1-dev ETA veto holds.
 - `runs/E-011/p7/RESULT.md` — P7 diagnostics: gold saturation, ETA-miss classes, R1 order.
+- `runs/E-004/fleurs-RESULT.md` — P3 FLEURS-IT/EN product readout vs 0.8.1.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and

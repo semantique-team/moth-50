@@ -160,13 +160,15 @@ MOTH-50 NOTICE; the browser transcript is exact at **RTFx 22.3**. Artifacts:
 WER and ≥ 58 % ETA, FLEURS-IT ≤ 18 %**. It is a report, read **once**, and it is
 never used to select or tune. **T-600 was read in E-004** (A3 13.9908 / 75.3595,
 E-034 13.4748 / 76.5101; `runs/E-004/t600-*.json`), against the retained 0.8.1
-E-037 hypotheses; any further T read is a declared repeated read. FLEURS-IT/EN
-is still owed and is the only measurement of the product package on
-unseen-speaker read speech outside S1.
+E-037 hypotheses; any further T read is a declared repeated read. **FLEURS-IT/EN
+was read on 2026-11-21 with E-034c** (P3, once per language, report-only):
+**IT 14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), **EN 30.2675 %**
+(−19.5401 pp); no ETA. FLEURS-IT meets the original ≤ 18 % expectation.
+`runs/E-004/fleurs-RESULT.md`.
 
-- **Product package:** `runs/E-004/release-e034/` (E-005 graph + E-034 N2_1_1
-  packed LM + 16 kHz VAD). Read both languages once, `--mode mixed`, no
-  reference; report WER and the per-category table.
+- **Product package:** `runs/E-004/release-e034c/` (E-005 graph + E-034c LM +
+  16 kHz VAD). Read both languages once, `--mode mixed`, no reference; report
+  WER and the per-category table.
 - **References:** 0.8.1 FLEURS results and the E-018 winner on the same set, as
   diagnostics only.
 - **Expectations, not gates:** FLEURS-IT ≤ 18 % from the original E-005

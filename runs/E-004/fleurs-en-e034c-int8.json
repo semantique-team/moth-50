@@ -1,0 +1,55 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "mixed",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-004/release-e034c/model.int8.onnx",
+  "onnx_sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "set": {
+    "name": "fleurs-en",
+    "manifest": "../moth-stt/data/manifests/fleurs_en_test.jsonl",
+    "manifest_sha256": "a3a52346835b287afa3cf9bcd16f16ffdbdb504e069498598e228c54d781911f",
+    "shards": "data/shards/fleurs_en_test",
+    "limit": 0
+  },
+  "metrics": {
+    "n": 525,
+    "ref_words": 11438,
+    "wer": 0.3026752928833712,
+    "wer_ci": [
+      0.2890845070422535,
+      0.31600608392234053
+    ],
+    "eta": null,
+    "insertion_rate": 3.698198985836685,
+    "eta_errors": [],
+    "category": null,
+    "speaker": null
+  },
+  "reference": null,
+  "paired": null,
+  "no_regression": null,
+  "elapsed_seconds": 66.3
+}

@@ -428,8 +428,8 @@ Proposed:
   chosen before any further LM or decoder change: E-009 showed that dev-macro
   calibrates the LM in the wrong direction for the product.
 - **The E-005 product readout:** T-600 ran in E-004 (and again for E-034c,
-  declared repeated); FLEURS is still owed and is the only unseen-speaker
-  read-speech measurement left. Parakeet is at 10.98 % / 83.60 % on T-600.
+  declared repeated); FLEURS ran in P3 (IT **14.82 %**, EN **30.27 %**, P3
+  report-only). Parakeet is at 10.98 % / 83.60 % on T-600.
 
 Evidence used: the 2026-11-19 leaderboard snapshot; Moth E-017 baselines (T-600
 and T-S3 for Parakeet, Whistle, Whisper-tiny), Moth E-027 (contextual bias
@@ -455,10 +455,13 @@ Browser check: load **68.7 ms** with every sha256 verified, transcript exactly
 single run 15.69). Readouts: dev-macro **16.9897 %** (−0.6355 pp vs A3c, CI
 excludes 0), S1-dev **14.9744 % / 73.9258 %** (−0.4381 pp WER / +1.1230 pp ETA
 vs A3c, CIs exclude 0), T-600 **13.7041 / 76.1266** (−0.4870 / +1.0550 vs A3c,
-CIs include 0; declared repeated read). E-034 B remains as history. P6 compared
-E-011 against E-005 + E-034c and failed on S1-dev ETA (D22 note), so
-**E-005 + E-034c remains the product**. Artifacts: `runs/E-004/export-report-e034c.json`,
-`runs/E-004/browser-run-e034c.json`, `runs/E-004/release-e034c/`.
+CIs include 0; declared repeated read). FLEURS (P3, report-only, once per
+language): IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %**
+(−19.5401 pp), no ETA. E-034 B remains as history. P6 compared E-011 against
+E-005 + E-034c and failed on S1-dev ETA (D22 note), so **E-005 + E-034c remains
+the product**. Artifacts: `runs/E-004/export-report-e034c.json`,
+`runs/E-004/browser-run-e034c.json`, `runs/E-004/release-e034c/`,
+`runs/E-004/fleurs-RESULT.md`.
 
 ## Open questions
 

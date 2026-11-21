@@ -1,0 +1,55 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "mixed",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "data/raw/moth-0.8.1/model.int8.onnx",
+  "onnx_sha256": "7bbfad7e288640538c5c0147f81738bfd63021727b8760b1f3cbbcc4f939764d",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": true,
+    "lm": "/Users/tancredi/Desktop/semantique/moth-50/data/raw/moth-0.8.1/lm_bpe3.bin",
+    "lm_sha256": "3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1",
+    "lm_label": "a3-0.8.1",
+    "lm_is_a3": true,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 3353840,
+      "sha256": "6b57bb41e2b05df50df08f665444a6126e0eabb64c7cfef05de23cdf07b4d821"
+    }
+  },
+  "set": {
+    "name": "fleurs-en",
+    "manifest": "../moth-stt/data/manifests/fleurs_en_test.jsonl",
+    "manifest_sha256": "a3a52346835b287afa3cf9bcd16f16ffdbdb504e069498598e228c54d781911f",
+    "shards": "data/shards/fleurs_en_test",
+    "limit": 0
+  },
+  "metrics": {
+    "n": 525,
+    "ref_words": 11438,
+    "wer": 0.4980765868158769,
+    "wer_ci": [
+      0.48253968253968255,
+      0.5162876459741856
+    ],
+    "eta": null,
+    "insertion_rate": 4.117852771463543,
+    "eta_errors": [],
+    "category": null,
+    "speaker": null
+  },
+  "reference": null,
+  "paired": null,
+  "no_regression": null,
+  "elapsed_seconds": 45.8
+}
