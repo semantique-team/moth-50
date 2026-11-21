@@ -364,6 +364,17 @@ decides.
   Browser loads the package and transcribes exactly at RTFx 28.36. C and D were
   not run (E-011 removed their precondition). Artifacts: `runs/E-004/`,
   `runs/E-004/RESULT.md`.
+- **Correction (2026-11-21, P2): the S1-dev result is withdrawn.** 900 of the
+  960 S1-dev cues are exact sentences of the E-031 corpus: S1-dev was drawn from
+  `text/pool.jsonl`, and the pool is a corpus `train_script`
+  (`runs/E-004/lm-corpus-overlap.json`). The same N2_1_1 recipe on the corpus
+  minus those 900 sentences (**E-034c**, 185,103 rows) gives dev-macro
+  **16.9897 %**, S1-dev **14.9744 / 73.9258** and T-600 **13.7041 / 76.1266**.
+  Against the A3 recipe rebuilt on the same clean corpus (A3c): −0.6355 pp
+  macro, −0.4381 pp WER / +1.1230 pp ETA on S1-dev (CIs exclude zero), −0.4870
+  / +1.0550 on T-600 (CIs include zero, repeated read). The honest gain is
+  ~0.4–0.5 pp WER / ~1.1 pp ETA, not 2.4 / 4.3. **Decision pending: ship
+  E-034c.** Never draw evaluation cues from a file that feeds the LM corpus.
 - **Follow-up (proposed, not pre-registered):** `docs/review-2026-11-21.md` —
   base+7 no longer fits next to the E-034 LM (~52.3 MB); D only LM-first (a
   larger LM read on base+6 before any base+4 training); check the S1-dev scripts
@@ -451,7 +462,10 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
   mixed cues (~15–20 min) from the same script pipeline, category mix as
   S1-dev, deduplicated against T, A, R-S1, R-S2 and the S1-dev scripts,
   recorded by S1 in a separate session with the E-002 runbook. Costs about an
-  hour of recording and review; S1-dev keeps its full power as the gate.
+  hour of recording and review; S1-dev keeps its full power as the gate. The
+  cues must be new: **not selected from `text/pool.jsonl`**, which is in the
+  E-031 LM corpus (P2), and the new set must be checked with
+  `tools/lm_corpus_overlap.py` before the first readout.
 - **Option B: split S1-dev** into calibration and gate halves (480 / 480,
   stratified by category, fixed by a seeded hash of the cue id before any
   calibration readout). No recording, but the gate's paired CIs widen by about
@@ -543,7 +557,10 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
   normalized word 4-gram with an S1-dev, T or A script; report the drop counts.
 - **Build:** the A3 recipe (Moth E-031/D41: BPE trigram, bigrams and trigrams
   ≥ 2, term sentences ×3) plus the generated text, pruned to A3's size
-  (5,381,992 B) — or to the packed budget once E-012 lands. Control: A3.
+  (5,381,992 B) — or to the packed budget. Control: A3. Before building,
+  subtract every evaluation sentence from the corpus with
+  `tools/clean_lm_corpus.py` (P2: S1-dev was 900/960 in the corpus) and keep
+  `pool.jsonl` out of future corpora.
 - **Calibration:** an E-009-style grid per LM on the E-017 set, then the S1-dev
   veto.
 - **Gate:** on S1-dev, ETA better with the CI excluding zero and no WER

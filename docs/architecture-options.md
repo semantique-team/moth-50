@@ -680,8 +680,10 @@ short:
   problems (`runs/E-005/RESULT.md`, "S1-dev error analysis").
 - **Decoder calibration needs a mixed set that is not the gate** (E-017):
   E-009's dev-macro winner made every S1-dev category worse.
-- **The owed T-600 readout comes first**: Parakeet is at 10.98 % / 83.60 % on
-  T-600, MOTH-50 has not been read there.
+- **The owed T-600 readout ran in E-004**: A3 13.9908 / 75.3595, E-034
+  13.4748 / 76.5101, E-034c 13.7041 / 76.1266 (the last two are declared repeated
+  reads). Parakeet is at 10.98 % / 83.60 % (Moth E-017), still the ceiling to
+  close.
 
 Experiments and gates: `experiments/next-experiments.md` (E-017–E-022, E-008
 addition).

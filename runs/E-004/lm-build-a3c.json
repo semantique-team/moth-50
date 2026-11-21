@@ -1,0 +1,34 @@
+{
+  "tool": "tools/build_lm.py",
+  "name": "A3c_nos1dev",
+  "corpus": {
+    "path": "/private/var/folders/x0/5y3qlknn6ylgcjkh_65vp0tr0000gn/T/opencode/lm-corpus-nos1dev.jsonl",
+    "sha256": "569c8233a390afb41eaa45f0a2c7af488630931d2e1e63f97dfcfe41905188c1",
+    "rows": 185103
+  },
+  "tokenizer": {
+    "path": "/Users/tancredi/Desktop/semantique/moth-50/data/tokenizer/moth_bpe.model",
+    "sha256": "d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd"
+  },
+  "builder": {
+    "module": "runs/E-031/build_lm.py",
+    "min_bigram": 1,
+    "min_trigram": 2,
+    "term_weight": 3,
+    "backoff": 0.4,
+    "term_sentences": 134
+  },
+  "pickle": {
+    "path": "runs/E-004/lm_a3c_n1_2_terms3.pkl.gz",
+    "bytes": 3702964,
+    "sha256": "b9ac9868ca17509f4148fcf44e1b58c5204ea76272bf7c7ee2bf49b71a5f8f4e"
+  },
+  "binary": {
+    "path": "runs/E-004/lm_a3c_n1_2_terms3.bin",
+    "bytes": 5376320,
+    "sha256": "1bf7fc3a92bcdfd54c103be180301be521838efd35dc9eb0c4c29063a9c36900",
+    "bigram_entries": 265713,
+    "trigram_entries": 801428
+  },
+  "seconds": 11.9
+}

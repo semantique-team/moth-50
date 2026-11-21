@@ -1,0 +1,39 @@
+{
+  "tool": "tools/pack_lm.py",
+  "source": {
+    "path": "runs/E-004/lm_e034c_n2.bin",
+    "bytes": 12303348,
+    "sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "distinct_bigram_values": 1018,
+    "distinct_trigram_values": 878,
+    "bigrams": 265713,
+    "trigrams": 2278369,
+    "contexts": 264846
+  },
+  "packed": {
+    "path": "runs/E-004/lm_e034c_n2_mothlmb2.bin",
+    "bytes": 7787184,
+    "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee",
+    "bits": 10,
+    "lossless": true,
+    "saved_bytes": 4516164,
+    "ratio": 0.63293
+  },
+  "verification": {
+    "arrays_equal": [
+      "unigram",
+      "bigram_offsets",
+      "bigram_tokens",
+      "bigram_logq",
+      "trigram_keys",
+      "trigram_offsets",
+      "trigram_tokens",
+      "trigram_logq"
+    ],
+    "header_equal": [
+      "backoff",
+      "log_scale"
+    ],
+    "size_formula_matches": true
+  }
+}

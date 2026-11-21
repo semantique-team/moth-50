@@ -1,0 +1,84 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "macro",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-004/release-e034/model.int8.onnx",
+  "onnx_sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_a3c_n1_2_terms3.bin",
+    "lm_sha256": "1bf7fc3a92bcdfd54c103be180301be521838efd35dc9eb0c4c29063a9c36900",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 3350300,
+      "sha256": "b86d30787904583949db3cae9eada468dbcf832e1ab25077d0335baa1c5cda48"
+    }
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.23451382186254857,
+      "wer_ci": [
+        0.22732287018001304,
+        0.24149515964462584
+      ],
+      "seconds": 248.8
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.11799146016296545,
+      "wer_ci": [
+        0.11452482797098754,
+        0.12182112582150681
+      ],
+      "seconds": 225.3
+    }
+  },
+  "macro_wer": 0.176252641012757,
+  "reference": {
+    "macro_wer": 0.2301698498252397,
+    "sets": {
+      "it": 0.2810404137896899,
+      "en": 0.17929928586078947
+    },
+    "hyp_sha256": "8d31eef0e0c659d67a5691b3161261d920ad0254b4d9e6361031e3737a322fb1",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.053917208812482686,
+    "ci": [
+      -0.056581033349315524,
+      -0.05100629072879845
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 5.3917,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  },
+  "elapsed_seconds": 474.1
+}

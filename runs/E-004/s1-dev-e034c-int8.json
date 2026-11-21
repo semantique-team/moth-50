@@ -1,0 +1,2818 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "mixed",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-004/release-e034/model.int8.onnx",
+  "onnx_sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "set": {
+    "name": "s1-dev",
+    "manifest": "../moth-cs-dataset/manifests/R-S1-dev.jsonl",
+    "manifest_sha256": "289892a83a967e5833549f4e407b30dabc26887fb8b30bb72627884bc1d7cdb8",
+    "shards": "data/shards/s1-dev",
+    "limit": 0
+  },
+  "metrics": {
+    "n": 960,
+    "ref_words": 6845,
+    "wer": 0.14974433893352812,
+    "wer_ci": [
+      0.14054128314328893,
+      0.15946794201165745
+    ],
+    "eta": 0.7392578125,
+    "insertion_rate": 1.9284149013878744,
+    "eta_errors": [
+      {
+        "id": "R-S1-DEV-0001",
+        "term": "free",
+        "got": "fre"
+      },
+      {
+        "id": "R-S1-DEV-0005",
+        "term": "cig",
+        "got": "chi"
+      },
+      {
+        "id": "R-S1-DEV-0006",
+        "term": "mcv",
+        "got": "valoremacv"
+      },
+      {
+        "id": "R-S1-DEV-0007",
+        "term": "aliexpress",
+        "got": "express"
+      },
+      {
+        "id": "R-S1-DEV-0009",
+        "term": "path",
+        "got": "pat"
+      },
+      {
+        "id": "R-S1-DEV-0009",
+        "term": "favourite",
+        "got": "feverage"
+      },
+      {
+        "id": "R-S1-DEV-0017",
+        "term": "wishlistato",
+        "got": "listato"
+      },
+      {
+        "id": "R-S1-DEV-0019",
+        "term": "but",
+        "got": "buty"
+      },
+      {
+        "id": "R-S1-DEV-0019",
+        "term": "it",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-DEV-0020",
+        "term": "l'imu",
+        "got": "la"
+      },
+      {
+        "id": "R-S1-DEV-0022",
+        "term": "years",
+        "got": "hear"
+      },
+      {
+        "id": "R-S1-DEV-0023",
+        "term": "leroy",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0023",
+        "term": "merlin",
+        "got": "romerlan"
+      },
+      {
+        "id": "R-S1-DEV-0026",
+        "term": "uploadato",
+        "got": "uploadto"
+      },
+      {
+        "id": "R-S1-DEV-0030",
+        "term": "skoda",
+        "got": "coda"
+      },
+      {
+        "id": "R-S1-DEV-0038",
+        "term": "mental",
+        "got": "menta"
+      },
+      {
+        "id": "R-S1-DEV-0038",
+        "term": "health",
+        "got": "l'lse"
+      },
+      {
+        "id": "R-S1-DEV-0040",
+        "term": "i",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-DEV-0043",
+        "term": "deezer",
+        "got": "diezer"
+      },
+      {
+        "id": "R-S1-DEV-0045",
+        "term": "marmot",
+        "got": "marmo"
+      },
+      {
+        "id": "R-S1-DEV-0047",
+        "term": "anaconda",
+        "got": "naconda"
+      },
+      {
+        "id": "R-S1-DEV-0048",
+        "term": "planned",
+        "got": "plan"
+      },
+      {
+        "id": "R-S1-DEV-0050",
+        "term": "of",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0050",
+        "term": "date",
+        "got": "ofdate"
+      },
+      {
+        "id": "R-S1-DEV-0051",
+        "term": "deep",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0051",
+        "term": "learning",
+        "got": "deeplarning"
+      },
+      {
+        "id": "R-S1-DEV-0055",
+        "term": "llm",
+        "got": "lam"
+      },
+      {
+        "id": "R-S1-DEV-0057",
+        "term": "ves",
+        "got": "vest"
+      },
+      {
+        "id": "R-S1-DEV-0061",
+        "term": "tea",
+        "got": "thee"
+      },
+      {
+        "id": "R-S1-DEV-0062",
+        "term": "nlp",
+        "got": "nelp"
+      },
+      {
+        "id": "R-S1-DEV-0064",
+        "term": "l'rfid",
+        "got": "refdie"
+      },
+      {
+        "id": "R-S1-DEV-0065",
+        "term": "bosch",
+        "got": "bosche"
+      },
+      {
+        "id": "R-S1-DEV-0066",
+        "term": "warm",
+        "got": "w"
+      },
+      {
+        "id": "R-S1-DEV-0068",
+        "term": "phone",
+        "got": "fon"
+      },
+      {
+        "id": "R-S1-DEV-0071",
+        "term": "harder",
+        "got": "tarer"
+      },
+      {
+        "id": "R-S1-DEV-0072",
+        "term": "trade",
+        "got": "trate"
+      },
+      {
+        "id": "R-S1-DEV-0073",
+        "term": "prefers",
+        "got": "profare"
+      },
+      {
+        "id": "R-S1-DEV-0074",
+        "term": "growth",
+        "got": "grow"
+      },
+      {
+        "id": "R-S1-DEV-0077",
+        "term": "hut",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0079",
+        "term": "empty",
+        "got": "heltyst"
+      },
+      {
+        "id": "R-S1-DEV-0082",
+        "term": "ios",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0083",
+        "term": "mute",
+        "got": "mut"
+      },
+      {
+        "id": "R-S1-DEV-0083",
+        "term": "button",
+        "got": "batton"
+      },
+      {
+        "id": "R-S1-DEV-0085",
+        "term": "taught",
+        "got": "thought"
+      },
+      {
+        "id": "R-S1-DEV-0085",
+        "term": "me",
+        "got": "meet"
+      },
+      {
+        "id": "R-S1-DEV-0088",
+        "term": "rag",
+        "got": "rug"
+      },
+      {
+        "id": "R-S1-DEV-0089",
+        "term": "a",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0089",
+        "term": "while",
+        "got": "ai"
+      },
+      {
+        "id": "R-S1-DEV-0090",
+        "term": "swot",
+        "got": "swat"
+      },
+      {
+        "id": "R-S1-DEV-0092",
+        "term": "safe",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0092",
+        "term": "side",
+        "got": "saside"
+      },
+      {
+        "id": "R-S1-DEV-0096",
+        "term": "wurth",
+        "got": "urt"
+      },
+      {
+        "id": "R-S1-DEV-0097",
+        "term": "sem",
+        "got": "se"
+      },
+      {
+        "id": "R-S1-DEV-0099",
+        "term": "noise",
+        "got": "no"
+      },
+      {
+        "id": "R-S1-DEV-0099",
+        "term": "canceling",
+        "got": "scansing"
+      },
+      {
+        "id": "R-S1-DEV-0100",
+        "term": "fire",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0100",
+        "term": "drill",
+        "got": "fil"
+      },
+      {
+        "id": "R-S1-DEV-0106",
+        "term": "speech",
+        "got": "su"
+      },
+      {
+        "id": "R-S1-DEV-0108",
+        "term": "wan",
+        "got": "one"
+      },
+      {
+        "id": "R-S1-DEV-0113",
+        "term": "casio",
+        "got": "caso"
+      },
+      {
+        "id": "R-S1-DEV-0123",
+        "term": "a",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0125",
+        "term": "soup",
+        "got": "sop"
+      },
+      {
+        "id": "R-S1-DEV-0127",
+        "term": "grindato",
+        "got": "granddato"
+      },
+      {
+        "id": "R-S1-DEV-0128",
+        "term": "playstation",
+        "got": "platation"
+      },
+      {
+        "id": "R-S1-DEV-0132",
+        "term": "crashato",
+        "got": "crescito"
+      },
+      {
+        "id": "R-S1-DEV-0133",
+        "term": "woke",
+        "got": "work"
+      },
+      {
+        "id": "R-S1-DEV-0133",
+        "term": "up",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0133",
+        "term": "early",
+        "got": "perarly"
+      },
+      {
+        "id": "R-S1-DEV-0134",
+        "term": "very",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0134",
+        "term": "easy",
+        "got": "vasy"
+      },
+      {
+        "id": "R-S1-DEV-0138",
+        "term": "obsidian",
+        "got": "subsidian"
+      },
+      {
+        "id": "R-S1-DEV-0139",
+        "term": "worth",
+        "got": "want"
+      },
+      {
+        "id": "R-S1-DEV-0140",
+        "term": "funding",
+        "got": "funning"
+      },
+      {
+        "id": "R-S1-DEV-0141",
+        "term": "reskillato",
+        "got": "rescllato"
+      },
+      {
+        "id": "R-S1-DEV-0142",
+        "term": "tfr",
+        "got": "tf"
+      },
+      {
+        "id": "R-S1-DEV-0143",
+        "term": "guest",
+        "got": "gest"
+      },
+      {
+        "id": "R-S1-DEV-0146",
+        "term": "be",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0146",
+        "term": "honest",
+        "got": "best"
+      },
+      {
+        "id": "R-S1-DEV-0147",
+        "term": "than",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0147",
+        "term": "expected",
+        "got": "unexpected"
+      },
+      {
+        "id": "R-S1-DEV-0150",
+        "term": "l'ebitda",
+        "got": "bizza"
+      },
+      {
+        "id": "R-S1-DEV-0151",
+        "term": "ghostato",
+        "got": "gostato"
+      },
+      {
+        "id": "R-S1-DEV-0155",
+        "term": "camperato",
+        "got": "comperato"
+      },
+      {
+        "id": "R-S1-DEV-0156",
+        "term": "l'mdm",
+        "got": "l'mm"
+      },
+      {
+        "id": "R-S1-DEV-0157",
+        "term": "atx",
+        "got": "x"
+      },
+      {
+        "id": "R-S1-DEV-0160",
+        "term": "quantization",
+        "got": "quantilization"
+      },
+      {
+        "id": "R-S1-DEV-0161",
+        "term": "product",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0161",
+        "term": "owner",
+        "got": "producter"
+      },
+      {
+        "id": "R-S1-DEV-0162",
+        "term": "the",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0162",
+        "term": "lift",
+        "got": "thelif"
+      },
+      {
+        "id": "R-S1-DEV-0163",
+        "term": "laptops",
+        "got": "laptopes"
+      },
+      {
+        "id": "R-S1-DEV-0164",
+        "term": "storage",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0164",
+        "term": "bucket",
+        "got": "storagebucket"
+      },
+      {
+        "id": "R-S1-DEV-0165",
+        "term": "ottimizzato",
+        "got": "abbiamottimizzato"
+      },
+      {
+        "id": "R-S1-DEV-0167",
+        "term": "someone",
+        "got": "one"
+      },
+      {
+        "id": "R-S1-DEV-0167",
+        "term": "hiking",
+        "got": "highking"
+      },
+      {
+        "id": "R-S1-DEV-0168",
+        "term": "long",
+        "got": "lo"
+      },
+      {
+        "id": "R-S1-DEV-0170",
+        "term": "benchmarkato",
+        "got": "benchmark"
+      },
+      {
+        "id": "R-S1-DEV-0172",
+        "term": "stand",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0172",
+        "term": "up",
+        "got": "standup"
+      },
+      {
+        "id": "R-S1-DEV-0180",
+        "term": "boostato",
+        "got": "bustato"
+      },
+      {
+        "id": "R-S1-DEV-0182",
+        "term": "jupyter",
+        "got": "jupier"
+      },
+      {
+        "id": "R-S1-DEV-0185",
+        "term": "rebootato",
+        "got": "rebuttatoto"
+      },
+      {
+        "id": "R-S1-DEV-0187",
+        "term": "gucci",
+        "got": "gocci"
+      },
+      {
+        "id": "R-S1-DEV-0190",
+        "term": "off",
+        "got": "of"
+      },
+      {
+        "id": "R-S1-DEV-0195",
+        "term": "l'arr",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0198",
+        "term": "alarm",
+        "got": "alar"
+      },
+      {
+        "id": "R-S1-DEV-0198",
+        "term": "half",
+        "got": "al"
+      },
+      {
+        "id": "R-S1-DEV-0200",
+        "term": "batch",
+        "got": "badch"
+      },
+      {
+        "id": "R-S1-DEV-0200",
+        "term": "size",
+        "got": "si"
+      },
+      {
+        "id": "R-S1-DEV-0202",
+        "term": "gas",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0202",
+        "term": "station",
+        "got": "gustation"
+      },
+      {
+        "id": "R-S1-DEV-0203",
+        "term": "enel",
+        "got": "diene"
+      },
+      {
+        "id": "R-S1-DEV-0206",
+        "term": "hiring",
+        "got": "iring"
+      },
+      {
+        "id": "R-S1-DEV-0208",
+        "term": "drink",
+        "got": "during"
+      },
+      {
+        "id": "R-S1-DEV-0210",
+        "term": "l'inr",
+        "got": "ner"
+      },
+      {
+        "id": "R-S1-DEV-0212",
+        "term": "on",
+        "got": "un"
+      },
+      {
+        "id": "R-S1-DEV-0213",
+        "term": "hdr",
+        "got": "di"
+      },
+      {
+        "id": "R-S1-DEV-0215",
+        "term": "l'hr",
+        "got": "lar"
+      },
+      {
+        "id": "R-S1-DEV-0216",
+        "term": "keep",
+        "got": "k"
+      },
+      {
+        "id": "R-S1-DEV-0216",
+        "term": "it",
+        "got": "pit"
+      },
+      {
+        "id": "R-S1-DEV-0223",
+        "term": "key",
+        "got": "ke"
+      },
+      {
+        "id": "R-S1-DEV-0223",
+        "term": "word",
+        "got": "worort"
+      },
+      {
+        "id": "R-S1-DEV-0224",
+        "term": "evening",
+        "got": "evenning"
+      },
+      {
+        "id": "R-S1-DEV-0225",
+        "term": "made",
+        "got": "dima"
+      },
+      {
+        "id": "R-S1-DEV-0231",
+        "term": "tripod",
+        "got": "tripad"
+      },
+      {
+        "id": "R-S1-DEV-0232",
+        "term": "easyjet",
+        "got": "eyget"
+      },
+      {
+        "id": "R-S1-DEV-0233",
+        "term": "sold",
+        "got": "sol"
+      },
+      {
+        "id": "R-S1-DEV-0234",
+        "term": "procreate",
+        "got": "procgrate"
+      },
+      {
+        "id": "R-S1-DEV-0235",
+        "term": "makes",
+        "got": "ma"
+      },
+      {
+        "id": "R-S1-DEV-0235",
+        "term": "sense",
+        "got": "sens"
+      },
+      {
+        "id": "R-S1-DEV-0236",
+        "term": "klean",
+        "got": "clan"
+      },
+      {
+        "id": "R-S1-DEV-0236",
+        "term": "kanteen",
+        "got": "cantin"
+      },
+      {
+        "id": "R-S1-DEV-0239",
+        "term": "sauce",
+        "got": "soul"
+      },
+      {
+        "id": "R-S1-DEV-0239",
+        "term": "tastes",
+        "got": "tass"
+      },
+      {
+        "id": "R-S1-DEV-0241",
+        "term": "a",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0244",
+        "term": "privacy",
+        "got": "privac"
+      },
+      {
+        "id": "R-S1-DEV-0244",
+        "term": "setting",
+        "got": "sing"
+      },
+      {
+        "id": "R-S1-DEV-0245",
+        "term": "l'ecg",
+        "got": "cg"
+      },
+      {
+        "id": "R-S1-DEV-0247",
+        "term": "spreaker",
+        "got": "spker"
+      },
+      {
+        "id": "R-S1-DEV-0251",
+        "term": "roblox",
+        "got": "roblo"
+      },
+      {
+        "id": "R-S1-DEV-0254",
+        "term": "editor",
+        "got": "edito"
+      },
+      {
+        "id": "R-S1-DEV-0255",
+        "term": "do",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0255",
+        "term": "in",
+        "got": "doing"
+      },
+      {
+        "id": "R-S1-DEV-0255",
+        "term": "towns",
+        "got": "tooms"
+      },
+      {
+        "id": "R-S1-DEV-0256",
+        "term": "monitor",
+        "got": "monito"
+      },
+      {
+        "id": "R-S1-DEV-0257",
+        "term": "queue",
+        "got": "q"
+      },
+      {
+        "id": "R-S1-DEV-0262",
+        "term": "and",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0262",
+        "term": "cool",
+        "got": "andchool"
+      },
+      {
+        "id": "R-S1-DEV-0266",
+        "term": "dji",
+        "got": "g"
+      },
+      {
+        "id": "R-S1-DEV-0267",
+        "term": "ibs",
+        "got": "id"
+      },
+      {
+        "id": "R-S1-DEV-0268",
+        "term": "dw",
+        "got": "divo"
+      },
+      {
+        "id": "R-S1-DEV-0269",
+        "term": "safety",
+        "got": "safty"
+      },
+      {
+        "id": "R-S1-DEV-0269",
+        "term": "briefing",
+        "got": "breakfing"
+      },
+      {
+        "id": "R-S1-DEV-0272",
+        "term": "scale",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0272",
+        "term": "up",
+        "got": "scaleup"
+      },
+      {
+        "id": "R-S1-DEV-0276",
+        "term": "vodafone",
+        "got": "modaphone"
+      },
+      {
+        "id": "R-S1-DEV-0279",
+        "term": "satisfaction",
+        "got": "satixfaction"
+      },
+      {
+        "id": "R-S1-DEV-0280",
+        "term": "edi",
+        "got": "ed"
+      },
+      {
+        "id": "R-S1-DEV-0281",
+        "term": "feels",
+        "got": "feel"
+      },
+      {
+        "id": "R-S1-DEV-0281",
+        "term": "endless",
+        "got": "sandles"
+      },
+      {
+        "id": "R-S1-DEV-0282",
+        "term": "byod",
+        "got": "build"
+      },
+      {
+        "id": "R-S1-DEV-0285",
+        "term": "tour",
+        "got": "tool"
+      },
+      {
+        "id": "R-S1-DEV-0287",
+        "term": "l'sdk",
+        "got": "dica"
+      },
+      {
+        "id": "R-S1-DEV-0290",
+        "term": "now",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0290",
+        "term": "tv",
+        "got": "nativi"
+      },
+      {
+        "id": "R-S1-DEV-0291",
+        "term": "how",
+        "got": "un"
+      },
+      {
+        "id": "R-S1-DEV-0291",
+        "term": "buttons",
+        "got": "battons"
+      },
+      {
+        "id": "R-S1-DEV-0292",
+        "term": "open",
+        "got": "ilen"
+      },
+      {
+        "id": "R-S1-DEV-0294",
+        "term": "colab",
+        "got": "coub"
+      },
+      {
+        "id": "R-S1-DEV-0295",
+        "term": "arrive",
+        "got": "rive"
+      },
+      {
+        "id": "R-S1-DEV-0296",
+        "term": "ghostato",
+        "got": "gostato"
+      },
+      {
+        "id": "R-S1-DEV-0299",
+        "term": "sdi",
+        "got": "sd"
+      },
+      {
+        "id": "R-S1-DEV-0303",
+        "term": "thread",
+        "got": "tread"
+      },
+      {
+        "id": "R-S1-DEV-0303",
+        "term": "pool",
+        "got": "pull"
+      },
+      {
+        "id": "R-S1-DEV-0304",
+        "term": "law",
+        "got": "low"
+      },
+      {
+        "id": "R-S1-DEV-0307",
+        "term": "personal",
+        "got": "persoal"
+      },
+      {
+        "id": "R-S1-DEV-0309",
+        "term": "shein",
+        "got": "shin"
+      },
+      {
+        "id": "R-S1-DEV-0310",
+        "term": "unicredit",
+        "got": "cred"
+      },
+      {
+        "id": "R-S1-DEV-0311",
+        "term": "phones",
+        "got": "fonds"
+      },
+      {
+        "id": "R-S1-DEV-0313",
+        "term": "weekend",
+        "got": "week"
+      },
+      {
+        "id": "R-S1-DEV-0316",
+        "term": "worth",
+        "got": "wor"
+      },
+      {
+        "id": "R-S1-DEV-0317",
+        "term": "pos",
+        "got": "post"
+      },
+      {
+        "id": "R-S1-DEV-0319",
+        "term": "pattern",
+        "got": "patter"
+      },
+      {
+        "id": "R-S1-DEV-0320",
+        "term": "bar",
+        "got": "b"
+      },
+      {
+        "id": "R-S1-DEV-0321",
+        "term": "dior",
+        "got": "or"
+      },
+      {
+        "id": "R-S1-DEV-0324",
+        "term": "let's",
+        "got": "us"
+      },
+      {
+        "id": "R-S1-DEV-0327",
+        "term": "better",
+        "got": "rappetter"
+      },
+      {
+        "id": "R-S1-DEV-0328",
+        "term": "l'asl",
+        "got": "la"
+      },
+      {
+        "id": "R-S1-DEV-0329",
+        "term": "growth",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0329",
+        "term": "hacking",
+        "got": "king"
+      },
+      {
+        "id": "R-S1-DEV-0335",
+        "term": "two",
+        "got": "you"
+      },
+      {
+        "id": "R-S1-DEV-0336",
+        "term": "wipato",
+        "got": "wapatto"
+      },
+      {
+        "id": "R-S1-DEV-0337",
+        "term": "headphones",
+        "got": "edphons"
+      },
+      {
+        "id": "R-S1-DEV-0342",
+        "term": "already",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0342",
+        "term": "set",
+        "got": "alreadyset"
+      },
+      {
+        "id": "R-S1-DEV-0344",
+        "term": "play",
+        "got": "played"
+      },
+      {
+        "id": "R-S1-DEV-0346",
+        "term": "let's",
+        "got": "le"
+      },
+      {
+        "id": "R-S1-DEV-0347",
+        "term": "memory",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0347",
+        "term": "card",
+        "got": "memoryard"
+      },
+      {
+        "id": "R-S1-DEV-0351",
+        "term": "bootstrapato",
+        "got": "e"
+      },
+      {
+        "id": "R-S1-DEV-0354",
+        "term": "bgp",
+        "got": "bdp"
+      },
+      {
+        "id": "R-S1-DEV-0357",
+        "term": "cli",
+        "got": "cle"
+      },
+      {
+        "id": "R-S1-DEV-0368",
+        "term": "lunch",
+        "got": "launch"
+      },
+      {
+        "id": "R-S1-DEV-0368",
+        "term": "play",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0368",
+        "term": "cards",
+        "got": "plays"
+      },
+      {
+        "id": "R-S1-DEV-0371",
+        "term": "too",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-DEV-0372",
+        "term": "open",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0372",
+        "term": "air",
+        "got": "openi"
+      },
+      {
+        "id": "R-S1-DEV-0373",
+        "term": "l'ad",
+        "got": "de"
+      },
+      {
+        "id": "R-S1-DEV-0377",
+        "term": "not",
+        "got": "no"
+      },
+      {
+        "id": "R-S1-DEV-0380",
+        "term": "hand",
+        "got": "rand"
+      },
+      {
+        "id": "R-S1-DEV-0384",
+        "term": "l'ipo",
+        "got": "liepo"
+      },
+      {
+        "id": "R-S1-DEV-0385",
+        "term": "cig",
+        "got": "cg"
+      },
+      {
+        "id": "R-S1-DEV-0386",
+        "term": "bandcamp",
+        "got": "bca"
+      },
+      {
+        "id": "R-S1-DEV-0387",
+        "term": "packed",
+        "got": "pecked"
+      },
+      {
+        "id": "R-S1-DEV-0389",
+        "term": "not",
+        "got": "no"
+      },
+      {
+        "id": "R-S1-DEV-0394",
+        "term": "news",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0394",
+        "term": "letter",
+        "got": "newsletter"
+      },
+      {
+        "id": "R-S1-DEV-0396",
+        "term": "photos",
+        "got": "phto"
+      },
+      {
+        "id": "R-S1-DEV-0397",
+        "term": "fineco",
+        "got": "pineco"
+      },
+      {
+        "id": "R-S1-DEV-0398",
+        "term": "hz",
+        "got": "hearth"
+      },
+      {
+        "id": "R-S1-DEV-0404",
+        "term": "handle",
+        "got": "end"
+      },
+      {
+        "id": "R-S1-DEV-0405",
+        "term": "framework",
+        "got": "framwork"
+      },
+      {
+        "id": "R-S1-DEV-0406",
+        "term": "today",
+        "got": "dayy"
+      },
+      {
+        "id": "R-S1-DEV-0416",
+        "term": "firefox",
+        "got": "fipefo"
+      },
+      {
+        "id": "R-S1-DEV-0417",
+        "term": "check",
+        "got": "chep"
+      },
+      {
+        "id": "R-S1-DEV-0419",
+        "term": "environment",
+        "got": "invrament"
+      },
+      {
+        "id": "R-S1-DEV-0424",
+        "term": "train",
+        "got": "trains"
+      },
+      {
+        "id": "R-S1-DEV-0426",
+        "term": "l'imc",
+        "got": "ilmc"
+      },
+      {
+        "id": "R-S1-DEV-0428",
+        "term": "bad",
+        "got": "bed"
+      },
+      {
+        "id": "R-S1-DEV-0429",
+        "term": "job",
+        "got": "gio"
+      },
+      {
+        "id": "R-S1-DEV-0431",
+        "term": "csat",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0433",
+        "term": "hello",
+        "got": "any"
+      },
+      {
+        "id": "R-S1-DEV-0433",
+        "term": "anyway",
+        "got": "way"
+      },
+      {
+        "id": "R-S1-DEV-0434",
+        "term": "limit",
+        "got": "lemit"
+      },
+      {
+        "id": "R-S1-DEV-0435",
+        "term": "crosses",
+        "got": "crases"
+      },
+      {
+        "id": "R-S1-DEV-0440",
+        "term": "footprint",
+        "got": "print"
+      },
+      {
+        "id": "R-S1-DEV-0441",
+        "term": "word",
+        "got": "w"
+      },
+      {
+        "id": "R-S1-DEV-0442",
+        "term": "pa",
+        "got": "p"
+      },
+      {
+        "id": "R-S1-DEV-0448",
+        "term": "collector",
+        "got": "colletter"
+      },
+      {
+        "id": "R-S1-DEV-0458",
+        "term": "crazy",
+        "got": "cray"
+      },
+      {
+        "id": "R-S1-DEV-0458",
+        "term": "month",
+        "got": "months"
+      },
+      {
+        "id": "R-S1-DEV-0460",
+        "term": "measuring",
+        "got": "mauring"
+      },
+      {
+        "id": "R-S1-DEV-0462",
+        "term": "scope",
+        "got": "sco"
+      },
+      {
+        "id": "R-S1-DEV-0462",
+        "term": "creep",
+        "got": "trip"
+      },
+      {
+        "id": "R-S1-DEV-0467",
+        "term": "l'opex",
+        "got": "lopex"
+      },
+      {
+        "id": "R-S1-DEV-0471",
+        "term": "buy",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0471",
+        "term": "two",
+        "got": "bite"
+      },
+      {
+        "id": "R-S1-DEV-0471",
+        "term": "croissants",
+        "got": "tocs"
+      },
+      {
+        "id": "R-S1-DEV-0473",
+        "term": "l'aut",
+        "got": "l'è"
+      },
+      {
+        "id": "R-S1-DEV-0479",
+        "term": "good",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0479",
+        "term": "luck",
+        "got": "golack"
+      },
+      {
+        "id": "R-S1-DEV-0480",
+        "term": "plants",
+        "got": "plans"
+      },
+      {
+        "id": "R-S1-DEV-0480",
+        "term": "travel",
+        "got": "table"
+      },
+      {
+        "id": "R-S1-DEV-0481",
+        "term": "it",
+        "got": "il"
+      },
+      {
+        "id": "R-S1-DEV-0481",
+        "term": "depends",
+        "got": "depense"
+      },
+      {
+        "id": "R-S1-DEV-0482",
+        "term": "moddato",
+        "got": "modato"
+      },
+      {
+        "id": "R-S1-DEV-0487",
+        "term": "take",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0487",
+        "term": "your",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-DEV-0488",
+        "term": "too",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-DEV-0489",
+        "term": "sink",
+        "got": "sing"
+      },
+      {
+        "id": "R-S1-DEV-0490",
+        "term": "be",
+        "got": "b"
+      },
+      {
+        "id": "R-S1-DEV-0491",
+        "term": "should",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0491",
+        "term": "apply",
+        "got": "shouldly"
+      },
+      {
+        "id": "R-S1-DEV-0492",
+        "term": "dvr",
+        "got": "dvor"
+      },
+      {
+        "id": "R-S1-DEV-0493",
+        "term": "way",
+        "got": "wait"
+      },
+      {
+        "id": "R-S1-DEV-0493",
+        "term": "too",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-DEV-0494",
+        "term": "ui",
+        "got": "us"
+      },
+      {
+        "id": "R-S1-DEV-0495",
+        "term": "ca",
+        "got": "c"
+      },
+      {
+        "id": "R-S1-DEV-0497",
+        "term": "ple",
+        "got": "pl"
+      },
+      {
+        "id": "R-S1-DEV-0503",
+        "term": "watermarkato",
+        "got": "mark"
+      },
+      {
+        "id": "R-S1-DEV-0504",
+        "term": "safe",
+        "got": "sa"
+      },
+      {
+        "id": "R-S1-DEV-0506",
+        "term": "ea",
+        "got": "ha"
+      },
+      {
+        "id": "R-S1-DEV-0507",
+        "term": "cold",
+        "got": "call"
+      },
+      {
+        "id": "R-S1-DEV-0507",
+        "term": "hands",
+        "got": "ans"
+      },
+      {
+        "id": "R-S1-DEV-0509",
+        "term": "indesign",
+        "got": "design"
+      },
+      {
+        "id": "R-S1-DEV-0511",
+        "term": "pushiato",
+        "got": "pushato"
+      },
+      {
+        "id": "R-S1-DEV-0513",
+        "term": "umbrella",
+        "got": "brella"
+      },
+      {
+        "id": "R-S1-DEV-0514",
+        "term": "empty",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0514",
+        "term": "at",
+        "got": "empty"
+      },
+      {
+        "id": "R-S1-DEV-0514",
+        "term": "that",
+        "got": "atet"
+      },
+      {
+        "id": "R-S1-DEV-0517",
+        "term": "ce",
+        "got": "c"
+      },
+      {
+        "id": "R-S1-DEV-0520",
+        "term": "walk",
+        "got": "work"
+      },
+      {
+        "id": "R-S1-DEV-0520",
+        "term": "lunch",
+        "got": "launch"
+      },
+      {
+        "id": "R-S1-DEV-0522",
+        "term": "save",
+        "got": "sa"
+      },
+      {
+        "id": "R-S1-DEV-0523",
+        "term": "rule",
+        "got": "roole"
+      },
+      {
+        "id": "R-S1-DEV-0524",
+        "term": "makes",
+        "got": "ma"
+      },
+      {
+        "id": "R-S1-DEV-0526",
+        "term": "onenote",
+        "got": "note"
+      },
+      {
+        "id": "R-S1-DEV-0527",
+        "term": "used",
+        "got": "chiused"
+      },
+      {
+        "id": "R-S1-DEV-0529",
+        "term": "fountain",
+        "got": "funtain"
+      },
+      {
+        "id": "R-S1-DEV-0529",
+        "term": "pigeons",
+        "got": "pigions"
+      },
+      {
+        "id": "R-S1-DEV-0532",
+        "term": "crashato",
+        "got": "crescito"
+      },
+      {
+        "id": "R-S1-DEV-0535",
+        "term": "nespresso",
+        "got": "inspresso"
+      },
+      {
+        "id": "R-S1-DEV-0536",
+        "term": "gluten",
+        "got": "menugl"
+      },
+      {
+        "id": "R-S1-DEV-0538",
+        "term": "ups",
+        "got": "hops"
+      },
+      {
+        "id": "R-S1-DEV-0539",
+        "term": "freelance",
+        "got": "frilands"
+      },
+      {
+        "id": "R-S1-DEV-0540",
+        "term": "dumpato",
+        "got": "dmpato"
+      },
+      {
+        "id": "R-S1-DEV-0543",
+        "term": "dinner",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0543",
+        "term": "is",
+        "got": "dinnery"
+      },
+      {
+        "id": "R-S1-DEV-0544",
+        "term": "web",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0544",
+        "term": "site",
+        "got": "website"
+      },
+      {
+        "id": "R-S1-DEV-0545",
+        "term": "rdp",
+        "got": "sessionedp"
+      },
+      {
+        "id": "R-S1-DEV-0547",
+        "term": "adobe",
+        "got": "sudoby"
+      },
+      {
+        "id": "R-S1-DEV-0549",
+        "term": "weekend",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-DEV-0550",
+        "term": "life",
+        "got": "li"
+      },
+      {
+        "id": "R-S1-DEV-0555",
+        "term": "but",
+        "got": "of"
+      },
+      {
+        "id": "R-S1-DEV-0556",
+        "term": "converse",
+        "got": "converers"
+      },
+      {
+        "id": "R-S1-DEV-0557",
+        "term": "victorinox",
+        "got": "hux"
+      },
+      {
+        "id": "R-S1-DEV-0558",
+        "term": "aml",
+        "got": "regolem"
+      },
+      {
+        "id": "R-S1-DEV-0560",
+        "term": "someone",
+        "got": "one"
+      },
+      {
+        "id": "R-S1-DEV-0560",
+        "term": "sits",
+        "got": "seats"
+      },
+      {
+        "id": "R-S1-DEV-0560",
+        "term": "bench",
+        "got": "banch"
+      },
+      {
+        "id": "R-S1-DEV-0564",
+        "term": "on",
+        "got": "home"
+      },
+      {
+        "id": "R-S1-DEV-0565",
+        "term": "heat",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0565",
+        "term": "map",
+        "got": "ilitmap"
+      },
+      {
+        "id": "R-S1-DEV-0567",
+        "term": "l'isc",
+        "got": "c"
+      },
+      {
+        "id": "R-S1-DEV-0568",
+        "term": "uploadato",
+        "got": "uploaddato"
+      },
+      {
+        "id": "R-S1-DEV-0570",
+        "term": "have",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0570",
+        "term": "to",
+        "got": "haveto"
+      },
+      {
+        "id": "R-S1-DEV-0574",
+        "term": "caf",
+        "got": "caff"
+      },
+      {
+        "id": "R-S1-DEV-0576",
+        "term": "weird",
+        "got": "we"
+      },
+      {
+        "id": "R-S1-DEV-0579",
+        "term": "files",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0579",
+        "term": "are",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0579",
+        "term": "a",
+        "got": "fi"
+      },
+      {
+        "id": "R-S1-DEV-0579",
+        "term": "mess",
+        "got": "arem"
+      },
+      {
+        "id": "R-S1-DEV-0580",
+        "term": "powerpoint",
+        "got": "point"
+      },
+      {
+        "id": "R-S1-DEV-0582",
+        "term": "eat",
+        "got": "need"
+      },
+      {
+        "id": "R-S1-DEV-0584",
+        "term": "are",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0589",
+        "term": "apple",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0589",
+        "term": "tv",
+        "got": "appletiv"
+      },
+      {
+        "id": "R-S1-DEV-0591",
+        "term": "app",
+        "got": "nuovap"
+      },
+      {
+        "id": "R-S1-DEV-0593",
+        "term": "imgur",
+        "got": "egle"
+      },
+      {
+        "id": "R-S1-DEV-0595",
+        "term": "ral",
+        "got": "ra"
+      },
+      {
+        "id": "R-S1-DEV-0598",
+        "term": "dhea",
+        "got": "de"
+      },
+      {
+        "id": "R-S1-DEV-0601",
+        "term": "sit",
+        "got": "seing"
+      },
+      {
+        "id": "R-S1-DEV-0613",
+        "term": "risk",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0613",
+        "term": "assessment",
+        "got": "sessment"
+      },
+      {
+        "id": "R-S1-DEV-0614",
+        "term": "macos",
+        "got": "meco"
+      },
+      {
+        "id": "R-S1-DEV-0615",
+        "term": "sprint",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0615",
+        "term": "retrospective",
+        "got": "sprintlettrospecti"
+      },
+      {
+        "id": "R-S1-DEV-0616",
+        "term": "l'uci",
+        "got": "luc"
+      },
+      {
+        "id": "R-S1-DEV-0617",
+        "term": "deliveroo",
+        "got": "delivero"
+      },
+      {
+        "id": "R-S1-DEV-0618",
+        "term": "shareholder",
+        "got": "rollder"
+      },
+      {
+        "id": "R-S1-DEV-0621",
+        "term": "rfid",
+        "got": "id"
+      },
+      {
+        "id": "R-S1-DEV-0622",
+        "term": "echo",
+        "got": "eco"
+      },
+      {
+        "id": "R-S1-DEV-0625",
+        "term": "truth",
+        "got": "throads"
+      },
+      {
+        "id": "R-S1-DEV-0631",
+        "term": "cpa",
+        "got": "cp"
+      },
+      {
+        "id": "R-S1-DEV-0633",
+        "term": "grandma",
+        "got": "gramma"
+      },
+      {
+        "id": "R-S1-DEV-0636",
+        "term": "rating",
+        "got": "raing"
+      },
+      {
+        "id": "R-S1-DEV-0640",
+        "term": "ticketmaster",
+        "got": "master"
+      },
+      {
+        "id": "R-S1-DEV-0642",
+        "term": "cee",
+        "got": "c"
+      },
+      {
+        "id": "R-S1-DEV-0643",
+        "term": "stihl",
+        "got": "still"
+      },
+      {
+        "id": "R-S1-DEV-0644",
+        "term": "xiaomi",
+        "got": "mi"
+      },
+      {
+        "id": "R-S1-DEV-0645",
+        "term": "same",
+        "got": "chain"
+      },
+      {
+        "id": "R-S1-DEV-0645",
+        "term": "her",
+        "got": "air"
+      },
+      {
+        "id": "R-S1-DEV-0646",
+        "term": "tts",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0648",
+        "term": "based",
+        "got": "base"
+      },
+      {
+        "id": "R-S1-DEV-0650",
+        "term": "that",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-DEV-0652",
+        "term": "no",
+        "got": "nostro"
+      },
+      {
+        "id": "R-S1-DEV-0655",
+        "term": "too",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-DEV-0661",
+        "term": "gives",
+        "got": "gi"
+      },
+      {
+        "id": "R-S1-DEV-0663",
+        "term": "iv",
+        "got": "v"
+      },
+      {
+        "id": "R-S1-DEV-0664",
+        "term": "l'arpu",
+        "got": "l'artp"
+      },
+      {
+        "id": "R-S1-DEV-0666",
+        "term": "tonight",
+        "got": "night"
+      },
+      {
+        "id": "R-S1-DEV-0667",
+        "term": "meal",
+        "got": "mill"
+      },
+      {
+        "id": "R-S1-DEV-0668",
+        "term": "documents",
+        "got": "procuments"
+      },
+      {
+        "id": "R-S1-DEV-0669",
+        "term": "l'okr",
+        "got": "capr"
+      },
+      {
+        "id": "R-S1-DEV-0670",
+        "term": "hiking",
+        "got": "iking"
+      },
+      {
+        "id": "R-S1-DEV-0671",
+        "term": "l'nfc",
+        "got": "nfc"
+      },
+      {
+        "id": "R-S1-DEV-0675",
+        "term": "smart",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0675",
+        "term": "watch",
+        "got": "smartwatch"
+      },
+      {
+        "id": "R-S1-DEV-0678",
+        "term": "mysql",
+        "got": "squ"
+      },
+      {
+        "id": "R-S1-DEV-0681",
+        "term": "turn",
+        "got": "cure"
+      },
+      {
+        "id": "R-S1-DEV-0683",
+        "term": "low",
+        "got": "lo"
+      },
+      {
+        "id": "R-S1-DEV-0689",
+        "term": "hybrid",
+        "got": "ibrire"
+      },
+      {
+        "id": "R-S1-DEV-0692",
+        "term": "than",
+        "got": "nex"
+      },
+      {
+        "id": "R-S1-DEV-0694",
+        "term": "routato",
+        "got": "ruotato"
+      },
+      {
+        "id": "R-S1-DEV-0695",
+        "term": "talked",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-DEV-0697",
+        "term": "warm",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0697",
+        "term": "up",
+        "got": "warmp"
+      },
+      {
+        "id": "R-S1-DEV-0698",
+        "term": "l'abs",
+        "got": "la"
+      },
+      {
+        "id": "R-S1-DEV-0700",
+        "term": "refactorato",
+        "got": "refacttorato"
+      },
+      {
+        "id": "R-S1-DEV-0703",
+        "term": "atp",
+        "got": "torneotp"
+      },
+      {
+        "id": "R-S1-DEV-0704",
+        "term": "week",
+        "got": "wee"
+      },
+      {
+        "id": "R-S1-DEV-0705",
+        "term": "coffee",
+        "got": "offfey"
+      },
+      {
+        "id": "R-S1-DEV-0705",
+        "term": "house",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0705",
+        "term": "is",
+        "got": "houseus"
+      },
+      {
+        "id": "R-S1-DEV-0705",
+        "term": "quiet",
+        "got": "squiet"
+      },
+      {
+        "id": "R-S1-DEV-0706",
+        "term": "bmw",
+        "got": "bnb"
+      },
+      {
+        "id": "R-S1-DEV-0709",
+        "term": "stalkerato",
+        "got": "crato"
+      },
+      {
+        "id": "R-S1-DEV-0711",
+        "term": "dockerizzato",
+        "got": "docherizzato"
+      },
+      {
+        "id": "R-S1-DEV-0714",
+        "term": "have",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0714",
+        "term": "an",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0714",
+        "term": "umbrella",
+        "got": "brella"
+      },
+      {
+        "id": "R-S1-DEV-0715",
+        "term": "it",
+        "got": "il"
+      },
+      {
+        "id": "R-S1-DEV-0717",
+        "term": "lcd",
+        "got": "cd"
+      },
+      {
+        "id": "R-S1-DEV-0718",
+        "term": "slipped",
+        "got": "swiped"
+      },
+      {
+        "id": "R-S1-DEV-0719",
+        "term": "two",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-DEV-0719",
+        "term": "hours",
+        "got": "you"
+      },
+      {
+        "id": "R-S1-DEV-0720",
+        "term": "tangenziale",
+        "got": "tgenziale"
+      },
+      {
+        "id": "R-S1-DEV-0723",
+        "term": "format",
+        "got": "formatt"
+      },
+      {
+        "id": "R-S1-DEV-0724",
+        "term": "im",
+        "got": "viam"
+      },
+      {
+        "id": "R-S1-DEV-0726",
+        "term": "clickup",
+        "got": "click"
+      },
+      {
+        "id": "R-S1-DEV-0729",
+        "term": "slides",
+        "got": "slights"
+      },
+      {
+        "id": "R-S1-DEV-0730",
+        "term": "check",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0730",
+        "term": "out",
+        "got": "checkout"
+      },
+      {
+        "id": "R-S1-DEV-0731",
+        "term": "pilot",
+        "got": "pilad"
+      },
+      {
+        "id": "R-S1-DEV-0732",
+        "term": "blender",
+        "got": "blan"
+      },
+      {
+        "id": "R-S1-DEV-0735",
+        "term": "cappato",
+        "got": "cauppato"
+      },
+      {
+        "id": "R-S1-DEV-0738",
+        "term": "watermarkato",
+        "got": "mark"
+      },
+      {
+        "id": "R-S1-DEV-0748",
+        "term": "hugging",
+        "got": "agging"
+      },
+      {
+        "id": "R-S1-DEV-0750",
+        "term": "with",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0750",
+        "term": "olive",
+        "got": "witholi"
+      },
+      {
+        "id": "R-S1-DEV-0751",
+        "term": "pnl",
+        "got": "piannel"
+      },
+      {
+        "id": "R-S1-DEV-0752",
+        "term": "rol",
+        "got": "roll"
+      },
+      {
+        "id": "R-S1-DEV-0756",
+        "term": "duty",
+        "got": "ty"
+      },
+      {
+        "id": "R-S1-DEV-0757",
+        "term": "ditta",
+        "got": "deta"
+      },
+      {
+        "id": "R-S1-DEV-0758",
+        "term": "puma",
+        "got": "poma"
+      },
+      {
+        "id": "R-S1-DEV-0760",
+        "term": "happy",
+        "got": "py"
+      },
+      {
+        "id": "R-S1-DEV-0763",
+        "term": "citroen",
+        "got": "cine"
+      },
+      {
+        "id": "R-S1-DEV-0766",
+        "term": "citofono",
+        "got": "cfono"
+      },
+      {
+        "id": "R-S1-DEV-0770",
+        "term": "ryanair",
+        "got": "rame"
+      },
+      {
+        "id": "R-S1-DEV-0773",
+        "term": "coffee",
+        "got": "coffe"
+      },
+      {
+        "id": "R-S1-DEV-0775",
+        "term": "worries",
+        "got": "warri"
+      },
+      {
+        "id": "R-S1-DEV-0776",
+        "term": "that",
+        "got": "he"
+      },
+      {
+        "id": "R-S1-DEV-0778",
+        "term": "ip",
+        "got": "itp"
+      },
+      {
+        "id": "R-S1-DEV-0784",
+        "term": "party",
+        "got": "parti"
+      },
+      {
+        "id": "R-S1-DEV-0786",
+        "term": "boostato",
+        "got": "bustato"
+      },
+      {
+        "id": "R-S1-DEV-0789",
+        "term": "search",
+        "got": "searge"
+      },
+      {
+        "id": "R-S1-DEV-0790",
+        "term": "walk",
+        "got": "work"
+      },
+      {
+        "id": "R-S1-DEV-0791",
+        "term": "l'acv",
+        "got": "svew"
+      },
+      {
+        "id": "R-S1-DEV-0792",
+        "term": "l'asl",
+        "got": "sle"
+      },
+      {
+        "id": "R-S1-DEV-0799",
+        "term": "l'opex",
+        "got": "lopex"
+      },
+      {
+        "id": "R-S1-DEV-0801",
+        "term": "hue",
+        "got": "you"
+      },
+      {
+        "id": "R-S1-DEV-0804",
+        "term": "siri",
+        "got": "seri"
+      },
+      {
+        "id": "R-S1-DEV-0806",
+        "term": "poste",
+        "got": "posta"
+      },
+      {
+        "id": "R-S1-DEV-0808",
+        "term": "etl",
+        "got": "ètile"
+      },
+      {
+        "id": "R-S1-DEV-0814",
+        "term": "l'irpef",
+        "got": "l'irp"
+      },
+      {
+        "id": "R-S1-DEV-0817",
+        "term": "l'sdk",
+        "got": "sdk"
+      },
+      {
+        "id": "R-S1-DEV-0825",
+        "term": "iso",
+        "got": "isso"
+      },
+      {
+        "id": "R-S1-DEV-0829",
+        "term": "l'hcm",
+        "got": "cacm"
+      },
+      {
+        "id": "R-S1-DEV-0830",
+        "term": "l'oauth",
+        "got": "a"
+      },
+      {
+        "id": "R-S1-DEV-0831",
+        "term": "neighbours",
+        "got": "neighbors"
+      },
+      {
+        "id": "R-S1-DEV-0833",
+        "term": "surface",
+        "got": "sofa"
+      },
+      {
+        "id": "R-S1-DEV-0835",
+        "term": "pushiato",
+        "got": "pushato"
+      },
+      {
+        "id": "R-S1-DEV-0837",
+        "term": "suite",
+        "got": "suit"
+      },
+      {
+        "id": "R-S1-DEV-0839",
+        "term": "crackato",
+        "got": "hannoroccato"
+      },
+      {
+        "id": "R-S1-DEV-0842",
+        "term": "leak",
+        "got": "dick"
+      },
+      {
+        "id": "R-S1-DEV-0843",
+        "term": "read",
+        "got": "reed"
+      },
+      {
+        "id": "R-S1-DEV-0844",
+        "term": "zoomato",
+        "got": "zoommato"
+      },
+      {
+        "id": "R-S1-DEV-0845",
+        "term": "nvme",
+        "got": "nevwm"
+      },
+      {
+        "id": "R-S1-DEV-0846",
+        "term": "brt",
+        "got": "conmbiare"
+      },
+      {
+        "id": "R-S1-DEV-0856",
+        "term": "pressure",
+        "got": "depressure"
+      },
+      {
+        "id": "R-S1-DEV-0857",
+        "term": "freeza",
+        "got": "frizza"
+      },
+      {
+        "id": "R-S1-DEV-0859",
+        "term": "deal",
+        "got": "dial"
+      },
+      {
+        "id": "R-S1-DEV-0861",
+        "term": "epic",
+        "got": "apic"
+      },
+      {
+        "id": "R-S1-DEV-0863",
+        "term": "tesla",
+        "got": "casla"
+      },
+      {
+        "id": "R-S1-DEV-0865",
+        "term": "agree",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0865",
+        "term": "more",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0866",
+        "term": "fingers",
+        "got": "fing"
+      },
+      {
+        "id": "R-S1-DEV-0866",
+        "term": "crossed",
+        "got": "scrost"
+      },
+      {
+        "id": "R-S1-DEV-0867",
+        "term": "bench",
+        "got": "alf"
+      },
+      {
+        "id": "R-S1-DEV-0867",
+        "term": "halfway",
+        "got": "way"
+      },
+      {
+        "id": "R-S1-DEV-0868",
+        "term": "targettizzato",
+        "got": "targhettizzato"
+      },
+      {
+        "id": "R-S1-DEV-0869",
+        "term": "upskillato",
+        "got": "skillato"
+      },
+      {
+        "id": "R-S1-DEV-0872",
+        "term": "is",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0872",
+        "term": "true",
+        "got": "through"
+      },
+      {
+        "id": "R-S1-DEV-0875",
+        "term": "canteen",
+        "got": "cantine"
+      },
+      {
+        "id": "R-S1-DEV-0877",
+        "term": "l'inail",
+        "got": "lina"
+      },
+      {
+        "id": "R-S1-DEV-0879",
+        "term": "bic",
+        "got": "big"
+      },
+      {
+        "id": "R-S1-DEV-0881",
+        "term": "garmin",
+        "got": "garm"
+      },
+      {
+        "id": "R-S1-DEV-0888",
+        "term": "ects",
+        "got": "cds"
+      },
+      {
+        "id": "R-S1-DEV-0889",
+        "term": "l'hiv",
+        "got": "kw"
+      },
+      {
+        "id": "R-S1-DEV-0891",
+        "term": "l'api",
+        "got": "api"
+      },
+      {
+        "id": "R-S1-DEV-0892",
+        "term": "salomon",
+        "got": "salom"
+      },
+      {
+        "id": "R-S1-DEV-0894",
+        "term": "l'ids",
+        "got": "l'ds"
+      },
+      {
+        "id": "R-S1-DEV-0895",
+        "term": "raining",
+        "got": "trainning"
+      },
+      {
+        "id": "R-S1-DEV-0899",
+        "term": "apache",
+        "got": "pash"
+      },
+      {
+        "id": "R-S1-DEV-0901",
+        "term": "shared",
+        "got": "share"
+      },
+      {
+        "id": "R-S1-DEV-0907",
+        "term": "call",
+        "got": "col"
+      },
+      {
+        "id": "R-S1-DEV-0908",
+        "term": "summary",
+        "got": "summerie"
+      },
+      {
+        "id": "R-S1-DEV-0909",
+        "term": "access",
+        "got": "axe"
+      },
+      {
+        "id": "R-S1-DEV-0910",
+        "term": "photo",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0910",
+        "term": "archive",
+        "got": "fotoorchive"
+      },
+      {
+        "id": "R-S1-DEV-0911",
+        "term": "pending",
+        "got": "impending"
+      },
+      {
+        "id": "R-S1-DEV-0916",
+        "term": "receipt",
+        "got": "rece"
+      },
+      {
+        "id": "R-S1-DEV-0918",
+        "term": "audit",
+        "got": "oddit"
+      },
+      {
+        "id": "R-S1-DEV-0919",
+        "term": "short",
+        "got": "shot"
+      },
+      {
+        "id": "R-S1-DEV-0920",
+        "term": "project",
+        "got": "proje"
+      },
+      {
+        "id": "R-S1-DEV-0920",
+        "term": "scope",
+        "got": "scop"
+      },
+      {
+        "id": "R-S1-DEV-0922",
+        "term": "sync",
+        "got": "sinc"
+      },
+      {
+        "id": "R-S1-DEV-0924",
+        "term": "shared",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0924",
+        "term": "folder",
+        "got": "shareholder"
+      },
+      {
+        "id": "R-S1-DEV-0925",
+        "term": "temporary",
+        "got": "tempork"
+      },
+      {
+        "id": "R-S1-DEV-0926",
+        "term": "battery",
+        "got": "battere"
+      },
+      {
+        "id": "R-S1-DEV-0926",
+        "term": "drain",
+        "got": "train"
+      },
+      {
+        "id": "R-S1-DEV-0928",
+        "term": "spam",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0928",
+        "term": "folder",
+        "got": "spanfolder"
+      },
+      {
+        "id": "R-S1-DEV-0929",
+        "term": "projector",
+        "got": "progetto"
+      },
+      {
+        "id": "R-S1-DEV-0930",
+        "term": "detailed",
+        "got": "deta"
+      },
+      {
+        "id": "R-S1-DEV-0930",
+        "term": "quote",
+        "got": "quo"
+      },
+      {
+        "id": "R-S1-DEV-0931",
+        "term": "is",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0931",
+        "term": "too",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-DEV-0935",
+        "term": "numbers",
+        "got": "number"
+      },
+      {
+        "id": "R-S1-DEV-0939",
+        "term": "to",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0939",
+        "term": "be",
+        "got": "tu"
+      },
+      {
+        "id": "R-S1-DEV-0939",
+        "term": "honest",
+        "got": "bones"
+      },
+      {
+        "id": "R-S1-DEV-0941",
+        "term": "attach",
+        "got": "touch"
+      },
+      {
+        "id": "R-S1-DEV-0943",
+        "term": "can",
+        "got": "k"
+      },
+      {
+        "id": "R-S1-DEV-0944",
+        "term": "this",
+        "got": "di"
+      },
+      {
+        "id": "R-S1-DEV-0945",
+        "term": "booked",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0945",
+        "term": "the",
+        "got": "boog"
+      },
+      {
+        "id": "R-S1-DEV-0946",
+        "term": "that",
+        "got": "da"
+      },
+      {
+        "id": "R-S1-DEV-0946",
+        "term": "makes",
+        "got": "ma"
+      },
+      {
+        "id": "R-S1-DEV-0955",
+        "term": "saturday",
+        "got": "play"
+      },
+      {
+        "id": "R-S1-DEV-0956",
+        "term": "had",
+        "got": "add"
+      },
+      {
+        "id": "R-S1-DEV-0956",
+        "term": "i",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0956",
+        "term": "had",
+        "got": "iet"
+      },
+      {
+        "id": "R-S1-DEV-0956",
+        "term": "slides",
+        "got": "slights"
+      },
+      {
+        "id": "R-S1-DEV-0957",
+        "term": "why",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-DEV-0957",
+        "term": "it",
+        "got": "white"
+      },
+      {
+        "id": "R-S1-DEV-0958",
+        "term": "restaurant",
+        "got": "ret"
+      },
+      {
+        "id": "R-S1-DEV-0958",
+        "term": "near",
+        "got": "nearer"
+      },
+      {
+        "id": "R-S1-DEV-0958",
+        "term": "we",
+        "got": null
+      },
+      {
+        "id": "R-S1-DEV-0958",
+        "term": "tried",
+        "got": "weried"
+      },
+      {
+        "id": "R-S1-DEV-0958",
+        "term": "month",
+        "got": "months"
+      },
+      {
+        "id": "R-S1-DEV-0959",
+        "term": "a",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-DEV-0959",
+        "term": "photographs",
+        "got": "photograps"
+      },
+      {
+        "id": "R-S1-DEV-0959",
+        "term": "completely",
+        "got": "compley"
+      },
+      {
+        "id": "R-S1-DEV-0960",
+        "term": "bad",
+        "got": "bed"
+      },
+      {
+        "id": "R-S1-DEV-0960",
+        "term": "asleep",
+        "got": "sleep"
+      },
+      {
+        "id": "R-S1-DEV-0960",
+        "term": "sofa",
+        "got": "soft"
+      },
+      {
+        "id": "R-S1-DEV-0960",
+        "term": "halfway",
+        "got": "way"
+      }
+    ],
+    "category": {
+      "phrase": {
+        "n": 142,
+        "ref_words": 1509,
+        "sub": 167,
+        "del": 48,
+        "ins": 21,
+        "wer": 0.1563949635520212,
+        "insertion_rate": 1.3916500994035785,
+        "eta": 0.6185567010309279
+      },
+      "single_word": {
+        "n": 112,
+        "ref_words": 635,
+        "sub": 37,
+        "del": 5,
+        "ins": 7,
+        "wer": 0.07716535433070866,
+        "insertion_rate": 1.1023622047244095,
+        "eta": 0.8571428571428571
+      },
+      "control_it": {
+        "n": 121,
+        "ref_words": 849,
+        "sub": 47,
+        "del": 17,
+        "ins": 6,
+        "wer": 0.08244994110718493,
+        "insertion_rate": 0.7067137809187279,
+        "eta": null
+      },
+      "acronym": {
+        "n": 113,
+        "ref_words": 596,
+        "sub": 104,
+        "del": 8,
+        "ins": 29,
+        "wer": 0.23657718120805368,
+        "insertion_rate": 4.865771812080537,
+        "eta": 0.2743362831858407
+      },
+      "brand": {
+        "n": 113,
+        "ref_words": 576,
+        "sub": 95,
+        "del": 9,
+        "ins": 20,
+        "wer": 0.2152777777777778,
+        "insertion_rate": 3.4722222222222223,
+        "eta": 0.4418604651162791
+      },
+      "control_en": {
+        "n": 119,
+        "ref_words": 850,
+        "sub": 116,
+        "del": 17,
+        "ins": 20,
+        "wer": 0.18,
+        "insertion_rate": 2.3529411764705883,
+        "eta": 0.8435294117647059
+      },
+      "switch": {
+        "n": 128,
+        "ref_words": 1157,
+        "sub": 117,
+        "del": 30,
+        "ins": 16,
+        "wer": 0.14088159031979255,
+        "insertion_rate": 1.382886776145203,
+        "eta": 0.8027210884353742
+      },
+      "italianized": {
+        "n": 112,
+        "ref_words": 673,
+        "sub": 67,
+        "del": 9,
+        "ins": 13,
+        "wer": 0.13224368499257058,
+        "insertion_rate": 1.9316493313521546,
+        "eta": 0.7053571428571429
+      }
+    },
+    "speaker": {
+      "S1": {
+        "n": 960,
+        "ref_words": 6845,
+        "sub": 750,
+        "del": 143,
+        "ins": 132,
+        "wer": 0.14974433893352812,
+        "insertion_rate": 1.9284149013878744,
+        "eta": 0.7392578125
+      }
+    }
+  },
+  "reference": null,
+  "paired": null,
+  "no_regression": null,
+  "elapsed_seconds": 34.6
+}

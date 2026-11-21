@@ -362,11 +362,32 @@ significant). Arm B versus the A3 control:
 | S1-dev | 14.0541 % / 75.5371 % | **11.6289 % / 79.8340 %** | **−2.4251 pp WER / +4.2969 pp ETA** |
 | T-600 | 13.9908 % / 75.3595 % | **13.4748 % / 76.5101 %** | −0.5161 pp / +1.1505 pp |
 
-The S1-dev result is a large product gain and the T-600 read was positive. The
-browser loads the 49.21 MB package in 70 ms, transcribes the exact T clip and
-benchmarks at **RTFx 28.36** (4 threads). **Adopted as the product package,
+The browser loads the 49.21 MB package in 70 ms, transcribes the exact T clip
+and benchmarks at **RTFx 28.36** (4 threads). **Adopted as the product package,
 version `0.9.5-e004-lm`.** The acoustic checkpoint, decoder 0.55/2.7 and VAD are
 unchanged. The historical A3 package remains for E-002/E-005 reproduction.
+
+**Erratum 2026-11-21 (P2, `runs/E-004/RESULT.md`).** The S1-dev row above is
+**withdrawn**. 900 of the 960 S1-dev cues are exact sentences of the E-031 LM
+corpus: S1-dev was drawn from `text/pool.jsonl`, and the pool is a `train_script`
+of the corpus. Dedupe at script time checked T, A, R-S1 and R-S2, not the LM.
+The unpruned-LM gain was mostly memorisation of those sentences. The same
+N2_1_1 recipe rebuilt without the 900 sentences (**E-034c**, 185,103 corpus
+rows, packed LM 7,787,184 B) gives:
+
+| Set | A3c (clean A3 recipe) | E-034c (clean N2_1_1) | Δ |
+|---|---:|---:|---:|
+| Dev macro | 17.6253 % | **16.9897 %** | **−0.6355 pp** (CI excludes 0) |
+| S1-dev | 15.4127 % / 72.8027 % | **14.9744 % / 73.9258 %** | **−0.4381 pp WER / +1.1230 pp ETA** (CIs exclude 0) |
+| T-600 (repeated read) | 14.1915 % / 75.0719 % | **13.7041 % / 76.1266 %** | −0.4870 pp / +1.0550 pp (CIs include 0) |
+
+A3's own S1-dev number was inflated by the same leak (A3c vs A3: +1.3590 pp WER
+/ −2.7340 pp ETA); every historical S1-dev absolute number is affected, while
+paired A3-vs-A3 comparisons are not. The honest arm-B gain is ~0.4 pp WER /
+~1.1 pp ETA on S1-dev and ~0.5 pp / ~1.1 pp on T-600, not 2.4/4.3.
+**Decision pending:** ship E-034c (recommended; same recipe, protocol-clean
+corpus) or keep E-034 B and quote T-600 only. Until then the package on disk
+remains `release-e034/`, and its S1-dev numbers must not be quoted.
 
 E-004 arms C (base+7) and D (base+4 long) were not run: their precondition was
 that E-011 showed depth still pays on the product, and it did not. A ×3

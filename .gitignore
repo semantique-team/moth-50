@@ -20,8 +20,9 @@ runs/**/checkpoints/
 # Derived release packages (large binaries); keep the export report
 runs/**/release/
 runs/**/release-*/
-# Derived LM binaries: regenerate with tools/pack_lm.py
+# Derived LM binaries: regenerate with tools/pack_lm.py or tools/build_lm.py
 runs/**/*.bin
+runs/**/*.pkl.gz
 # Live resource monitoring and its generated dashboard
 runs/**/resource-samples.jsonl
 runs/**/resource-dashboard.html

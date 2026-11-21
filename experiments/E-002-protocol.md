@@ -187,3 +187,12 @@ These make the frozen rules executable; they do not move a gate.
    (no regression), T-600 **13.4748 / 76.5101** vs 13.9908 / 75.3595. Any later
    paired model comparison decodes **both** systems with the same LM (A3 for
    historical A3 results, E-034 for the product line).
+
+   **Erratum 2026-11-21 (P2).** The S1-dev figures in this point are withdrawn:
+   900 of the 960 S1-dev cues are exact sentences of the E-031 LM corpus
+   (`text/pool.jsonl` is a `train_script`, and S1-dev was drawn from that pool).
+   The rule stands, the evidence does not. The corrected build (E-034c) is
+   S1-dev **14.9744 / 73.9258** vs **15.4127 / 72.8027** for the A3 recipe
+   rebuilt on the same clean corpus, and dev-macro **16.9897 %** vs 17.6253 %
+   (−0.6355 pp). T-600 was read again for E-034c and is a declared repeated
+   read. `runs/E-004/RESULT.md`. The product-LM decision is pending.

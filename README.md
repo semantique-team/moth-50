@@ -1,20 +1,24 @@
 # MOTH-50 — scaffold
 
-**Status (2026-11-21): the product is E-005 acoustic + the unpruned E-034 LM.**
-The E-002 A3 gate remains the historical reference: frozen beam+A3 dev-macro
-**17.62 %** (INT8) / **17.56 %** (FP32) against the **23.02 %** 0.8.1 reference;
-held-out S1-dev **14.05 % / 14.00 %** vs **22.25 %**, ETA **75.5 / 75.3 %** vs
-**62.1 %**, no regression. E-012 cut that package to **44.77 MB** with the 16 kHz
-VAD and the lossless packed LM. E-004 arm B then spent the freed bytes on the
-**unpruned E-034 N2_1_1 LM** (packed lossless): S1-dev **11.63 % WER / 79.83 %
-ETA**, T-600 **13.47 % / 76.51 %**, dev-macro **16.99 %**, package
-**49.21 MB** (0.79 MB under the ceiling), browser exact at **RTFx 28.4**
-(4 threads, SIMD, isolated). The acoustic graph is byte-identical to E-005; the
-A3 package and its numbers remain for reproducing the E-002 gate. The first
-E-005 readout used the pre-A3 LM and Moth's NOTICE; the erratum is in
-`runs/E-005/RESULT.md` (D17). The plan is `experiments/next-experiments.md`;
-E-009, E-010, E-011, E-012 and E-004 have run, the rest has not.
-Read `STATUS.md` first when resuming.
+**Status (2026-11-21): the product package is E-005 acoustic + the unpruned
+E-034 LM, but its S1-dev evidence is withdrawn.** P2 found that 900 of the 960
+S1-dev cues are exact sentences of the E-031 LM corpus, so the advertised
+S1-dev 11.63 % / 79.83 % was mostly memorisation. The same recipe on the clean
+corpus (**E-034c**) gives dev-macro **16.99 %**, S1-dev **14.97 % / 73.93 %**
+and T-600 **13.70 % / 76.13 %**; against the A3 recipe rebuilt on the same
+corpus it is −0.64 pp macro, −0.44 pp WER / +1.12 pp ETA on S1-dev and
+−0.49 / +1.06 on T-600 (the honest gain: ~0.4–0.5 pp WER, ~1.1 pp ETA). The
+package on disk is **49.21 MB**, browser exact at **RTFx 28.4** (4 threads,
+SIMD, isolated); shipping E-034c is pending. The E-002 A3 gate remains the
+historical reference: dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against
+**23.02 %** for 0.8.1; S1-dev **14.05 % / 14.00 %**, ETA **75.5 / 75.3 %**
+(inflated by the same leak; the paired A3-vs-0.8.1 verdict stands). E-012 cut
+that package to **44.77 MB** with the 16 kHz VAD and the lossless packed LM. The
+acoustic graph is byte-identical to E-005. The first E-005 readout used the
+pre-A3 LM and Moth's NOTICE; the erratum is in `runs/E-005/RESULT.md` (D17). The
+plan is `experiments/next-experiments.md`; E-009, E-010, E-011, E-012, E-004 and
+the P0/P2 checks have run, the rest has not. Read `STATUS.md` first when
+resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -25,9 +29,11 @@ packed A3 LM (3,353,840 B, −2.03 MB). E-010 (2026-11-19) screened the encoder 
 **32.39 %** at 4,000 steps). E-011 (2026-11-21) ran that recipe long: dev-macro
 **15.86 / 15.79 %** on two seeds vs 17.56 % for E-005, but S1-dev WER was a tie
 and seed 0 lost **2.20 pp ETA** (CI excluding zero), so **E-011 was not adopted**.
-E-004 arm B (2026-11-21) then used the E-012 headroom for LM coverage: the
-unpruned E-034 LM gives **11.63 % / 79.83 %** S1-dev and is the current product
-package. `runs/E-010/RESULT.md`, `runs/E-011/RESULT.md`, `runs/E-004/RESULT.md`.
+E-004 arm B (2026-11-21) then used the E-012 headroom for LM coverage. Its
+S1-dev number was withdrawn by P2; E-034c is the corrected candidate. E-011's
+S1-dev absolute numbers are inflated by the same leak, but its veto compared
+E-011 and E-005 with the same A3 LM. `runs/E-010/RESULT.md`,
+`runs/E-011/RESULT.md`, `runs/E-004/RESULT.md`.
 
 The frontier-model review (2026-11-19, `docs/frontier-stt-2026-11-19.md`, D24
 proposed) keeps the architecture and adds E-017–E-022: a mixed calibration set,
@@ -169,6 +175,9 @@ tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer
 tools/pack_lm.py          lossless A3 → MOTHLMB2 packing with an exact round trip
 tools/eta_breakdown.py    classify English-term misses of a mixed-set readout
+tools/lm_corpus_overlap.py  evaluation scripts vs the LM corpus (P2)
+tools/clean_lm_corpus.py  drop evaluation sentences from an LM corpus
+tools/build_lm_from_corpus.py  build a MOTHLMB1 LM from a corpus (E-034c, E-020)
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 tools/sample_resources.py  CPU/RAM/MPS sampler for long training runs
 tools/resource_dashboard.py  self-contained SVG dashboard from logs + samples

@@ -1,0 +1,235 @@
+{
+  "tool": "tools/lm_corpus_overlap.py",
+  "corpus": {
+    "path": "/private/var/folders/x0/5y3qlknn6ylgcjkh_65vp0tr0000gn/T/opencode/lm-corpus-nos1dev.jsonl",
+    "sha256": "569c8233a390afb41eaa45f0a2c7af488630931d2e1e63f97dfcfe41905188c1",
+    "sentences": 185103,
+    "words": 3488859
+  },
+  "normalizer": "vendor/moth-stt/moth_text.normalize",
+  "lang_hints": {
+    "mix": "it"
+  },
+  "sets": {
+    "s1-dev": {
+      "rows": 960,
+      "words": 6845,
+      "exact_matches": 0,
+      "exact_match_ids": [],
+      "four_grams": {
+        "unique": 3934,
+        "unique_present": 161,
+        "unique_share": 0.0409,
+        "occurrences": 3965,
+        "occurrences_present": 173,
+        "occurrence_share": 0.0436,
+        "top_shared": [
+          {
+            "gram": "gli ho detto it",
+            "count": 3
+          },
+          {
+            "gram": "il cliente ha detto",
+            "count": 2
+          },
+          {
+            "gram": "il file è su",
+            "count": 2
+          },
+          {
+            "gram": "ho detto it was",
+            "count": 2
+          },
+          {
+            "gram": "le ho risposto i",
+            "count": 2
+          },
+          {
+            "gram": "la lista della spesa",
+            "count": 2
+          },
+          {
+            "gram": "le note sono su",
+            "count": 2
+          },
+          {
+            "gram": "ha bisogno di una",
+            "count": 2
+          },
+          {
+            "gram": "il progetto è su",
+            "count": 2
+          },
+          {
+            "gram": "the rest of the",
+            "count": 2
+          }
+        ]
+      },
+      "terms": {
+        "unique": 800,
+        "unique_multiword": 401,
+        "all": {
+          "occurrences": 839,
+          "zero": 429,
+          "one": 108,
+          "two_plus": 302,
+          "one_share": 0.1287,
+          "zero_share": 0.5113
+        },
+        "multiword": {
+          "occurrences": 404,
+          "zero": 325,
+          "one": 40,
+          "two_plus": 39,
+          "one_share": 0.099,
+          "zero_share": 0.8045
+        },
+        "one_examples": [
+          "american express",
+          "anaconda",
+          "apple pay",
+          "atp",
+          "battery life",
+          "better than expected",
+          "bic",
+          "bios",
+          "blender",
+          "boero",
+          "bootstrapato",
+          "brand awareness",
+          "call center",
+          "call to action",
+          "camperato"
+        ],
+        "zero_examples": [
+          "a bench halfway is perfect",
+          "a cat crosses in front of me",
+          "a piece of cake",
+          "a salad on the side",
+          "absolutely worth it",
+          "access code",
+          "after dinner we read",
+          "after lunch we play cards",
+          "air conditioning",
+          "aliexpress",
+          "almost empty",
+          "aml",
+          "apple tv",
+          "atx",
+          "autocad"
+        ]
+      }
+    },
+    "t": {
+      "rows": 800,
+      "words": 5412,
+      "exact_matches": 0,
+      "exact_match_ids": [],
+      "four_grams": {
+        "unique": 2965,
+        "unique_present": 246,
+        "unique_share": 0.083,
+        "occurrences": 3012,
+        "occurrences_present": 267,
+        "occurrence_share": 0.0886,
+        "top_shared": [
+          {
+            "gram": "la riunione è su",
+            "count": 3
+          },
+          {
+            "gram": "il progetto è su",
+            "count": 3
+          },
+          {
+            "gram": "il deploy è andato",
+            "count": 2
+          },
+          {
+            "gram": "è andato a buon",
+            "count": 2
+          },
+          {
+            "gram": "andato a buon fine",
+            "count": 2
+          },
+          {
+            "gram": "il codice è su",
+            "count": 2
+          },
+          {
+            "gram": "la chat è su",
+            "count": 2
+          },
+          {
+            "gram": "il video è su",
+            "count": 2
+          },
+          {
+            "gram": "il file è su",
+            "count": 2
+          },
+          {
+            "gram": "il gioco è su",
+            "count": 2
+          }
+        ]
+      },
+      "terms": {
+        "unique": 693,
+        "unique_multiword": 272,
+        "all": {
+          "occurrences": 868,
+          "zero": 175,
+          "one": 111,
+          "two_plus": 582,
+          "one_share": 0.1279,
+          "zero_share": 0.2016
+        },
+        "multiword": {
+          "occurrences": 293,
+          "zero": 164,
+          "one": 64,
+          "two_plus": 65,
+          "one_share": 0.2184,
+          "zero_share": 0.5597
+        },
+        "one_examples": [
+          "acceptance criteria",
+          "access token",
+          "antivirus",
+          "apple notes",
+          "asap",
+          "aws",
+          "back end",
+          "best practice",
+          "blockato",
+          "bose",
+          "bounce rate",
+          "bug report",
+          "burger king",
+          "call to action",
+          "canva"
+        ],
+        "zero_examples": [
+          "and then i am free",
+          "apple watch",
+          "brain storming",
+          "brainstorming session",
+          "but it is too expensive",
+          "but it needs work",
+          "but we need more time",
+          "can you heat it up",
+          "can you repeat that",
+          "can you send me the link to the folder",
+          "case study",
+          "check list",
+          "come and get it",
+          "community open source",
+          "cooking class"
+        ]
+      }
+    }
+  }
+}
