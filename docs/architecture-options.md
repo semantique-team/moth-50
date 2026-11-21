@@ -434,7 +434,8 @@ There is no 100 MB experiment in this ledger: the tier is rejected (D5). E-008 i
 an evaluation experiment, not a capacity experiment.
 
 E-009–E-016 and the re-scoped E-004/E-006 were added after E-005; see §11 and
-`experiments/next-experiments.md`.
+`experiments/next-experiments.md`. E-017–E-022 followed the frontier-model
+review; see §12.
 
 ## 8. Data: the other half of the architecture decision
 
@@ -654,8 +655,33 @@ passes both the WER and ETA no-regression rules.
    browser gate fails.
 5. **Data (E-006).** Still the largest lever: VoxPopuli Italian (91 h, CC0, not
    in the mixture), gold-repetition and gentle-gold-stage checks, word-level
-   splicing, Parakeet pseudo-labels.
+   splicing, Parakeet pseudo-labels. Re-scoped in §12 as teacher labels
+   (E-018/E-019), LM text (E-020) and targeted data (E-021).
 
 **Still rejected:** INT4 weights (WASM `MatMulNBits` dequantizes per call and the
 quality at 40 M is unproven), Whisper-small, transducer/AED backbones and
 from-scratch encoders.
+
+## 12. Frontier models and the S1-dev errors (2026-11-19)
+
+Reviewed in `docs/frontier-stt-2026-11-19.md` and decided as proposed D24. In
+short:
+
+- **The leaderboard does not move the architecture.** Its sets are English, its
+  smallest model (Parakeet TDT 0.6B v3) is ~15× MOTH-50's parameters, and the
+  top models' strength is an LLM decoder that cannot ship in 50 MB.
+- **What transfers is their knowledge**, through permissively licensed weights
+  and data: teacher labels (E-018, E-019), LLM-written mixed text for the LM
+  (E-020), already pseudo-labelled corpora (Granary), and ceilings on our sets
+  (E-008). Commercial APIs are evaluation-only.
+- **The S1-dev errors point the same way.** Term deletions fell from 151 to 53,
+  but acronyms (ETA 29.2 %), brands (48.1 %) and elided acronyms (`l'sdk`, no
+  gain over 0.8.1) remain: data and LM problems (E-019–E-021), not schedule
+  problems (`runs/E-005/RESULT.md`, "S1-dev error analysis").
+- **Decoder calibration needs a mixed set that is not the gate** (E-017):
+  E-009's dev-macro winner made every S1-dev category worse.
+- **The owed T-600 readout comes first**: Parakeet is at 10.98 % / 83.60 % on
+  T-600, MOTH-50 has not been read there.
+
+Experiments and gates: `experiments/next-experiments.md` (E-017–E-022, E-008
+addition).

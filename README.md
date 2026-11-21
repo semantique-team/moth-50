@@ -29,6 +29,13 @@ E-004 arm B (2026-11-21) then used the E-012 headroom for LM coverage: the
 unpruned E-034 LM gives **11.63 % / 79.83 %** S1-dev and is the current product
 package. `runs/E-010/RESULT.md`, `runs/E-011/RESULT.md`, `runs/E-004/RESULT.md`.
 
+The frontier-model review (2026-11-19, `docs/frontier-stt-2026-11-19.md`, D24
+proposed) keeps the architecture and adds E-017–E-022: a mixed calibration set,
+a teacher bake-off, teacher labels, LLM-written LM text, targeted
+acronym/brand data and a keyterm-biasing re-test. T-600 was read once in E-004;
+the 2026-11-21 review (`docs/review-2026-11-21.md`) puts E-017 and the E-011
+re-read with the product LM first.
+
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
 `moth-stt` 0.8.1); its repository name is deliberately unchanged, because it is
@@ -130,12 +137,13 @@ docs/decisions.md         decisions and open questions
 docs/architecture-options.md  architecture analysis and planned sequence
 docs/review-2026-11-17.md evidence check, measurements and proposals
 docs/review-2026-11-21.md post-E-004 review: selection target, C/D and final-run procedure
+docs/frontier-stt-2026-11-19.md  frontier STT models: teachers, licences, limits
 experiments/README.md     new experiment ledger, starts at E-001
 experiments/E-001-baseline.md
 experiments/E-002-protocol.md  frozen evaluation protocol and data mixture
 experiments/E-002-s1-dev.md   S1-dev recording runbook and manifest patch
 experiments/E-003-plan.md     pre-registered architecture screen and its result
-experiments/next-experiments.md  post-E-005 plan: E-009–E-016, gates, commands
+experiments/next-experiments.md  post-E-005 plan: E-009–E-022, gates, commands
 runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
 runs/probe-2026-11-19/    16 kHz Silero graph parity preflight
 runs/E-001/               Moth 0.8.1 baseline reproduction
@@ -160,6 +168,7 @@ tools/release_notice.py   the MOTH-50 package NOTICE
 tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer
 tools/pack_lm.py          lossless A3 → MOTHLMB2 packing with an exact round trip
+tools/eta_breakdown.py    classify English-term misses of a mixed-set readout
 tools/probe_lm_pack.py    packed LM format prototype (review P5)
 tools/sample_resources.py  CPU/RAM/MPS sampler for long training runs
 tools/resource_dashboard.py  self-contained SVG dashboard from logs + samples

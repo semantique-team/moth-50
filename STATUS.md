@@ -23,11 +23,12 @@ running, and the exact next commands. Update it at the end of each session.
   **pre-A3 LM** (`dcf1d59f…`) and Moth 0.8.1's NOTICE. The verdict stood, and
   the final A3 numbers above supersede the old ones. The tools pin A3 by sha256
   (`tools/release_assets.py`).
-- **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-016.
+- **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-022.
   **E-009 kept the frozen decoder; E-012 passed both gates (16 kHz VAD + lossless
   MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21); E-011 won dev-macro but
   failed the S1-dev ETA rule on seed 0 and was not adopted (D22); E-004 arm B
-  moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.** No
+  moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.
+  E-017–E-022 come from the frontier review (D24) and have not run.** No
   training starts without an explicit go-ahead.
 - **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
   the wrong ranking target; the LM is the lever and C no longer fits next to the
@@ -44,7 +45,7 @@ running, and the exact next commands. Update it at the end of each session.
   75.3418 %; seed 0's **−2.20 pp** CI excludes zero (seed 1 −1.37 pp includes
   zero). **Not adopted**; E-005 acoustic remains and the product LM is E-034
   (D23). `runs/E-011/RESULT.md`.
-- **Tests:** 92 passed in the training env, 81 passed + 3 skipped (torch and
+- **Tests:** 106 passed in the training env, 95 passed + 3 skipped (torch and
   `stt.lm` parity) in a plain venv; `ruff check` and `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
@@ -78,8 +79,10 @@ running, and the exact next commands. Update it at the end of each session.
 | **S1-dev no-regression** | **PASS**: 13.9956 % FP32 / 14.0541 % INT8 vs 22.2498; ETA +13.23/+13.43 pp | `runs/E-005/s1-dev-a3-*.json` |
 | Release asset pins (D17) | A3 LM, 0.8.1 graph, Silero graphs pinned and fetched by sha256 | `tools/release_assets.py`, `data/sources.lock.json` |
 | S1-dev readout tool | `frozen_readout.py --mode mixed`: WER/ETA + paired no-regression vs 0.8.1 | `tools/frozen_readout.py`, E-002 §6 |
-| Post-E-005 tooling | decoder grid (E-009), EMA, E-010 config, VAD probe, LM packing (E-012) | `experiments/next-experiments.md` |
+| Post-E-005 tooling | decoder grid (E-009), EMA, E-010 config, VAD probe, LM packing (E-012), term-error breakdown | `experiments/next-experiments.md` |
 | VAD 16 kHz preflight | bit-identical on 23 synthetic clips, −1,037,921 B | `runs/probe-2026-11-19/` |
+| S1-dev term-error analysis | 501 misses (0.8.1: 776); deletions 151 → 53; acronyms 29.2 % / brands 48.1 % ETA; elided acronyms not improved | `runs/E-005/RESULT.md`, `runs/E-005/eta-breakdown.json`, `tools/eta_breakdown.py` |
+| Frontier-model review (D24, proposed) | teachers, LM text and ceilings, not architectures; E-017–E-022 pre-registered | `docs/frontier-stt-2026-11-19.md` |
 | E-012(a) VAD 16 kHz | **done, default**: 2,040 real clips bit-identical; browser exact, RTFx 23.90; 46,798,588 B package | `runs/E-012/` |
 | E-012(b) LM packing | **done, default**: A3 → 3,353,840 B lossless; dev/S1-dev hypotheses byte-identical; browser RTFx 24.63 | `tools/moth_lm.py`, `tools/pack_lm.py`, `runs/E-012/` |
 | E-012 final package | **44,770,433 B**, 5,229,567 B of room; base+7 now fits (est. 47.88 MB) | `runs/E-012/export-report-mothlmb2.json` |
@@ -222,9 +225,13 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D18, including checkpointing (D15), init (D16),
-  release asset pins (D17) and the post-E-005 plan (D18).
+- `docs/decisions.md` — D1–D24, including checkpointing (D15), init (D16),
+  release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
+  MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23) and frontier
+  models as teachers (D24, proposed).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
+- `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
+  cannot give MOTH-50; licences; teachers.
 - `docs/review-2026-11-17.md` — evidence corrections and P1–P7.
 - `docs/review-2026-11-21.md` — post-E-004 review: selection target, E-004 B
   check, E-011 diagnosis, C/D and final-run procedure (P0–P11).

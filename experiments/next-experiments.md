@@ -1,9 +1,13 @@
 # Post-E-005 experiment plan
 
-**Status: proposed 2026-11-19; the E-005 addendum, E-009, E-012, E-010 and
-E-011 ran on 2026-11-19/21, E-013–E-016 have not run.** This file pre-registers
-the experiments that follow E-005, with their gates, so they cannot be moved
-after seeing results. It comes from the 2026-11-19 review of the E-005 model and package
+**Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
+and E-004 ran on 2026-11-19/21; E-013–E-016 and E-017–E-022 have not run.**
+E-017–E-022 were added after the frontier-model review
+(`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
+(`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
+check, all proposed and not pre-registered here. This file pre-registers the
+experiments that follow E-005, with their gates, so they cannot be moved after
+seeing results. It comes from the 2026-11-19 review of the E-005 model and package
 (`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
 ledger; Moth's own IDs are cited as "Moth E-0NN".
 
@@ -31,6 +35,28 @@ ledger; Moth's own IDs are cited as "Moth E-0NN".
   calibrated by Moth E-022 for an acoustic model 3.4× smaller; Moth E-022 moved
   T-600 by 6.85 pp with decoder settings alone.
 - **The VAD ships an unused 8 kHz branch** (1.04 MB; `runs/probe-2026-11-19/`).
+
+## What the second review found (after the E-005 addendum and E-009)
+
+- **The decoder is not the lever.** The E-009 grid has a ridge (token bonus
+  ≈ 4.3–4.9 × LM weight) and the frozen 0.55 / 2.7 sits on it; the best point
+  gains only 0.28 pp dev-macro. The review's expectation, based on Moth E-022's
+  6.85 pp, did not hold (`runs/E-009/RESULT.md`, "Post-hoc analysis").
+- **Dev-macro is the wrong calibration target for the LM.** The lighter LM that
+  dev-macro preferred made all eight S1-dev categories worse, `control_it`
+  included. Any further LM or decoder change needs a mixed calibration set that
+  is not the S1-dev gate: E-017.
+- **The remaining term errors are acronyms, brands and elisions.** Acronym ETA
+  29.2 %, brand 48.1 %; elided acronyms (`l'sdk`) did not improve over 0.8.1;
+  deletions fell from 151 to 53 (`runs/E-005/RESULT.md`, "S1-dev error
+  analysis"). Data and LM problems: E-019, E-020, E-021.
+- **We do not yet know where MOTH-50 stands on T-600.** Parakeet TDT 0.6B v3
+  is at 10.98 % / 83.60 % there (Moth E-017 baselines); 0.8.1 at 24.08 % /
+  55.23 %. The owed E-005 product readout comes next.
+- **Frontier models help as teachers, data and ceilings, not as
+  architectures** (`docs/frontier-stt-2026-11-19.md`, D24): E-018, E-019,
+  E-020, E-022 and the E-008 addition. Only permissively licensed models and
+  data may feed training.
 
 ## Byte budget
 
@@ -61,12 +87,26 @@ after the session.
 | 4 | E-010 | Encoder-LR screen | — | **done 2026-11-19: 1e-4 wins both arms** | 0 |
 | 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | **done 2026-11-21: dev pass, S1-dev ETA fail on seed 0** | 0 |
 | 6 | E-004 | Where the freed bytes go | 3, 5 | **done 2026-11-21: arm B (unpruned LM) adopted** | 49.21 MB |
-| 7 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER | a release | ~1 h | 0 |
-| 8 | E-013 | Extra blocks before `final_ln` | — | ~1.6 h MPS | 0 |
-| 9 | E-014 | Conformer-style convolution in the extra blocks | — | ~1.6 h MPS | ≈ 0 |
-| 10 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | ~1.6 h MPS | 0 |
-| 11 | E-006 | Data arms | 5 | days | 0 |
-| 12 | E-008 | External evaluation | final model | hours | 0 |
+| 7 | E-005 product readout | FLEURS once, report-only; T-600 already read in E-004 | FLEURS mel shards | ~1 h CPU | 0 |
+| 8 | E-017 | Mixed calibration set, separate from the S1-dev gate | owner decision (+ ~1 h recording for option A) | — | 0 |
+| 9 | E-018 | Teacher bake-off on the gold train set | — | ~1–2 h inference, no training | 0 |
+| 10 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | a release | ~1 h | 0 |
+| 11 | E-019 | Teacher labels (pseudo-label distillation) | 8, 9 | labelling + fine-tunes | 0 |
+| 12 | E-020 | LLM-written mixed text for the LM | 8 | LM builds + readouts | ≤ LM budget |
+| 13 | E-021 | Targeted acronym, brand and elision data | product acoustic baseline | recording + fine-tunes | 0 |
+| 14 | E-022 | Keyterm biasing re-test (product feature) | 8 | CPU readouts | 0 |
+| 15 | E-013 | Extra blocks before `final_ln` | — | ~1.6 h MPS | 0 |
+| 16 | E-014 | Conformer-style convolution in the extra blocks | — | ~1.6 h MPS | ≈ 0 |
+| 17 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | ~1.6 h MPS | 0 |
+| 18 | E-006 | Remaining data arms | product baseline | days | 0 |
+| 19 | E-008 | External evaluation and ceilings | final model | hours | 0 |
+
+The FLEURS readout, E-017 and E-018 need no training and can run while the Mac
+is otherwise idle; E-016 is engineering and can run in parallel. The full order
+for the product decision, including the 2026-11-21 review's P0–P11 (parity,
+S1-dev/LM overlap, E-011 re-read with E-034, LM-first D), is
+`docs/review-2026-11-21.md` §9. P0–P2 are prerequisites for readouts taken on
+the second Mac.
 
 ## E-005 addendum — A3 readout, A3 release and S1-dev
 
@@ -113,12 +153,40 @@ MOTH-50 NOTICE; the browser transcript is exact at **RTFx 22.3**. Artifacts:
 `runs/E-005/readout-a3*.json`, `release-a3/`, `s1-dev-*.json`,
 `browser-run-a3.json`.
 
-The product readout that `docs/architecture-options.md` §7 pre-registered for
-E-005 (T-600 ≤ 22 % WER and ≥ 58 % ETA, FLEURS-IT ≤ 18 %) is still **once**, as a
-report: build the T and FLEURS mel shards and run `--mode mixed` with the retained
-0.8.1 T-600 hypotheses
-(`../moth-stt/runs/E-037/readout/paired-1/product/int8/t600.hyp.jsonl`) as the
-reference. Never select or tune on it.
+### E-005 product readout — FLEURS, once (T-600 done in E-004)
+
+`docs/architecture-options.md` §7 pre-registered it for E-005: **T-600 ≤ 22 %
+WER and ≥ 58 % ETA, FLEURS-IT ≤ 18 %**. It is a report, read **once**, and it is
+never used to select or tune. **T-600 was read in E-004** (A3 13.9908 / 75.3595,
+E-034 13.4748 / 76.5101; `runs/E-004/t600-*.json`), against the retained 0.8.1
+E-037 hypotheses; any further T read is a declared repeated read. FLEURS-IT/EN
+is still owed and is the only measurement of the product package on
+unseen-speaker read speech outside S1.
+
+- **Product package:** `runs/E-004/release-e034/` (E-005 graph + E-034 N2_1_1
+  packed LM + 16 kHz VAD). Read both languages once, `--mode mixed`, no
+  reference; report WER and the per-category table.
+- **References:** 0.8.1 FLEURS results and the E-018 winner on the same set, as
+  diagnostics only.
+- **Expectations, not gates:** FLEURS-IT ≤ 18 % from the original E-005
+  pre-registration; a miss is recorded, not acted on.
+- **Not a selection set.** FLEURS never ranks a model, a decoder or an LM.
+
+```bash
+# FLEURS mel shards (audio from Moth's data/raw; re-fetch with its fetch.sh)
+for lang in it en; do
+  uv run --frozen --project ../moth-stt --extra training -- python -m stt.data.build_mel \
+    --manifest ../moth-stt/data/manifests/fleurs_${lang}_test.jsonl \
+    --audio-root ../moth-stt/data/raw --out-dir data/shards/fleurs_${lang}_test --workers 8
+  uv run --frozen --project ../moth-stt --extra training -- python tools/frozen_readout.py \
+    --mode mixed --name fleurs-${lang} --onnx runs/E-004/release-e034/model.int8.onnx \
+    --lm ../moth-stt/runs/E-034/build/N2_1_1.bin --allow-other-lm \
+    --manifest ../moth-stt/data/manifests/fleurs_${lang}_test.jsonl \
+    --shards data/shards/fleurs_${lang}_test --config training/configs/base6-long.toml \
+    --out runs/E-004/fleurs-${lang}-e034-int8.json \
+    --hyp-out runs/E-004/fleurs-${lang}-e034-int8.hyp.jsonl
+done
+```
 
 ## E-009 — Decoder recalibration (dev-macro selection, S1-dev veto)
 
@@ -168,7 +236,8 @@ uv run --frozen --project ../moth-stt --extra training -- python tools/frozen_re
 75.5371, paired **+0.5844 pp WER** [0.2422, 0.9515] and **−1.1230 pp ETA**
 [−1.8408, −0.4764]. The frozen decoder **0.55 / 2.7 stays**; no package or
 readout changed. Artifacts: `runs/E-009/grid.json`, `s1-dev-veto.json`,
-`runs/E-009/RESULT.md`.
+`runs/E-009/RESULT.md`. Its post-hoc analysis (the ridge, and the lighter LM
+hurting every S1-dev category, `control_it` included) is what motivates E-017.
 
 ## E-010 — Encoder-LR screen
 
@@ -356,10 +425,175 @@ FLEURS as diagnostics.
    sentences seen 50 times per epoch.
 3. **Word/phrase-level splicing** with forced alignment vs the utterance-level
    splices.
-4. **Pseudo-labels:** Parakeet-TDT-0.6B-v3 (CC-BY-4.0) on unlabelled VoxPopuli
-   Italian (CC0), confidence-filtered (review P4).
-5. **New S1 training sessions** (2–5 h), never the S1-dev session.
-6. **TTS** as a 10–20 % minority source (permissive voices only).
+4. **Pseudo-labels:** superseded by E-018 (choose the teacher) and E-019 (label
+   and train).
+5. **New S1 training sessions** (2–5 h), never the S1-dev session: unscripted
+   sessions are E-019 arm B; acronym/brand/elision scripts are E-021.
+6. **TTS** as a 10–20 % minority source (permissive voices only): the targeted
+   version is E-021 arm 2.
+
+## Frontier-model follow-ups (E-017–E-022)
+
+These come from the review in `docs/frontier-stt-2026-11-19.md` (D24) and from
+the S1-dev error analysis. The licence rule applies to all of them: only
+permissively licensed models and data feed training; commercial APIs are
+evaluation-only; every teacher, corpus and generator is pinned in
+`data/sources.lock.json` before use, and anything that enters a release is
+attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
+
+### E-017 — Mixed calibration set (protocol; decide before E-004, E-020, E-022)
+
+- **Problem:** E-009 showed that dev-macro asks for a lighter LM than the
+  product set wants, and S1-dev is the gate and the veto, so tuning on it would
+  be circular. Every later LM or decoder choice (E-004 per-arm recalibration,
+  E-020, E-022) needs a mixed IT–EN set used **only** for calibration.
+- **Option A (recommended): a new calibration session**, `R-S1-cal`: 300–400 new
+  mixed cues (~15–20 min) from the same script pipeline, category mix as
+  S1-dev, deduplicated against T, A, R-S1, R-S2 and the S1-dev scripts,
+  recorded by S1 in a separate session with the E-002 runbook. Costs about an
+  hour of recording and review; S1-dev keeps its full power as the gate.
+- **Option B: split S1-dev** into calibration and gate halves (480 / 480,
+  stratified by category, fixed by a seeded hash of the cue id before any
+  calibration readout). No recording, but the gate's paired CIs widen by about
+  √2 (the E-009 veto's WER half-width 0.35 pp → ~0.50 pp). The E-005 and E-009
+  results on the full S1-dev stay as recorded.
+- **Either way** the calibration set is S1's voice, so it cannot separate
+  speaker adaptation from domain fit; T-600 S3 at release time checks that.
+- **Adoption:** a dated E-002 amendment (§7) names the set and the rule: rank
+  decoder/LM settings on the calibration set; dev-macro is a guard (no
+  regression with CI excluding zero); the S1-dev veto (§6.3) stays. Nothing is
+  calibrated on the new set before that amendment exists.
+
+### E-018 — Teacher bake-off (no training)
+
+- **Question:** which permissively licensed open model gives the best labels for
+  mixed IT–EN dictation, and is it far enough ahead of MOTH-50 to teach it?
+- **Candidates:** Parakeet TDT 0.6B v3 (CC-BY-4.0), Canary-1B-v2 (CC-BY-4.0),
+  Whisper large-v3-turbo (MIT; forced `it` and auto language), Voxtral Mini
+  (Apache-2.0). Optionally, on a rented GPU: SOV-Transcribe-1 (Apache-2.0) and
+  Nemotron 3.5 Transcribe (OpenMDW-1.1). Pin each by revision and file hash
+  first.
+- **Data:** the gold train set v1.0.0 (1,413 clips, S1 + S2, 57.6 min): real
+  code-switching with reviewed transcripts, and no candidate was trained on it.
+  Not S1-dev (the gate), not T (the test set). Optional sanity check: the first
+  500 MLS-IT dev clips against MOTH-50's MLS-IT dev WER.
+- **Metrics:** WER, ETA, insertion rate, per category, RTFx on the M5, all
+  through Moth's normalizer and `vendor/moth-stt/moth_eval.py --breakdown
+  category,speaker`. Watch `italianized`: a teacher that writes `crashed` for
+  `crashato`, or translates a term, teaches the wrong thing even at low WER.
+- **Selection rule:** a teacher qualifies if on the gold train set it reaches
+  **WER ≤ 7.0 %, ETA ≥ 85 % and `italianized` ETA ≥ 72.3 %** (half of MOTH-50's
+  S1-dev WER, 10 points above its S1-dev ETA, and not below its `italianized`
+  ETA; same speaker S1 and same script pipeline, so the comparison is
+  approximate). Among qualifying teachers pick the lowest WER; within 0.5 pp,
+  the faster one. The runner-up, if it qualifies, is the agreement filter in
+  E-019. If none qualifies, E-019 keeps only monolingual Italian sources, where
+  any candidate is far ahead of MOTH-50.
+- **Tooling (not yet written):** a runner that writes `{id, hyp}` JSONL per
+  teacher; Moth's `baselines/parakeet_runner.py` and `whisper_runner.py` are
+  the starting point.
+- **Cost:** Parakeet ran at RTFx 34 on 4 CPU threads in Moth E-017, so the gold
+  set takes ~2 min; the larger local candidates tens of minutes each.
+
+### E-019 — Teacher labels (pseudo-label distillation)
+
+- **Hypothesis:** teacher-labelled speech that MOTH-50 has never heard improves
+  S1-dev WER without an ETA regression; monolingual Italian helps dev-macro too.
+- **Sources** (each pinned with its licence before use):
+  1. **NVIDIA Granary, Italian** (dataset card CC-BY-4.0; YODAS-Granary
+     CC-BY-3.0, MOSEL CC-BY-4.0; the audio keeps its source licence: VoxPopuli
+     CC0, YouTube-Commons CC-BY). Already pseudo-labelled, no teacher compute.
+     Start with the VoxPopuli part; YouTube-sourced audio carries
+     uploader-licence risk and needs its own check.
+  2. **VoxPopuli Italian, unlabelled** (CC0), labelled by the E-018 teacher.
+  3. **Unscripted S1 sessions** (2–5 h): S1 speaks freely about work topics;
+     the teacher transcribes. It adds spontaneous speech, which no current
+     source has, and costs no scripting or review. Never reads S1-dev or T
+     scripts.
+- **Filters:** agreement between two teachers (keep a clip if the normalized
+  WER between them is ≤ 10 %); 1–30 s; Silero speech fraction > 0.10; at most
+  4 words per second (Parakeet hallucinated on 24 noise clips in Moth E-011);
+  Moth's training guard (no T, A, S3, FLEURS, dev audio or IDs).
+- **Audit before training:** listen to 100 random kept clips and score them by
+  hand. If the audited WER exceeds 10 %, tighten the filter and audit again.
+- **Arms**, one variable each, fine-tuned from the **product acoustic checkpoint
+  (E-005)** against a control fine-tune of the same length on the unchanged
+  mixture. E-011 ran but was not adopted, so it is not the parent. A = + Italian
+  pseudo-labels (sources 1–2), capped at the MLS-IT share; B = + unscripted S1
+  pseudo-labels (source 3).
+- **Gate:** S1-dev paired WER better with the CI excluding zero and no ETA
+  regression (E-002 §6), dev-macro without a regression whose CI excludes zero.
+  A passing source enters the mixture of the next full run.
+- **Risks:** arm B trains on the S1-dev speaker, so its S1-dev gain overstates
+  the product; T-600 S2/S3 read at release time decide. The student inherits
+  the teacher's errors and cannot exceed it on those domains.
+
+### E-020 — LLM-written mixed text for the LM
+
+- **Hypothesis:** an A3-style LM rebuilt with in-domain mixed IT–EN text
+  (dictation about work and technology, dense in acronyms, brands, italianized
+  verbs and elisions like `l'SDK`) raises S1-dev ETA without hurting WER, at the
+  same LM bytes.
+- **Generator:** an open-weight LLM whose licence leaves outputs free; never an
+  API whose terms restrict outputs. Pin the model, prompts and seeds; commit the
+  prompts.
+- **Leakage control:** seed prompts only with training-side terms (Moth's
+  `data/en_terms.txt`, the gold train scripts), never with S1-dev, T or A
+  sentences or their term lists; drop every generated sentence that shares a
+  normalized word 4-gram with an S1-dev, T or A script; report the drop counts.
+- **Build:** the A3 recipe (Moth E-031/D41: BPE trigram, bigrams and trigrams
+  ≥ 2, term sentences ×3) plus the generated text, pruned to A3's size
+  (5,381,992 B) — or to the packed budget once E-012 lands. Control: A3.
+- **Calibration:** an E-009-style grid per LM on the E-017 set, then the S1-dev
+  veto.
+- **Gate:** on S1-dev, ETA better with the CI excluding zero and no WER
+  regression, or WER better with the CI excluding zero and no ETA regression;
+  acronym and brand ETA reported; dev-macro without a significant regression.
+- **Risk:** S1-dev and the gold scripts come from a script pipeline that may be
+  LLM-assisted, so an LLM-text LM can look better on S1-dev than on real
+  dictation. T-600 at release and, later, unscripted speech (E-019 arm B audio
+  with reviewed transcripts) check it.
+
+### E-021 — Targeted acronym, brand and elision data
+
+- **Evidence:** acronym ETA 29.2 %, brand 48.1 %, acronym insertions 4.70 per
+  100 words; elided acronyms not improved over 0.8.1 (34 vs 32 misses).
+- **Arm 1, recordings:** 300–500 new S1 sentences in a new session, dense in
+  acronyms (read with Italian and with English letter names), brands, and
+  `l'` / `dell'` / `all'` + acronym; same pipeline and dedupe as E-017.
+  Moth D42 is the warning: an S1-only term addendum raised rare-term ETA but
+  regressed S3 and FLEURS, so the share stays moderate and T-S3 is read at
+  release.
+- **Arm 2, TTS:** the same kind of sentences from permissively licensed
+  multi-voice TTS (no cloning of S1/S2/S3), at most 10–20 % of the arm's audio.
+- **Gate:** a paired readout on the acronym + brand subset of S1-dev
+  (`--mode mixed` on a filtered manifest, 226 clips) with ETA better and the CI
+  excluding zero, plus no regression on full S1-dev (E-002 §6) or dev-macro.
+
+### E-022 — Keyterm biasing re-test (conditional, product feature)
+
+- **Prior:** negative. Moth E-027's 24-term glossary moved T-600 WER by
+  −0.03 pp and left the rare-term rows unchanged.
+- **Why re-test:** MOTH-50's term misses are mostly substitutions (335 of 501)
+  rather than deletions, so the right term may now be in the beam more often,
+  and frontier APIs sell exactly this feature.
+- **Step 1, upper bound (report only):** a per-clip oracle list (the clip's own
+  English terms) with the decoder's `ContextualBias` at Moth's bonus 1.0 /
+  prefix 0.25 on the E-017 set. If acronym + brand ETA does not rise by
+  ≥ 5 points, stop: a realistic list can only do worse.
+- **Step 2:** oracle terms plus 500 distractors from the training-side term
+  list; tune the bonus on the E-017 set; report S1-dev ETA and false insertions
+  on `control_it`.
+- **Scope:** a user glossary in the product, 0 bytes (`web/ort.js` already takes
+  `contextualSequences`). Never part of a gate readout, because the list
+  contains the answers.
+
+### E-008 addition — ceilings for the paper
+
+Read T-600 once with the E-018 winner and, evaluation-only, with one or two
+frontier APIs, after MOTH-50's final release. Report-only, never selection.
+S2/S3 audio goes to a third party only if their consent covers it; otherwise
+report S1 only.
 
 ## Not planned
 
@@ -369,3 +603,9 @@ FLEURS as diagnostics.
 - **Whisper-small (whole or truncated), transducer, AED, from-scratch
   Conformer:** unchanged from D8/D11.
 - **More English-only data:** Moth E-012 made the mixed set 5.16 points worse.
+- **An LLM decoder, or a FastConformer/TDT student trained from scratch**
+  (the frontier recipes): they need billions of parameters or thousands of GPU
+  hours; see `docs/frontier-stt-2026-11-19.md` §3. Revisit a distilled student
+  only if E-019 shows the Whisper-base encoder is the ceiling.
+- **Training on commercial-API outputs** (labels, text or LM data): their terms
+  generally forbid it, and the model must stay commercially usable (D24).
