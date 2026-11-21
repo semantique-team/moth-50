@@ -88,7 +88,7 @@ after the session.
 | 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | **done 2026-11-21: dev pass, S1-dev ETA fail on seed 0** | 0 |
 | 6 | E-004 | Where the freed bytes go | 3, 5 | **done 2026-11-21: arm B (unpruned LM) adopted** | 49.21 MB |
 | 7 | E-005 product readout | FLEURS once, report-only; T-600 already read in E-004 | FLEURS mel shards | ~1 h CPU | 0 |
-| 8 | E-017 | Mixed calibration set, separate from the S1-dev gate | owner decision (+ ~1 h recording for option A) | — | 0 |
+| 8 | E-017 | Mixed calibration set, separate from the S1-dev gate | owner decision | **done 2026-11-21: 400/400 takes, manifest + shards, E-002 §8** | 0 |
 | 9 | E-018 | Teacher bake-off on the gold train set | — | ~1–2 h inference, no training | 0 |
 | 10 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | a release | ~1 h | 0 |
 | 11 | E-019 | Teacher labels (pseudo-label distillation) | 8, 9 | labelling + fine-tunes | 0 |
@@ -486,13 +486,16 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
   decoder/LM settings on the calibration set; dev-macro is a guard (no
   regression with CI excluding zero); the S1-dev veto (§6.3) stays. Nothing is
   calibrated on the new set before that amendment exists.
-- **Status (2026-11-21): option A script built, unreviewed.** 400 cues, 50 per
+- **Status (2026-11-21): option A done and frozen.** 400 cues, 50 per
   category, 755 English-term words, mean 5.58 words; 0 exact/near duplicates
   against T, A, R-S1, R-S2, pool and S1-dev; 0 exact sentences in the E-031 LM
-  corpus; 4-gram share 8.75 % (T 9.75 %, clean S1-dev 4.09 %).
-  `../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md`. Next: review,
-  record in a separate S1 session, build the manifest/shards, then write the
-  E-002 §8 amendment.
+  corpus; 4-gram share 8.75 % (T 9.75 %, clean S1-dev 4.09 %). Reviewed by
+  Tancredi, recorded (400/400, 16.95 min, 19 retakes), level-matched to S1-dev
+  with one fixed −16.58 dB gain (0 clipped after), built into
+  `manifests/R-S1-cal.jsonl` (`split: dev`) and `data/shards/s1-cal` (400
+  clips, 1 shard, 0 errors). E-002 §8 names the set and the rule before any
+  readout. No calibration readout has run.
+  `../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md`.
 
 ### E-018 — Teacher bake-off (no training)
 
@@ -623,8 +626,9 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 
-**Status: pre-registered 2026-11-21, not authorized.** It needs the E-017
-calibration set and an explicit go-ahead; do not launch it.
+**Status: pre-registered 2026-11-21, not authorized.** E-017 is done and frozen
+(`manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, E-002 §8); R1 still needs an
+explicit go-ahead. Do not launch it.
 
 - **Why:** P6 re-read E-011 with E-034c and failed on clean-S1-dev ETA
   (−1.7578 pp [−3.1844, −0.1422] on the seed mean) while dev-macro passed

@@ -36,10 +36,12 @@ ETA **−1.76 pp** on the seed mean (CI excludes zero), so the veto holds
 (`runs/E-011/p6/RESULT.md`). P7 found gold memorisation saturated in both models
 (E-005 0.20 %, E-011 0.08 / 0.14 %) and the ETA loss spread over short English
 words, so the first recipe ablation is **E-023 R1** (encoder LR 3e-5),
-pre-registered but not authorized (`experiments/next-experiments.md`). The
-E-017 option A script is built: 400 cues, 50 per category, 0 exact/near
-duplicates against the dataset and 0 exact matches in the LM corpus
-(`../moth-cs-dataset/text-2026-11-cal/`); it awaits review and recording. E-004
+pre-registered but not authorized (`experiments/next-experiments.md`). E-017 is
+done: the 400-cue `R-S1-cal` set is reviewed, recorded (400/400, 16.95 min),
+level-matched to S1-dev (−16.58 dB), built into `manifests/R-S1-cal.jsonl`
+(`split: dev`) and `data/shards/s1-cal`, and frozen under **E-002 §8**
+(`../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md`). No
+calibration readout has run. E-004
 arm B (2026-11-21) then used the E-012 headroom for LM coverage. Its
 S1-dev number was withdrawn by P2; E-034c is the corrected candidate. E-011's
 S1-dev absolute numbers are inflated by the same leak, but its veto compared

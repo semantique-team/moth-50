@@ -241,3 +241,42 @@ S1-dev WER −0.5040 pp (CI includes 0) but **ETA −1.7578 pp [−3.1844, −0.
 on the seed mean (gate b fails). Per the outcome mapping: E-011 + E-034c is not
 adopted; E-005 + E-034c stays; P7 diagnostics, then P10 R1 under E-023.
 `runs/E-011/p6/RESULT.md`.
+
+## 8. Amendment 2026-11-21c — E-017 calibration set (written before any calibration readout)
+
+1. **Set.** `R-S1-cal` is a new S1 session: **400 cues, 50 per category**,
+   IDs `R-S1-CAL-0001`…`0400`, reviewed by Tancredi on 2026-11-21. Frozen
+   script: `../moth-cs-dataset/text-2026-11-cal/R-S1.jsonl`, sha256
+   `ae5a26f4a0cc5925c35dd82bfa695fbc3408adccadd8f34678970aff3367bcc2`.
+   It is neither training data nor a gate, and it is **not** the S1-dev veto
+   set.
+2. **Audio and manifest.** Recorded in a separate S1 session on 2026-11-21
+   (400/400 takes, 16.95 min, 19 retakes; `session.log.jsonl`). The raw takes
+   were 16.58 dB hotter than S1-dev, so one **fixed, set-wide** gain of
+   −16.58 dB was applied to copies (`tools/match_audio_level.py`); the raw
+   session is untouched. The normalised set matches S1-dev: median RMS
+   −34.34 dBFS (S1-dev −34.34), peak mean −18.5 dBFS (S1-dev −17.6), mel
+   offset −0.014 (before: +0.394), 0 clipped samples. Manifest
+   `../moth-cs-dataset/manifests/R-S1-cal.jsonl`, sha256 `ef34c3f8…`, rows
+   `audio/R-S1-cal-norm/...`, **`split: dev`** so the trainer cannot use it;
+   mel shards `data/shards/s1-cal` (400 clips, 1 shard, 0 errors). Reports:
+   `runs/E-017/level-match.json`, `runs/E-017/s1-cal-norm-qc.json`.
+3. **Role and rule.** E-017 calibration **ranks** candidate LM, decoder and
+   recipe changes; it never selects a model on its own. Rank on pooled ETA
+   (WER reported alongside) with the frozen E-002 decoder and the product LM;
+   then require the pre-registered **dev-macro guard** (no regression with the
+   paired 95 % CI excluding zero) and the **S1-dev veto** of §6.2. S1-dev is
+   never used for ranking; T, FLEURS and CS-FLEURS are never used to select.
+   The set is S1's voice: it measures domain and recipe fit, not speaker
+   generalisation; T-600 S3 checks the latter at release.
+4. **Power.** 755 English-term words against 2,048 on S1-dev. Overall ETA
+   differences below about **1.5 pp** may not resolve; category-level ETA is
+   report-only. A smaller calibration difference is not evidence of a win.
+5. **Freeze.** The script is frozen at the sha256 above before the first
+   readout; editing a cue invalidates every calibration comparison. The audio
+   gain is fixed for the whole set; there is no per-file normalisation and no
+   later gain change.
+6. **First application.** E-023 R1 (encoder LR 3e-5) uses this set to rank its
+   point, with the same dev-macro guard and S1-dev veto. No training starts
+   without an explicit go-ahead.
+

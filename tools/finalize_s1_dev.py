@@ -1,8 +1,9 @@
-"""Turn a ``build_manifest`` fragment into the S1-dev dev manifest.
+"""Turn a ``build_manifest`` fragment into a dev manifest.
 
 ``scripts/build_manifest.py`` writes the canonical ``audio/R-S1/...`` path and
-``split: train``. The held-out S1-dev contract is the opposite: ``split: dev``
-and ``audio/R-S1-dev/...``. This patches the fragment, verifies that every
+``split: train``. The S1-dev contract is the opposite: ``split: dev`` and
+``audio/R-S1-dev/...``. The E-017 calibration set uses the same transform with
+``audio/R-S1-cal-norm/...``. This patches the fragment, verifies that every
 audio path exists, and refuses to write anything that breaks the contract.
 
     cd ../moth-cs-dataset
@@ -25,6 +26,7 @@ from pathlib import Path
 SPEAKER = "S1"
 SOURCE_PREFIX = "audio/R-S1/"
 TARGET_PREFIX = "audio/R-S1-dev/"
+DEFAULT_SPLIT = "dev"
 
 MIN_SECONDS = 1.0
 MAX_SECONDS = 30.0
@@ -40,27 +42,43 @@ def load_rows(path: Path) -> list[dict]:
     return rows
 
 
-def is_finalized(rows: list[dict]) -> bool:
+def is_finalized(
+    rows: list[dict],
+    *,
+    target_prefix: str = TARGET_PREFIX,
+    split: str = DEFAULT_SPLIT,
+) -> bool:
     return all(
-        row.get("split") == "dev" and str(row.get("audio", "")).startswith(TARGET_PREFIX)
+        row.get("split") == split and str(row.get("audio", "")).startswith(target_prefix)
         for row in rows
     )
 
 
-def rewrite(rows: list[dict]) -> list[dict]:
+def rewrite(
+    rows: list[dict],
+    *,
+    source_prefix: str = SOURCE_PREFIX,
+    target_prefix: str = TARGET_PREFIX,
+    split: str = DEFAULT_SPLIT,
+) -> list[dict]:
     """Return dev rows pointing at the session audio; raise on a mixed fragment."""
     out: list[dict] = []
     for row in rows:
         audio = str(row.get("audio", ""))
-        if audio.startswith(SOURCE_PREFIX):
-            audio = TARGET_PREFIX + audio[len(SOURCE_PREFIX) :]
-        elif not audio.startswith(TARGET_PREFIX):
+        if audio.startswith(source_prefix):
+            audio = target_prefix + audio[len(source_prefix) :]
+        elif not audio.startswith(target_prefix):
             raise SystemExit(f"{row.get('id')}: unexpected audio path {audio!r}")
-        out.append({**row, "split": "dev", "audio": audio})
+        out.append({**row, "split": split, "audio": audio})
     return out
 
 
-def problems(rows: list[dict], root: Path) -> list[str]:
+def problems(
+    rows: list[dict],
+    root: Path,
+    *,
+    split: str = DEFAULT_SPLIT,
+) -> list[str]:
     """Contract violations: duplicates, missing audio, bad speaker/split/duration."""
     found: list[str] = []
     seen: set[str] = set()
@@ -73,8 +91,8 @@ def problems(rows: list[dict], root: Path) -> list[str]:
         seen.add(identifier)
         if row.get("speaker") != SPEAKER:
             found.append(f"{identifier}: speaker {row.get('speaker')!r}, expected {SPEAKER}")
-        if row.get("split") != "dev":
-            found.append(f"{identifier}: split {row.get('split')!r}, expected 'dev'")
+        if row.get("split") != split:
+            found.append(f"{identifier}: split {row.get('split')!r}, expected {split!r}")
         audio = row.get("audio")
         if not audio:
             found.append(f"{identifier}: missing audio")
@@ -90,10 +108,10 @@ def problems(rows: list[dict], root: Path) -> list[str]:
     return found
 
 
-def summarize(rows: list[dict]) -> str:
+def summarize(rows: list[dict], budget: tuple[float, float] = BUDGET_MINUTES) -> str:
     minutes = sum(float(row["duration"]) for row in rows) / 60
     mean = sum(float(row["duration"]) for row in rows) / len(rows)
-    low, high = BUDGET_MINUTES
+    low, high = budget
     verdict = "inside" if low <= minutes <= high else "outside"
     return (
         f"{len(rows)} rows, {minutes:.2f} min ({mean:.2f} s mean); "
@@ -109,18 +127,34 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--out", type=Path, help="write here (default: patch --fragment)")
     parser.add_argument("--check", action="store_true", help="report only, write nothing")
+    parser.add_argument("--source-prefix", default=SOURCE_PREFIX)
+    parser.add_argument("--target-prefix", default=TARGET_PREFIX)
+    parser.add_argument("--split", default=DEFAULT_SPLIT)
+    parser.add_argument(
+        "--budget-minutes",
+        type=float,
+        nargs=2,
+        default=BUDGET_MINUTES,
+        metavar=("MIN", "MAX"),
+        help="expected dev duration range (default: 45 60)",
+    )
     args = parser.parse_args(argv)
 
     rows = load_rows(args.fragment)
-    if is_finalized(rows):
+    if is_finalized(rows, target_prefix=args.target_prefix, split=args.split):
         print(f"already finalized: {args.fragment}")
-        print(f"  {summarize(rows)}")
+        print(f"  {summarize(rows, tuple(args.budget_minutes))}")
         return 0
 
-    rows = rewrite(rows)
-    found = problems(rows, args.dataset_root)
-    print(f"{args.fragment}: {summarize(rows)}")
-    print(f"  {SOURCE_PREFIX} -> {TARGET_PREFIX}, split -> dev")
+    rows = rewrite(
+        rows,
+        source_prefix=args.source_prefix,
+        target_prefix=args.target_prefix,
+        split=args.split,
+    )
+    found = problems(rows, args.dataset_root, split=args.split)
+    print(f"{args.fragment}: {summarize(rows, tuple(args.budget_minutes))}")
+    print(f"  {args.source_prefix} -> {args.target_prefix}, split -> {args.split}")
     if found:
         print(f"  FAILED with {len(found)} problem(s):")
         for item in found[:40]:

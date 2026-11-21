@@ -31,7 +31,9 @@ running, and the exact next commands. Update it at the end of each session.
   MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21); E-011 won dev-macro but
   failed the S1-dev ETA rule on seed 0 and was not adopted (D22); E-004 arm B
   moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.
-  E-017–E-023 have not run; E-023 is pre-registered after P6.**
+  E-017 is done (400-cue `R-S1-cal` reviewed, recorded, level-matched,
+  manifest + shards built, E-002 §8 written); E-018–E-022 have not run.
+  E-023 is pre-registered and not authorized.**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
   without an explicit go-ahead.
@@ -52,8 +54,9 @@ running, and the exact next commands. Update it at the end of each session.
   zero). **Not adopted**; E-005 acoustic remains and the product LM decision is
   pending E-034c. The S1-dev absolute numbers were inflated by the P2 leak; the
   paired E-011-vs-E-005 comparison used the same A3 LM. `runs/E-011/RESULT.md`.
-- **Tests:** 118 passed in the training env, 107 passed + 3 skipped (torch and
-  `stt.lm` parity) in a plain venv; `ruff check` and `ruff format --check` clean.
+- **Tests:** 121 passed in the training env, 109 passed + 4 skipped (torch,
+  `stt.lm` parity and soundfile) in a plain venv; `ruff check` and
+  `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
 
@@ -109,7 +112,7 @@ running, and the exact next commands. Update it at the end of each session.
 | P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
 | E-023 R1 pre-registration | **written, not run**: E-011 with encoder LR 3e-5; needs E-017 + go-ahead; R2 only if R1 fails | `experiments/next-experiments.md`, `training/configs/base6-e023-r1.toml` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
-| E-017 option A script | **built, unreviewed**: 400 cues, 50/category, 755 English terms; 0 exact/near duplicates vs T/A/R-S1/R-S2/pool/S1-dev; 0 LM exact; 4-gram 8.75 % | `../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md` |
+| E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; no readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/RESULT.md` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
@@ -132,11 +135,12 @@ Nothing is running.
 2. **P3 is done** (FLEURS-IT 14.8238 %, EN 30.2675 %; both far better than
    0.8.1, no ETA). **P4/E-016 — 1-thread RTFx** and vendoring `moth-stt/web/`
    at `b0fa11c` + `0e15442` remain.
-3. **E-017 option A** — the 400-cue `R-S1-cal` script is built and deduped
-   (`text-2026-11-cal`, unreviewed). Next: review, record (~25–30 min, separate
-   S1 session), manifest/shards, then the E-002 §8 amendment before the first
-   calibration readout. New cues are not from `text/pool.jsonl`; future LM
-   corpora must exclude the pool.
+3. **E-017 is done** — `R-S1-cal` is reviewed, recorded (400/400, 16.95 min),
+   level-matched (−16.58 dB) and built into `manifests/R-S1-cal.jsonl`
+   (`split: dev`) and `data/shards/s1-cal` (400 clips, 0 errors). E-002 §8 is
+   written. The next step is R1 (E-023), which needs an explicit go-ahead; no
+   calibration readout has run. New cues are not from `text/pool.jsonl`; future
+   LM corpora must exclude the pool.
 4. **P8** (×3-term unpruned LM, ranked on E-017) and **P11** final run only
    after a recipe fix; P10 R1/R2 are the recipe candidates. Training needs an
    explicit go-ahead.
@@ -207,6 +211,12 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   1.6 dB, no hard errors. Two advisory warnings: `S1_0563.wav` 1.49 s and
   `S1_0886.wav` 1.27 s, both four-word cues. `S1_0726` was re-recorded after a
   0.0 dBFS peak; the final max is −3.8 dBFS.
+- **`R-S1-cal` is the E-017 calibration set** (400 reviewed cues, 16.95 min).
+  Raw takes are in `audio/R-S1-cal/`; the manifest points at
+  `audio/R-S1-cal-norm/`, a fixed −16.58 dB copy that matches S1-dev (median
+  RMS −34.34 dBFS, mel offset −0.014, 0 clips). It is `split: dev` only as a
+  trainer guard: never train on it, never use it for the S1-dev veto, and never
+  rank on S1-dev. The rule is E-002 §8.
 - **Every training run needs `model.init`.** `base6.toml` points at
   `data/raw/whisper-base-encoder.pt` (gitignored; rebuild with
   `tools/convert_whisper_encoder.py`). A random-init run is invalid: measured
@@ -279,7 +289,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-011/p6/RESULT.md` — P6 re-read with E-034c: dev pass, S1-dev ETA veto holds.
 - `runs/E-011/p7/RESULT.md` — P7 diagnostics: gold saturation, ETA-miss classes, R1 order.
 - `runs/E-004/fleurs-RESULT.md` — P3 FLEURS-IT/EN product readout vs 0.8.1.
-- `runs/E-017/RESULT.md` — R-S1-cal script build, dedupe and next steps.
+- `runs/E-017/RESULT.md` — R-S1-cal: review, recording, level match, manifest, shards, power caveat.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and

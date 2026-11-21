@@ -1,0 +1,25 @@
+{
+  "tool": "tools/match_audio_level.py",
+  "source_dir": "../moth-cs-dataset/audio/R-S1-cal/S1",
+  "reference_dir": "../moth-cs-dataset/audio/R-S1-dev/S1",
+  "out_dir": "../moth-cs-dataset/audio/R-S1-cal-norm/S1",
+  "gain_db": -16.576,
+  "source": {
+    "files": 400,
+    "median_dbfs": -17.759214932219944,
+    "min_dbfs": -22.925449842914848,
+    "max_dbfs": -13.010321743359619
+  },
+  "reference": {
+    "files": 960,
+    "median_dbfs": -34.33514356984851,
+    "min_dbfs": -39.84847185594569,
+    "max_dbfs": -28.699607052547083
+  },
+  "out_levels": {
+    "files": 400,
+    "median_dbfs": -34.33514356946317,
+    "peak_max": 0.1483213153057766,
+    "clipped_samples": 0
+  }
+}

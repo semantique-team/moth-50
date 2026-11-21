@@ -21,6 +21,17 @@ def test_rewrite_sets_dev_and_the_session_prefix():
     assert is_finalized(rows)
 
 
+def test_rewrite_accepts_a_calibration_prefix_and_split():
+    rows = rewrite(
+        [row(1)],
+        target_prefix="audio/R-S1-cal-norm/",
+        split="dev",
+    )
+    assert rows[0]["audio"] == "audio/R-S1-cal-norm/S1/S1_0001.wav"
+    assert is_finalized(rows, target_prefix="audio/R-S1-cal-norm/", split="dev")
+    assert not is_finalized(rows)
+
+
 def test_rewrite_is_idempotent():
     once = rewrite([row(1)])
     assert rewrite(once) == once

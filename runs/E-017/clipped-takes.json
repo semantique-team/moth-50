@@ -1,0 +1,485 @@
+[
+  {
+    "file": "S1_0010.wav",
+    "clipped_samples": 3,
+    "ratio": 2.4212293388429753e-05,
+    "flat_run": 3,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0028.wav",
+    "clipped_samples": 5,
+    "ratio": 5.3953729281767954e-05,
+    "flat_run": 5,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0030.wav",
+    "clipped_samples": 29,
+    "ratio": 0.00027629573170731705,
+    "flat_run": 7,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0032.wav",
+    "clipped_samples": 2,
+    "ratio": 1.800115207373272e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0033.wav",
+    "clipped_samples": 46,
+    "ratio": 0.0003579432270916335,
+    "flat_run": 6,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0037.wav",
+    "clipped_samples": 79,
+    "ratio": 0.0007278154481132075,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0040.wav",
+    "clipped_samples": 73,
+    "ratio": 0.0006510416666666666,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0043.wav",
+    "clipped_samples": 194,
+    "ratio": 0.0017223011363636364,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0044.wav",
+    "clipped_samples": 6,
+    "ratio": 6.167763157894737e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0046.wav",
+    "clipped_samples": 18,
+    "ratio": 0.00015625,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0047.wav",
+    "clipped_samples": 74,
+    "ratio": 0.0006150265957446809,
+    "flat_run": 10,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0048.wav",
+    "clipped_samples": 63,
+    "ratio": 0.000615234375,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0049.wav",
+    "clipped_samples": 2,
+    "ratio": 1.7918577981651377e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0050.wav",
+    "clipped_samples": 4,
+    "ratio": 3.7741545893719805e-05,
+    "flat_run": 1,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0058.wav",
+    "clipped_samples": 175,
+    "ratio": 0.0017618395618556701,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0060.wav",
+    "clipped_samples": 17,
+    "ratio": 0.00018653441011235955,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0061.wav",
+    "clipped_samples": 38,
+    "ratio": 0.00041695926966292134,
+    "flat_run": 15,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0063.wav",
+    "clipped_samples": 105,
+    "ratio": 0.0008955376637554585,
+    "flat_run": 7,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0064.wav",
+    "clipped_samples": 62,
+    "ratio": 0.0007165310650887574,
+    "flat_run": 11,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0071.wav",
+    "clipped_samples": 6,
+    "ratio": 4.944620253164557e-05,
+    "flat_run": 5,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0084.wav",
+    "clipped_samples": 1,
+    "ratio": 8.91837899543379e-06,
+    "flat_run": 1,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0087.wav",
+    "clipped_samples": 13,
+    "ratio": 0.00010363520408163265,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0094.wav",
+    "clipped_samples": 4,
+    "ratio": 3.925879396984925e-05,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0095.wav",
+    "clipped_samples": 1,
+    "ratio": 9.435386473429951e-06,
+    "flat_run": 1,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0098.wav",
+    "clipped_samples": 5,
+    "ratio": 3.5903033088235295e-05,
+    "flat_run": 5,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0100.wav",
+    "clipped_samples": 17,
+    "ratio": 0.00014069120762711865,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0102.wav",
+    "clipped_samples": 27,
+    "ratio": 0.0002511160714285714,
+    "flat_run": 7,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0103.wav",
+    "clipped_samples": 7,
+    "ratio": 5.842681623931624e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0112.wav",
+    "clipped_samples": 17,
+    "ratio": 0.000166015625,
+    "flat_run": 13,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0114.wav",
+    "clipped_samples": 6,
+    "ratio": 6.438873626373627e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0120.wav",
+    "clipped_samples": 7,
+    "ratio": 6.904987373737373e-05,
+    "flat_run": 3,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0121.wav",
+    "clipped_samples": 117,
+    "ratio": 0.001067830023364486,
+    "flat_run": 19,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0122.wav",
+    "clipped_samples": 62,
+    "ratio": 0.00041188350340136057,
+    "flat_run": 8,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0124.wav",
+    "clipped_samples": 53,
+    "ratio": 0.00048828125,
+    "flat_run": 8,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0135.wav",
+    "clipped_samples": 46,
+    "ratio": 0.0003806938559322034,
+    "flat_run": 10,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0137.wav",
+    "clipped_samples": 24,
+    "ratio": 0.00025614754098360657,
+    "flat_run": 7,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0139.wav",
+    "clipped_samples": 36,
+    "ratio": 0.0003255208333333333,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0140.wav",
+    "clipped_samples": 16,
+    "ratio": 0.00014467592592592592,
+    "flat_run": 1,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0144.wav",
+    "clipped_samples": 2,
+    "ratio": 1.9828680203045684e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0147.wav",
+    "clipped_samples": 9,
+    "ratio": 9.400066844919786e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0148.wav",
+    "clipped_samples": 26,
+    "ratio": 0.00014848318713450292,
+    "flat_run": 3,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0150.wav",
+    "clipped_samples": 14,
+    "ratio": 0.00013603855721393035,
+    "flat_run": 6,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0156.wav",
+    "clipped_samples": 21,
+    "ratio": 0.00018559106334841628,
+    "flat_run": 1,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0165.wav",
+    "clipped_samples": 59,
+    "ratio": 0.00039195365646258504,
+    "flat_run": 5,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0167.wav",
+    "clipped_samples": 37,
+    "ratio": 0.00038852486559139783,
+    "flat_run": 10,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0168.wav",
+    "clipped_samples": 118,
+    "ratio": 0.0005397394613583138,
+    "flat_run": 3,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0170.wav",
+    "clipped_samples": 47,
+    "ratio": 0.0003558018410852713,
+    "flat_run": 5,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0171.wav",
+    "clipped_samples": 84,
+    "ratio": 0.0007702464788732394,
+    "flat_run": 18,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0174.wav",
+    "clipped_samples": 4,
+    "ratio": 3.5511363636363635e-05,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0175.wav",
+    "clipped_samples": 34,
+    "ratio": 0.0002363211743772242,
+    "flat_run": 8,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0179.wav",
+    "clipped_samples": 23,
+    "ratio": 0.00013329933234421364,
+    "flat_run": 7,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0188.wav",
+    "clipped_samples": 160,
+    "ratio": 0.0010964912280701754,
+    "flat_run": 14,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0189.wav",
+    "clipped_samples": 100,
+    "ratio": 0.0005236260053619303,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0198.wav",
+    "clipped_samples": 16,
+    "ratio": 0.000125,
+    "flat_run": 3,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0200.wav",
+    "clipped_samples": 2,
+    "ratio": 1.496647509578544e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0201.wav",
+    "clipped_samples": 33,
+    "ratio": 0.00021628565436241612,
+    "flat_run": 8,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0202.wav",
+    "clipped_samples": 85,
+    "ratio": 0.000551546926910299,
+    "flat_run": 6,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0205.wav",
+    "clipped_samples": 10,
+    "ratio": 9.04224537037037e-05,
+    "flat_run": 5,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0210.wav",
+    "clipped_samples": 17,
+    "ratio": 0.00013228336653386453,
+    "flat_run": 5,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0211.wav",
+    "clipped_samples": 4,
+    "ratio": 3.338675213675214e-05,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0220.wav",
+    "clipped_samples": 4,
+    "ratio": 3.382034632034632e-05,
+    "flat_run": 1,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0232.wav",
+    "clipped_samples": 43,
+    "ratio": 0.0003732638888888889,
+    "flat_run": 11,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0241.wav",
+    "clipped_samples": 201,
+    "ratio": 0.0017763716063348416,
+    "flat_run": 4,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0242.wav",
+    "clipped_samples": 105,
+    "ratio": 0.0007120768229166666,
+    "flat_run": 22,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0244.wav",
+    "clipped_samples": 30,
+    "ratio": 0.0002547554347826087,
+    "flat_run": 7,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0253.wav",
+    "clipped_samples": 2,
+    "ratio": 2.055921052631579e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0255.wav",
+    "clipped_samples": 12,
+    "ratio": 9.725103734439833e-05,
+    "flat_run": 2,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0263.wav",
+    "clipped_samples": 7,
+    "ratio": 5.535172064777328e-05,
+    "flat_run": 3,
+    "peak": 1.0
+  },
+  {
+    "file": "S1_0378.wav",
+    "clipped_samples": 5,
+    "ratio": 3.487723214285714e-05,
+    "flat_run": 5,
+    "peak": 1.0
+  }
+]
