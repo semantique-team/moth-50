@@ -129,6 +129,7 @@ data/tokenizer/           pinned Moth 1,024-piece BPE model and provenance
 docs/decisions.md         decisions and open questions
 docs/architecture-options.md  architecture analysis and planned sequence
 docs/review-2026-11-17.md evidence check, measurements and proposals
+docs/review-2026-11-21.md post-E-004 review: selection target, C/D and final-run procedure
 experiments/README.md     new experiment ledger, starts at E-001
 experiments/E-001-baseline.md
 experiments/E-002-protocol.md  frozen evaluation protocol and data mixture

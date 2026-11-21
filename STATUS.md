@@ -29,6 +29,12 @@ running, and the exact next commands. Update it at the end of each session.
   failed the S1-dev ETA rule on seed 0 and was not adopted (D22); E-004 arm B
   moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.** No
   training starts without an explicit go-ahead.
+- **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
+  the wrong ranking target; the LM is the lever and C no longer fits next to the
+  E-034 LM; the E-011 ETA loss looks recipe-level and E-011 has not been read
+  with the product LM. Procedure P0–P11 before the final run: cross-machine
+  parity, an S1-dev/LM-corpus overlap check, E-011 re-read with E-034, D only
+  LM-first, one recipe ablation.
 - **E-012 package (historical A3):** **44,770,433 B** (5,229,567 B of room) with
   the 16 kHz VAD and the packed A3 LM; dev-macro and S1-dev hypotheses are
   byte-identical to the MOTHLMB1 runs. Browser: exact transcript, RTFx 24.63.
@@ -106,6 +112,10 @@ pre-registered gates, are in `experiments/next-experiments.md`:
 3. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
 4. **E-004 C/D** — base+7 and base+4-long are **not authorized** after the E-011
    product veto; a ×3-term unpruned LM would also be a new pre-registration.
+
+The proposed order and gates for these items, and for the final run, are in
+`docs/review-2026-11-21.md` §7–§9 (proposed, not pre-registered). Readouts from
+the second Mac need the P0 parity check first.
 
 Reproduction of the final readouts (assets must be fetched once):
 
@@ -216,6 +226,8 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   release asset pins (D17) and the post-E-005 plan (D18).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/review-2026-11-17.md` — evidence corrections and P1–P7.
+- `docs/review-2026-11-21.md` — post-E-004 review: selection target, E-004 B
+  check, E-011 diagnosis, C/D and final-run procedure (P0–P11).
 - `experiments/E-001-baseline.md` — baseline reproduction.
 - `experiments/E-002-protocol.md` — frozen evaluation/data protocol.
 - `experiments/E-002-s1-dev.md` — S1-dev recording and manifest runbook.

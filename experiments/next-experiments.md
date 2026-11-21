@@ -295,6 +295,10 @@ decides.
   Browser loads the package and transcribes exactly at RTFx 28.36. C and D were
   not run (E-011 removed their precondition). Artifacts: `runs/E-004/`,
   `runs/E-004/RESULT.md`.
+- **Follow-up (proposed, not pre-registered):** `docs/review-2026-11-21.md` —
+  base+7 no longer fits next to the E-034 LM (~52.3 MB); D only LM-first (a
+  larger LM read on base+6 before any base+4 training); check the S1-dev scripts
+  against the LM corpus, since the S1-dev gain is ~5× the T-600 gain.
 
 ## E-016 — Browser runtime checks
 
