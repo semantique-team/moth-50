@@ -279,11 +279,13 @@ are:
 
 Recalibrate the decoder per arm on dev-macro with the E-009 procedure and its
 S1-dev veto; decide on S1-dev WER/ETA with dev-macro as a guard; read T once at
-the end. Arm C needs an
-E-011-length run, so run it only if E-011 shows depth still pays (E-003: +4 → +6
-bought 1.2 pp at 4,000 steps; +7 is likely ≤ 0.6 pp). B keeps A3's ×3 term
-weighting only if the unpruned LM is rebuilt with it; otherwise it trades terms
-for perplexity, and S1-dev ETA decides.
+the end. Arm C needs an E-011-length run; E-003 (+4 → +6 bought 1.2 pp at 4,000
+steps) suggested +7 is likely ≤ 0.6 pp. **After E-011 (2026-11-21): the long
+depth+schedule won dev-macro but failed the S1-dev ETA veto, so C and D are not
+authorized without a new pre-registration. Start with B (readout-only) against
+the E-005 control.** B keeps A3's ×3 term weighting only if the unpruned LM is
+rebuilt with it; otherwise it trades terms for perplexity, and S1-dev ETA
+decides.
 
 ## E-016 — Browser runtime checks
 

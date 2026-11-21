@@ -37,15 +37,15 @@ external evidence.
 | E-001 | Reproduce Moth 0.8.1 on the canonical dataset with the vendored evaluator | done: 24.0826 / 55.2253, matches E-038 |
 | E-002 | Freeze the evaluation protocol and the data mixture (S1 new sessions + external test); MPS memory probe with and without activation checkpointing (`tools/probe_training.py`) | protocol frozen; 200-step probe passed (13.37 / 3.68 GB); 0.8.1 dev reference re-scored (23.0170 macro); data mixture and shards ready; S1-dev **960/960 (51.30 min, 2026-11-19)**, QC clean |
 | E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | **done**: base+6 wins; greedy dev 48.12 / 36.90 / 34.73 / 33.46 %, two seeds on +4/+6 (33.55 % / 34.74 %); E-005 long run and gate complete |
-| E-004 | Package-budget trade-off; re-scoped after E-005: where the E-012 headroom goes (unpruned LM vs base+7 vs base+4 + large LM) | planned (`next-experiments.md`) |
-| E-005 | Full fine-tune of the winner; INT8 export; browser run | **done, gate PASS**: A3 readout **17.5565 / 17.6212 %** FP32/INT8 vs 23.0170 % (paired **−5.4605 / −5.3957 pp**); S1-dev **13.9956 / 14.0541 %** vs **22.2498 %**, ETA **75.34 / 75.54 %** vs **62.11 %**, no regression; **47,836,502 B** package (2.16 MB headroom); browser exact, **RTFx 22.3**. Pre-A3 erratum fixed (D17) |
-| E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned, re-scoped as fine-tune arms from E-011 |
+| E-004 | Package-budget trade-off; re-scoped after E-005: where the E-012 headroom goes (unpruned LM vs base+7 vs base+4 + large LM) | planned; control **E-005** (44.77 MB). Arm B (unpruned E-034 LM, packed) is readout-only; C (base+7) and D (base+4 long + large LM) need training and are **not authorized after E-011 failed the product gate** |
+| E-005 | Full fine-tune of the winner; INT8 export; browser run | **done, gate PASS**: A3 readout **17.5565 / 17.6212 %** FP32/INT8 vs 23.0170 % (paired **−5.4605 / −5.3957 pp**); S1-dev **13.9956 / 14.0541 %** vs **22.2498 %**, ETA **75.34 / 75.54 %** vs **62.11 %**, no regression; A3 package **47,836,502 B** (2.16 MB headroom); browser exact, **RTFx 22.3**. Pre-A3 erratum fixed (D17). Current package after E-012: **44,770,433 B** |
+| E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned, re-scoped as fine-tune arms from **E-005** (E-011 not adopted) |
 | E-007 | Optional architecture: 25 Hz extra blocks, conv adapters, dropout/EMA, LID auxiliary | split into E-011 (EMA), E-013, E-014, E-015 |
 | E-008 | External evaluation: CS-FLEURS-READ (test-only), FLEURS, per-speaker ranges | planned |
 | E-009 | Decoder recalibration (LM weight × token bonus) on dev-macro + S1-dev | **done 2026-11-19**: dev-macro best **0.45 / 2.0** (17.3427 %, −0.2786 pp) **rejected by the S1-dev veto** (+0.5844 pp WER / −1.1230 pp ETA); frozen **0.55 / 2.7** stays; `runs/E-009/RESULT.md` |
-| E-010 | Encoder-LR screen: 1e-4 vs 3e-5 on base+4/base+6 | planned; `training/configs/base6-enc1e-4.toml` |
-| E-011 | ~3 epochs + weight EMA, two seeds | planned; needs E-010 (E-009 kept the frozen decoder) |
-| E-012 | Package bytes: 16 kHz-only Silero graph, lossless packed A3 LM | planned; synthetic VAD preflight bit-identical (`runs/probe-2026-11-19/`) |
+| E-010 | Encoder-LR screen: 1e-4 vs 3e-5 on base+4/base+6 | **done 2026-11-19**: 1e-4 wins both; base+4 33.4003 % (−1.33 pp), base+6 32.3912 % (−1.07 pp); `runs/E-010/RESULT.md` |
+| E-011 | ~3 epochs + weight EMA, two seeds | **done 2026-11-21**: dev-macro 15.8584/15.7945 vs 17.5565 (−1.70/−1.76 pp), but S1-dev seed 0 ETA −2.20 pp (CI excludes 0); **not adopted**, E-005 stays; `runs/E-011/RESULT.md` |
+| E-012 | Package bytes: 16 kHz-only Silero graph, lossless packed A3 LM | **done 2026-11-19, both gates pass**: 2,040 real clips bit-identical; A3 5,381,992 → 3,353,840 B; package 44,770,433 B; browser exact, RTFx 24.63; `runs/E-012/RESULT.md` |
 | E-013 | Extra blocks before `final_ln` | planned |
 | E-014 | Conformer-style convolution in the extra blocks at equal bytes | planned |
 | E-015 | 25 Hz extra blocks (review P7) | conditional on E-016 |
