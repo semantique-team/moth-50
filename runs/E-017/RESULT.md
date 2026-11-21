@@ -1,9 +1,9 @@
 # E-017 option A — R-S1-cal calibration set (2026-11-21)
 
-> **Status: reviewed, recorded, level-matched, manifest and mel shards built.**
-> The E-002 §8 amendment is written; no calibration readout has run. This is the
-> set that P5/E-017 (review 2026-11-21) put before R1/R2; it is not training data
-> and not a gate.
+> **Status: reviewed, recorded, level-matched, manifest and mel shards built,
+> control E-005 + E-034c read once.** The E-002 §8 amendment was written before
+> that readout; no R1 readout has run. This is the set that P5/E-017 (review
+> 2026-11-21) put before R1/R2; it is not training data and not a gate.
 
 ## What was built
 
@@ -65,6 +65,41 @@ Loader dry-run: 400 manifest rows, 400 shard-index entries, 0 missing ids, 0
 rows with `split: train`; sampled clips 1/200/400 load as `(80, 227)`,
 `(80, 278)`, `(80, 277)`.
 
+## Control readout (E-005 + E-034c, 2026-11-21)
+
+The product system was decoded once on `R-S1-cal` with the frozen decoder and
+E-034c, before any R1 readout. This is the control side of the R1 paired gate,
+not a gate itself.
+
+| Metric | Value |
+|---|---:|
+| clips | 400 |
+| ref words | 2,234 |
+| WER | **13.9212 %** (95 % CI 12.2212–15.7753) |
+| ETA | **75.6291 %** |
+| insertion rate | 2.1934 % |
+
+| Category | WER | ETA |
+|---|---:|---:|
+| single_word | 8.5911 % | 80.00 % |
+| phrase | 9.8901 % | 79.63 % |
+| brand | 28.5714 % | 30.77 % |
+| acronym | 19.0840 % | 49.02 % |
+| switch | 16.4948 % | 73.61 % |
+| italianized | 9.3633 % | 66.00 % |
+| control_it | 7.2165 % | — |
+| control_en | 13.6667 % | 88.33 % |
+
+Artifacts: `runs/E-017/control-e005-e034c.json` (metrics, per-category table,
+`eta_errors`) and `.hyp.jsonl` (400 hypotheses; 400/400 ids, none empty).
+`gate_eligible` is `false` by design: the LM is the product E-034c, not the
+historical A3 gate LM. The graph
+is the product INT8 graph (`14ba2034…`), the LM is E-034c (`4b122fbe…`,
+packed `7a4332f1…`), and the decoder is the frozen 0.55 / 2.7, beam 12. When a
+candidate is read with `--reference-hyp` pointing at this file,
+`frozen_readout` still fills `paired`; R1 reads those paired CIs, not the
+`gate_eligible` flag.
+
 ## Power caveat
 
 755 English-term words against 2,048 on S1-dev. The set ranks; it does not
@@ -77,8 +112,10 @@ E-023's gate keeps the S1-dev veto and uses the calibration set for ranking.
 1. **Freeze is done.** The script is reviewed and frozen, the manifest and the
    mel shards exist, and **E-002 §8** names `R-S1-cal` and the rule (rank on
    calibration, dev-macro guard, S1-dev veto) before any calibration readout.
-2. **No calibration readout yet.** The next step is R1 (E-023), which ranks its
-   point on this set; it needs an explicit go-ahead.
+2. **Control readout is done** (E-005 + E-034c: WER 13.9212 %, ETA 75.6291 %).
+   The next readout is R1 (E-023), which ranks its point against this control
+   using `--reference-hyp runs/E-017/control-e005-e034c.hyp.jsonl`; it needs an
+   explicit go-ahead and training.
 3. Keep `R-S1-cal` out of every training and dev-loader configuration. The
    `split: dev` label is a trainer guard, not a gate role.
 4. T-600 S3 still checks speaker generalisation at release; T and FLEURS never

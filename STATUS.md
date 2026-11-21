@@ -112,7 +112,7 @@ running, and the exact next commands. Update it at the end of each session.
 | P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
 | E-023 R1 pre-registration | **written, not run**: E-011 with encoder LR 3e-5; needs E-017 + go-ahead; R2 only if R1 fails | `experiments/next-experiments.md`, `training/configs/base6-e023-r1.toml` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
-| E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; no readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/RESULT.md` |
+| E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; control E-005 + E-034c **13.9212 % WER / 75.6291 % ETA**; no R1 readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
@@ -138,9 +138,10 @@ Nothing is running.
 3. **E-017 is done** — `R-S1-cal` is reviewed, recorded (400/400, 16.95 min),
    level-matched (−16.58 dB) and built into `manifests/R-S1-cal.jsonl`
    (`split: dev`) and `data/shards/s1-cal` (400 clips, 0 errors). E-002 §8 is
-   written. The next step is R1 (E-023), which needs an explicit go-ahead; no
-   calibration readout has run. New cues are not from `text/pool.jsonl`; future
-   LM corpora must exclude the pool.
+   written and the control **E-005 + E-034c** was read once on it: **13.9212 %
+   WER / 75.6291 % ETA**. The next step is R1 (E-023), which needs an explicit
+   go-ahead and training; no R1 readout has run. New cues are not from
+   `text/pool.jsonl`; future LM corpora must exclude the pool.
 4. **P8** (×3-term unpruned LM, ranked on E-017) and **P11** final run only
    after a recipe fix; P10 R1/R2 are the recipe candidates. Training needs an
    explicit go-ahead.

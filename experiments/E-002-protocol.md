@@ -280,3 +280,12 @@ adopted; E-005 + E-034c stays; P7 diagnostics, then P10 R1 under E-023.
    point, with the same dev-macro guard and S1-dev veto. No training starts
    without an explicit go-ahead.
 
+**Result (2026-11-21, control readout after this amendment).** The product
+system E-005 + E-034c decoded all 400 clips once with the frozen decoder and
+E-034c: **WER 13.9212 %** (95 % CI 12.2212–15.7753), **ETA 75.6291 %**,
+insertion rate 2.1934 %. Category ETA: single_word 80.00, phrase 79.63, brand
+30.77, acronym 49.02, switch 73.61, italianized 66.00, control_en 88.33;
+control_it has no English terms. This is the control side of R1's paired gate,
+not a gate result; `gate_eligible` is false because the LM is E-034c, not A3.
+`runs/E-017/control-e005-e034c.json`, `runs/E-017/RESULT.md`.
+

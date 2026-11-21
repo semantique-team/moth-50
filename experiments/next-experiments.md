@@ -494,7 +494,8 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
   with one fixed −16.58 dB gain (0 clipped after), built into
   `manifests/R-S1-cal.jsonl` (`split: dev`) and `data/shards/s1-cal` (400
   clips, 1 shard, 0 errors). E-002 §8 names the set and the rule before any
-  readout. No calibration readout has run.
+  readout. The control E-005 + E-034c was read once: **13.9212 % WER /
+  75.6291 % ETA**; no R1 readout has run.
   `../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md`.
 
 ### E-018 — Teacher bake-off (no training)
@@ -648,14 +649,16 @@ explicit go-ahead. Do not launch it.
   E-034c is the product reference.
 - **Ranking:** E-017 calibration set only — never S1-dev, never T. Report
   overall WER/ETA and `control_en`, `switch`, `single_word`, the categories
-  that failed in P6.
+  that failed in P6. Control on R-S1-cal (read 2026-11-21): **13.9212 % WER /
+  75.6291 % ETA** (`runs/E-017/control-e005-e034c.json`). The readout's
+  `gate_eligible` flag stays false with the product LM; use the `paired` CIs.
 - **Gate (seed mean, paired bootstrap 1,000, seed 0):**
   1. dev-macro **≥ 1.0 pp** better than E-005 + E-034c (16.9897 %) with the CI
      excluding zero — i.e. it keeps most of E-011's −1.62 pp.
-  2. E-017 pooled ETA is not a regression against E-005 + E-034c (CI not
-     entirely below zero), and the `control_en` + `switch` ETA point estimates
-     are within 0.5 pp of E-005 (their CIs are reported; the category sample is
-     too small for a CI gate).
+  2. E-017 pooled ETA is not a regression against E-005 + E-034c
+     (control 75.6291 %; CI not entirely below zero), and the `control_en` +
+     `switch` ETA point estimates are within 0.5 pp of E-005 (their CIs are
+     reported; the category sample is too small for a CI gate).
   3. S1-dev veto on the seed mean: WER CI not entirely above zero and ETA CI
      not entirely below zero (E-002 §6.2).
   4. INT8 cost ≤ 0.2 pp against the FP32 readout.
