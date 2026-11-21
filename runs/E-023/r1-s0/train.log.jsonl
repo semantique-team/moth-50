@@ -1,0 +1,4 @@
+{"step": 50, "epoch": 0, "batch": 49, "loss": 10.88312, "nonfinite_steps": 0, "lr_head": 1.4999999999999999e-05, "lr_encoder": 1.5e-06, "memory_gb": 5.539, "step_seconds": 1.791, "audio_seconds": 185.64, "audio_s_per_s": 103.65}
+{"step": 100, "epoch": 0, "batch": 99, "loss": 6.85621, "nonfinite_steps": 0, "lr_head": 2.9999999999999997e-05, "lr_encoder": 3e-06, "memory_gb": 6.633, "step_seconds": 0.7555, "audio_seconds": 129.94, "audio_s_per_s": 172.0}
+{"step": 150, "epoch": 0, "batch": 149, "loss": 6.47785, "nonfinite_steps": 0, "lr_head": 4.4999999999999996e-05, "lr_encoder": 4.5e-06, "memory_gb": 6.529, "step_seconds": 0.7697, "audio_seconds": 132.72, "audio_s_per_s": 172.44}
+{"step": 200, "epoch": 0, "batch": 199, "loss": 6.28233, "nonfinite_steps": 0, "lr_head": 5.9999999999999995e-05, "lr_encoder": 6e-06, "memory_gb": 6.646, "step_seconds": 1.2347, "audio_seconds": 185.85, "audio_s_per_s": 150.53}

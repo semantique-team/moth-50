@@ -26,3 +26,9 @@ runs/**/*.pkl.gz
 # Live resource monitoring and its generated dashboard
 runs/**/resource-samples.jsonl
 runs/**/resource-dashboard.html
+
+# Training process bookkeeping (the trainer's own log stays tracked)
+runs/**/console.log
+runs/**/launcher.pid
+runs/**/sampler.pid
+runs/**/sampler.log

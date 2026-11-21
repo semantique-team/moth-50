@@ -6,7 +6,8 @@ dashboard generator (`tools/resource_dashboard.py`) reads it. MPS memory and the
 current step come from the trainer's ``train.log.jsonl``, which is the only
 resource the trainer itself records.
 
-    python tools/sample_resources.py --out runs/E-011/resource-samples.jsonl
+    python tools/sample_resources.py --out runs/E-023/resource-samples.jsonl \
+      --log-glob 'runs/E-023/r1-s*/train.log.jsonl'
 
 The training PID is rediscovered on every sample, so a sequential seed-0 →
 seed-1 shell loop is covered without restarting the sampler.
@@ -39,10 +40,10 @@ def training_pid() -> int | None:
     return None
 
 
-def latest_step() -> tuple[int | None, float | None, str | None]:
-    """Newest training-log line across E-011 seed directories."""
+def latest_step(log_glob: str = LOG_GLOB) -> tuple[int | None, float | None, str | None]:
+    """Newest training-log line across the run directories matching ``log_glob``."""
     newest = None
-    for path in Path(".").glob(LOG_GLOB):
+    for path in Path(".").glob(log_glob):
         try:
             lines = path.read_text(encoding="utf-8").splitlines()
         except OSError:
@@ -130,6 +131,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--interval", type=float, default=15.0)
     parser.add_argument("--max-samples", type=int, default=0, help="0 = run until stopped")
+    parser.add_argument(
+        "--log-glob",
+        default=LOG_GLOB,
+        help="glob for the trainer logs whose newest line supplies step/MPS memory",
+    )
     args = parser.parse_args(argv)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     samples = 0
@@ -137,7 +143,7 @@ def main(argv: list[str] | None = None) -> int:
     with args.out.open("a", encoding="utf-8") as out:
         while True:
             pid = training_pid()
-            step, mps_gb, log = latest_step()
+            step, mps_gb, log = latest_step(args.log_glob)
             sample = {
                 "ts": datetime.now().astimezone().isoformat(timespec="seconds"),
                 "epoch": time.time(),

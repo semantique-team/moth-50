@@ -627,11 +627,11 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 
-**Status: authorized 2026-11-21; seed 0 starting.** E-017 is done and frozen
+**Status: authorized 2026-11-21; seed 0 running.** E-017 is done and frozen
 (`manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, E-002 §8), the control
 E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it, and the owner gave the
-go-ahead. Run directory: `runs/E-023/r1-s0`; seed 1 only if the seed-0
-criterion below holds.
+go-ahead. Seed 0: `runs/E-023/r1-s0`, PID 48613, started 16:10 +0100; seed 1
+only if the seed-0 criterion below holds. `runs/E-023/RESULT.md`.
 
 - **Why:** P6 re-read E-011 with E-034c and failed on clean-S1-dev ETA
   (−1.7578 pp [−3.1844, −0.1422] on the seed mean) while dev-macro passed

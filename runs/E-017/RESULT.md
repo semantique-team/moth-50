@@ -113,8 +113,8 @@ E-023's gate keeps the S1-dev veto and uses the calibration set for ranking.
    mel shards exist, and **E-002 §8** names `R-S1-cal` and the rule (rank on
    calibration, dev-macro guard, S1-dev veto) before any calibration readout.
 2. **Control readout is done** (E-005 + E-034c: WER 13.9212 %, ETA 75.6291 %).
-   R1 (E-023) is authorized and seed 0 starts in `runs/E-023/r1-s0`, ranking
-   against this control with
+   R1 (E-023) is authorized and seed 0 is running in `runs/E-023/r1-s0`,
+   ranking against this control with
    `--reference-hyp runs/E-017/control-e005-e034c.hyp.jsonl`.
 3. Keep `R-S1-cal` out of every training and dev-loader configuration. The
    `split: dev` label is a trainer guard, not a gate role.
