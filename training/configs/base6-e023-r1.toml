@@ -1,6 +1,7 @@
 # MOTH-50 E-023 R1: E-011 with encoder LR 3e-5 (H1 ablation).
-# Pre-registered 2026-11-21 in experiments/next-experiments.md; NOT AUTHORIZED
-# until the E-017 calibration set exists and the owner gives a go-ahead.
+# Pre-registered 2026-11-21 in experiments/next-experiments.md.
+# AUTHORIZED by the owner on 2026-11-21, after E-017 and its control readout
+# (E-005 + E-034c on R-S1-cal: 13.9212 % WER / 75.6291 % ETA).
 # Everything else is E-011: base+6, 40,000 steps (~2.97 epochs), EMA 0.9998,
 # gold x50, the same mixture. The only variable is lr_encoder 3e-5 (E-011 used
 # 1e-4); lr_head stays 3e-4. Two seeds: run --seed 0 and --seed 1.
