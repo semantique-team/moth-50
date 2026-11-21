@@ -322,6 +322,28 @@ protocol and the package format are unchanged. `training/configs/base6-e011.toml
 holds the long recipe (40,000 steps, warm-up 1,000, EMA 0.9998, 2 seeds).
 Artifacts: `runs/E-010/RESULT.md`.
 
+## D22 — E-011 long schedule not adopted (2026-11-21)
+
+E-011 trained base+6 with `lr_encoder = 1e-4`, 40,000 steps and EMA 0.9998 on
+two seeds. It is a **dev-macro win but not a product win**:
+
+| Seed | FP32 macro vs E-005 | S1-dev WER | S1-dev ETA | Verdict |
+|---|---:|---:|---:|---|
+| 0 | **15.8584 %** (−1.6981 pp) | 13.9080 % (tie) | **73.1445 %** (−2.1973 pp, CI excludes 0) | **fail ETA** |
+| 1 | **15.7945 %** (−1.7620 pp) | 13.9810 % (tie) | 73.9746 % (−1.3672 pp, CI includes 0) | pass |
+
+The INT8 readouts repeat the pattern: macro **15.9099 / 15.9026 %** vs 17.6212 %
+(−1.71/−1.72 pp, cost +0.05/+0.11 pp), S1-dev ETA **73.0469 / 74.1211 %**; seed 0
+still fails. Packages are 44,770,432 B.
+
+The one-of-two failure is not resolved by the seed difference (0.83 pp ETA FP32,
+1.07 pp INT8; the protocol treats sub-1 pp as noise) and the protocol forbids
+selecting the passing seed on S1-dev. The ETA errors are common short English
+words, not rare terms. **E-005 remains the product model; E-011 is not adopted.**
+The next step is E-004 (budget arms) with E-005 as the control, plus a
+pre-registered code-switch/term arm if the ETA loss is to be chased. Artifacts:
+`runs/E-011/RESULT.md`.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

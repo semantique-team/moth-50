@@ -19,11 +19,16 @@ running, and the exact next commands. Update it at the end of each session.
   (`tools/release_assets.py`).
 - **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-016.
   **E-009 kept the frozen decoder; E-012 passed both gates (16 kHz VAD + lossless
-  MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21). E-011 and E-013–E-016
+  MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21); E-011 won dev-macro but
+  failed the S1-dev ETA rule on seed 0 and was not adopted (D22). E-013–E-016
   have not run.** No training starts without an explicit go-ahead.
 - **E-012 package:** **44,770,433 B** (5,229,567 B of room) with the 16 kHz VAD
   and the packed A3 LM; dev-macro and S1-dev hypotheses are byte-identical to
   the MOTHLMB1 runs. Browser: exact transcript, RTFx 24.63. `runs/E-012/`.
+- **E-011:** two seeds, dev-macro **15.8584 / 15.7945 %** vs E-005 17.5565 %
+  (−1.70/−1.76 pp, CIs exclude zero), but S1-dev ETA **73.1445 / 73.9746 %** vs
+  75.3418 %; seed 0's **−2.20 pp** CI excludes zero (seed 1 −1.37 pp includes
+  zero). **Not adopted; E-005 remains the product model.** `runs/E-011/RESULT.md`.
 - **Tests:** 92 passed in the training env, 81 passed + 3 skipped (torch and
   `stt.lm` parity) in a plain venv; `ruff check` and `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
@@ -66,34 +71,32 @@ running, and the exact next commands. Update it at the end of each session.
 | E-010 base+4, 1e-4 | **done**: greedy dev 33.4003 % vs 34.7306 at 3e-5 (−1.33 pp) | `runs/E-010/base+4-enc1e-4/` |
 | E-010 base+6, 1e-4 | **done, winner**: 32.3912 % vs 33.4588 at 3e-5 (−1.07 pp) | `runs/E-010/base+6-enc1e-4/`, `runs/E-010/RESULT.md` |
 | E-011 config | preflight ready: base+6, 1e-4, 40k steps, EMA 0.9998, 2 seeds | `training/configs/base6-e011.toml` |
+| E-011 training | **done**: seed 0 18.3373 %, seed 1 18.6531 % greedy; 0 non-finite | `runs/E-011/base+6-e011-s0/`, `...-s1/` |
+| E-011 gate | **dev PASS, not adopted**: FP32 15.8584/15.7945 vs 17.5565; S1-dev seed 0 ETA −2.20 pp (CI excludes 0) | `runs/E-011/RESULT.md` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: E-011, no training without go-ahead
+## Next step: E-004, no training without go-ahead
 
-**E-010 is complete**: encoder LR 1e-4 beat 3e-5 at both depths. base+4
-**33.4003 %** (−1.33 pp) and base+6 **32.3912 %** (−1.07 pp) greedy dev-macro at
-4,000 steps, 0 non-finite; base+4 at 1e-4 is 0.06 pp better than base+6 at 3e-5,
-so it is an E-004 depth candidate. **E-011 uses base+6 with `lr_encoder = 1e-4`**;
-`training/configs/base6-e011.toml` is written and its preflight is ready.
-Nothing is running. Remaining items, with their pre-registered gates, are in
-`experiments/next-experiments.md`:
+**E-011 is complete and not adopted.** The long schedule won dev-macro by
+~1.7 pp on both seeds (FP32 15.8584/15.7945 vs E-005 17.5565), but S1-dev WER is
+a tie and seed 0 loses **2.20 pp ETA** with a CI excluding zero (INT8: −2.49 pp).
+One of two seeds passing is not enough, and choosing the passing seed on S1-dev
+would be tuning. **E-005 remains the product model.** E-010 chose `lr_encoder =
+1e-4` and E-011 ran it; nothing is running now. Remaining items, with their
+pre-registered gates, are in `experiments/next-experiments.md`:
 
-1. **E-011 long schedule + EMA** — 40,000 steps, warm-up 1,000, EMA 0.9998,
-   2 seeds (`--seed 0`, `--seed 1`), ~17 h per seed. Gate: frozen beam+A3 readout
-   ≥ 1.0 pp better than E-005, no S1-dev regression, INT8 cost ≤ 0.2 pp.
-2. **E-004** — where the freed bytes go; base+7 estimates at 47.88 MB, base+4 at
-   1e-4 is now a depth candidate, the unpruned E-034 LM at ~48.6/49.2 MB.
+1. **E-004** — where the freed bytes go, with **E-005 as the control**: A3
+   packed (44.77 MB), unpruned E-034 LM (~48.6/49.2 MB), base+7 (~47.88 MB);
+   base+4 at 1e-4 is a depth candidate. Use dev-macro for ranking and the
+   S1-dev veto, never T/FLEURS.
+2. **Optional E-011 follow-up** — a third seed or a code-switch/term-focused
+   E-006 arm to chase the ETA loss; pre-register it before running and do not
+   tune on S1-dev.
 3. **E-013/E-014/E-015** — architecture screens, ~1.6 h each, only if wanted.
 4. **E-016 browser checks** — 1-thread RTFx, browser-vs-Python WER, and vendoring
    `moth-stt/web/` at local commits `b0fa11c` + `0e15442`.
-
-```bash
-uv run --frozen --project ../moth-stt --extra training -- \
-  python -m training.train --config training/configs/base6-e011.toml \
-  --moth-stt ../moth-stt --seed 0 --out runs/E-011/base+6-e011-s0 --device mps
-```
 
 Reproduction of the final readouts (assets must be fetched once):
 
@@ -206,6 +209,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   E-009–E-016, re-scoped E-004/E-006, gates and commands.
 - `runs/E-005/RESULT.md` — long fine-tune, A3 readout, S1-dev, package, browser.
 - `runs/E-010/RESULT.md` — encoder-LR screen; base+6 at 1e-4 wins.
+- `runs/E-011/RESULT.md` — long schedule + EMA; dev win, S1-dev ETA fail, not adopted.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and
   browser runs.

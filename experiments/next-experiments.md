@@ -1,9 +1,9 @@
 # Post-E-005 experiment plan
 
-**Status: proposed 2026-11-19; the E-005 addendum, E-009, E-012 and E-010 ran on
-2026-11-19, E-011 and E-013–E-016 have not run.** This file pre-registers the
-experiments that follow E-005, with their gates, so they cannot be moved after
-seeing results. It comes from the 2026-11-19 review of the E-005 model and package
+**Status: proposed 2026-11-19; the E-005 addendum, E-009, E-012, E-010 and
+E-011 ran on 2026-11-19/21, E-013–E-016 have not run.** This file pre-registers
+the experiments that follow E-005, with their gates, so they cannot be moved
+after seeing results. It comes from the 2026-11-19 review of the E-005 model and package
 (`docs/architecture-options.md` §11). Experiment IDs continue the MOTH-50
 ledger; Moth's own IDs are cited as "Moth E-0NN".
 
@@ -59,7 +59,7 @@ after the session.
 | 2 | E-009 | Decoder recalibration on dev | 1 | **done 2026-11-19: frozen stays** | 0 |
 | 3 | E-012 | 16 kHz VAD and lossless LM packing | — | **done 2026-11-19, both gates pass** | −1.04 / −2.03 MB |
 | 4 | E-010 | Encoder-LR screen | — | **done 2026-11-19: 1e-4 wins both arms** | 0 |
-| 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | ~17 h MPS per seed | 0 |
+| 5 | E-011 | ~3 epochs + EMA, 2 seeds | 2, 4 | **done 2026-11-21: dev pass, S1-dev ETA fail on seed 0** | 0 |
 | 6 | E-004 | Where the freed bytes go | 3, 5 | LM builds + readouts | ≤ 50 MB |
 | 7 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER | a release | ~1 h | 0 |
 | 8 | E-013 | Extra blocks before `final_ln` | — | ~1.6 h MPS | 0 |
@@ -223,6 +223,17 @@ Artifacts: `runs/E-010/`, `runs/E-010/RESULT.md`.
   a result.
 - **Cost:** ~17 h per seed at the E-005 throughput (6.73 h per 16,000 steps);
   the EMA copy adds ~0.16 GB.
+- **Result (2026-11-21): dev-macro PASS, S1-dev ETA fail on seed 0 — not
+  adopted.** Both seeds beat E-005 by ~1.7 pp macro, FP32 and INT8, with CIs
+  excluding zero: seed 0 **15.8584 %** (−1.6981 pp), seed 1 **15.7945 %**
+  (−1.7620 pp) against 17.5565 %. INT8 costs +0.05/+0.11 pp and the packages are
+  44,770,432 B. On S1-dev WER is a tie (13.908/13.981 % vs 13.9956 %), but seed 0
+  loses **2.1973 pp ETA** (CI [−3.8280, −0.4390]) and fails the no-regression
+  rule; seed 1 loses 1.3672 pp with a CI including zero. The ETA errors are
+  short English words (*it, a, too, on, is, coffee, makes*), not rare terms.
+  One seed passing is not enough to adopt, and choosing the seed on S1-dev would
+  be tuning. **E-005 remains the product model.** Artifacts: `runs/E-011/`,
+  `runs/E-011/RESULT.md`.
 
 ## E-012 — Package bytes: 16 kHz VAD and lossless LM packing
 

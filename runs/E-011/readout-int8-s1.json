@@ -1,0 +1,84 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "macro",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-011/release-s1/model.int8.onnx",
+  "onnx_sha256": "3b36a893adbd48e17dbd36a44ca69252abbff5be41e7c5257d9c9cffd0325fd8",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": true,
+    "lm": "/Users/tancredi/Desktop/semantique/moth-50/data/raw/moth-0.8.1/lm_bpe3.bin",
+    "lm_sha256": "3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1",
+    "lm_label": "a3-0.8.1",
+    "lm_is_a3": true,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 3353840,
+      "sha256": "6b57bb41e2b05df50df08f665444a6126e0eabb64c7cfef05de23cdf07b4d821"
+    }
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.2104090875343381,
+      "wer_ci": [
+        0.2036853821419738,
+        0.216953024133479
+      ],
+      "seconds": 209.3
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.10764296768659917,
+      "wer_ci": [
+        0.10437525213628195,
+        0.111331557167961
+      ],
+      "seconds": 222.3
+    }
+  },
+  "macro_wer": 0.15902602761046863,
+  "reference": {
+    "macro_wer": 0.17621246760456136,
+    "sets": {
+      "it": 0.2344148291137674,
+      "en": 0.1180101060953553
+    },
+    "hyp_sha256": "80b60da66b68ae47d5079dfee9044230bd600bcf02c92670b52cdde6490342b4",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.017186439994092723,
+    "ci": [
+      -0.01952995141740102,
+      -0.01488811411895774
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 1.7186,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": true,
+    "decoder_frozen": true,
+    "gate_eligible": true
+  },
+  "elapsed_seconds": 431.6
+}

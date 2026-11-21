@@ -1,0 +1,84 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "macro",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-011/release-s0/model.int8.onnx",
+  "onnx_sha256": "2eb08ec99e4149e22e6e8352baf834224f814b627a8bb867c21f262bd989fb99",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": true,
+    "lm": "/Users/tancredi/Desktop/semantique/moth-50/data/raw/moth-0.8.1/lm_bpe3.bin",
+    "lm_sha256": "3be1177b0ca9f18343efb8d00f0d96365226595c9de32d992720aa4e0b0f16f1",
+    "lm_label": "a3-0.8.1",
+    "lm_is_a3": true,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 3353840,
+      "sha256": "6b57bb41e2b05df50df08f665444a6126e0eabb64c7cfef05de23cdf07b4d821"
+    }
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.20993887197762764,
+      "wer_ci": [
+        0.203167124086173,
+        0.21660514764565045
+      ],
+      "seconds": 207.2
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.10825828345546419,
+      "wer_ci": [
+        0.10493020825557961,
+        0.11176525909903132
+      ],
+      "seconds": 221.5
+    }
+  },
+  "macro_wer": 0.15909857771654592,
+  "reference": {
+    "macro_wer": 0.17621246760456136,
+    "sets": {
+      "it": 0.2344148291137674,
+      "en": 0.1180101060953553
+    },
+    "hyp_sha256": "80b60da66b68ae47d5079dfee9044230bd600bcf02c92670b52cdde6490342b4",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.017113889888015432,
+    "ci": [
+      -0.01920493658080244,
+      -0.015043734156159505
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 1.7114,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": true,
+    "decoder_frozen": true,
+    "gate_eligible": true
+  },
+  "elapsed_seconds": 428.7
+}

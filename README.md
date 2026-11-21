@@ -10,8 +10,8 @@ hypotheses are byte-identical to the 47.84 MB A3 package. The browser run
 transcribed a T-600 clip exactly at **RTFx 24.6** (4 threads, SIMD, isolated).
 The first readout/package used the pre-A3 LM and Moth's NOTICE; the erratum and
 the final numbers are in `runs/E-005/RESULT.md` (D17). The post-E-005 plan is
-`experiments/next-experiments.md`; E-009, E-010 and E-012 have run, the rest
-has not.
+`experiments/next-experiments.md`; E-009, E-010, E-011 and E-012 have run, the
+rest has not.
 Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
@@ -21,7 +21,10 @@ E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 packed A3 LM (3,353,840 B, −2.03 MB), with no hypothesis changes;
 `runs/E-012/RESULT.md`. E-010 (2026-11-19) screened the encoder LR:
 **1e-4 beat 3e-5** by 1.33 pp on base+4 and 1.07 pp on base+6 (greedy dev
-**32.39 %** at 4,000 steps); E-011 uses base+6 + 1e-4. `runs/E-010/RESULT.md`.
+**32.39 %** at 4,000 steps). E-011 (2026-11-21) ran that recipe long: dev-macro
+**15.86 / 15.79 %** on two seeds vs 17.56 % for E-005, but S1-dev WER was a tie
+and seed 0 lost **2.20 pp ETA** (CI excluding zero), so **E-011 was not adopted;
+E-005 remains the product model**. `runs/E-010/RESULT.md`, `runs/E-011/RESULT.md`.
 
 **Name:** `MOTH-50` is the model and display name; `moth-50` is the repository
 and package path. The previous model is referred to as **Moth-20** (released as
