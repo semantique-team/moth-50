@@ -1,7 +1,7 @@
 # Post-E-005 experiment plan
 
 **Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
-and E-004 ran on 2026-11-19/21; E-013–E-016 and E-017–E-022 have not run.**
+and E-004 ran on 2026-11-19/21; E-013–E-016 and E-017–E-023 have not run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -100,6 +100,7 @@ after the session.
 | 17 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | ~1.6 h MPS | 0 |
 | 18 | E-006 | Remaining data arms | product baseline | days | 0 |
 | 19 | E-008 | External evaluation and ceilings | final model | hours | 0 |
+| 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | ~32 h MPS (2 seeds) | 0 |
 
 The FLEURS readout, E-017 and E-018 need no training and can run while the Mac
 is otherwise idle; E-016 is engineering and can run in parallel. The full order
@@ -610,6 +611,47 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
 - **Scope:** a user glossary in the product, 0 bytes (`web/ort.js` already takes
   `contextualSequences`). Never part of a gate readout, because the list
   contains the answers.
+
+### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
+
+**Status: pre-registered 2026-11-21, not authorized.** It needs the E-017
+calibration set and an explicit go-ahead; do not launch it.
+
+- **Why:** P6 re-read E-011 with E-034c and failed on clean-S1-dev ETA
+  (−1.7578 pp [−3.1844, −0.1422] on the seed mean) while dev-macro passed
+  (−1.6202 pp). P7 found no support for H2 as the primary cause: on the gold
+  train set E-005 is already at 0.2018 % WER and E-011 at 0.0831 / 0.1424 %, so
+  over-exposure is saturated; the ETA loss is broad substitutions of short,
+  common English words. H1 (encoder LR 1e-4 for ~3 epochs) is the first
+  untested lever.
+- **Arm R1:** the E-011 recipe exactly — base+6, 40,000 steps, EMA 0.9998, gold
+  ×50, same mixture — with **one variable: `lr_encoder` 1e-4 → 3e-5**
+  (`lr_head` stays 3e-4). Config `training/configs/base6-e023-r1.toml`.
+- **Seeds and order:** seed 0 first (~16 h). Run seed 1 only if seed 0 is
+  within 0.5 pp of E-011 on dev-macro and the E-017 ETA recovery in (b) holds.
+  Two seeds for the gate.
+- **Control:** the existing E-011 s0/s1 checkpoints and P6 readouts
+  (`runs/E-011/p6/`) decoded with E-034c; no new control training. E-005 +
+  E-034c is the product reference.
+- **Ranking:** E-017 calibration set only — never S1-dev, never T. Report
+  overall WER/ETA and `control_en`, `switch`, `single_word`, the categories
+  that failed in P6.
+- **Gate (seed mean, paired bootstrap 1,000, seed 0):**
+  1. dev-macro **≥ 1.0 pp** better than E-005 + E-034c (16.9897 %) with the CI
+     excluding zero — i.e. it keeps most of E-011's −1.62 pp.
+  2. E-017 pooled ETA is not a regression against E-005 + E-034c (CI not
+     entirely below zero), and the `control_en` + `switch` ETA point estimates
+     are within 0.5 pp of E-005 (their CIs are reported; the category sample is
+     too small for a CI gate).
+  3. S1-dev veto on the seed mean: WER CI not entirely above zero and ETA CI
+     not entirely below zero (E-002 §6.2).
+  4. INT8 cost ≤ 0.2 pp against the FP32 readout.
+- **Outcome:** PASS → R1 is the final-recipe candidate, the seed is chosen on
+  E-017, and P11 may run. FAIL → R2 (E-011 with gold ×20, H2) under a dated
+  amendment; P11 only after a passing recipe.
+- **Cost:** ~16 h per seed on the M5; ~16 h for the screen, ~32 h for two.
+- **Risk:** 3e-5 may under-train the encoder and lose the dev-macro gain. If it
+  does, H1 is not the lever and H3/gold (R2) is next.
 
 ### E-008 addition — ceilings for the paper
 

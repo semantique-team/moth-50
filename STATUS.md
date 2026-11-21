@@ -31,7 +31,7 @@ running, and the exact next commands. Update it at the end of each session.
   MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21); E-011 won dev-macro but
   failed the S1-dev ETA rule on seed 0 and was not adopted (D22); E-004 arm B
   moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.
-  E-017–E-022 come from the frontier review (D24) and have not run.**
+  E-017–E-023 have not run; E-023 is pre-registered after P6.**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
   without an explicit go-ahead.
@@ -106,6 +106,8 @@ running, and the exact next commands. Update it at the end of each session.
 | E-034c clean rebuild | **done, product (D25)**: corpus 185,103 rows; dev-macro 16.9897; S1-dev 14.9744/73.9258; T-600 13.7041/76.1266; packed 7,787,184 B | `runs/E-004/lm-build-e034c.json`, `runs/E-004/RESULT.md` |
 | E-034c package/browser | **done**: 49,203,774 B (796,226 B room), graph `14ba2034…`, load 68.7 ms, exact transcript, RTFx 29.35 | `runs/E-004/export-report-e034c.json`, `runs/E-004/browser-run-e034c.json` |
 | P6 E-011 + E-034c | **FAIL on S1-dev ETA**: dev-macro −1.6202 pp (pass); S1-dev WER −0.5040 (tie), ETA −1.7578 [−3.1844, −0.1422]; s0/eta −2.64, s1 −0.88; not adopted | `runs/E-011/p6/RESULT.md` |
+| P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
+| E-023 R1 pre-registration | **written, not run**: E-011 with encoder LR 3e-5; needs E-017 + go-ahead; R2 only if R1 fails | `experiments/next-experiments.md`, `training/configs/base6-e023-r1.toml` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
@@ -120,9 +122,11 @@ failed on the S1-dev ETA veto:** dev-macro seed mean 15.3695 % vs 16.9897
 loss is recipe-level (`control_en`, `switch`, `single_word`), not A3-specific.
 Nothing is running.
 
-1. **P7 diagnostics, then P10 R1** (encoder LR 3e-5) under a new E-023
-   pre-registration. R2 (gold ×20) only if R1 does not recover ETA. Training
-   needs an explicit go-ahead.
+1. **P7 is done; E-023 R1 is pre-registered and NOT authorized.** Gold is
+   saturated in E-005 (0.20 %) and E-011 (0.08/0.14 %), so H2 is not the main
+   cause; the ETA misses are broad short-English substitutions. R1 (encoder LR
+   3e-5, config `training/configs/base6-e023-r1.toml`) needs **E-017 first**
+   and a go-ahead. R2 (gold ×20) only if R1 fails.
 2. **P3 — FLEURS** IT/EN once with the product LM (report-only, T-600 is
    already a repeated read). **P4/E-016 — 1-thread RTFx** and vendoring
    `moth-stt/web/` at `b0fa11c` + `0e15442`.
@@ -270,6 +274,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-010/RESULT.md` — encoder-LR screen; base+6 at 1e-4 wins.
 - `runs/E-011/RESULT.md` — long schedule + EMA; dev win, S1-dev ETA fail, not adopted.
 - `runs/E-011/p6/RESULT.md` — P6 re-read with E-034c: dev pass, S1-dev ETA veto holds.
+- `runs/E-011/p7/RESULT.md` — P7 diagnostics: gold saturation, ETA-miss classes, R1 order.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and

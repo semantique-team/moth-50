@@ -348,7 +348,11 @@ pre-registered code-switch/term arm if the ETA loss is to be chased. Artifacts:
 pre-registration: dev-macro seed mean 15.3695 % vs 16.9897 (−1.6202 pp, CI
 excludes zero), but clean S1-dev ETA −1.7578 pp [−3.1844, −0.1422] on the seed
 mean (s0 −2.64, s1 −0.88). **The veto holds; E-011 stays out and E-005 + E-034c
-remains the product.** `runs/E-011/p6/RESULT.md`.
+remains the product.** P7 then found gold memorisation saturated in both models
+(E-005 0.20 %, E-011 0.08/0.14 %), so H2 is not the main cause; the ETA loss is
+broad short-English substitutions. **E-023 R1** (encoder LR 3e-5) is
+pre-registered and not authorized; it needs E-017 first.
+`runs/E-011/p6/RESULT.md`, `runs/E-011/p7/RESULT.md`.
 
 ## D23 — E-004 arm B: the product LM becomes E-034 N2_1_1 (2026-11-21)
 

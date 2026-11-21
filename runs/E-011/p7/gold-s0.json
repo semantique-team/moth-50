@@ -1,0 +1,168 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "mixed",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-011/release-s0/model.int8.onnx",
+  "onnx_sha256": "2eb08ec99e4149e22e6e8352baf834224f814b627a8bb867c21f262bd989fb99",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "set": {
+    "name": "gold-train",
+    "manifest": "../moth-cs-dataset/manifests/train.jsonl",
+    "manifest_sha256": "43eb2f3f6ffcec157f7caf8e254d098bd866b8979042bae5a96085f4e6ccd47a",
+    "shards": "data/shards/gold-train",
+    "limit": 0
+  },
+  "metrics": {
+    "n": 1413,
+    "ref_words": 8425,
+    "wer": 0.0008308605341246291,
+    "wer_ci": [
+      0.0,
+      0.0023815194093831865
+    ],
+    "eta": 0.999008428358949,
+    "insertion_rate": 0.0,
+    "eta_errors": [
+      {
+        "id": "R-S1-0218",
+        "term": "dream",
+        "got": null
+      },
+      {
+        "id": "R-S1-0218",
+        "term": "job",
+        "got": null
+      }
+    ],
+    "category": {
+      "single_word": {
+        "n": 369,
+        "ref_words": 2144,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "phrase": {
+        "n": 269,
+        "ref_words": 1674,
+        "sub": 0,
+        "del": 5,
+        "ins": 0,
+        "wer": 0.002986857825567503,
+        "insertion_rate": 0.0,
+        "eta": 0.9963963963963964
+      },
+      "brand": {
+        "n": 178,
+        "ref_words": 965,
+        "sub": 1,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0010362694300518134,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "acronym": {
+        "n": 154,
+        "ref_words": 844,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "italianized": {
+        "n": 221,
+        "ref_words": 1128,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "switch": {
+        "n": 112,
+        "ref_words": 949,
+        "sub": 0,
+        "del": 1,
+        "ins": 0,
+        "wer": 0.001053740779768177,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "control_it": {
+        "n": 63,
+        "ref_words": 402,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": null
+      },
+      "control_en": {
+        "n": 47,
+        "ref_words": 319,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      }
+    },
+    "speaker": {
+      "S1": {
+        "n": 741,
+        "ref_words": 4497,
+        "sub": 0,
+        "del": 5,
+        "ins": 0,
+        "wer": 0.0011118523460084502,
+        "insertion_rate": 0.0,
+        "eta": 0.9983402489626556
+      },
+      "S2": {
+        "n": 672,
+        "ref_words": 3928,
+        "sub": 1,
+        "del": 1,
+        "ins": 0,
+        "wer": 0.0005091649694501018,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      }
+    }
+  },
+  "reference": null,
+  "paired": null,
+  "no_regression": null,
+  "elapsed_seconds": 71.8
+}

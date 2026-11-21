@@ -56,6 +56,7 @@ external evidence.
 | E-020 | LLM-written mixed IT–EN text for the A3-style LM | proposed; needs E-017 |
 | E-021 | Targeted acronym, brand and elision data (recordings + permissive TTS) | proposed; needs E-011 |
 | E-022 | Keyterm (contextual) biasing re-test as a product feature | proposed, conditional; Moth E-027 was negative |
+| E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 (H1) | pre-registered 2026-11-21; not authorized; needs E-017 |
 
 The rationale, parameter counts and gates for E-003–E-008 are in
 `docs/architecture-options.md`; the corrected Moth evidence, the measurements

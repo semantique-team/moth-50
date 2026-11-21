@@ -1,0 +1,178 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "mixed",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-005/release-a3/model.int8.onnx",
+  "onnx_sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "set": {
+    "name": "gold-train",
+    "manifest": "../moth-cs-dataset/manifests/train.jsonl",
+    "manifest_sha256": "43eb2f3f6ffcec157f7caf8e254d098bd866b8979042bae5a96085f4e6ccd47a",
+    "shards": "data/shards/gold-train",
+    "limit": 0
+  },
+  "metrics": {
+    "n": 1413,
+    "ref_words": 8425,
+    "wer": 0.0020178041543026707,
+    "wer_ci": [
+      0.00011821728336682824,
+      0.004807692307692308
+    ],
+    "eta": 0.9980168567178979,
+    "insertion_rate": 0.0,
+    "eta_errors": [
+      {
+        "id": "R-S1-0218",
+        "term": "dream",
+        "got": null
+      },
+      {
+        "id": "R-S1-0218",
+        "term": "job",
+        "got": null
+      },
+      {
+        "id": "R-S2-0462",
+        "term": "session",
+        "got": null
+      },
+      {
+        "id": "R-S2-0624",
+        "term": "airpods",
+        "got": null
+      }
+    ],
+    "category": {
+      "single_word": {
+        "n": 369,
+        "ref_words": 2144,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "phrase": {
+        "n": 269,
+        "ref_words": 1674,
+        "sub": 0,
+        "del": 5,
+        "ins": 0,
+        "wer": 0.002986857825567503,
+        "insertion_rate": 0.0,
+        "eta": 0.9963963963963964
+      },
+      "brand": {
+        "n": 178,
+        "ref_words": 965,
+        "sub": 2,
+        "del": 5,
+        "ins": 0,
+        "wer": 0.007253886010362694,
+        "insertion_rate": 0.0,
+        "eta": 0.9952830188679245
+      },
+      "acronym": {
+        "n": 154,
+        "ref_words": 844,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "italianized": {
+        "n": 221,
+        "ref_words": 1128,
+        "sub": 1,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0008865248226950354,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      },
+      "switch": {
+        "n": 112,
+        "ref_words": 949,
+        "sub": 0,
+        "del": 4,
+        "ins": 0,
+        "wer": 0.004214963119072708,
+        "insertion_rate": 0.0,
+        "eta": 0.9971428571428571
+      },
+      "control_it": {
+        "n": 63,
+        "ref_words": 402,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": null
+      },
+      "control_en": {
+        "n": 47,
+        "ref_words": 319,
+        "sub": 0,
+        "del": 0,
+        "ins": 0,
+        "wer": 0.0,
+        "insertion_rate": 0.0,
+        "eta": 1.0
+      }
+    },
+    "speaker": {
+      "S1": {
+        "n": 741,
+        "ref_words": 4497,
+        "sub": 0,
+        "del": 5,
+        "ins": 0,
+        "wer": 0.0011118523460084502,
+        "insertion_rate": 0.0,
+        "eta": 0.9983402489626556
+      },
+      "S2": {
+        "n": 672,
+        "ref_words": 3928,
+        "sub": 3,
+        "del": 9,
+        "ins": 0,
+        "wer": 0.003054989816700611,
+        "insertion_rate": 0.0,
+        "eta": 0.9975369458128078
+      }
+    }
+  },
+  "reference": null,
+  "paired": null,
+  "no_regression": null,
+  "elapsed_seconds": 73.5
+}

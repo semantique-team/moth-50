@@ -1,0 +1,1117 @@
+{
+  "tool": "tools/eta_breakdown.py",
+  "readout": {
+    "path": "runs/E-011/p6/s1-s1-dev.json",
+    "sha256": "1736a924b2758b72c4a20036bc5f2d51a2a0f880d159bf2f1ecd0b1283cf0a2c",
+    "eta": 0.73046875,
+    "wer": 0.14317019722425128
+  },
+  "manifest": {
+    "path": "../moth-cs-dataset/manifests/R-S1-dev.jsonl",
+    "sha256": "289892a83a967e5833549f4e407b30dabc26887fb8b30bb72627884bc1d7cdb8"
+  },
+  "reference_counts": {
+    "english_words": 2048,
+    "flags": {
+      "elided": 35,
+      "no_vowel": 38,
+      "function_word": 600
+    },
+    "categories": {
+      "acronym": 113,
+      "brand": 129,
+      "control_en": 850,
+      "italianized": 112,
+      "phrase": 291,
+      "single_word": 112,
+      "switch": 441
+    }
+  },
+  "summary": {
+    "misses": 552,
+    "kinds": {
+      "deleted": 62,
+      "apostrophe": 3,
+      "glued": 41,
+      "truncated": 65,
+      "substituted": 381
+    },
+    "flags": {
+      "elided": 34,
+      "no_vowel": 25,
+      "function_word": 73
+    },
+    "top_terms": [
+      [
+        "it",
+        8
+      ],
+      [
+        "too",
+        5
+      ],
+      [
+        "a",
+        4
+      ],
+      [
+        "up",
+        4
+      ],
+      [
+        "coffee",
+        3
+      ],
+      [
+        "not",
+        3
+      ],
+      [
+        "back",
+        3
+      ],
+      [
+        "that",
+        3
+      ],
+      [
+        "cig",
+        2
+      ],
+      [
+        "but",
+        2
+      ],
+      [
+        "her",
+        2
+      ],
+      [
+        "i",
+        2
+      ],
+      [
+        "of",
+        2
+      ],
+      [
+        "date",
+        2
+      ],
+      [
+        "warm",
+        2
+      ],
+      [
+        "growth",
+        2
+      ],
+      [
+        "empty",
+        2
+      ],
+      [
+        "crashato",
+        2
+      ],
+      [
+        "eat",
+        2
+      ],
+      [
+        "worth",
+        2
+      ]
+    ],
+    "examples": {
+      "deleted": [
+        [
+          "free",
+          null
+        ],
+        [
+          "mental",
+          null
+        ],
+        [
+          "of",
+          null
+        ],
+        [
+          "hut",
+          null
+        ],
+        [
+          "mute",
+          null
+        ],
+        [
+          "the",
+          null
+        ],
+        [
+          "up",
+          null
+        ],
+        [
+          "very",
+          null
+        ],
+        [
+          "stand",
+          null
+        ],
+        [
+          "half",
+          null
+        ],
+        [
+          "batch",
+          null
+        ],
+        [
+          "gas",
+          null
+        ],
+        [
+          "ask",
+          null
+        ],
+        [
+          "key",
+          null
+        ],
+        [
+          "message",
+          null
+        ]
+      ],
+      "apostrophe": [
+        [
+          "l'ipo",
+          "lipo"
+        ],
+        [
+          "l'uci",
+          "luci"
+        ],
+        [
+          "l'opex",
+          "lopex"
+        ]
+      ],
+      "glued": [
+        [
+          "merlin",
+          "romerline"
+        ],
+        [
+          "lose",
+          "loseed"
+        ],
+        [
+          "date",
+          "ofdate"
+        ],
+        [
+          "seo",
+          "lasseo"
+        ],
+        [
+          "a",
+          "la"
+        ],
+        [
+          "not",
+          "notiet"
+        ],
+        [
+          "up",
+          "standup"
+        ],
+        [
+          "station",
+          "gustation"
+        ],
+        [
+          "it",
+          "pit"
+        ],
+        [
+          "it",
+          "its"
+        ],
+        [
+          "in",
+          "ins"
+        ],
+        [
+          "up",
+          "scaleup"
+        ],
+        [
+          "mic",
+          "mick"
+        ],
+        [
+          "our",
+          "hour"
+        ],
+        [
+          "pec",
+          "peck"
+        ]
+      ],
+      "truncated": [
+        [
+          "piece",
+          "pi"
+        ],
+        [
+          "silly",
+          "si"
+        ],
+        [
+          "marmot",
+          "marmo"
+        ],
+        [
+          "planned",
+          "plan"
+        ],
+        [
+          "coffee",
+          "coffe"
+        ],
+        [
+          "warm",
+          "war"
+        ],
+        [
+          "prefers",
+          "prefer"
+        ],
+        [
+          "growth",
+          "grow"
+        ],
+        [
+          "noise",
+          "no"
+        ],
+        [
+          "welcome",
+          "welco"
+        ],
+        [
+          "salad",
+          "sala"
+        ],
+        [
+          "air",
+          "a"
+        ],
+        [
+          "benchmarkato",
+          "benchmark"
+        ],
+        [
+          "alarm",
+          "alar"
+        ],
+        [
+          "makes",
+          "ma"
+        ]
+      ],
+      "substituted": [
+        [
+          "cig",
+          "che"
+        ],
+        [
+          "aliexpress",
+          "express"
+        ],
+        [
+          "favourite",
+          "faverage"
+        ],
+        [
+          "wishlistato",
+          "listato"
+        ],
+        [
+          "but",
+          "the"
+        ],
+        [
+          "it",
+          "bted"
+        ],
+        [
+          "l'imu",
+          "l'in"
+        ],
+        [
+          "her",
+          "air"
+        ],
+        [
+          "years",
+          "hear"
+        ],
+        [
+          "leroy",
+          "il"
+        ],
+        [
+          "skoda",
+          "coda"
+        ],
+        [
+          "wireless",
+          "whiless"
+        ],
+        [
+          "chrome",
+          "crim"
+        ],
+        [
+          "health",
+          "mentale's"
+        ],
+        [
+          "i",
+          "the"
+        ]
+      ]
+    },
+    "by_category": {
+      "acronym": {
+        "substituted": 67,
+        "glued": 5,
+        "deleted": 4,
+        "apostrophe": 3,
+        "truncated": 5
+      },
+      "brand": {
+        "substituted": 61,
+        "glued": 1,
+        "truncated": 7,
+        "deleted": 3
+      },
+      "control_en": {
+        "substituted": 101,
+        "truncated": 17,
+        "glued": 16,
+        "deleted": 14
+      },
+      "italianized": {
+        "substituted": 33,
+        "truncated": 1
+      },
+      "phrase": {
+        "deleted": 22,
+        "substituted": 52,
+        "truncated": 16,
+        "glued": 12
+      },
+      "single_word": {
+        "truncated": 5,
+        "substituted": 12,
+        "glued": 1
+      },
+      "switch": {
+        "truncated": 14,
+        "deleted": 19,
+        "glued": 6,
+        "substituted": 55
+      }
+    }
+  },
+  "categories": {
+    "phrase": {
+      "n": 142,
+      "ref_words": 1509,
+      "sub": 144,
+      "del": 42,
+      "ins": 14,
+      "wer": 0.13253810470510272,
+      "eta": 0.6494845360824743
+    },
+    "single_word": {
+      "n": 112,
+      "ref_words": 635,
+      "sub": 34,
+      "del": 6,
+      "ins": 8,
+      "wer": 0.07559055118110236,
+      "eta": 0.8392857142857143
+    },
+    "control_it": {
+      "n": 121,
+      "ref_words": 849,
+      "sub": 43,
+      "del": 17,
+      "ins": 5,
+      "wer": 0.07656065959952886,
+      "eta": null
+    },
+    "acronym": {
+      "n": 113,
+      "ref_words": 596,
+      "sub": 99,
+      "del": 10,
+      "ins": 26,
+      "wer": 0.22651006711409397,
+      "eta": 0.25663716814159293
+    },
+    "brand": {
+      "n": 113,
+      "ref_words": 576,
+      "sub": 93,
+      "del": 12,
+      "ins": 22,
+      "wer": 0.2204861111111111,
+      "eta": 0.4418604651162791
+    },
+    "control_en": {
+      "n": 119,
+      "ref_words": 850,
+      "sub": 134,
+      "del": 14,
+      "ins": 19,
+      "wer": 0.19647058823529412,
+      "eta": 0.8258823529411765
+    },
+    "switch": {
+      "n": 128,
+      "ref_words": 1157,
+      "sub": 122,
+      "del": 31,
+      "ins": 12,
+      "wer": 0.14261019878997408,
+      "eta": 0.7868480725623582
+    },
+    "italianized": {
+      "n": 112,
+      "ref_words": 673,
+      "sub": 58,
+      "del": 6,
+      "ins": 9,
+      "wer": 0.10846953937592868,
+      "eta": 0.6964285714285714
+    }
+  },
+  "compare": {
+    "readout": {
+      "path": "runs/E-004/s1-dev-e034c-int8.json",
+      "sha256": "3c379546fd7df508f76c9d9cad97d32dbf02f788a236adb6dc732278b79c41a8",
+      "eta": 0.7392578125,
+      "wer": 0.14974433893352812
+    },
+    "summary": {
+      "misses": 534,
+      "kinds": {
+        "deleted": 57,
+        "apostrophe": 2,
+        "glued": 37,
+        "truncated": 77,
+        "substituted": 361
+      },
+      "flags": {
+        "elided": 34,
+        "no_vowel": 23,
+        "function_word": 68
+      },
+      "top_terms": [
+        [
+          "it",
+          5
+        ],
+        [
+          "a",
+          5
+        ],
+        [
+          "too",
+          5
+        ],
+        [
+          "up",
+          4
+        ],
+        [
+          "that",
+          4
+        ],
+        [
+          "is",
+          4
+        ],
+        [
+          "be",
+          3
+        ],
+        [
+          "makes",
+          3
+        ],
+        [
+          "two",
+          3
+        ],
+        [
+          "cig",
+          2
+        ],
+        [
+          "but",
+          2
+        ],
+        [
+          "uploadato",
+          2
+        ],
+        [
+          "i",
+          2
+        ],
+        [
+          "warm",
+          2
+        ],
+        [
+          "growth",
+          2
+        ],
+        [
+          "empty",
+          2
+        ],
+        [
+          "safe",
+          2
+        ],
+        [
+          "crashato",
+          2
+        ],
+        [
+          "worth",
+          2
+        ],
+        [
+          "honest",
+          2
+        ]
+      ],
+      "examples": {
+        "deleted": [
+          [
+            "leroy",
+            null
+          ],
+          [
+            "of",
+            null
+          ],
+          [
+            "deep",
+            null
+          ],
+          [
+            "hut",
+            null
+          ],
+          [
+            "a",
+            null
+          ],
+          [
+            "safe",
+            null
+          ],
+          [
+            "fire",
+            null
+          ],
+          [
+            "a",
+            null
+          ],
+          [
+            "very",
+            null
+          ],
+          [
+            "be",
+            null
+          ],
+          [
+            "than",
+            null
+          ],
+          [
+            "product",
+            null
+          ],
+          [
+            "the",
+            null
+          ],
+          [
+            "storage",
+            null
+          ],
+          [
+            "stand",
+            null
+          ]
+        ],
+        "apostrophe": [
+          [
+            "l'opex",
+            "lopex"
+          ],
+          [
+            "l'opex",
+            "lopex"
+          ]
+        ],
+        "glued": [
+          [
+            "but",
+            "buty"
+          ],
+          [
+            "date",
+            "ofdate"
+          ],
+          [
+            "ves",
+            "vest"
+          ],
+          [
+            "bosch",
+            "bosche"
+          ],
+          [
+            "me",
+            "meet"
+          ],
+          [
+            "side",
+            "saside"
+          ],
+          [
+            "expected",
+            "unexpected"
+          ],
+          [
+            "bucket",
+            "storagebucket"
+          ],
+          [
+            "ottimizzato",
+            "abbiamottimizzato"
+          ],
+          [
+            "up",
+            "standup"
+          ],
+          [
+            "station",
+            "gustation"
+          ],
+          [
+            "it",
+            "pit"
+          ],
+          [
+            "in",
+            "doing"
+          ],
+          [
+            "up",
+            "scaleup"
+          ],
+          [
+            "pos",
+            "post"
+          ]
+        ],
+        "truncated": [
+          [
+            "free",
+            "fre"
+          ],
+          [
+            "path",
+            "pat"
+          ],
+          [
+            "mental",
+            "menta"
+          ],
+          [
+            "marmot",
+            "marmo"
+          ],
+          [
+            "planned",
+            "plan"
+          ],
+          [
+            "warm",
+            "w"
+          ],
+          [
+            "growth",
+            "grow"
+          ],
+          [
+            "mute",
+            "mut"
+          ],
+          [
+            "sem",
+            "se"
+          ],
+          [
+            "noise",
+            "no"
+          ],
+          [
+            "tfr",
+            "tf"
+          ],
+          [
+            "long",
+            "lo"
+          ],
+          [
+            "benchmarkato",
+            "benchmark"
+          ],
+          [
+            "off",
+            "of"
+          ],
+          [
+            "alarm",
+            "alar"
+          ]
+        ],
+        "substituted": [
+          [
+            "cig",
+            "chi"
+          ],
+          [
+            "mcv",
+            "valoremacv"
+          ],
+          [
+            "aliexpress",
+            "express"
+          ],
+          [
+            "favourite",
+            "feverage"
+          ],
+          [
+            "wishlistato",
+            "listato"
+          ],
+          [
+            "it",
+            "to"
+          ],
+          [
+            "l'imu",
+            "la"
+          ],
+          [
+            "years",
+            "hear"
+          ],
+          [
+            "merlin",
+            "romerlan"
+          ],
+          [
+            "uploadato",
+            "uploadto"
+          ],
+          [
+            "skoda",
+            "coda"
+          ],
+          [
+            "health",
+            "l'lse"
+          ],
+          [
+            "i",
+            "the"
+          ],
+          [
+            "deezer",
+            "diezer"
+          ],
+          [
+            "anaconda",
+            "naconda"
+          ]
+        ]
+      },
+      "by_category": {
+        "acronym": {
+          "substituted": 62,
+          "glued": 4,
+          "truncated": 12,
+          "deleted": 2,
+          "apostrophe": 2
+        },
+        "brand": {
+          "substituted": 62,
+          "deleted": 2,
+          "truncated": 7,
+          "glued": 1
+        },
+        "control_en": {
+          "truncated": 9,
+          "substituted": 97,
+          "glued": 10,
+          "deleted": 17
+        },
+        "italianized": {
+          "substituted": 31,
+          "glued": 1,
+          "truncated": 1
+        },
+        "phrase": {
+          "truncated": 23,
+          "substituted": 57,
+          "deleted": 19,
+          "glued": 12
+        },
+        "single_word": {
+          "truncated": 3,
+          "substituted": 12,
+          "glued": 1
+        },
+        "switch": {
+          "deleted": 17,
+          "glued": 8,
+          "substituted": 40,
+          "truncated": 22
+        }
+      }
+    },
+    "categories": {
+      "phrase": {
+        "n": 142,
+        "ref_words": 1509,
+        "sub": 167,
+        "del": 48,
+        "ins": 21,
+        "wer": 0.1563949635520212,
+        "eta": 0.6185567010309279
+      },
+      "single_word": {
+        "n": 112,
+        "ref_words": 635,
+        "sub": 37,
+        "del": 5,
+        "ins": 7,
+        "wer": 0.07716535433070866,
+        "eta": 0.8571428571428571
+      },
+      "control_it": {
+        "n": 121,
+        "ref_words": 849,
+        "sub": 47,
+        "del": 17,
+        "ins": 6,
+        "wer": 0.08244994110718493,
+        "eta": null
+      },
+      "acronym": {
+        "n": 113,
+        "ref_words": 596,
+        "sub": 104,
+        "del": 8,
+        "ins": 29,
+        "wer": 0.23657718120805368,
+        "eta": 0.2743362831858407
+      },
+      "brand": {
+        "n": 113,
+        "ref_words": 576,
+        "sub": 95,
+        "del": 9,
+        "ins": 20,
+        "wer": 0.2152777777777778,
+        "eta": 0.4418604651162791
+      },
+      "control_en": {
+        "n": 119,
+        "ref_words": 850,
+        "sub": 116,
+        "del": 17,
+        "ins": 20,
+        "wer": 0.18,
+        "eta": 0.8435294117647059
+      },
+      "switch": {
+        "n": 128,
+        "ref_words": 1157,
+        "sub": 117,
+        "del": 30,
+        "ins": 16,
+        "wer": 0.14088159031979255,
+        "eta": 0.8027210884353742
+      },
+      "italianized": {
+        "n": 112,
+        "ref_words": 673,
+        "sub": 67,
+        "del": 9,
+        "ins": 13,
+        "wer": 0.13224368499257058,
+        "eta": 0.7053571428571429
+      }
+    },
+    "diff": {
+      "misses": 552,
+      "other_misses": 534,
+      "only_here": 143,
+      "only_other": 125,
+      "only_here_examples": [
+        [
+          "piece",
+          "pi"
+        ],
+        [
+          "silly",
+          "si"
+        ],
+        [
+          "her",
+          "air"
+        ],
+        [
+          "wireless",
+          "whiless"
+        ],
+        [
+          "chrome",
+          "crim"
+        ],
+        [
+          "lose",
+          "loseed"
+        ],
+        [
+          "coffee",
+          "coffe"
+        ],
+        [
+          "moves",
+          "moveack"
+        ],
+        [
+          "switchato",
+          "swichato"
+        ],
+        [
+          "like",
+          "lag"
+        ],
+        [
+          "ricarica",
+          "carica"
+        ],
+        [
+          "the",
+          null
+        ],
+        [
+          "seo",
+          "lasseo"
+        ],
+        [
+          "welcome",
+          "welco"
+        ],
+        [
+          "a",
+          "la"
+        ],
+        [
+          "salad",
+          "sala"
+        ],
+        [
+          "not",
+          "notiet"
+        ],
+        [
+          "yet",
+          "pur"
+        ],
+        [
+          "eat",
+          "hat"
+        ],
+        [
+          "air",
+          "a"
+        ],
+        [
+          "conditioning",
+          "condice"
+        ],
+        [
+          "saturday",
+          "stoday"
+        ],
+        [
+          "autocad",
+          "cad"
+        ],
+        [
+          "nerfato",
+          "merfato"
+        ],
+        [
+          "past",
+          "alpust"
+        ],
+        [
+          "back",
+          "il"
+        ],
+        [
+          "ask",
+          null
+        ],
+        [
+          "me",
+          "askmi"
+        ],
+        [
+          "ears",
+          "di"
+        ],
+        [
+          "it",
+          "its"
+        ]
+      ]
+    }
+  }
+}

@@ -31,8 +31,11 @@ packed A3 LM (3,353,840 B, −2.03 MB). E-010 (2026-11-19) screened the encoder 
 and seed 0 lost **2.20 pp ETA** (CI excluding zero), so **E-011 was not adopted**.
 P6 re-read it with E-034c (2026-11-21): dev-macro **−1.62 pp** but clean S1-dev
 ETA **−1.76 pp** on the seed mean (CI excludes zero), so the veto holds
-(`runs/E-011/p6/RESULT.md`). E-004 arm B (2026-11-21) then used the E-012
-headroom for LM coverage. Its
+(`runs/E-011/p6/RESULT.md`). P7 found gold memorisation saturated in both models
+(E-005 0.20 %, E-011 0.08 / 0.14 %) and the ETA loss spread over short English
+words, so the first recipe ablation is **E-023 R1** (encoder LR 3e-5),
+pre-registered but not authorized (`experiments/next-experiments.md`). E-004
+arm B (2026-11-21) then used the E-012 headroom for LM coverage. Its
 S1-dev number was withdrawn by P2; E-034c is the corrected candidate. E-011's
 S1-dev absolute numbers are inflated by the same leak, but its veto compared
 E-011 and E-005 with the same A3 LM. `runs/E-010/RESULT.md`,
