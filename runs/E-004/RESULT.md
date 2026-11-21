@@ -178,8 +178,9 @@ term ×1) on the corpus minus the 900 matching sentences, 185,103 rows
 (`lm-corpus-clean-report.json`; MOTHLMB1 12,303,348 B, packed MOTHLMB2
 7,787,184 B, 6,448 B smaller than B). A3c is the A3 recipe (≥1 bigrams,
 ≥2 trigrams, term ×3) on the same clean corpus, 5,376,320 B, a diagnostic, not
-a release candidate. The package on disk remains `release-e034/`; a decision to
-ship E-034c is pending.
+a release candidate. **D25 (same day): E-034c is the product LM.** The package
+is `release-e034c/`, **49,203,774 B** (796,226 B of room), browser exact at
+**RTFx 29.35** (4 threads, isolated, load 68.7 ms). E-034 B stays as history.
 
 ## Decision
 
@@ -217,7 +218,9 @@ ship E-034c is pending.
 - `s1-dev-e034-int8.json/.hyp.jsonl` — S1-dev veto.
 - `t600-a3-int8.json/.hyp.jsonl`, `t600-e034-int8.json/.hyp.jsonl` — T-600 once.
 - `export-report-e034.json`, `release-e034/` (package gitignored).
-- `browser-run-e034.json` — load, exact transcript, RTFx.
+- `browser-run-e034.json` — load, exact transcript, RTFx (B).
+- `export-report-e034c.json`, `browser-run-e034c.json` — E-034c package and
+  browser check (49,203,774 B, RTFx 29.35).
 - `parity-a3-s1-dev.json/.hyp.jsonl` — P0 cross-machine parity (byte-identical).
 - `lm-corpus-overlap.json`, `lm-corpus-overlap-after-clean.json` — P2 overlap,
   before and after removing the 900 S1-dev sentences.

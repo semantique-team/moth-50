@@ -195,4 +195,42 @@ These make the frozen rules executable; they do not move a gate.
    S1-dev **14.9744 / 73.9258** vs **15.4127 / 72.8027** for the A3 recipe
    rebuilt on the same clean corpus, and dev-macro **16.9897 %** vs 17.6253 %
    (−0.6355 pp). T-600 was read again for E-034c and is a declared repeated
-   read. `runs/E-004/RESULT.md`. The product-LM decision is pending.
+   read. `runs/E-004/RESULT.md`. The product LM is **E-034c** (D25).
+
+## 7. Amendment 2026-11-21b — P6 pre-registration (written before the readout)
+
+1. **Product LM.** The product line decodes with **E-034c** (D25): the E-034
+   N2_1_1 recipe rebuilt on the clean corpus, MOTHLMB1 sha256 `4b122fbe…`,
+   packed MOTHLMB2 `7a4332f1…`.
+2. **Question.** E-011 was judged with A3. With E-034c on both sides, does it
+   keep its dev-macro gain without regressing the product set?
+3. **Systems.** Candidate: E-011 seeds 0 and 1, INT8 graphs
+   `runs/E-011/release-s{0,1}/model.int8.onnx`. Control: E-005 INT8 graph
+   `runs/E-005/release-a3/model.int8.onnx`, byte-identical to the product graph.
+   Both decode with E-034c, the frozen decoder 0.55 / 2.7, beam 12, top-k 10.
+4. **Sets.** Dev-macro (MLS-IT + LS-EN dev; both are corpus exclusions) and
+   S1-dev, which is clean for E-034c (0 exact matches, 4.09 % 4-gram share).
+   This is a declared second read of E-011 under a changed LM; the gate is
+   fixed here, before the numbers exist.
+5. **Seed statistic — the gate is the seed mean.** For each seed and system,
+   score per utterance (`sub+del+ins`, `ref_words`, `en_hit`, `en_ref`).
+   Average the per-utterance counts across the two seeds:
+   `(errors_s0 + errors_s1) / 2` and `(en_hit_s0 + en_hit_s1) / 2`, with the
+   same reference counts. Bootstrap 1,000 resamples, seed 0, over utterances,
+   for the WER and ETA differences against the control. Report each seed's own
+   point estimate and CI; **the verdict uses the mean only**, and the seed is
+   never chosen on S1-dev. This replaces the earlier P6 wording "no S1-dev
+   regression on both seeds": with 2 seeds × 2 one-sided tests, a null candidate
+   fails at least one about 10 % of the time (review 2026-11-21 §5), and the
+   seed mean is the statistic P11 proposed.
+6. **Gate.** PASS iff (a) the seed-mean dev-macro WER is at least **1.0 pp**
+   better than the control (E-005 + E-034c, 16.9897 %) with the paired 95 % CI
+   excluding zero, and (b) on S1-dev the seed-mean WER difference is not
+   entirely above zero and the seed-mean ETA difference is not entirely below
+   zero, per §6.2. T-600 is **not** part of the gate: it has been read twice
+   (B and E-034c); S2/S3 are diagnostics only.
+7. **Outcome.** If PASS: E-011 + E-034c is the product candidate; the shipped
+   seed is chosen on dev-macro; the final run becomes optional. If FAIL: P7
+   diagnostics, then P10 (R1, encoder LR 3e-5) under a new pre-registration.
+
+Artifacts go to `runs/E-011/p6/`.

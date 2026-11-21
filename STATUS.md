@@ -4,16 +4,15 @@ This is the first file to read when resuming. It records what is done, what is
 running, and the exact next commands. Update it at the end of each session.
 
 - **Remote:** `semantique-team/moth-50`, branch `main`
-- **Product package on disk (D23): E-005 acoustic + E-034 N2_1_1 LM.** 49,210,224
-  B, browser exact at RTFx 28.36, acoustic graph byte-identical to E-005. **Its
-  S1-dev evidence is withdrawn (2026-11-21, P2):** 900/960 S1-dev cues are exact
-  sentences of the E-031 LM corpus. The corrected build **E-034c** (same recipe
-  on the corpus minus those 900 sentences) gives dev-macro **16.9897 %**
-  (−0.6355 pp vs the clean A3c), S1-dev **14.9744 % / 73.9258 %** (−0.4381 pp
-  WER / +1.1230 pp ETA vs A3c) and T-600 **13.7041 % / 76.1266 %** (−0.4870 /
-  +1.0550 vs A3c, CIs include zero; declared repeated read). **Decision pending:
-  ship E-034c (recommended) or keep E-034 B and quote T-600 only.**
-  `runs/E-004/RESULT.md`, `docs/decisions.md` D23 erratum.
+- **Current product (D25, 2026-11-21): E-005 acoustic + E-034c LM.** Package
+  **49,203,774 B** (796,226 B of room), version `0.9.6-e034c`, graph
+  byte-identical to E-005, browser exact at **RTFx 29.35** (4 threads, isolated,
+  load 68.7 ms). **E-034c** is the N2_1_1 recipe on the clean corpus (minus the
+  900 S1-dev sentences that leaked into E-034 B): dev-macro **16.9897 %**
+  (−0.6355 pp vs clean A3c), S1-dev **14.9744 % / 73.9258 %** (−0.4381 pp WER /
+  +1.1230 pp ETA vs A3c) and T-600 **13.7041 % / 76.1266 %** (−0.4870 / +1.0550
+  vs A3c, CIs include zero; declared repeated read). E-034 B is retired.
+  `runs/E-004/RESULT.md`, `docs/decisions.md` D25.
 - **E-005 A3 gate (historical):** `base+6`, 16,000 steps, pinned A3 LM. Frozen
   beam+A3 dev-macro **17.5565 % FP32 / 17.6212 % INT8** against the **23.0170 %**
   reference (paired **−5.4605 / −5.3957 pp**, CIs exclude zero). Held-out S1-dev
@@ -109,36 +108,26 @@ running, and the exact next commands. Update it at the end of each session.
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: the E-034c decision, then P6; no training without go-ahead
+## Next step: P6; no training without go-ahead
 
-**P2 changed the product-LM evidence.** The on-disk E-034 package is still
-49,210,224 B and browser-clean, but its S1-dev gain was 900/960 cue leakage. The
-same recipe rebuilt on the clean corpus (**E-034c**) gives dev-macro 16.9897 %
-(−0.6355 pp vs A3c), S1-dev 14.9744 / 73.9258 (−0.4381 pp WER / +1.1230 pp ETA
-vs A3c, CIs exclude zero) and T-600 13.7041 / 76.1266 (−0.4870 / +1.0550, CIs
-include zero; repeated read). **Recommendation: ship E-034c.** Nothing is
-running.
+**E-034c is adopted (D25)** and its package/browser check is done. The next
+decision is P6, already pre-registered in E-002 §7 before the readout: E-011
+seeds 0 and 1 against E-005, both with E-034c, **seed-mean** gate (dev-macro
+≥ 1.0 pp better with CI excluding zero; no clean-S1-dev regression on the seed
+mean), every seed reported. Nothing is running.
 
-1. **Decide E-034c** (owner). If yes: re-export with
-   `runs/E-004/lm_e034c_n2_mothlmb2.bin` (expected package 49,203,776 B), rerun
-   the browser check, record D25 (or revise D23), and keep B only as history.
-2. **P6 — E-011 re-read with E-034c** (no training, ~30 min). Write the dated
-   E-002 amendment **before** reading. Decide the seed statistic first: §5 of the
-   review says 2 seeds × 2 one-sided tests false-fail ~10 % of the time; the
-   recommended amendment is a seed-mean comparison with every seed reported.
-   Gate: dev-macro ≥ 1.0 pp better than E-005 + E-034c with a paired CI excluding
-   zero, and no clean-S1-dev regression (CI rule) on the seed mean. If it passes,
-   E-011 + E-034c is the product candidate and the final run may be optional.
-3. **P3 — FLEURS** IT/EN once with the product LM (report-only, T-600 is
+1. **P6 result** (below once run). If PASS, E-011 + E-034c is the product
+   candidate, the seed is chosen on dev-macro, and the final run is optional.
+2. **P3 — FLEURS** IT/EN once with the product LM (report-only, T-600 is
    already a repeated read). **P4/E-016 — 1-thread RTFx** and vendoring
    `moth-stt/web/` at `b0fa11c` + `0e15442`.
-4. **P5/E-017 — calibration set** (owner: option A, a new R-S1-cal session, or
+3. **P5/E-017 — calibration set** (owner: option A, a new R-S1-cal session, or
    option B, a seeded 480/480 S1-dev split). New cues must **not** come from
    `text/pool.jsonl`, and future LM corpora must exclude the pool; write the
    E-002 amendment before the first calibration readout.
-5. **P7/P8** diagnostics; **P10** one recipe ablation only if P6 fails; **P11**
+4. **P7/P8** diagnostics; **P10** one recipe ablation only if P6 fails; **P11**
    final run only if still needed. Training needs an explicit go-ahead.
-6. **Second Mac:** E-018 (teacher bake-off), E-019/E-020/E-021 data and LM arms,
+5. **Second Mac:** E-018 (teacher bake-off), E-019/E-020/E-021 data and LM arms,
    E-006. P0 is done, so its readouts are machine-comparable.
 
 The full proposed order is `docs/review-2026-11-21.md` §7–§9; P2 supersedes its

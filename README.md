@@ -1,15 +1,15 @@
 # MOTH-50 — scaffold
 
-**Status (2026-11-21): the product package is E-005 acoustic + the unpruned
-E-034 LM, but its S1-dev evidence is withdrawn.** P2 found that 900 of the 960
-S1-dev cues are exact sentences of the E-031 LM corpus, so the advertised
-S1-dev 11.63 % / 79.83 % was mostly memorisation. The same recipe on the clean
-corpus (**E-034c**) gives dev-macro **16.99 %**, S1-dev **14.97 % / 73.93 %**
-and T-600 **13.70 % / 76.13 %**; against the A3 recipe rebuilt on the same
-corpus it is −0.64 pp macro, −0.44 pp WER / +1.12 pp ETA on S1-dev and
-−0.49 / +1.06 on T-600 (the honest gain: ~0.4–0.5 pp WER, ~1.1 pp ETA). The
-package on disk is **49.21 MB**, browser exact at **RTFx 28.4** (4 threads,
-SIMD, isolated); shipping E-034c is pending. The E-002 A3 gate remains the
+**Status (2026-11-21): the product is E-005 acoustic + the E-034c LM (D25).**
+P2 found that 900 of the 960 S1-dev cues were exact sentences of the E-031 LM
+corpus, so the advertised E-034 B gain (S1-dev 11.63 % / 79.83 %) was mostly
+memorisation. **E-034c** is the same recipe on the clean corpus: dev-macro
+**16.99 %**, S1-dev **14.97 % / 73.93 %**, T-600 **13.70 % / 76.13 %**; against
+the A3 recipe rebuilt on the same corpus it is −0.64 pp macro, −0.44 pp WER /
++1.12 pp ETA on S1-dev and −0.49 / +1.06 on T-600 (the honest gain: ~0.4–0.5 pp
+WER, ~1.1 pp ETA). The package is **49,203,774 B** (796,226 B of room), browser
+exact at **RTFx 29.35** (4 threads, SIMD, isolated, load 68.7 ms). E-034 B is
+history. The E-002 A3 gate remains the
 historical reference: dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against
 **23.02 %** for 0.8.1; S1-dev **14.05 % / 14.00 %**, ETA **75.5 / 75.3 %**
 (inflated by the same leak; the paired A3-vs-0.8.1 verdict stands). E-012 cut

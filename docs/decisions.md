@@ -385,9 +385,8 @@ A3's own S1-dev number was inflated by the same leak (A3c vs A3: +1.3590 pp WER
 / −2.7340 pp ETA); every historical S1-dev absolute number is affected, while
 paired A3-vs-A3 comparisons are not. The honest arm-B gain is ~0.4 pp WER /
 ~1.1 pp ETA on S1-dev and ~0.5 pp / ~1.1 pp on T-600, not 2.4/4.3.
-**Decision pending:** ship E-034c (recommended; same recipe, protocol-clean
-corpus) or keep E-034 B and quote T-600 only. Until then the package on disk
-remains `release-e034/`, and its S1-dev numbers must not be quoted.
+**Decision (D25, same day):** ship **E-034c**. E-034 B remains as history; its
+S1-dev numbers must not be quoted.
 
 E-004 arms C (base+7) and D (base+4 long) were not run: their precondition was
 that E-011 showed depth still pays on the product, and it did not. A ×3
@@ -418,9 +417,9 @@ Proposed:
 - **A mixed calibration set** (E-017), separate from the S1-dev gate, must be
   chosen before any further LM or decoder change: E-009 showed that dev-macro
   calibrates the LM in the wrong direction for the product.
-- **The owed E-005 product readout (T-600, FLEURS) runs first**: it is the only
-  measurement of MOTH-50 on speakers other than S1 and against Parakeet
-  (10.98 % / 83.60 % on T-600).
+- **The E-005 product readout:** T-600 ran in E-004 (and again for E-034c,
+  declared repeated); FLEURS is still owed and is the only unseen-speaker
+  read-speech measurement left. Parakeet is at 10.98 % / 83.60 % on T-600.
 
 Evidence used: the 2026-11-19 leaderboard snapshot; Moth E-017 baselines (T-600
 and T-S3 for Parakeet, Whistle, Whisper-tiny), Moth E-027 (contextual bias
@@ -430,6 +429,25 @@ term addenda regress S3); the S1-dev error analysis in `runs/E-005/RESULT.md`
 
 Status: proposed. The owner decides E-017 (option A or B) before E-004, E-020
 or E-022 run.
+
+## D25 — E-034c is the product LM (2026-11-21)
+
+E-034 B is retired from the product line: its S1-dev evidence was leaked (D23
+erratum, P2). The product LM becomes **E-034c**, the same N2_1_1 recipe built on
+the E-031 corpus minus the 900 S1-dev sentences: 185,103 rows; MOTHLMB1
+12,303,348 B (sha256 `4b122fbe…`), packed MOTHLMB2 **7,787,184 B** (sha256
+`7a4332f1…`). Package `0.9.6-e034c`: **49,203,774 B**, **796,226 B** of room;
+graph byte-identical to E-005 (`14ba2034…`); decoder 0.55 / 2.7, beam 12,
+top-k 10 and the 16 kHz VAD unchanged.
+
+Browser check: load **68.7 ms** with every sha256 verified, transcript exactly
+"ho spostato il meeting a domani", **RTFx 29.35** (4 threads, isolated, SIMD;
+single run 15.69). Readouts: dev-macro **16.9897 %** (−0.6355 pp vs A3c, CI
+excludes 0), S1-dev **14.9744 % / 73.9258 %** (−0.4381 pp WER / +1.1230 pp ETA
+vs A3c, CIs exclude 0), T-600 **13.7041 / 76.1266** (−0.4870 / +1.0550 vs A3c,
+CIs include 0; declared repeated read). E-034 B remains as history. P6 compares
+E-011 against E-005 + E-034c. Artifacts: `runs/E-004/export-report-e034c.json`,
+`runs/E-004/browser-run-e034c.json`, `runs/E-004/release-e034c/`.
 
 ## Open questions
 

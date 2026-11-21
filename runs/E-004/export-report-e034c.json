@@ -1,0 +1,93 @@
+{
+  "checkpoint": "runs/E-005/base+6-16k/checkpoints/ckpt_best.pt",
+  "checkpoint_sha256": "d673edf1a0b39a64e97cf1d293a31714aac3944066b49f86b56120a183e2b4be",
+  "checkpoint_step": 16000,
+  "checkpoint_weights": "model",
+  "version": "0.9.6-e034c",
+  "lm": {
+    "sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "label": "other",
+    "is_a3": false
+  },
+  "lm_packed": {
+    "format": "MOTHLMB2",
+    "bits": 10,
+    "bytes": 7787184,
+    "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+  },
+  "vad": {
+    "variant": "16k",
+    "sha256": "7ed98ddbad84ccac4cd0aeb3099049280713df825c610a8ed34543318f1b2c49"
+  },
+  "gaps": {
+    "fp32": {
+      "per_clip": {
+        "1s": 0.00040435791015625,
+        "5s": 0.002105712890625,
+        "30s": 0.004016876220703125
+      },
+      "max_abs": 0.004016876220703125,
+      "top1_agreement": 1.0
+    },
+    "int8": {
+      "per_clip": {
+        "1s": 11.853473663330078,
+        "5s": 31.09612274169922
+      },
+      "max_abs": 31.09612274169922,
+      "top1_agreement": 1.0
+    }
+  },
+  "budget": {
+    "release": "/Users/tancredi/Desktop/semantique/moth-50/runs/E-004/release-e034c",
+    "files": {
+      "NOTICE": {
+        "bytes": 4120,
+        "sha256": "d507f66b6b7f1b54d96992dffe15f7b7fc64dfcbb83eaf0a62d1784d46a12095",
+        "hash_verified": false
+      },
+      "config.json": {
+        "bytes": 1357,
+        "sha256": "bbf67ebb17688956e3239e70d4689ee5b85adfb11969de915c03fda97b795f76",
+        "hash_verified": false
+      },
+      "lm_bpe3.bin": {
+        "bytes": 7787184,
+        "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee",
+        "hash_verified": true
+      },
+      "mel_filters.bin": {
+        "bytes": 64320,
+        "sha256": "4f2701b1d287d74a0dc9871026e9519d98cb76426615f2539b0d151a0ae4ec2e",
+        "hash_verified": true
+      },
+      "model.int8.onnx": {
+        "bytes": 40039997,
+        "sha256": "14ba203430f11c1a053f3dc79e838f534309d065448d843e41bbe800a5b5e2d6",
+        "hash_verified": true
+      },
+      "silero_vad.onnx": {
+        "bytes": 1289603,
+        "sha256": "7ed98ddbad84ccac4cd0aeb3099049280713df825c610a8ed34543318f1b2c49",
+        "hash_verified": true
+      },
+      "vocab.json": {
+        "bytes": 17193,
+        "sha256": "22a1e24dbd0e5df30c7fbf300c98a8d22817799f3749f2d97ff9bdf033bc22fb",
+        "hash_verified": true
+      }
+    },
+    "total_bytes": 49203774,
+    "budget_bytes": 50000000,
+    "remaining_bytes": 796226
+  },
+  "files": {
+    "NOTICE": 4120,
+    "config.json": 1357,
+    "lm_bpe3.bin": 7787184,
+    "mel_filters.bin": 64320,
+    "model.int8.onnx": 40039997,
+    "silero_vad.onnx": 1289603,
+    "vocab.json": 17193
+  }
+}

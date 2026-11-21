@@ -1,0 +1,68 @@
+{
+  "tool": "OpenCode in-app browser (browser tools)",
+  "release": "runs/E-004/release-e034c",
+  "package_bytes": 49203774,
+  "budget_bytes": 50000000,
+  "remaining_bytes": 796226,
+  "config": {
+    "name": "moth-stt",
+    "version": "0.9.6-e034c",
+    "decode": {
+      "default": "beam",
+      "beam": 12,
+      "top_k": 10,
+      "lm": "lm_bpe3.bin",
+      "lm_weight": 0.55,
+      "token_bonus": 2.7
+    }
+  },
+  "lm": {
+    "format": "MOTHLMB2",
+    "bits": 10,
+    "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee",
+    "bytes": 7787184,
+    "source": "Moth E-034 N2_1_1 (unpruned, term ×1) rebuilt without the 900 S1-dev sentences (E-034c)",
+    "source_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6"
+  },
+  "vad": {
+    "variant": "16k",
+    "sha256": "7ed98ddbad84ccac4cd0aeb3099049280713df825c610a8ed34543318f1b2c49",
+    "bytes": 1289603
+  },
+  "browser": {
+    "cross_origin_isolated": true,
+    "threads": 4,
+    "simd": true,
+    "load_ms": 68.74
+  },
+  "sample": {
+    "audio": "../moth-cs-dataset/audio/T/S1/S1_0001.wav",
+    "reference": "ho spostato il meeting a domani",
+    "seconds": 3.9893125
+  },
+  "transcript": "ho spostato il meeting a domani",
+  "transcript_exact_match": true,
+  "timings_ms": {
+    "vad": 50.42500001192093,
+    "feature": 36.80999994277954,
+    "inference": 154.27000004053116,
+    "decode": 11.774999976158142,
+    "total": 254.3100000023842
+  },
+  "rtfx": 15.686809405696197,
+  "benchmark": {
+    "runs": 5,
+    "total_ms_median": 135.92500001192093,
+    "total_ms_min": 135.75,
+    "vad_ms_median": 12.280000030994415,
+    "feature_ms_median": 29.435000002384186,
+    "inference_ms_median": 84.1350000500679,
+    "decode_ms_median": 9.334999978542328,
+    "rtfx_median": 29.349365456318765,
+    "rtfx_inference": 47.41561178612943,
+    "num_threads": 4,
+    "cross_origin_isolated": true,
+    "simd": true
+  },
+  "runtime_note": "moth-stt web/ at local commit 0e15442 (MOTHLMB2 reader); budget_bytes patch b0fa11c. The 49.20 MB E-034c package loads, verifies every sha256, and transcribes the T clip exactly."
+}
