@@ -1,0 +1,41 @@
+{
+  "tool": "tools/build_cal_script.py",
+  "candidates": [
+    "runs/E-017/candidates_a.py",
+    "runs/E-017/candidates_b.py"
+  ],
+  "against": [
+    "../moth-cs-dataset/text/T.jsonl",
+    "../moth-cs-dataset/text/A.jsonl",
+    "../moth-cs-dataset/text/R-S1.jsonl",
+    "../moth-cs-dataset/text/R-S2.jsonl",
+    "../moth-cs-dataset/text/pool.jsonl",
+    "../moth-cs-dataset/text-2026-11-dev/R-S1.jsonl"
+  ],
+  "lm_corpus": "../moth-stt/runs/E-031/frozen/lm-corpus.jsonl",
+  "existing_rows": 6371,
+  "candidates_rows": 400,
+  "built_rows": 400,
+  "by_category": {
+    "acronym": 50,
+    "brand": 50,
+    "control_en": 50,
+    "control_it": 50,
+    "italianized": 50,
+    "phrase": 50,
+    "single_word": 50,
+    "switch": 50
+  },
+  "words": {
+    "min": 4,
+    "max": 9,
+    "mean": 5.58
+  },
+  "invalid": [],
+  "duplicates": [],
+  "lm_corpus_exact": [],
+  "out": {
+    "path": "../moth-cs-dataset/text-2026-11-cal/R-S1.jsonl",
+    "rows": 400
+  }
+}

@@ -52,7 +52,7 @@ running, and the exact next commands. Update it at the end of each session.
   zero). **Not adopted**; E-005 acoustic remains and the product LM decision is
   pending E-034c. The S1-dev absolute numbers were inflated by the P2 leak; the
   paired E-011-vs-E-005 comparison used the same A3 LM. `runs/E-011/RESULT.md`.
-- **Tests:** 114 passed in the training env, 103 passed + 3 skipped (torch and
+- **Tests:** 118 passed in the training env, 107 passed + 3 skipped (torch and
   `stt.lm` parity) in a plain venv; `ruff check` and `ruff format --check` clean.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
@@ -109,6 +109,7 @@ running, and the exact next commands. Update it at the end of each session.
 | P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
 | E-023 R1 pre-registration | **written, not run**: E-011 with encoder LR 3e-5; needs E-017 + go-ahead; R2 only if R1 fails | `experiments/next-experiments.md`, `training/configs/base6-e023-r1.toml` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
+| E-017 option A script | **built, unreviewed**: 400 cues, 50/category, 755 English terms; 0 exact/near duplicates vs T/A/R-S1/R-S2/pool/S1-dev; 0 LM exact; 4-gram 8.75 % | `../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
@@ -131,10 +132,11 @@ Nothing is running.
 2. **P3 is done** (FLEURS-IT 14.8238 %, EN 30.2675 %; both far better than
    0.8.1, no ETA). **P4/E-016 — 1-thread RTFx** and vendoring `moth-stt/web/`
    at `b0fa11c` + `0e15442` remain.
-3. **P5/E-017 — calibration set** (owner: option A, a new R-S1-cal session, or
-   option B, a seeded 480/480 S1-dev split). New cues must **not** come from
-   `text/pool.jsonl`, and future LM corpora must exclude the pool; write the
-   E-002 amendment before the first calibration readout.
+3. **E-017 option A** — the 400-cue `R-S1-cal` script is built and deduped
+   (`text-2026-11-cal`, unreviewed). Next: review, record (~25–30 min, separate
+   S1 session), manifest/shards, then the E-002 §8 amendment before the first
+   calibration readout. New cues are not from `text/pool.jsonl`; future LM
+   corpora must exclude the pool.
 4. **P8** (×3-term unpruned LM, ranked on E-017) and **P11** final run only
    after a recipe fix; P10 R1/R2 are the recipe candidates. Training needs an
    explicit go-ahead.
@@ -277,6 +279,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-011/p6/RESULT.md` — P6 re-read with E-034c: dev pass, S1-dev ETA veto holds.
 - `runs/E-011/p7/RESULT.md` — P7 diagnostics: gold saturation, ETA-miss classes, R1 order.
 - `runs/E-004/fleurs-RESULT.md` — P3 FLEURS-IT/EN product readout vs 0.8.1.
+- `runs/E-017/RESULT.md` — R-S1-cal script build, dedupe and next steps.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and

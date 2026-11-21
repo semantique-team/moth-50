@@ -482,10 +482,17 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
   results on the full S1-dev stay as recorded.
 - **Either way** the calibration set is S1's voice, so it cannot separate
   speaker adaptation from domain fit; T-600 S3 at release time checks that.
-- **Adoption:** a dated E-002 amendment (§7) names the set and the rule: rank
+- **Adoption:** a dated E-002 amendment (§8) names the set and the rule: rank
   decoder/LM settings on the calibration set; dev-macro is a guard (no
   regression with CI excluding zero); the S1-dev veto (§6.3) stays. Nothing is
   calibrated on the new set before that amendment exists.
+- **Status (2026-11-21): option A script built, unreviewed.** 400 cues, 50 per
+  category, 755 English-term words, mean 5.58 words; 0 exact/near duplicates
+  against T, A, R-S1, R-S2, pool and S1-dev; 0 exact sentences in the E-031 LM
+  corpus; 4-gram share 8.75 % (T 9.75 %, clean S1-dev 4.09 %).
+  `../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md`. Next: review,
+  record in a separate S1 session, build the manifest/shards, then write the
+  E-002 §8 amendment.
 
 ### E-018 — Teacher bake-off (no training)
 
