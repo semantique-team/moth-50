@@ -36,14 +36,17 @@ ETA **−1.76 pp** on the seed mean (CI excludes zero), so the veto holds
 (`runs/E-011/p6/RESULT.md`). P7 found gold memorisation saturated in both models
 (E-005 0.20 %, E-011 0.08 / 0.14 %) and the ETA loss spread over short English
 words, so the first recipe ablation is **E-023 R1** (encoder LR 3e-5),
-pre-registered and **authorized 2026-11-21** (`experiments/next-experiments.md`);
-seed 0 is running in `runs/E-023/r1-s0`. E-017 is
+pre-registered and **authorized 2026-11-21** (`experiments/next-experiments.md`).
+Seed 0 completed on 2026-11-22 (40,000 steps, 15.78 h): dev-macro **14.3274 %**
+(−2.66 pp vs E-005), S1-dev **13.3820 / 75.1465**, R-S1-cal **12.8469 /
+75.4967**. The cal `control_en`/`switch` 0.5 pp clause misses; seed 1 is
+pending. E-017 is
 done: the 400-cue `R-S1-cal` set is reviewed, recorded (400/400, 16.95 min),
 level-matched to S1-dev (−16.58 dB), built into `manifests/R-S1-cal.jsonl`
 (`split: dev`) and `data/shards/s1-cal`, and frozen under **E-002 §8**
 (`../moth-cs-dataset/text-2026-11-cal/`, `runs/E-017/RESULT.md`). The control
-E-005 + E-034c was read once: **13.9212 % WER / 75.6291 % ETA**; no R1 readout
-has run. E-004
+E-005 + E-034c was read once: **13.9212 % WER / 75.6291 % ETA**; seed 1 has
+not run. E-004
 arm B (2026-11-21) then used the E-012 headroom for LM coverage. Its
 S1-dev number was withdrawn by P2; E-034c is the corrected candidate. E-011's
 S1-dev absolute numbers are inflated by the same leak, but its veto compared

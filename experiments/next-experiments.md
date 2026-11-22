@@ -627,11 +627,14 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 
-**Status: authorized 2026-11-21; seed 0 running.** E-017 is done and frozen
-(`manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, E-002 §8), the control
-E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it, and the owner gave the
-go-ahead. Seed 0: `runs/E-023/r1-s0`, PID 48613, started 16:10 +0100; seed 1
-only if the seed-0 criterion below holds. `runs/E-023/RESULT.md`.
+**Status: seed 0 complete 2026-11-22; seed 1 pending.** E-017 is done and
+frozen (`manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, E-002 §8), the
+control E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it. Seed 0
+(`runs/E-023/r1-s0`, 40,000 steps, 15.78 h): dev-macro **14.3274 %**
+(−2.6623 pp, pass), S1-dev **13.3820 / 75.1465** (pass), R-S1-cal
+**12.8469 / 75.4967** (pooled ETA tie; `control_en` −1.33 and `switch`
+−2.78 vs E-005 miss the 0.5 pp clause). Seed 1 has not been launched.
+`runs/E-023/RESULT.md`.
 
 - **Why:** P6 re-read E-011 with E-034c and failed on clean-S1-dev ETA
   (−1.7578 pp [−3.1844, −0.1422] on the seed mean) while dev-macro passed
@@ -670,6 +673,18 @@ only if the seed-0 criterion below holds. `runs/E-023/RESULT.md`.
 - **Cost:** ~16 h per seed on the M5; ~16 h for the screen, ~32 h for two.
 - **Risk:** 3e-5 may under-train the encoder and lose the dev-macro gain. If it
   does, H1 is not the lever and H3/gold (R2) is next.
+
+**Result (seed 0, 2026-11-22).** 40,000 steps in 15.78 h; best greedy dev
+17.0771 % (E-011 s0 18.3373). INT8 + E-034c: dev-macro **14.3274 %**
+(−2.6623 pp [−2.8611, −2.4666] vs E-005, gate 1 pass); S1-dev
+**13.3820 % / 75.1465 %** (WER −1.5924, ETA +1.2207, veto pass); R-S1-cal
+**12.8469 % / 75.4967 %** (pooled ETA −0.1325 pp, CI includes zero; WER
+−1.0743 pp, CI includes zero). Against E-011 s0 on the same cal set, R1
+recovers ETA 74.3046 → 75.4967, `control_en` 84.00 → 87.00, `switch`
+66.67 → 70.83. The formal 0.5 pp clause against **E-005** still misses
+(`control_en` −1.33, `switch` −2.78), so seed 1 is pending an explicit
+protocol reading, not launched. INT8 cost 0.0641 pp dev-macro and 0.0895 pp
+cal WER. `runs/E-023/RESULT.md`.
 
 ### E-008 addition — ceilings for the paper
 
