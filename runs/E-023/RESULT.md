@@ -1,10 +1,11 @@
 # E-023 — R1: E-011 with encoder LR 3e-5
 
-> **Status: seed 0 complete (40,000 steps, 15.78 h). Seed 1 not launched.**
-> Seed 0 passes the dev-macro, S1-dev and INT8-cost gates; the R-S1-cal
-> category-recovery condition (control_en + switch ETA within 0.5 pp of E-005)
-> is the only miss. The seed-1 decision is pending a protocol reading.
-> Nothing is running.
+> **Status: seed 0 complete (40,000 steps, 15.78 h); seed 1 running since
+> 2026-11-22 14:01.** Seed 0 passes the dev-macro, S1-dev and INT8-cost gates;
+> the R-S1-cal category-recovery condition (control_en + switch ETA within
+> 0.5 pp of E-005) is the only miss. The owner approved seed 1 after treating
+> the trigger as met (R1 is better than E-011 on dev-macro and recovers ETA
+> relative to E-011); the formal category clause is judged on the seed mean.
 
 ## Question
 
@@ -49,6 +50,23 @@ uv run --frozen --project ../moth-stt --extra training -- \
 - `ckpt_best.pt` and `ckpt_last.pt` are the same 40,000-step checkpoint
   (sha256 `5ff95f0e…`); EMA weights, matching the dev evaluation.
 
+## Seed 1 run
+
+- Started **2026-11-22 14:01:21 +0100** on the M5, MPS, PID **58671**
+  (`uv` parent 58669).
+- Output: `runs/E-023/r1-s1/` (same config, `--seed 1`); `caffeinate` holds
+  the Mac awake and resource sampling continues in
+  `runs/E-023/resource-samples.jsonl`.
+- Early health (step 50): loss 7.2537, 1.69 s/step, MPS 7.6 GB, nonfinite 0.
+  Expect roughly 16 h again; first dev eval at 4,000 steps.
+- Command:
+
+```bash
+uv run --frozen --project ../moth-stt --extra training -- \
+  python -m training.train --config training/configs/base6-e023-r1.toml \
+  --moth-stt ../moth-stt --out runs/E-023/r1-s1 --device mps --seed 1
+```
+
 ## Gate components (seed 0 only)
 
 All readouts are INT8, frozen decoder 0.55 / 2.7, E-034c LM, unless marked
@@ -92,9 +110,10 @@ to E-011, but not enough to match E-005 on the two English-heavy categories.
 The pre-registration says seed 1 runs only if seed 0 is within 0.5 pp of E-011
 on dev-macro and the E-017 ETA recovery in (b) holds. Seed 0 is **1.04 pp
 better** than E-011 on dev-macro (not worse), and it recovers ETA relative to
-E-011, but the formal 0.5 pp condition against **E-005** on `control_en` /
-`switch` misses. Seed 1 has not been launched; decide explicitly whether to
-read the 0.5 pp clause against E-011 or E-005 before spending another ~16 h.
+E-011 (74.3046 → 75.4967 overall; `control_en` 84.00 → 87.00; `switch`
+66.67 → 70.83), so the trigger is treated as met. The formal 0.5 pp clause
+against **E-005** on `control_en` / `switch` is part of gate 2 and is judged
+on the seed mean after seed 1, not used to block the second seed.
 
 ## Gate (seed mean, paired bootstrap 1,000, seed 0)
 
@@ -114,16 +133,12 @@ The readout's `gate_eligible` flag stays false with the product LM; use the
 
 1. **Seed 0 is done** (40,000 steps, 15.78 h); INT8 export and the FP32/INT8
    readouts are in `runs/E-023/`.
-2. **Seed 1 decision pending.** The seed-0 criterion is ambiguous: R1 is
-   +1.04 pp better than E-011 on dev-macro and recovers ETA relative to E-011,
-   but the 0.5 pp category clause against E-005 misses on `control_en` and
-   `switch`. Do not launch seed 1 until that clause is read explicitly.
-3. If seed 1 runs, use the same config/seed override, read it the same way, and
-   apply the seed-mean gate (E-002 §7). If it does not run, record R1 as a
-   one-seed result and decide on R2 under a dated amendment.
-4. PASS → R1 is the final-recipe candidate, seed chosen on R-S1-cal, P11 may
-   run. FAIL → R2 (gold ×20) under a dated amendment; no P11 without a passing
-   recipe.
+2. **Seed 1 is running** (PID 58671, started 2026-11-22 14:01). When it
+   reaches 40,000 steps, export INT8, read dev-macro, S1-dev and R-S1-cal, and
+   apply the seed-mean gate (E-002 §7) with the same control hypotheses.
+3. If the seed mean passes, record R1 as the final-recipe candidate and choose
+   the seed on R-S1-cal; if it fails gate 2b, decide on R2 under a dated
+   amendment. No P11 without a passing recipe.
 
 ## Artifacts (seed 0)
 

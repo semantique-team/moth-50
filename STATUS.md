@@ -18,8 +18,9 @@ running, and the exact next commands. Update it at the end of each session.
   dev-macro **14.3274 %** (−2.6623 pp vs E-005, pass), S1-dev **13.3820 % /
   75.1465 %** (WER −1.5924, ETA +1.2207, pass), R-S1-cal **12.8469 % /
   75.4967 %** (pooled ETA tie; `control_en` −1.33 and `switch` −2.78 vs E-005
-  miss the 0.5 pp clause). INT8 cost 0.0641 pp dev-macro. **Seed 1 not
-  launched; decision pending.** `runs/E-023/RESULT.md`.
+  miss the 0.5 pp clause). INT8 cost 0.0641 pp dev-macro. **Seed 1 is running**
+  (PID 58671, started 2026-11-22 14:01, `runs/E-023/r1-s1`).
+  `runs/E-023/RESULT.md`.
 - **E-005 A3 gate (historical):** `base+6`, 16,000 steps, pinned A3 LM. Frozen
   beam+A3 dev-macro **17.5565 % FP32 / 17.6212 % INT8** against the **23.0170 %**
   reference (paired **−5.4605 / −5.3957 pp**, CIs exclude zero). Held-out S1-dev
@@ -117,7 +118,7 @@ running, and the exact next commands. Update it at the end of each session.
 | E-034c package/browser | **done**: 49,203,774 B (796,226 B room), graph `14ba2034…`, load 68.7 ms, exact transcript, RTFx 29.35 | `runs/E-004/export-report-e034c.json`, `runs/E-004/browser-run-e034c.json` |
 | P6 E-011 + E-034c | **FAIL on S1-dev ETA**: dev-macro −1.6202 pp (pass); S1-dev WER −0.5040 (tie), ETA −1.7578 [−3.1844, −0.1422]; s0/eta −2.64, s1 −0.88; not adopted | `runs/E-011/p6/RESULT.md` |
 | P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
-| E-023 R1 | **seed 0 complete 2026-11-22**: 40k steps, 15.78 h, best greedy dev 17.0771 %; dev-macro 14.3274 % (−2.66 pp, pass), S1-dev 13.3820/75.1465 (pass), cal 12.8469/75.4967 (pooled ETA tie; control_en/switch 0.5 pp clause misses); INT8 cost 0.0641 pp; **seed 1 pending** | `runs/E-023/RESULT.md`, `runs/E-023/*.json` |
+| E-023 R1 | **seed 0 complete; seed 1 running**: seed 0 40k steps/15.78 h, greedy dev 17.0771 %; dev-macro 14.3274 % (−2.66 pp), S1-dev 13.3820/75.1465, cal 12.8469/75.4967; INT8 cost 0.0641 pp; seed 1 PID 58671 since 14:01, cal category clause still to judge on the mean | `runs/E-023/RESULT.md`, `runs/E-023/*.json` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
 | E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; control E-005 + E-034c **13.9212 % WER / 75.6291 % ETA**; no R1 readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/` |
 
@@ -149,7 +150,8 @@ Nothing is running.
    WER / 75.6291 % ETA**. **R1 (E-023) seed 0 is complete**: 40,000 steps,
    15.78 h, dev-macro 14.3274 % (−2.66 pp), S1-dev 13.3820 / 75.1465, cal
    12.8469 / 75.4967. The only miss is the cal `control_en`/`switch` 0.5 pp
-   clause; **seed 1 is not launched and the decision is pending**.
+   clause; **seed 1 is running** (PID 58671, started 2026-11-22 14:01) and the
+   clause is judged on the seed mean.
    New cues are not from `text/pool.jsonl`; future LM corpora must exclude the
    pool.
 4. **P8** (×3-term unpruned LM, ranked on E-017) and **P11** final run only
