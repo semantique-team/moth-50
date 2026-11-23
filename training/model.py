@@ -7,6 +7,7 @@ base+6 run is not silently built as Whisper-tiny.
 
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 
 import torch
@@ -14,7 +15,7 @@ import torch.nn.functional as F
 from stt.model import EncoderConfig, MothSTT, _padding_mask
 from torch.utils.checkpoint import checkpoint
 
-from training.config import ModelConfig
+from training.config import FinetuneConfig, ModelConfig
 
 
 def build_model(config: ModelConfig) -> MothSTT:
@@ -63,6 +64,42 @@ def identity_heads(model: MothSTT) -> None:
         for layer in (block.out, block.mlp2):
             torch.nn.init.zeros_(layer.weight)
             torch.nn.init.zeros_(layer.bias)
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def load_finetune_init(model: MothSTT, finetune: FinetuneConfig) -> dict:
+    """Load a trained MOTH-50 checkpoint's weights (strict) for a fine-tune.
+
+    Only the weights are taken: the optimizer, schedule, step and EMA restart, so
+    a fine-tune and its control start from the same function. Returns provenance
+    for ``run.json``.
+    """
+    from training.ema import checkpoint_weights
+
+    path = Path(finetune.init_checkpoint)
+    if not path.is_file():
+        raise FileNotFoundError(f"finetune.init_checkpoint not found: {path}")
+    digest = file_sha256(path)
+    if finetune.sha256 is not None and digest != finetune.sha256:
+        raise ValueError(
+            f"finetune.init_checkpoint {path} has sha256 {digest}, pinned {finetune.sha256}"
+        )
+    payload = torch.load(path, map_location="cpu", weights_only=False)
+    state, weights = checkpoint_weights(payload, finetune.weights)
+    model.load_state_dict(state, strict=True)
+    return {
+        "init_checkpoint": str(path),
+        "sha256": digest,
+        "weights": weights,
+        "source_global_step": payload.get("global_step"),
+    }
 
 
 def forward_checkpointed(

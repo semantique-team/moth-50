@@ -109,6 +109,20 @@ class ScheduleConfig:
     min_factor: float = 0.05
 
 
+#: Which weights of a trainer checkpoint a fine-tune starts from (``training/ema.py``).
+FINETUNE_WEIGHTS = ("auto", "model", "ema")
+
+
+@dataclass(frozen=True)
+class FinetuneConfig:
+    """Start from a trained MOTH-50 checkpoint with a fresh optimizer and schedule."""
+
+    init_checkpoint: Path
+    #: Pinned sha256 of the checkpoint file; the trainer refuses a different file.
+    sha256: str | None = None
+    weights: str = "ema"
+
+
 @dataclass(frozen=True)
 class TrainConfig:
     path: Path
@@ -126,6 +140,8 @@ class TrainConfig:
     autocast: str = "bf16"
     #: Weight EMA decay (``training/ema.py``); 0 disables it, as in E-003/E-005.
     ema_decay: float = 0.0
+    #: Fine-tune from a trained checkpoint instead of ``model.init`` (E-027).
+    finetune: FinetuneConfig | None = None
 
 
 def override_seed(config: TrainConfig, seed: int) -> TrainConfig:
@@ -271,6 +287,9 @@ def load_config(path: Path | str) -> TrainConfig:
     ema_decay = _float(train_doc.get("ema_decay", 0.0), "train.ema_decay")
     if not 0.0 <= ema_decay < 1.0:
         raise ValueError("train.ema_decay must be 0 (off) or in (0, 1)")
+    finetune = _finetune(parent, document.get("finetune"))
+    if finetune is not None and model.init is not None:
+        raise ValueError("finetune.init_checkpoint replaces model.init; remove model.init")
     return TrainConfig(
         path=path,
         model=model,
@@ -288,4 +307,29 @@ def load_config(path: Path | str) -> TrainConfig:
         seed=_int(train_doc.get("seed", data.seed), "train.seed"),
         autocast=autocast,
         ema_decay=ema_decay,
+        finetune=finetune,
+    )
+
+
+def _finetune(parent: Path, value) -> FinetuneConfig | None:
+    if value is None:
+        return None
+    if not isinstance(value, dict):
+        raise TypeError("[finetune] must be a TOML table")
+    if "init_checkpoint" not in value:
+        raise ValueError("finetune.init_checkpoint is required")
+    sha256 = value.get("sha256")
+    if sha256 is not None and not (
+        isinstance(sha256, str)
+        and len(sha256) == 64
+        and all(char in "0123456789abcdef" for char in sha256)
+    ):
+        raise ValueError("finetune.sha256 must be 64 lowercase hex characters")
+    weights = value.get("weights", "ema")
+    if weights not in FINETUNE_WEIGHTS:
+        raise ValueError(f"finetune.weights must be one of {FINETUNE_WEIGHTS}")
+    return FinetuneConfig(
+        init_checkpoint=_path(parent, value["init_checkpoint"], "finetune.init_checkpoint"),
+        sha256=sha256,
+        weights=weights,
     )

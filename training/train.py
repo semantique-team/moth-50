@@ -13,6 +13,8 @@ that differ for MOTH-50:
   built in;
 - an optional weight EMA (``train.ema_decay``, off by default): when on, dev
   evaluation and ``ckpt_best`` use the averaged weights (``training/ema.py``);
+- an optional fine-tune start (``[finetune]``): the weights of a trained
+  checkpoint, pinned by sha256, with a fresh optimizer, schedule and EMA (E-027);
 - the final beam+LM evaluation remains the frozen E-002 protocol, not this
   monitoring metric.
 
@@ -194,6 +196,7 @@ def main(argv: list[str] | None = None) -> int:
         build_model,
         empty_cache,
         forward,
+        load_finetune_init,
         memory_gb,
         synchronize,
     )
@@ -212,7 +215,15 @@ def main(argv: list[str] | None = None) -> int:
 
     tokenizer = load_tokenizer(config.data.tokenizer)
     train_data, dev_data = load_datasets(config.data)
-    model = build_model(config.model).to(device)
+    model = build_model(config.model)
+    finetune_meta = None
+    if config.finetune is not None:
+        finetune_meta = load_finetune_init(model, config.finetune)
+        print(
+            f"fine-tune from {finetune_meta['init_checkpoint']} "
+            f"({finetune_meta['weights']} weights, step {finetune_meta['source_global_step']})"
+        )
+    model = model.to(device)
     params = sum(parameter.numel() for parameter in model.parameters())
     print(
         f"model: {params:,} params, encoder={config.model.encoder()}, "
@@ -241,6 +252,7 @@ def main(argv: list[str] | None = None) -> int:
         "tokenizer_sha256": _sha256(config.data.tokenizer),
         "train_clips": len(train_data),
         "dev_clips": len(dev_data) if dev_data else 0,
+        "finetune": finetune_meta,
     }
     (args.out / "run.json").write_text(json.dumps(run_meta, indent=2) + "\n", encoding="utf-8")
 

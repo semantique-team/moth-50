@@ -210,11 +210,30 @@ and every checkpoint stores them as `ema_model` next to the raw `model` weights;
 calibration and export tools take `--weights auto|model|ema` (`auto` = EMA when
 present). E-011 plans `ema_decay = 0.9998`.
 
+## Fine-tune from a trained checkpoint (E-027)
+
+A `[finetune]` table starts a run from a trained MOTH-50 checkpoint instead of
+the Whisper initializer; `model.init` must then be absent:
+
+```toml
+[finetune]
+init_checkpoint = "../../runs/E-023/r1-s0/checkpoints/ckpt_best.pt"
+sha256 = "5ff95f0e5477fc3ba12d486bae2947f6477113b07993eb76f714f117daaf8abf"
+weights = "ema"   # auto | model | ema
+```
+
+Only the weights are loaded (strict); the optimizer, schedule, step counter and
+EMA restart, so a fine-tune and its same-length control begin from the same
+function. A file whose sha256 differs from the pin is refused, and `run.json`
+records the checkpoint, its sha256, the weights used and the source step.
+`--resume` still continues a fine-tune from its own `ckpt_last.pt`.
+
 ## What is deliberately not here yet
 
 - The browser export/latency path beyond `tools/export_release.py`; the web
   runtime still lives in the archived `moth-stt` checkout (E-016).
-- Distillation, TTS and pseudo-labelling; those are E-006.
+- Distillation and pseudo-labelling (E-006/E-019). TTS training data is E-027
+  (`tools/e027_tts_*.py`).
 - A production data loader for the final 2–5 h S1 set; the current loader reads
   Moth mel shards by design.
 
