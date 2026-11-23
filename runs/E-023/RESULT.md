@@ -1,13 +1,13 @@
 # E-023 — R1: E-011 with encoder LR 3e-5
 
-> **Status: both seeds complete; the pre-registered gate failed only on the
-> R-S1-cal category clause (2b), and R1 is accepted by the dated amendment
-> E-002 §9 (D26, 2026-11-23).** Seed mean: dev-macro **14.3578 %**
+> **Status: adopted. Both seeds complete; R1 passed the amended gate (E-002
+> §9, D26) and the T-600 release guard, and seed 0 is the product as
+> `0.9.7-e023-r1` (D27, 2026-11-23).** Seed mean: dev-macro **14.3578 %**
 > (−2.6320 pp), S1-dev **13.7911 % / 74.6826 %** (no regression), R-S1-cal
-> **12.6679 % / 75.4305 %** (ETA tie, WER improves). `control_en` and `switch`
-> recover vs E-011 but stay 1.83 / 2.43 pp below E-005 on R-S1-cal; under §9
-> that clause is report-only. **Seed 0** is the product candidate; adoption
-> waits for the T-600 release guard. Nothing is running.
+> **12.6679 % / 75.4305 %** (ETA tie, WER improves). Guard on T-600:
+> **12.2993 % / 78.1400 %** vs 13.7041 / 76.1266 (−1.4048 pp WER
+> [−2.3455, −0.4276], +2.0134 pp ETA [−0.1921, +4.1837]). Package
+> **49,203,776 B**; browser exact at **RTFx 28.48**. Nothing is running.
 
 ## Question
 
@@ -134,11 +134,12 @@ in option 1 are context, not the rule.
 - **R2 is withdrawn**; further recipe arms start from R1.
 - **Seed 0** by the E-002 §8.3 rule (R-S1-cal ETA 75.4967 vs 75.3642 %, 570 vs
   569 of 755 terms).
-- **Release guard (pending):** one declared repeated read of T-600 with
-  `release-s0` + E-034c against `runs/E-004/t600-e034c-int8.hyp.jsonl`; pass iff
-  pooled WER and ETA show no regression with the CI excluding zero (E-002
-  §6.2); speakers and categories report-only. Pass → package `0.9.7-e023-r1`,
-  browser check, FLEURS once (report-only). Fail → E-005 + E-034c stays.
+- **Release guard (passed; result below):** one declared repeated read of
+  T-600 with `release-s0` + E-034c against
+  `runs/E-004/t600-e034c-int8.hyp.jsonl`; pass iff pooled WER and ETA show no
+  regression with the CI excluding zero (E-002 §6.2); speakers and categories
+  report-only. Pass → package `0.9.7-e023-r1`, browser check, FLEURS once
+  (report-only). Fail → E-005 + E-034c stays.
 
 ```bash
 shasum -a 256 runs/E-023/release-s0/model.int8.onnx   # must be 85abd830…
@@ -152,6 +153,47 @@ uv run --frozen --project ../moth-stt --extra training -- \
   --out runs/E-023/t600-s0.json --hyp-out runs/E-023/t600-s0.hyp.jsonl
 ```
 
+## Release guard and adoption (2026-11-23)
+
+The guarded graph is `runs/E-023/release-s0/model.int8.onnx`, sha256
+**`85abd830…`** (verified before the readout). One INT8 read of T-600, frozen
+decoder, E-034c LM, paired against the E-005 + E-034c hypotheses:
+
+| T-600 (600 clips, 3,488 ref words) | E-005 + E-034c | R1 s0 | Δ (95 % CI) |
+|---|---:|---:|---|
+| WER | 13.7041 % | **12.2993 %** | **−1.4048 pp** [−2.3455, −0.4276] |
+| ETA | 76.1266 % | **78.1400 %** | **+2.0134 pp** [−0.1921, +4.1837] |
+| insertion rate | — | 0.4014 % | — |
+
+The WER CI excludes zero in the improvement direction and the ETA CI is not
+entirely below zero, so the §9 rule **passes**. Report-only, per speaker: S1
+**10.06 % / 81.19 %**, S2 **13.47 / 77.62**, S3 **13.37 / 75.77**. Categories:
+`single_word` 13.26 / 73.33, `phrase` 18.86 / 60.28, `brand` 7.36 / 87.25,
+`acronym` 10.98 / 85.00, `italianized` 3.75 / 96.25, `switch` 16.01 / 79.27,
+`control_it` 7.84 / —, `control_en` 15.97 / 85.42. The read was declared
+repeated and vetoed only; it did not rank or change the seed, decoder or LM.
+
+**Package `0.9.7-e023-r1`:** **49,203,776 B**, **796,224 B** of room; graph
+`85abd830…`, E-034c packed LM `7a4332f1…` (7,787,184 B), 16 kHz VAD
+`7ed98ddb…`. Export report: `export-report-0.9.7.json` (FP32/INT8 top-1
+agreement 1.0).
+
+**Browser check:** load **70.1 ms** with every sha256 verified, transcript
+exactly "ho spostato il meeting a domani", **RTFx 28.48** (5-run median after 2
+warm-ups, 4 threads, isolated, SIMD; single run 16.72, total 140.1 ms).
+Measured with the app frontmost: in a background window App Nap throttles the
+same page to RTFx ~4.8 (feature 322 ms, inference 456 ms), an environment
+effect to note in any re-run.
+
+**FLEURS (report-only, once per language, vs E-034c):** IT **11.8304 %**
+(−2.9935 pp [−3.4362, −2.5563], n = 697), EN **28.1955 %**
+(−2.0720 pp [−2.7117, −1.4574], n = 525); no ETA. FLEURS never ranks, and
+seed 1 was not read.
+
+**Verdict: R1 seed 0 is adopted as the product (D27).** E-005 + E-034c is
+retired from the product line and remains the historical reference. R2 stays
+withdrawn; no further T-600 read with this seed.
+
 ## Artifacts
 
 - `runs/E-023/r1-s{0,1}/` — config, run metadata, train logs, dev curves,
@@ -164,3 +206,7 @@ uv run --frozen --project ../moth-stt --extra training -- \
 - `s1-cal-e011-s{0,1}.json/.hyp.jsonl` — E-011 on R-S1-cal, context only.
 - `p6/dev-macro-seed-mean.json`, `p6/s1-cal-seed-mean.json` (with categories),
   `p6/s1-dev-seed-mean.json`.
+- `t600-s0.json/.hyp.jsonl` — release guard (declared repeated read).
+- `release-0.9.7/` (gitignored) + `export-report-0.9.7.json` — product package.
+- `browser-run-0.9.7.json` — browser check of the product package.
+- `fleurs-{it,en}-s0.json/.hyp.jsonl` — report-only FLEURS vs E-034c.

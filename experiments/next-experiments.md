@@ -1,7 +1,8 @@
 # Post-E-005 experiment plan
 
 **Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
-and E-004 ran on 2026-11-19/21; E-013–E-016 and E-017–E-023 have not run.**
+and E-004 ran on 2026-11-19/21; E-017 and E-023 ran on 2026-11-21/23 and
+E-023 R1 is adopted (D27); E-013–E-016 and E-018–E-022 have not run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -100,7 +101,7 @@ after the session.
 | 17 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | ~1.6 h MPS | 0 |
 | 18 | E-006 | Remaining data arms | product baseline | days | 0 |
 | 19 | E-008 | External evaluation and ceilings | final model | hours | 0 |
-| 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b missed, accepted by E-002 §9 (D26); T-600 guard pending** | 0 |
+| 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b report-only (D26), T-600 guard passed, adopted (D27)** | 0 |
 
 The FLEURS readout, E-017 and E-018 need no training and can run while the Mac
 is otherwise idle; E-016 is engineering and can run in parallel. The full order
@@ -627,16 +628,16 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 
-**Status: both seeds complete 2026-11-23; the pre-registered gate failed only
-on 2b, and R1 is accepted by the dated amendment E-002 §9 (D26).** E-017 is
-done and frozen (`manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, E-002 §8),
-the control E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it. Seed mean
-(`runs/E-023/r1-s{0,1}`, 40,000 steps each, 15.78/15.80 h): dev-macro
-**14.3578 %** (−2.6320 pp, pass), S1-dev **13.7911 / 74.6826** (pass),
-R-S1-cal **12.6679 / 75.4305** (pooled ETA tie; `control_en` −1.83 and
-`switch` −2.43 vs E-005 miss the 0.5 pp clause, now report-only). Seed 0 is
-the product candidate; adoption waits for the T-600 release guard (E-002 §9).
-`runs/E-023/RESULT.md`.
+**Status: adopted 2026-11-23 (D27); both seeds complete, the pre-registered
+gate failed only on 2b, and R1 is accepted by the dated amendment E-002 §9
+(D26).** E-017 is done and frozen (`manifests/R-S1-cal.jsonl`,
+`data/shards/s1-cal`, E-002 §8), the control E-005 + E-034c is 13.9212 % WER /
+75.6291 % ETA on it. Seed mean (`runs/E-023/r1-s{0,1}`, 40,000 steps each,
+15.78/15.80 h): dev-macro **14.3578 %** (−2.6320 pp, pass), S1-dev
+**13.7911 / 74.6826** (pass), R-S1-cal **12.6679 / 75.4305** (pooled ETA tie;
+`control_en` −1.83 and `switch` −2.43 vs E-005 miss the 0.5 pp clause, now
+report-only). **Seed 0 is the product**; the T-600 guard passed
+(12.2993 / 78.1400 vs 13.7041 / 76.1266). `runs/E-023/RESULT.md`.
 
 - **Why:** P6 re-read E-011 with E-034c and failed on clean-S1-dev ETA
   (−1.7578 pp [−3.1844, −0.1422] on the seed mean) while dev-macro passed
@@ -696,10 +697,12 @@ than ran R2. Clause 2b becomes report-only: it contradicted E-002 §8.4, and
 0.5 pp was 1.5 of 300 words on `control_en` and 0.72 of 144 on `switch`, below
 the seed spread of the set. R1 passes and is the final recipe; R2 as written
 is withdrawn. **Seed 0** is chosen on R-S1-cal pooled ETA (75.4967 vs
-75.3642 %). Adoption waits for a release guard fixed before the readout: one
-declared repeated read of T-600 against the E-005 + E-034c hypotheses, no
-pooled WER or ETA regression with the CI excluding zero; speakers and
-categories report-only. P11 is no longer a prerequisite.
+75.3642 %). The release guard, fixed before the readout, was one declared
+repeated read of T-600 against the E-005 + E-034c hypotheses: **12.2993 % /
+78.1400 %** vs 13.7041 / 76.1266, WER −1.4048 pp [−2.3455, −0.4276] and ETA
++2.0134 pp [−0.1921, +4.1837]; no regression, so **R1 seed 0 is adopted as
+`0.9.7-e023-r1` (D27)**. Speakers and categories are report-only. P11 is no
+longer a prerequisite; seed 1 was not read on T-600 or FLEURS.
 
 ### E-008 addition — ceilings for the paper
 

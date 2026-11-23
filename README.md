@@ -1,26 +1,32 @@
 # MOTH-50 — scaffold
 
-**Status (2026-11-21): the product is E-005 acoustic + the E-034c LM (D25).**
-P2 found that 900 of the 960 S1-dev cues were exact sentences of the E-031 LM
-corpus, so the advertised E-034 B gain (S1-dev 11.63 % / 79.83 %) was mostly
-memorisation. **E-034c** is the same recipe on the clean corpus: dev-macro
-**16.99 %**, S1-dev **14.97 % / 73.93 %**, T-600 **13.70 % / 76.13 %**; against
-the A3 recipe rebuilt on the same corpus it is −0.64 pp macro, −0.44 pp WER /
-+1.12 pp ETA on S1-dev and −0.49 / +1.06 on T-600 (the honest gain: ~0.4–0.5 pp
-WER, ~1.1 pp ETA). The package is **49,203,774 B** (796,226 B of room), browser
-exact at **RTFx 29.35** (4 threads, SIMD, isolated, load 68.7 ms). FLEURS
-(unseen-speaker read speech, report-only): **IT 14.82 %** vs 20.16 % for 0.8.1,
-**EN 30.27 %** vs 49.81 %. E-034 B is
-history. The E-002 A3 gate remains the
-historical reference: dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against
-**23.02 %** for 0.8.1; S1-dev **14.05 % / 14.00 %**, ETA **75.5 / 75.3 %**
-(inflated by the same leak; the paired A3-vs-0.8.1 verdict stands). E-012 cut
-that package to **44.77 MB** with the 16 kHz VAD and the lossless packed LM. The
-acoustic graph is byte-identical to E-005. The first E-005 readout used the
-pre-A3 LM and Moth's NOTICE; the erratum is in `runs/E-005/RESULT.md` (D17). The
-plan is `experiments/next-experiments.md`; E-009, E-010, E-011, E-012, E-004 and
-the P0/P2 checks have run, the rest has not. Read `STATUS.md` first when
-resuming.
+**Status (2026-11-23): the product is E-023 R1 seed 0 + the E-034c LM (D27).**
+R1 is the E-011 recipe with `lr_encoder` 3e-5. Seed mean: dev-macro **14.36 %**,
+S1-dev **13.79 % / 74.68 %**, R-S1-cal **12.67 % / 75.43 %**. The T-600 release
+guard passed: **12.30 % / 78.14 %** vs **13.70 / 76.13** for E-005 + E-034c
+(−1.40 pp WER [−2.35, −0.43], +2.01 pp ETA [−0.19, +4.18]). The package
+**`0.9.7-e023-r1`** is **49,203,776 B** (796,224 B of room), graph
+`85abd830…`, browser exact at **RTFx 28.48** (4 threads, SIMD, isolated, load
+70.1 ms). FLEURS, report-only: **IT 11.83 %**, **EN 28.20 %** (vs 14.82 /
+30.27 for E-034c and 20.16 / 49.81 for 0.8.1). **E-005 + E-034c**
+(`0.9.6-e034c`, D25) is retired from the product line and remains the
+historical reference.
+
+E-034c had replaced E-034 B after P2 found that 900 of the 960 S1-dev cues were
+exact sentences of the E-031 LM corpus, so the advertised E-034 B gain (S1-dev
+11.63 % / 79.83 %) was mostly memorisation. On the clean corpus **E-034c** was
+dev-macro **16.99 %**, S1-dev **14.97 % / 73.93 %**, T-600 **13.70 / 76.13**;
+against the A3 recipe rebuilt on the same corpus it was −0.64 pp macro, −0.44 pp
+WER / +1.12 pp ETA on S1-dev and −0.49 / +1.06 on T-600 (the honest gain:
+~0.4–0.5 pp WER, ~1.1 pp ETA). The E-002 A3 gate remains the historical
+reference: dev-macro **17.62 %** (INT8) / **17.56 %** (FP32) against **23.02 %**
+for 0.8.1; S1-dev **14.05 % / 14.00 %**, ETA **75.5 / 75.3 %** (inflated by the
+same leak; the paired A3-vs-0.8.1 verdict stands). E-012 cut that package to
+**44.77 MB** with the 16 kHz VAD and the lossless packed LM. The first E-005
+readout used the pre-A3 LM and Moth's NOTICE; the erratum is in
+`runs/E-005/RESULT.md` (D17). The plan is `experiments/next-experiments.md`;
+E-004, E-009–E-012, E-017 and E-023 have run, the rest has not. Read
+`STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -42,8 +48,9 @@ Seed mean (both seeds, 40,000 steps, 15.78/15.80 h): dev-macro **14.3578 %**
 75.4305**. The cal `control_en`/`switch` 0.5 pp clause missed (CIs include
 zero); the dated, post-hoc amendment E-002 §9 (D26, 2026-11-23) makes it
 report-only, as §8.4 already required, and accepts R1. **Seed 0** is the product
-candidate; it replaces E-005 only if a pre-registered T-600 release guard (no
-pooled WER/ETA regression against E-005 + E-034c) passes. E-017 is
+seed: the pre-registered T-600 release guard passed on 2026-11-23 (12.2993 /
+78.1400 vs 13.7041 / 76.1266, no WER or ETA regression) and **D27 adopts it as
+`0.9.7-e023-r1`**. E-017 is
 done: the 400-cue `R-S1-cal` set is reviewed, recorded (400/400, 16.95 min),
 level-matched to S1-dev (−16.58 dB), built into `manifests/R-S1-cal.jsonl`
 (`split: dev`) and `data/shards/s1-cal`, and frozen under **E-002 §8**
@@ -79,8 +86,8 @@ was evaluated and rejected. The model must remain commercially usable.
 - **Architecture**: Whisper-base encoder + 6 extra pre-LN transformer blocks +
   linear CTC over the 1,024-piece BPE + E-031/E-034 LM + Silero VAD. **39.3 M
   acoustic parameters, 47.74 MB initial package** (measured graph size; the
-  current product package is **49.21 MB** with the E-004 unpruned LM and 16 kHz
-  VAD, 0.79 MB under the ceiling; the A3 package is 44.77 MB).
+  current product package is **49.20 MB** (`0.9.7-e023-r1`, E-034c LM + 16 kHz
+  VAD, 0.80 MB under the ceiling); the A3 package is 44.77 MB).
   Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.94 MB), decided by
   E-004. Memory: E-002 measured 13.37 GB without checkpointing and 3.68 GB with
   per-block checkpointing; checkpointing is the default (D15).
@@ -169,12 +176,13 @@ experiments/E-001-baseline.md
 experiments/E-002-protocol.md  frozen evaluation protocol and data mixture
 experiments/E-002-s1-dev.md   S1-dev recording runbook and manifest patch
 experiments/E-003-plan.md     pre-registered architecture screen and its result
-experiments/next-experiments.md  post-E-005 plan: E-009–E-022, gates, commands
+experiments/next-experiments.md  post-E-005 plan: E-009–E-023, gates, commands
 runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
 runs/probe-2026-11-19/    16 kHz Silero graph parity preflight
 runs/E-001/               Moth 0.8.1 baseline reproduction
 runs/E-002/               real 200-step MPS training probe
 runs/E-003/, runs/E-005/  depth screen; long fine-tune, package, browser run
+runs/E-023/               R1 recipe, amended gate, guard, product package
 tests/                    tests for tools/ and the vendored code
 training/                 MOTH-50 trainer port (config, data, model, EMA, loop)
 training/configs/         E-003/E-005 configs, the E-010 arm, smoke configs

@@ -495,13 +495,60 @@ exclude.
   hypotheses, no WER or ETA regression with the CI excluding zero (§6.2);
   speakers and categories are report-only. Pass → package `0.9.7-e023-r1`
   (same 49.20 MB layout, graph `85abd830…`), browser check, FLEURS once.
-  Fail → E-005 + E-034c stays the product.
+  Fail → E-005 + E-034c stays the product. **The guard passed on 2026-11-23;
+  see D27.**
 - **P11 is no longer a prerequisite**; a third seed with per-eval checkpoints
   stays optional.
 
-Status: accepted as the product candidate; **E-005 + E-034c remains the
-shipped product until the guard passes.** Artifacts: `runs/E-023/RESULT.md`,
-`experiments/E-002-protocol.md` §9.
+Status: accepted as the product candidate; the E-002 §9 release guard passed
+on 2026-11-23 and **D27 adopts R1 seed 0 as `0.9.7-e023-r1`**. Artifacts:
+`runs/E-023/RESULT.md`, `experiments/E-002-protocol.md` §9.
+
+## D27 — E-023 R1 seed 0 is the product: 0.9.7-e023-r1 (2026-11-23)
+
+The E-002 §9 release guard passed. One declared repeated read of T-600 with
+R1 seed 0 + E-034c, INT8, frozen decoder 0.55 / 2.7, beam 12, top-k 10,
+paired against the E-005 + E-034c hypotheses:
+
+| T-600 | E-005 + E-034c | R1 s0 | Δ (95 % CI) |
+|---|---:|---:|---|
+| WER | 13.7041 % | **12.2993 %** | **−1.4048 pp** [−2.3455, −0.4276] |
+| ETA | 76.1266 % | **78.1400 %** | **+2.0134 pp** [−0.1921, +4.1837] |
+
+The WER CI excludes zero in the improvement direction; the ETA CI is not
+entirely below zero. Both §9 pass conditions hold, so **R1 seed 0 is adopted**.
+Report-only: S1 **10.06 % / 81.19 %** ETA, S2 **13.47 / 77.62**, S3
+**13.37 / 75.77**; `switch` 16.01 / 79.27, `control_en` 15.97 / 85.42,
+`brand` 7.36 / 87.25, `acronym` 10.98 / 85.00, `italianized` 3.75 / 96.25;
+insertion rate 0.40 %. T-600 vetoed only; it did not rank or change the seed,
+decoder or LM.
+
+The product package is **`0.9.7-e023-r1`**: **49,203,776 B**, **796,224 B** of
+room, INT8 graph `85abd830…` (the guarded graph), E-034c packed LM
+`7a4332f1…` and the 16 kHz VAD `7ed98ddb…`. Browser check: load **70.1 ms**
+with every sha256 verified, transcript exactly "ho spostato il meeting a
+domani", **RTFx 28.48** (5-run median, 4 threads, isolated, SIMD; single run
+16.72). The benchmark must run with the app frontmost: App Nap throttles the
+same page to RTFx ~4.8, which is an environment effect, not a package change.
+
+FLEURS was read once per language, report-only, against the E-034c product
+hypotheses: **IT 11.8304 %** (−2.9935 pp [−3.4362, −2.5563], n = 697) and
+**EN 28.1955 %** (−2.0720 pp [−2.7117, −1.4574], n = 525); no ETA on FLEURS.
+FLEURS never ranks. Seed 1 was not read on T-600 or FLEURS.
+
+- **E-005 + E-034c is retired from the product line** and remains the
+  historical reference (`0.9.6-e034c`, D25).
+- **R1 is the final recipe**; seed 0 is the product seed. R2 stays withdrawn.
+- No further read of T-600 with this seed: the guard was the declared repeated
+  read.
+- Next, no training is implied: P4/E-016 (1-thread RTFx and vendoring the web
+  runtime), P8 (×3-term unpruned LM on R-S1-cal), E-018 (teacher bake-off),
+  then E-019–E-022 and E-006. E-013–E-015 still need a training go-ahead.
+
+Artifacts: `runs/E-023/t600-s0.json/.hyp.jsonl`,
+`runs/E-023/export-report-0.9.7.json`,
+`runs/E-023/browser-run-0.9.7.json`, `runs/E-023/fleurs-{it,en}-s0.*`,
+`runs/E-023/RESULT.md`.
 
 ## Open questions
 
