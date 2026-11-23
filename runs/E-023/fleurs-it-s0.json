@@ -1,0 +1,83 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "mixed",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-023/release-0.9.7/model.int8.onnx",
+  "onnx_sha256": "85abd830f1b1f6ac2e6bc0ea59d5eec16077854789ce303e5a6efdba1ab34e60",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "set": {
+    "name": "fleurs-it",
+    "manifest": "../moth-stt/data/manifests/fleurs_it_test.jsonl",
+    "manifest_sha256": "54b79c8e1520359f2403dc021fd2bff167e76d7df3db2d4ed3532de91c8ce0f1",
+    "shards": "data/shards/fleurs_it_test",
+    "limit": 0
+  },
+  "metrics": {
+    "n": 697,
+    "ref_words": 16035,
+    "wer": 0.11830371063299033,
+    "wer_ci": [
+      0.11161176398952688,
+      0.12580920972273116
+    ],
+    "eta": null,
+    "insertion_rate": 1.584034923604615,
+    "eta_errors": [],
+    "category": null,
+    "speaker": null
+  },
+  "reference": {
+    "hyp": "runs/E-004/fleurs-it-e034c-int8.hyp.jsonl",
+    "hyp_sha256": "5b68c0c8a22a8d9e62723946471bfd002cb3198abcab31c63adf4ad627dd49f3",
+    "wer": 0.14823822887433738,
+    "eta": null,
+    "category": null
+  },
+  "paired": {
+    "other": "runs/E-004/fleurs-it-e034c-int8.hyp.jsonl",
+    "other_manifest_sha256": null,
+    "wer_diff": -0.029934518241347047,
+    "wer_diff_ci": [
+      -0.03436233239787964,
+      -0.0255630700502575
+    ],
+    "wer_tie": false,
+    "eta_diff": null,
+    "eta_diff_ci": null,
+    "eta_tie": false
+  },
+  "no_regression": {
+    "has_ci": true,
+    "wer_diff_pp": -2.9935,
+    "eta_diff_pp": null,
+    "wer_regression": false,
+    "eta_regression": false,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  },
+  "elapsed_seconds": 105.7
+}
