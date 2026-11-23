@@ -552,10 +552,11 @@ Artifacts: `runs/E-023/t600-s0.json/.hyp.jsonl`,
 
 ## D28 — Web runtime vendored; E-016 browser checks (2026-11-23)
 
-The archive dependency is closed. `vendor/moth-stt-web/` holds 12 files
-byte-identical to `semantique-team/moth-stt` at
+The archive dependency is closed. `vendor/moth-stt-web/` holds 12 files from
+`semantique-team/moth-stt` at
 `0e15442ecb85dffcb4edd68e9d9ece18af6f35df` (on top of `b0fa11c`),
-Apache-2.0, with per-file sha256 in `PROVENANCE.md`. `node_modules/` is not
+Apache-2.0, with per-file sha256 in `PROVENANCE.md`; eleven are byte-identical
+and `ort.js` carries the D29 segmentation patch. `node_modules/` is not
 vendored (`npm ci --prefix vendor/moth-stt-web`); upstream tests/acceptance are
 not vendored because they depend on Moth's private runs and fixtures. The new
 `tools/serve_web.py` serves any release without copying the runtime;
@@ -578,16 +579,61 @@ unless stated:
   from re-derived mel, cached mel and WASM int8 vs native, the class Moth E-022
   measured at 70–77 % identity with a WER tie at the shipped decode. ETA is a
   tie in every variant.
-- **Finding, not changed:** the browser default costs ~0.4–0.7 pp WER on
-  S1-dev versus the Python readout. The page records at most 30 s, but the file
-  input accepts longer audio, where segmentation is required. A follow-up
-  (E-016b) should auto-disable segmentation when the clip fits one 30 s
-  segment, keep it for longer inputs, and re-read S1-dev. Until then the Python
-  readout is the reported product WER and the browser gap is recorded.
+- **Finding, then fixed by D29:** the browser default cost ~0.4–0.7 pp WER on
+  S1-dev versus the Python readout. E-016b tested the proposed blanket
+  auto-off, rejected it (it removes segmentation from multi-sentence clips),
+  and adopted a narrower rule: split at three or more VAD runs for clips that
+  fit one 30 s segment, two or more for longer recordings. The browser S1-dev
+  WER is now 13.7180 % (tie with Python).
 
 Next remains P8 (×3-term unpruned LM on R-S1-cal) and E-018 (teacher bake-off);
 no training is implied. Artifacts: `runs/E-016/`, `tools/serve_web.py`,
 `tools/browser_probe.mjs`, `tools/browser_parity.py`.
+
+## D29 — Segmentation splits at three or more runs (E-016b, 2026-11-23)
+
+**Post-hoc decision**, written after the E-016 measurements and before any
+further model readout. It changes the vendored web runtime only; the package,
+model, LM and decoder are untouched.
+
+- **What was rejected.** The E-016b sketch said "auto-disable segmentation when
+  the clip fits one 30 s segment". That removes segmentation from every
+  multi-sentence clip under 30 s. A 100-group five-sentence concatenation
+  (T-600, **diagnostic only**, never a selection input) went from 12.13 % to
+  14.26 % WER when segmentation was disabled (+2.14 pp [+0.77, +3.49]); the
+  runtime comment already recorded a 9.4 WER-point cost for five sentences read
+  as one stream. The blanket rule is rejected.
+- **Adopted rule.** Split when the VAD finds at least **three** speech runs for
+  a clip that fits one 30 s segment; keep two runs for longer recordings so
+  every span fits the model. A single run always keeps the leading silence the
+  model expects. An explicit `segment: true/false` still overrides.
+  `minimumRuns = pcm.length > maxSamples ? 2 : 3`.
+- **S1-dev (960 clips, browser vs Python 13.3820 / 75.1465):** upstream default
+  14.0979 / 75.5859; `segment: false` 13.7327 / 75.5859 (tie); **new default
+  13.7180 / 75.6348**, +0.3360 pp [−0.1312, +0.7948] (**tie**) and ETA
+  +0.49 pp (tie). By VAD runs: 882 clips have one (identical), 73 have two
+  (upstream 15.60 % vs full 13.21 %), 5 have three or four (11.31 % vs
+  11.90 %). The rule takes the better side of each group.
+- **Multi-sentence diagnostics.** MLS-IT dev concatenations (100 groups, 200
+  clips, 21.4–28.4 s): segmented 20.672 %, full 18.572 % (−2.10 pp
+  [−3.36, −0.93]), **new default 20.672 %** — unchanged, so the rule does not
+  capture that full-clip gain (two long utterances still produce 3+ VAD runs),
+  but does not regress it. The five-sentence T-600 diagnostic stays at
+  12.125 % (segmented). Gold-train concatenations are a tie (0.484 / 0.588 %)
+  and not discriminative. A 35 s clip still yields 8 segments.
+- **Patch.** One file: `vendor/moth-stt-web/ort.js`, sha256
+  `96d099b547b05faac970e278b74485c7efd48b7082898e287877c68faa24072c`,
+  diff `vendor/moth-stt-web/PATCH-2026-11-23.diff`; the other eleven files are
+  byte-identical to upstream `0e15442`.
+- **Caveat.** The rule is a heuristic: two runs are treated as one utterance
+  with a pause. The MLS-IT two-long-utterance case shows the limit; a future
+  E-016c could decide by utterance length or a two-pass score, but it is not
+  adopted here. The S1-dev read is report-only and the model package is
+  unchanged.
+
+Artifacts: `runs/E-016/E-016b.md`, `runs/E-016/e016b-diagnostics.json`,
+`runs/E-016/s1-dev-browser-minruns3.json`,
+`runs/E-016/browser-vs-python.json`.
 
 ## Open questions
 

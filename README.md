@@ -24,13 +24,16 @@ for 0.8.1; S1-dev **14.05 % / 14.00 %**, ETA **75.5 / 75.3 %** (inflated by the
 same leak; the paired A3-vs-0.8.1 verdict stands). E-012 cut that package to
 **44.77 MB** with the 16 kHz VAD and the lossless packed LM. The first E-005
 readout used the pre-A3 LM and Moth's NOTICE; the erratum is in
-`runs/E-005/RESULT.md` (D17). **E-016/P4 (2026-11-23, D28)** vendored the web
-runtime at `0e15442` in `vendor/moth-stt-web/` and measured **10.93× / 19.74× /
-21.17×** at 1 thread without cross-origin isolation (gate ≥ 8×). On S1-dev the
-browser default is **+0.72 pp** WER vs the Python readout (VAD segmentation,
-CI excludes zero), while `segment: false` is a **tie** (+0.35 pp); the residual
-differences are numerical near-ties. E-016b (auto-disable segmentation for
-clips that fit one 30 s segment) is proposed. The plan is
+`runs/E-005/RESULT.md` (D17). **E-016/P4 (2026-11-23, D28/D29)** vendored the
+web runtime at `0e15442` in `vendor/moth-stt-web/` and measured **10.93× /
+19.74× / 21.17×** at 1 thread without cross-origin isolation (gate ≥ 8×). On
+S1-dev the upstream browser default was **+0.72 pp** WER vs the Python readout
+(VAD segmentation, CI excludes zero), while `segment: false` was a **tie**
+(+0.35 pp). **E-016b** adopted a one-file rule: split only at **three or more
+VAD runs** for clips that fit one 30 s segment, two or more for longer audio.
+The browser S1-dev WER is now **13.7180 %** vs Python 13.3820 % (+0.34 pp
+[−0.13, +0.79], tie); a blanket auto-off was rejected because it lost 2.14 pp
+on a five-sentence diagnostic. The plan is
 `experiments/next-experiments.md`; E-004, E-009–E-012, E-016, E-017 and E-023
 have run, the rest has not. Read `STATUS.md` first when resuming.
 
@@ -221,7 +224,7 @@ tools/probe_lm_pack.py    packed LM format prototype (review P5)
 tools/sample_resources.py  CPU/RAM/MPS sampler for long training runs
 tools/resource_dashboard.py  self-contained SVG dashboard from logs + samples
 vendor/moth-stt/          evaluation code copied from the frozen repo
-vendor/moth-stt-web/      web runtime byte-identical to Moth 0e15442 (E-016/D28)
+vendor/moth-stt-web/      web runtime from Moth 0e15442; ort.js patched (E-016b/D29)
 LICENSE                   Apache-2.0
 NOTICE                    attribution
 ```

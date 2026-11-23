@@ -25,18 +25,19 @@ running, and the exact next commands. Update it at the end of each session.
   1.5 / 0.72 words). R2 is withdrawn. **Seed 0** (cal ETA rule) is the product
   seed; T-600 guard passed, seed 1 is never read on T or FLEURS.
   `runs/E-023/RESULT.md`.
-- **E-016/P4 done (D28, 2026-11-23).** 1-thread non-isolated RTFx **10.93× /
-  19.74× / 21.17×** on 5 / 10 / 20 s (gate ≥ 8×). Browser vs Python on S1-dev:
-  default **+0.7159 pp** WER [+0.1678, +1.2599] (675/960 identical),
-  `segment: false` **+0.3506 pp** [−0.1255, +0.8160] (**tie**, 697/960);
-  Python-FFT 16 kHz input is not better, so the cause is the runtime's VAD
-  segmentation, not resampling. The residual differences are numerical
-  near-ties (Moth E-022: 70–77 % identity, WER tie). The web runtime is
-  vendored byte-identical at `0e15442` in `vendor/moth-stt-web/` with
-  `tools/serve_web.py`, `tools/browser_probe.mjs` and
-  `tools/browser_parity.py`. **Finding:** the browser default costs ~0.4–0.7 pp
-  WER on S1-dev; E-016b (auto-disable segmentation for clips that fit one
-  30 s segment, then re-read) is proposed, not applied. `runs/E-016/RESULT.md`.
+- **E-016/P4 done (D28/D29, 2026-11-23).** 1-thread non-isolated RTFx
+  **10.93× / 19.74× / 21.17×** on 5 / 10 / 20 s (gate ≥ 8×). Browser vs
+  Python on S1-dev: upstream default **+0.7159 pp** WER [+0.1678, +1.2599]
+  (675/960 identical), `segment: false` **+0.3506 pp** [−0.1255, +0.8160]
+  (tie), **E-016b adopted min-runs-3** → **13.7180 % / 75.6348 %**, +0.3360 pp
+  [−0.1312, +0.7948] (**tie**, 696/960). The cause was VAD segmentation, not
+  resampling (Python-FFT 16 kHz input is not better); residual differences are
+  numerical near-ties (Moth E-022: 70–77 % identity, WER tie). The web runtime
+  is vendored at `0e15442` in `vendor/moth-stt-web/` (one-file `ort.js` patch,
+  sha256 `96d099b5…`) with `tools/serve_web.py`, `tools/browser_probe.mjs` and
+  `tools/browser_parity.py`. Blanket auto-off was rejected (multi-sentence
+  diagnostic +2.14 pp); the 35 s smoke still yields 8 segments.
+  `runs/E-016/RESULT.md`, `runs/E-016/E-016b.md`.
 - **E-005 A3 gate (historical):** `base+6`, 16,000 steps, pinned A3 LM. Frozen
   beam+A3 dev-macro **17.5565 % FP32 / 17.6212 % INT8** against the **23.0170 %**
   reference (paired **−5.4605 / −5.3957 pp**, CIs exclude zero). Held-out S1-dev
@@ -58,12 +59,11 @@ running, and the exact next commands. Update it at the end of each session.
   E-017 is done (400-cue `R-S1-cal` reviewed, recorded, level-matched,
   manifest + shards built, E-002 §8 written); E-018–E-022 have not run.
   E-023 R1 is adopted (E-002 §9 + D26, then D27 after the T-600 guard);
-  E-016/P4 is done (D28, web runtime vendored).**
+  E-016/P4 and E-016b are done (D28/D29, web runtime vendored and patched).**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
   without an explicit go-ahead. Next: **P8** (×3-term unpruned LM on R-S1-cal),
-  **E-018** (teacher bake-off), the proposed **E-016b** segmentation re-read,
-  then E-019–E-022 and E-006.
+  **E-018** (teacher bake-off), then E-019–E-022 and E-006.
 - **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
   the wrong ranking target; the LM is the lever and C no longer fits next to the
   E-034 LM; the E-011 ETA loss looks recipe-level. Procedure P0–P11: cross-machine
@@ -140,7 +140,7 @@ running, and the exact next commands. Update it at the end of each session.
 | E-023 T-600 guard | **PASS**: 12.2993 % / 78.1400 % vs 13.7041 / 76.1266; WER −1.4048 pp [−2.3455, −0.4276], ETA +2.0134 pp [−0.1921, +4.1837]; declared repeated read, speakers/categories report-only | `runs/E-023/t600-s0.json/.hyp.jsonl` |
 | E-023 package/browser | **done, product**: 49,203,776 B (796,224 B room), graph `85abd830…`, load 70.1 ms, exact transcript, RTFx 28.48 (4 threads) | `runs/E-023/export-report-0.9.7.json`, `runs/E-023/browser-run-0.9.7.json` |
 | E-023 FLEURS | **done, report-only**: IT **11.8304 %** (−2.9935 pp vs E-034c), EN **28.1955 %** (−2.0720 pp); no ETA | `runs/E-023/fleurs-{it,en}-s0.*` |
-| E-016/P4 browser | **done (D28)**: 1-thread non-isolated 10.93/19.74/21.17× (pass); S1-dev default +0.72 pp WER (no tie), `segment:false` +0.35 pp (tie); runtime vendored at `0e15442` | `runs/E-016/RESULT.md`, `vendor/moth-stt-web/`, `tools/serve_web.py` |
+| E-016/P4 browser | **done (D28/D29)**: 1-thread non-isolated 10.93/19.74/21.17× (pass); S1-dev upstream +0.72 pp, `segment:false` +0.35 pp, **min-runs-3 13.7180 % (+0.34 pp, tie)**; runtime vendored at `0e15442`, one-file patch `96d099b5…` | `runs/E-016/RESULT.md`, `runs/E-016/E-016b.md`, `vendor/moth-stt-web/`, `tools/serve_web.py` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
 | E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; control E-005 + E-034c **13.9212 % WER / 75.6291 % ETA**; no R1 readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/` |
 
@@ -155,28 +155,23 @@ the package is 49,203,776 B with graph `85abd830…`, the browser transcript is
 exact at RTFx 28.48, and FLEURS is IT 11.8304 % / EN 28.1955 % (report-only).
 E-005 + E-034c (`0.9.6-e034c`, D25) is retired from the product line. Nothing
 is running. **Do not re-read T-600 or FLEURS with this seed.** E-016/P4 is
-done (D28): the web runtime is vendored, 1-thread RTFx passes, and the browser
-parity is explained (default segmentation costs ~0.4–0.7 pp WER on S1-dev).
+done (D28/D29): the web runtime is vendored and patched, 1-thread RTFx passes,
+and S1-dev browser WER is **13.7180 %** against Python 13.3820 % (+0.34 pp
+[−0.13, +0.79], tie).
 
-1. **E-016b — segmentation default (proposed, no training).** E-016 measured
-   the browser default at **+0.72 pp** WER vs Python on S1-dev (CI excludes
-   zero); `segment: false` is a **tie** (+0.35 pp). Decide whether to
-   auto-disable segmentation when the clip fits one 30 s segment, keep it for
-   longer inputs, and re-read S1-dev report-only. This is a runtime decision,
-   not a new model.
-2. **P8 — LM coverage on the product.** Build the unpruned E-034 LM with the
+1. **P8 — LM coverage on the product.** Build the unpruned E-034 LM with the
    ×3-term weighting and rank it on **R-S1-cal** (never S1-dev, never T), then
    the S1-dev veto. No training; the same `pack_lm.py` / `frozen_readout.py`
    path as E-034c. A win is a new dated LM decision, not a product change by
    default.
-3. **E-018 — teacher bake-off** on the gold train set v1.0.0 (1,413 clips):
+2. **E-018 — teacher bake-off** on the gold train set v1.0.0 (1,413 clips):
    Parakeet TDT 0.6B v3, Canary-1B-v2, Whisper large-v3-turbo, Voxtral Mini;
    selection rule in `experiments/next-experiments.md` §E-018. Runs on the
    second Mac; no training.
-4. **E-019 → E-022, then E-006:** teacher labels, LLM-written LM text, targeted
+3. **E-019 → E-022, then E-006:** teacher labels, LLM-written LM text, targeted
    acronym/brand/elision data, keyterm-biasing re-test, then the data arms.
    Each has its own pre-registration and gate in `experiments/next-experiments.md`.
-5. **Optional, needs an explicit training go-ahead:** E-013 (extra blocks
+4. **Optional, needs an explicit training go-ahead:** E-013 (extra blocks
    before `final_ln`), E-014 (convolution in the extra blocks), E-015 (25 Hz,
    only if the 1-thread gate had failed — it passed at 21.17× on 20 s), and a
    third R1 seed with per-eval checkpoints (P11 is no longer a prerequisite).
@@ -247,9 +242,11 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   `vendor/moth-stt-web/ort.js` uses it when present (default 20,000,000, so
   0.8.1 is unchanged); the MOTH-50 release declares 50,000,000. The patch is
   upstream local commit `b0fa11c`; the vendored copy at `0e15442` includes it.
-  Serve a release with `python tools/serve_web.py --release
+  `vendor/moth-stt-web/ort.js` also carries the E-016b min-runs-3 rule
+  (`96d099b5…`, `PATCH-2026-11-23.diff`); the other files are untouched. Serve
+  a release with `python tools/serve_web.py --release
   runs/E-023/release-0.9.7`; do not depend on the archived `../moth-stt`
-  checkout (E-016/D28).
+  checkout (E-016/D28/D29).
 - **The 16 kHz VAD is the export default (D19).** `export_release.py` ships
   `silero_vad_16k_op15.onnx` as `silero_vad.onnx` (1,289,603 B); `--vad full`
   remains only for 0.8.1-shaped packages. Parity is measured on 2,040 real clips
@@ -289,12 +286,12 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D28, including checkpointing (D15), init (D16),
+- `docs/decisions.md` — D1–D29, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
   MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier
   models as teachers (D24, proposed), E-034c (D25), E-023 R1 by amendment
-  (D26), R1 seed 0 as the product (D27) and the vendored web runtime / E-016
-  (D28).
+  (D26), R1 seed 0 as the product (D27), the vendored web runtime / E-016
+  (D28) and the min-runs-3 segmentation rule (D29).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
   cannot give MOTH-50; licences; teachers.
@@ -317,6 +314,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-017/RESULT.md` — R-S1-cal: review, recording, level match, manifest, shards, power caveat.
 - `runs/E-023/RESULT.md` — R1 seeds, amended gate, T-600 guard, package, browser, FLEURS.
 - `runs/E-016/RESULT.md` — 1-thread RTFx, browser-vs-Python parity, segmentation finding, vendored runtime.
+- `runs/E-016/E-016b.md` — min-runs-3 segmentation rule, multi-sentence diagnostics, 35 s smoke.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and

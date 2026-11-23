@@ -2,8 +2,8 @@
 
 **Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
 and E-004 ran on 2026-11-19/21; E-016/P4, E-017 and E-023 ran on 2026-11-21/23,
-E-023 R1 is adopted (D27) and the web runtime is vendored (D28); E-013–E-015
-and E-018–E-022 have not run.**
+E-023 R1 is adopted (D27), the web runtime is vendored (D28) and E-016b is
+adopted (D29); E-013–E-015 and E-018–E-022 have not run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -411,21 +411,25 @@ Python-FFT 16 kHz input 14.5215 / 74.7559 (+1.1395 pp). The systematic gap is
 the runtime's default VAD **segmentation**, not resampling; the residual 263/960
 differences are numerical near-ties (Moth E-022 measured 70–77 % identity with a
 WER tie). Every difference is explained, so the gate passes, but the browser
-default costs ~0.4–0.7 pp WER on S1-dev. Runtime vendored byte-identical at
-`0e15442` in `vendor/moth-stt-web/`; `tools/serve_web.py`,
+default costs ~0.4–0.7 pp WER on S1-dev. Runtime vendored at `0e15442` in
+`vendor/moth-stt-web/` with a one-file `ort.js` patch; `tools/serve_web.py`,
 `tools/browser_probe.mjs` and `tools/browser_parity.py` reproduce the checks.
 `runs/E-016/RESULT.md`.
 
-### E-016b — segmentation default (proposed, no training)
+### E-016b — segmentation default (done 2026-11-23, D29)
 
-- **Question:** should the runtime skip VAD segmentation when the clip fits one
-  30 s segment, keeping it only for longer inputs?
-- **Why:** E-016 found the default at +0.72 pp WER vs Python on S1-dev and
-  `segment: false` at a tie; the page records at most 30 s, but file uploads can
-  be longer.
-- **Gate:** S1-dev browser readout vs the Python hypotheses is a tie (or every
-  difference explained), the 30 s boundary still segments, and the long-audio
-  smoke test still passes. Report-only until a dated decision adopts it.
+**Status: adopted.** The proposed blanket auto-off below 30 s was rejected: it
+removes segmentation from multi-sentence clips and lost **2.14 pp**
+([+0.77, +3.49]) on a 100-group five-sentence diagnostic. The adopted rule
+splits at **three or more VAD runs** for a clip that fits one 30 s segment, and
+at two or more for longer recordings. On S1-dev the browser goes from **14.0979
+%** to **13.7180 %** WER (+0.3360 pp [−0.1312, +0.7948], tie with Python;
+ETA 75.6348, tie). The 35 s smoke still yields 8 segments. MLS-IT dev
+concatenations (2 long utterances, 3+ runs) stay segmented, so the full-clip
+gain there is not captured; this is recorded as a limitation. Patch and
+provenance: `vendor/moth-stt-web/PATCH-2026-11-23.diff`,
+`vendor/moth-stt-web/PROVENANCE.md`; evidence: `runs/E-016/E-016b.md`,
+`runs/E-016/e016b-diagnostics.json`.
 
 ## E-013 — Extra blocks before `final_ln`
 
