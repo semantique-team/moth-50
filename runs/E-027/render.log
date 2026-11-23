@@ -1,0 +1,70 @@
+W1123 15:54:54.984000 78759 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+/Users/tancredi/.cache/uv/archive-v0/YbfSBUk_Qaw5Mc5eWc9As/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
+  super().__init__("LSTM", *args, **kwargs)
+/Users/tancredi/.cache/uv/archive-v0/YbfSBUk_Qaw5Mc5eWc9As/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:145: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+100/3411 script rows, 562 clips
+200/3411 script rows, 1124 clips
+300/3411 script rows, 1682 clips
+400/3411 script rows, 2246 clips
+500/3411 script rows, 2808 clips
+600/3411 script rows, 3384 clips
+700/3411 script rows, 3944 clips
+800/3411 script rows, 4508 clips
+900/3411 script rows, 5066 clips
+1000/3411 script rows, 5642 clips
+1100/3411 script rows, 6208 clips
+1200/3411 script rows, 6774 clips
+1300/3411 script rows, 7336 clips
+1400/3411 script rows, 7898 clips
+1500/3411 script rows, 8450 clips
+1600/3411 script rows, 9008 clips
+1700/3411 script rows, 9564 clips
+1800/3411 script rows, 10122 clips
+1900/3411 script rows, 10688 clips
+2000/3411 script rows, 11260 clips
+2100/3411 script rows, 11818 clips
+2200/3411 script rows, 12378 clips
+2300/3411 script rows, 12954 clips
+2400/3411 script rows, 13526 clips
+2500/3411 script rows, 14088 clips
+2600/3411 script rows, 14660 clips
+2700/3411 script rows, 15240 clips
+2800/3411 script rows, 15814 clips
+2900/3411 script rows, 16376 clips
+3000/3411 script rows, 16946 clips
+3100/3411 script rows, 17518 clips
+3200/3411 script rows, 18086 clips
+3300/3411 script rows, 18646 clips
+3400/3411 script rows, 19216 clips
+{
+  "clips": 19276,
+  "hours": 20.827,
+  "by_stratum": {
+    "nicola-it": {
+      "clips": 3411,
+      "hours": 4.17
+    },
+    "nicola-mix": {
+      "clips": 2816,
+      "hours": 3.477
+    },
+    "paola-it": {
+      "clips": 3411,
+      "hours": 2.996
+    },
+    "sara-it": {
+      "clips": 3411,
+      "hours": 3.94
+    },
+    "sara-mix": {
+      "clips": 2816,
+      "hours": 3.302
+    },
+    "serena-it": {
+      "clips": 3411,
+      "hours": 2.941
+    }
+  },
+  "dropped": {}
+}

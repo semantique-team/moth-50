@@ -57,7 +57,8 @@ manifest = "../../../moth-cs-dataset/manifests/train.jsonl"
 shards = "../../data/shards/gold-train"
 repeat = 50
 
-# E-027 TTS audio (tools/e027_tts_render.py). REPEAT IS SET BEFORE TRAINING.
+# E-027 TTS audio (tools/e027_tts_render.py). Repeat from tools/e027_share.py
+# (runs/E-027/share.json): 0.10 / 0.90 x 595.702 h / 20.827 h = 3 (9.49 %).
 [[data.train]]
 manifest = "../../data/manifests/tts_e027.jsonl"
 shards = "../../data/shards/tts_e027"

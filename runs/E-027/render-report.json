@@ -1,0 +1,119 @@
+{
+  "tool": "tools/e027_tts_render.py",
+  "script": "runs/E-027/tts-script.jsonl",
+  "script_sha256": "60b184e08ad8cada6dcb3e36dde69bccda3430a87ae6dd3abd334c23d4128bb4",
+  "manifest": "data/manifests/tts_e027.jsonl",
+  "manifest_sha256": "d87dd28d29a2c6f4fd81450f8977b5121a7db8ea3a5df8f915c1f9aacf422228",
+  "audio_root": "data/raw/tts_e027",
+  "voices": {
+    "nicola": {
+      "engine": "kokoro",
+      "name": "im_nicola",
+      "modes": [
+        "it",
+        "mix"
+      ],
+      "files": [
+        "kokoro-82m/kokoro-v1_0.pth",
+        "kokoro-82m/config.json",
+        "kokoro-82m/voices/im_nicola.pt"
+      ]
+    },
+    "paola": {
+      "engine": "piper",
+      "name": "it_IT-paola-medium",
+      "modes": [
+        "it"
+      ],
+      "files": [
+        "piper/it/it_IT/paola/medium/it_IT-paola-medium.onnx",
+        "piper/it/it_IT/paola/medium/it_IT-paola-medium.onnx.json"
+      ]
+    },
+    "sara": {
+      "engine": "kokoro",
+      "name": "if_sara",
+      "modes": [
+        "it",
+        "mix"
+      ],
+      "files": [
+        "kokoro-82m/kokoro-v1_0.pth",
+        "kokoro-82m/config.json",
+        "kokoro-82m/voices/if_sara.pt"
+      ]
+    },
+    "serena": {
+      "engine": "piper",
+      "name": "it_IT-serena-medium",
+      "modes": [
+        "it"
+      ],
+      "files": [
+        "piper/it/it_IT/serena/medium/it_IT-serena-medium.onnx",
+        "piper/it/it_IT/serena/medium/it_IT-serena-medium.onnx.json"
+      ]
+    }
+  },
+  "pins": {
+    "kokoro-82m/config.json": "5abb01e2403b072bf03d04fde160443e209d7a0dad49a423be15196b9b43c17f",
+    "kokoro-82m/kokoro-v1_0.pth": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+    "kokoro-82m/voices/if_sara.pt": "6c0b253b955fe32f1a1a86006aebe83d050ea95afd0e7be15182f087deedbf55",
+    "kokoro-82m/voices/im_nicola.pt": "234ed06648649f9bd874b37508ea17560b9c993ef85b4ddb3e3a71e062bd2c12",
+    "piper/it/it_IT/paola/medium/it_IT-paola-medium.onnx": "f9b8658aa8c01f8280aa88488f6e7643a639b6225a81514c40440a01f6364a20",
+    "piper/it/it_IT/paola/medium/it_IT-paola-medium.onnx.json": "10e46e8534dd2d4051f1534ba6542f189f854454acea44a6d45ff464a83260fa",
+    "piper/it/it_IT/serena/medium/it_IT-serena-medium.onnx": "fe4e26b2c1236e2a44d2e295cad564d94a0d8b0a9fca1ccdfd70dd4af3116eb5",
+    "piper/it/it_IT/serena/medium/it_IT-serena-medium.onnx.json": "14cb4995874138b2792ae07753b5540942124761af9ae6609f9b520f28837881"
+  },
+  "versions": {
+    "kokoro": "0.9.4",
+    "misaki": "0.9.4",
+    "piper-tts": "1.8.0",
+    "onnxruntime": "1.31.0",
+    "torch": "2.14.1",
+    "soundfile": "0.14.0"
+  },
+  "script_rows": 3411,
+  "clips": 19276,
+  "hours": 20.827,
+  "by_stratum": {
+    "nicola-it": {
+      "clips": 3411,
+      "hours": 4.17
+    },
+    "nicola-mix": {
+      "clips": 2816,
+      "hours": 3.477
+    },
+    "paola-it": {
+      "clips": 3411,
+      "hours": 2.996
+    },
+    "sara-it": {
+      "clips": 3411,
+      "hours": 3.94
+    },
+    "sara-mix": {
+      "clips": 2816,
+      "hours": 3.302
+    },
+    "serena-it": {
+      "clips": 3411,
+      "hours": 2.941
+    }
+  },
+  "dropped": {},
+  "qc": {
+    "peak": 0.7,
+    "seconds": [
+      0.8,
+      30.0
+    ],
+    "words_per_second": [
+      0.8,
+      6.0
+    ],
+    "max_phonemes": 500
+  },
+  "wall_seconds": 5464.8
+}

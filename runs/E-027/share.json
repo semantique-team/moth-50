@@ -1,0 +1,42 @@
+{
+  "tool": "tools/e027_share.py",
+  "config": "training/configs/base6-e027-control.toml",
+  "sources": [
+    {
+      "manifest": "/Users/tancredi/Desktop/semantique/moth-stt/data/manifests/cv_it_train_clean50.jsonl",
+      "repeat": 1,
+      "hours": 84.224
+    },
+    {
+      "manifest": "/Users/tancredi/Desktop/semantique/moth-stt/data/manifests/cv_it_train_noisy50.jsonl",
+      "repeat": 1,
+      "hours": 83.564
+    },
+    {
+      "manifest": "/Users/tancredi/Desktop/semantique/moth-stt/data/manifests/mls_it_train.jsonl",
+      "repeat": 1,
+      "hours": 169.886
+    },
+    {
+      "manifest": "/Users/tancredi/Desktop/semantique/moth-stt/data/manifests/ls_en_train.jsonl",
+      "repeat": 1,
+      "hours": 99.999
+    },
+    {
+      "manifest": "/Users/tancredi/Desktop/semantique/moth-50/data/manifests/spliced_it_en.jsonl",
+      "repeat": 1,
+      "hours": 110.003
+    },
+    {
+      "manifest": "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/train.jsonl",
+      "repeat": 50,
+      "hours": 0.96
+    }
+  ],
+  "base_hours": 595.702,
+  "tts_manifest": "data/manifests/tts_e027.jsonl",
+  "tts_hours": 20.827,
+  "target_share": 0.1,
+  "repeat": 3,
+  "actual_share": 0.0949
+}

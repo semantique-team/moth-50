@@ -1,0 +1,41 @@
+{
+  "tool": "tools/e027_audit.py",
+  "audit": "runs/E-027/audit.jsonl",
+  "max_fails": 1,
+  "strata": {
+    "nicola-it": {
+      "ok": 9,
+      "fail": 1,
+      "keep": true
+    },
+    "nicola-mix": {
+      "ok": 10,
+      "fail": 0,
+      "keep": true
+    },
+    "paola-it": {
+      "ok": 10,
+      "fail": 0,
+      "keep": true
+    },
+    "sara-it": {
+      "ok": 10,
+      "fail": 0,
+      "keep": true
+    },
+    "sara-mix": {
+      "ok": 10,
+      "fail": 0,
+      "keep": true
+    },
+    "serena-it": {
+      "ok": 10,
+      "fail": 0,
+      "keep": true
+    }
+  },
+  "dropped_strata": [],
+  "manifest": "data/manifests/tts_e027.jsonl",
+  "clips_before": 19276,
+  "clips_after": 19276
+}

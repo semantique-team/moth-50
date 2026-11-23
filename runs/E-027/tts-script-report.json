@@ -1,0 +1,38 @@
+{
+  "tool": "tools/e027_tts_script.py",
+  "source": "/Users/tancredi/Desktop/semantique/moth-50/runs/E-025/filtered.jsonl",
+  "source_sha256": "81c4384828ead32322ed8d9e7ff69606e21a332f966400bf69a607a6e1f77671",
+  "out": "runs/E-027/tts-script.jsonl",
+  "out_sha256": "60b184e08ad8cada6dcb3e36dde69bccda3430a87ae6dd3abd334c23d4128bb4",
+  "input": 3522,
+  "kept": 3411,
+  "dropped": {
+    "digits": 107,
+    "eval_4gram": 4
+  },
+  "by_category": {
+    "phrase": 304,
+    "switch": 469,
+    "italianized": 677,
+    "control_en": 417,
+    "brand": 589,
+    "control_it": 392,
+    "acronym": 297,
+    "single_word": 266
+  },
+  "english_pieces": 8439,
+  "rows_with_english": 2816,
+  "eval_sources": [
+    "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/R-S1-dev.jsonl",
+    "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/test.jsonl",
+    "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/anchor.jsonl",
+    "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/R-S1-cal.jsonl"
+  ],
+  "eval_4grams": 6534,
+  "lexicon": {
+    "terms": 592,
+    "english_words": 34164,
+    "italian_words": 40717,
+    "italian_min_count": 3
+  }
+}
