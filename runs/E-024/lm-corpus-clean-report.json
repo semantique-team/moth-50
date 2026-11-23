@@ -1,0 +1,39 @@
+{
+  "tool": "tools/clean_lm_corpus.py",
+  "corpus": {
+    "path": "../moth-stt/runs/E-031/frozen/lm-corpus.jsonl",
+    "sha256": "c8d941921ad6bf7905dd486770493bf172c34c9b183ead80cf50ed450fffe720",
+    "rows": 186003
+  },
+  "scripts": [
+    {
+      "path": "../moth-cs-dataset/text-2026-11-dev/R-S1.jsonl",
+      "sha256": "078426bc47f655d5e23401b3483fa482e0b7a6a20df6f8a4bc6edd377447591f",
+      "rows": 960,
+      "normalized_sentences": 960
+    }
+  ],
+  "dropped_rows": 900,
+  "kept_rows": 185103,
+  "dropped_examples": [
+    "a bench halfway is perfect",
+    "a cat crosses in front of me",
+    "a piece of cake quel test",
+    "a salad on the side",
+    "a volte mi fermo ad ascoltare",
+    "abbiamo bookato il bed and breakfast",
+    "abbiamo bootstrapato il progetto con poco",
+    "abbiamo camperato in attesa degli avversari",
+    "abbiamo checkato i totali due volte",
+    "abbiamo chiuso il release train"
+  ],
+  "out": {
+    "path": "/tmp/lm-corpus-nos1dev.jsonl",
+    "sha256": "569c8233a390afb41eaa45f0a2c7af488630931d2e1e63f97dfcfe41905188c1",
+    "rows": 185103
+  },
+  "normalizer": "vendor/moth-stt/moth_text.normalize",
+  "lang_hints": {
+    "mix": "it"
+  }
+}
