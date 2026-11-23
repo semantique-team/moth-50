@@ -687,6 +687,29 @@ the wrong mapping even when its Italian WER is good.
 - No product change. Artifacts: `runs/E-018/RESULT.md`,
   `runs/E-018/summary.json`, `experiments/next-experiments.md` §E-018.
 
+## D32 — E-022 keyterm biasing: positive oracle ceiling, not shipped (2026-11-23)
+
+The keyterm re-test is **positive as an oracle upper bound** but is not a
+product change. Step 1 on R-S1-cal (400 clips, product release + E-034c,
+`segment: false`, `ContextualBias` bonus 1.0 / prefix 0.25): pooled
+acronym+brand ETA **40.78 → 46.60 % (+5.82 pp)**, WER 12.89 → 11.46, ETA
+75.63 → 79.74. This clears the 5-point stop rule.
+
+Step 2 adds 500 training-side distractors per clip and tunes the bonus. The
+knee is **5.0**: WER **9.40 %**, ETA **85.83 %**, acronym+brand ETA **54.37 %**,
+insertion 2.10/100w, `control_it` unchanged at 4.81 %. The S1-dev oracle upper
+bound at b=5 is **10.47 % WER / 84.96 % ETA** vs 13.38 / 75.15 (paired
+−2.91 pp WER, +9.81 pp ETA); `control_it` insertion stays 0.24/100w. The list
+contains the answer, so this is a ceiling, never a gate or ranking input.
+
+- **Decision: no shipped glossary and no decoder/config change.** The product
+  runtime already accepts `contextualSequences` (0 bytes), but a realistic
+  user-glossary test and UI/API decision are separate work; the oracle does not
+  prove a real list will help.
+- Do not use E-022 in a gate readout; the list contains the answers.
+- Artifacts: `runs/E-022/RESULT.md`, `tools/keyterm_probe.py`,
+  `experiments/next-experiments.md` §E-022.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

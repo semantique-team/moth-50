@@ -55,7 +55,7 @@ external evidence.
 | E-019 | Teacher labels: Granary Italian, VoxPopuli unlabelled, unscripted S1 sessions | proposed; **monolingual Italian only (D31)**; fine-tune from R1; needs go-ahead |
 | E-020 | LLM-written mixed IT–EN text for the A3-style LM | proposed; needs E-017 (done) and a clean corpus |
 | E-021 | Targeted acronym, brand and elision data (recordings + permissive TTS) | proposed; fine-tune from R1 |
-| E-022 | Keyterm (contextual) biasing re-test as a product feature | proposed, conditional; Moth E-027 was negative |
+| E-022 | Keyterm (contextual) biasing re-test as a product feature | **done 2026-11-23, oracle ceiling, not shipped (D32)**: acr+brand ETA +5.82 pp step 1; knee b=5; S1-dev oracle 10.47/84.96 vs 13.38/75.15; `control_it` insertion unchanged; `runs/E-022/RESULT.md` |
 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 (H1) | **done 2026-11-23, adopted (D27)**: 2b report-only (D26), T-600 guard passed 12.2993 / 78.1400 vs 13.7041 / 76.1266; product `0.9.7-e023-r1`; `runs/E-023/RESULT.md` |
 | E-024 | P8 ×3-term unpruned LM | **done 2026-11-23, not adopted (D30)**: same corpus/size/lossless; R-S1-cal identical (12.8469 / 75.4967, 0.0 pp), S1-dev tie (13.3966 / 75.0977); gate 1 failed; `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md` |
 

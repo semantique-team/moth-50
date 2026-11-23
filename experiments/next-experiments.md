@@ -3,8 +3,9 @@
 **Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
 and E-004 ran on 2026-11-19/21; E-016/P4, E-017 and E-023 ran on 2026-11-21/23,
 E-023 R1 is adopted (D27), the web runtime is vendored (D28), E-016b is
-adopted (D29), E-024/P8 ran negative (D30) and E-018 found no qualifying mixed
-teacher (D31); E-013–E-015 and E-019–E-022 have not run.**
+adopted (D29), E-024/P8 ran negative (D30), E-018 found no qualifying mixed
+teacher (D31) and E-022's oracle upper bound is positive (D32); E-013–E-015 and
+E-019–E-021 have not run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -681,6 +682,15 @@ recorded but not adopted. Artifacts: `runs/E-018/RESULT.md`,
 - **Scope:** a user glossary in the product, 0 bytes (`web/ort.js` already takes
   `contextualSequences`). Never part of a gate readout, because the list
   contains the answers.
+
+**Result (2026-11-23): oracle upper bound positive, not shipped.** Step 1:
+R-S1-cal pooled acronym+brand ETA **40.78 → 46.60 % (+5.82 pp)**, WER 12.89 →
+11.46, ETA 75.63 → 79.74. Step 2 with 500 training-side distractors: the knee is
+**bonus 5.0** (WER 9.40, ETA 85.83, acronym+brand 54.37, insertion 2.10;
+`control_it` unchanged). S1-dev oracle at b=5: **10.47 / 84.96** vs 13.38 /
+75.15 (paired −2.91 pp WER, +9.81 pp ETA), `control_it` insertion 0.24
+unchanged. The lists contain the answers, so this is a ceiling and no product
+change; a realistic glossary/UI decision remains open. `runs/E-022/RESULT.md`.
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 
