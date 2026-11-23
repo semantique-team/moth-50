@@ -5,6 +5,10 @@ recording. The system is the product `0.9.7-e023-r1` (R1 seed 0 + E-034c).
 The result decides whether the product exposes a user glossary; it never
 changes the model, the LM, the package, the decoder defaults or a gate readout.
 
+> **Amended 2026-11-23 (distractor pool, before any E-026 result):** the pool
+> has 541 terms, so A2000 and C2000 are dropped and the harm gate uses A500
+> only. See [Amendment](#amendment-2026-11-23--distractor-pool).
+
 ## Question
 
 E-022 measured only lists that always contain the clip's own English terms: a
@@ -102,6 +106,10 @@ overlap between the B50 lists and the pool.
 
 ## Commands
 
+> The calibration loop below is the original one; after the amendment, run the
+> loop in [Amendment](#amendment-2026-11-23--distractor-pool) instead (no A2000
+> or C2000). The control and S1-dev commands are unchanged.
+
 ```bash
 REL=runs/E-023/release-0.9.7
 CAL=../moth-cs-dataset/manifests/R-S1-cal.jsonl
@@ -136,3 +144,44 @@ $EVAL --manifest $S1 --hyp runs/E-026/s1-dev-A500/hyp.jsonl \
 Cost: about 35 s per R-S1-cal decode on the M5 (E-022: RTFx ~29), so about
 15 minutes for the grid and a few minutes for S1-dev. Artifacts go to
 `runs/E-026/`; the result is written to `runs/E-026/RESULT.md`.
+
+## Amendment 2026-11-23 — distractor pool
+
+Written after the runner refused A2000, and before any E-026 result was on
+`main` or scored. Nothing else in the pre-registration changes.
+
+1. **Fact.** `../moth-stt/data/en_terms.txt` gives **541** normalized
+   single-word terms. That is below 2,008, and also below the 1,008 the
+   pre-registered 1,000-term fallback needs: the pre-registration assumed a
+   larger pool without checking it.
+2. **A2000 and C2000 are dropped**, with no replacement pool. Another source
+   (common English words, LM-corpus vocabulary) would change what the list
+   represents, and choosing one now would be a new design decision, not a
+   correction.
+3. **Step 1 (safe bonus) uses A500 only**, with the same two clauses: WER CI not
+   entirely above zero and WER point estimate at most +0.25 pp. Steps 2–5, B50,
+   B25 and the S1-dev veto are unchanged.
+4. **What A500 now means.** 500 of 541 terms is about 92 % of the inventory, so
+   the per-clip lists overlap almost entirely: A500 is in effect one fixed
+   ~500-term glossary that never matches the sentence, which is the product
+   case. Each clip keeps a margin of 41 terms for its own exclusions; a
+   per-clip refusal (`only N distractors available`) invalidates that decode
+   and is reported, not worked around.
+5. **Evidence boundary.** If the glossary is exposed, the documentation
+   recommends **at most 500 single-word terms**; longer lists are untested.
+6. **Grid:** 3 conditions (A500, B50, B25) × 4 bonuses = 12 decodes of
+   R-S1-cal. The calibration loop becomes:
+
+```bash
+for b in 1.0 2.0 3.0 5.0; do
+  $PROBE --manifest $CAL --bonus $b --context distractors --distractors 500 --out-dir runs/E-026/cal-A500-b$b
+  $PROBE --manifest $CAL --bonus $b --context oracle-distractors --recall 0.5 --distractors 500 --out-dir runs/E-026/cal-B50-b$b
+  $PROBE --manifest $CAL --bonus $b --context oracle-distractors --recall 0.25 --distractors 500 --out-dir runs/E-026/cal-B25-b$b
+done
+for d in runs/E-026/cal-*-b*; do
+  $EVAL --manifest $CAL --hyp $d/hyp.jsonl --vs runs/E-026/cal-none.metrics.json --out $d/metrics.json
+done
+```
+
+If A2000 or C2000 output directories were created by the refused runs, delete
+them before scoring; they are not part of the experiment.

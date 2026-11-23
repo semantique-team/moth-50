@@ -112,7 +112,7 @@ after the session.
 | 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b report-only (D26), T-600 guard passed, adopted (D27)** | 0 |
 | 21 | E-024 | P8 ×3-term unpruned LM | 20 | **done 2026-11-23: no effect, not adopted (D30)** | 0 |
 | 22 | E-025 | E-020 executed: LLM text in the LM | 20 | **done 2026-11-23: tie, not adopted (D33)** | +45,848 B (not shipped) |
-| 23 | E-026 | E-022 step 3: realistic glossary, harm and partial recall | 14, 20 | **pre-registered 2026-11-23; ~20 min CPU, no training** | 0 |
+| 23 | E-026 | E-022 step 3: realistic glossary, harm and partial recall | 14, 20 | **pre-registered 2026-11-23, amended for the 541-term pool; ~15 min CPU, no training** | 0 |
 
 P8 was run after this table was written: **E-024 (2026-11-23) built the
 unpruned E-034 LM with ×3 term weighting, got byte-identical R-S1-cal
@@ -719,11 +719,12 @@ unchanged. The lists contain the answers, so this is a ceiling and no product
 change; a realistic glossary/UI decision remains open. `runs/E-022/RESULT.md`.
 
 **Step 3 → E-026 (pre-registered 2026-11-23).** Realistic lists: distractors
-only (harm, 500 and 2,000 terms), partial recall (*p* = 0.5 benefit, 0.25
-report-only) and a 2,000-term dilution check, bonus grid {1, 2, 3, 5} on
-R-S1-cal, one S1-dev veto of the distractor-only list at the chosen bonus.
-Pass → the glossary is exposed as an opt-in runtime option; fail → it stays
-unexposed. `experiments/E-026-e022-glossary.md`.
+only (harm, 500 terms), partial recall (*p* = 0.5 benefit, 0.25 report-only),
+bonus grid {1, 2, 3, 5} on R-S1-cal, one S1-dev veto of the distractor-only
+list at the chosen bonus. The 2,000-term conditions were dropped by a dated
+amendment before any result: the distractor pool has only 541 terms. Pass →
+the glossary is exposed as an opt-in runtime option (at most 500 terms); fail →
+it stays unexposed. `experiments/E-026-e022-glossary.md`.
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 

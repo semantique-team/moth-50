@@ -58,7 +58,7 @@ external evidence.
 | E-022 | Keyterm (contextual) biasing re-test as a product feature | **done 2026-11-23, oracle ceiling, not shipped (D32)**: acr+brand ETA +5.82 pp step 1; knee b=5; S1-dev oracle 10.47/84.96 vs 13.38/75.15; `control_it` insertion unchanged; step 3 is E-026; `runs/E-022/RESULT.md` |
 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 (H1) | **done 2026-11-23, adopted (D27)**: 2b report-only (D26), T-600 guard passed 12.2993 / 78.1400 vs 13.7041 / 76.1266; product `0.9.7-e023-r1`; `runs/E-023/RESULT.md` |
 | E-024 | P8 ×3-term unpruned LM | **done 2026-11-23, not adopted (D30)**: same corpus/size/lossless; R-S1-cal identical (12.8469 / 75.4967, 0.0 pp), S1-dev tie (13.3966 / 75.0977); gate 1 failed; `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md` |
-| E-026 | E-022 step 3: realistic glossary — distractor-only harm, partial recall, long lists | **pre-registered 2026-11-23**, no training; decides whether the product exposes an opt-in glossary; `experiments/E-026-e022-glossary.md` |
+| E-026 | E-022 step 3: realistic glossary — distractor-only harm, partial recall | **pre-registered 2026-11-23**, amended the same day before any result (pool of 541 terms: 2,000-term lists dropped); no training; decides whether the product exposes an opt-in glossary; `experiments/E-026-e022-glossary.md` |
 
 The rationale, parameter counts and gates for E-003–E-008 are in
 `docs/architecture-options.md`; the corrected Moth evidence, the measurements

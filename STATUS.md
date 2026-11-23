@@ -176,15 +176,17 @@ and S1-dev browser WER is **13.7180 %** against Python 13.3820 % (+0.34 pp
 
 **Next: E-026, training-free** (`experiments/E-026-e022-glossary.md`). It is
 E-022 step 3: realistic glossaries instead of oracle lists. On R-S1-cal, bonus
-grid {1, 2, 3, 5}: distractor-only lists of 500 and 2,000 terms (harm: WER
-point estimate at most +0.25 pp and CI not entirely above zero), partial recall
-*p* = 0.5 (benefit, CI excluding zero) and *p* = 0.25 / 2,000-term dilution
-(report-only); then one S1-dev veto of the distractor-only list at the chosen
-bonus. Pass → the glossary becomes an opt-in runtime option (no model, LM or
+grid {1, 2, 3, 5}: a distractor-only list of 500 terms (harm: WER point
+estimate at most +0.25 pp and CI not entirely above zero), partial recall
+*p* = 0.5 (benefit, CI excluding zero) and *p* = 0.25 (report-only); then one
+S1-dev veto of the distractor-only list at the chosen bonus. The distractor
+pool has only 541 terms, so the 2,000-term conditions were dropped by a dated
+amendment before any result (12 decodes, not 20). Pass → the glossary becomes
+an opt-in runtime option, documented for at most 500 terms (no model, LM or
 package change); fail → it stays unexposed. `tools/keyterm_probe.py` now has
 `--context distractors` and `--recall` (`tests/test_keyterm_probe.py`); the
-full command block is in the pre-registration. About 20 minutes of CPU on the
-M5.
+command block is in the amendment of the pre-registration. About 15 minutes of
+CPU on the M5.
 
 **No new recordings (D34).** E-019 arm B, E-021 arm 1 and E-006 arm 5 are
 dropped. Every remaining training arm is re-pre-registered before it runs, with
