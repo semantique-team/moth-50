@@ -8,8 +8,9 @@ teacher (D31), E-022's oracle upper bound is positive (D32) and E-025/E-020 ran
 negative (D33). D34 (2026-11-23) rules out new recordings: E-019 arm B, E-021
 arm 1 and E-006 arm 5 are dropped, and every remaining training arm is
 re-pre-registered with R1 seed 0 as the parent and R-S1-cal ranking before it
-runs. E-026 (E-022 step 3, realistic glossary, no training) is pre-registered
-in `experiments/E-026-e022-glossary.md`; E-013–E-015, E-019 and E-021 have not
+runs. E-026 (E-022 step 3, realistic glossary) ran and the glossary is not
+exposed (D35). E-027 (E-021 arm 2, TTS fine-tune) is pre-registered and
+authorized in `experiments/E-027-e021-tts.md`; E-013–E-015 and E-019 have not
 run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
@@ -102,7 +103,7 @@ after the session.
 | 10 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | a release | **done 2026-11-23: 1-thread pass, parity explained, runtime vendored (D28); E-016b adopted (D29)** | 0 |
 | 11 | E-019 | Teacher labels (pseudo-label distillation) | 8, 9 | **arm A only, monolingual Italian (D31); arm B dropped (D34); re-pre-register from R1** | 0 |
 | 12 | E-020 | LLM-written mixed text for the LM | 8 | **done 2026-11-23 as E-025: tie, not adopted (D33)** | ≤ LM budget |
-| 13 | E-021 | Targeted acronym, brand and elision data | product acoustic baseline | **arm 2 (TTS) only; arm 1 dropped (D34); re-pre-register from R1** | 0 |
+| 13 | E-021 | Targeted acronym, brand and elision data | product acoustic baseline | **arm 2 (TTS) only, re-pre-registered as E-027; arm 1 dropped (D34)** | 0 |
 | 14 | E-022 | Keyterm biasing re-test (product feature) | 8 | **steps 1–2 done 2026-11-23: oracle ceiling (D32); step 3 is E-026** | 0 |
 | 15 | E-013 | Extra blocks before `final_ln` | — | ~1.6 h MPS | 0 |
 | 16 | E-014 | Conformer-style convolution in the extra blocks | — | ~1.6 h MPS | ≈ 0 |
@@ -112,7 +113,8 @@ after the session.
 | 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b report-only (D26), T-600 guard passed, adopted (D27)** | 0 |
 | 21 | E-024 | P8 ×3-term unpruned LM | 20 | **done 2026-11-23: no effect, not adopted (D30)** | 0 |
 | 22 | E-025 | E-020 executed: LLM text in the LM | 20 | **done 2026-11-23: tie, not adopted (D33)** | +45,848 B (not shipped) |
-| 23 | E-026 | E-022 step 3: realistic glossary, harm and partial recall | 14, 20 | **pre-registered 2026-11-23, amended for the 541-term pool; ~15 min CPU, no training** | 0 |
+| 23 | E-026 | E-022 step 3: realistic glossary, harm and partial recall | 14, 20 | **done 2026-11-23: S1-dev veto failed, glossary not exposed (D35)** | 0 |
+| 24 | E-027 | E-021 arm 2: TTS fine-tune from R1 s0 vs a same-length control | 20, 22 | **pre-registered and authorized 2026-11-23; ~13 h MPS + rendering; stop rule: a tie closes the model line** | 0 |
 
 P8 was run after this table was written: **E-024 (2026-11-23) built the
 unpruned E-034 LM with ×3 term weighting, got byte-identical R-S1-cal
@@ -675,7 +677,8 @@ recorded but not adopted. Artifacts: `runs/E-018/RESULT.md`,
 > remains. Its gate below ranks on an S1-dev subset, which E-002 §8 no longer
 > allows: a re-pre-registration ranks on R-S1-cal (acronym + brand ETA
 > reported), keeps the S1-dev veto and the dev-macro guard, and fine-tunes from
-> R1 seed 0 against a same-length control.
+> R1 seed 0 against a same-length control. **That re-pre-registration is E-027
+> (2026-11-23, authorized): `experiments/E-027-e021-tts.md`.**
 
 - **Evidence:** acronym ETA 29.2 %, brand 48.1 %, acronym insertions 4.70 per
   100 words; elided acronyms not improved over 0.8.1 (34 vs 32 misses).

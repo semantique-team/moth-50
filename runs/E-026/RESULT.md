@@ -93,6 +93,17 @@ The benefit is concentrated where the listed terms are: acronym ETA +9.80 pp
 and brand ETA +3.85 pp at B50, while `control_it` is untouched. `control_en`
 moves −1.33 pp, consistent with biasing toward the listed English terms.
 
+## Post-hoc look at the veto (report-only, added 2026-11-23)
+
+Read after the verdict; it does not change it. Comparing
+`s1-dev-none/hyp.jsonl` with `s1-dev-A500/hyp.jsonl`: **30 of 960** hypotheses
+change; **11** get more word errors, **3** fewer, 16 the same. Most of the worse
+ones are short words pulled toward a listed term (`no idea` → `node`, `back` →
+`deck`, `atp` → `otp`, `book` → `bug`, `porterò` → `port`, an inserted
+`trail`); a few are near-tie flips. The +0.13 pp is therefore a small but real,
+systematic harm of an irrelevant glossary, not bootstrap noise. Choosing a lower
+bonus by re-reading S1-dev would tune on the veto set and is not done.
+
 ## Caveat
 
 The 541-term distractor pool and the evaluation inventory share vocabulary:

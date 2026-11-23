@@ -50,8 +50,11 @@ have run. **D34** rules out new recordings and re-scopes the training arms.
 **E-026** (E-022 step 3: realistic glossary) is done: a fixed ~500-term
 glossary is harmless on R-S1-cal and partial recall wins (−1.79 pp WER / +5.30
 pp ETA at bonus 5.0), but the S1-dev veto fails (+0.13 pp WER, CI entirely
-above zero), so it is **not exposed (D35)**. The training-free queue is empty;
-the rest needs training. Read `STATUS.md` first when resuming.
+above zero), so it is **not exposed (D35)**. The training-free queue is empty.
+**E-027** (the TTS arm of E-021: four pinned permissive Italian voices speak the
+E-025 sentences, added at ~10 % to a fine-tune of R1 seed 0 against a
+same-length control) is pre-registered and authorized; if it ties, the model
+line closes. Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -237,6 +240,10 @@ tools/keyterm_probe.py    oracle/distractor/partial-recall ContextualBias probe 
 tools/e020_generate.py    pinned LLM text generation (E-020/E-025)
 tools/e020_filter.py      leakage/quality filter for generated text
 tools/e020_combine.py     combine base corpus and filtered text
+tools/e027_tts_script.py  E-027 TTS text: re-filter, language tags per word
+tools/e027_tts_render.py  E-027 rendering with the pinned Kokoro/Piper voices, QC, manifest
+tools/e027_audit.py       E-027 listening-audit sample and drop rule
+tools/e027_share.py       E-027 TTS repeat for a ~10 % share of the epoch audio
 tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
 tools/release_notice.py   the MOTH-50 package NOTICE

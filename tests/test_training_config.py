@@ -144,3 +144,65 @@ def test_ema_decay_is_off_by_default_and_validated(tmp_path):
     assert load_config(_with_train(tmp_path, "ema_decay = 0.9998")).ema_decay == 0.9998
     with pytest.raises(ValueError, match="ema_decay"):
         load_config(_with_train(tmp_path, "ema_decay = 1.0"))
+
+
+def _with_finetune(tmp_path, model: str, finetune: str) -> Path:
+    path = tmp_path / "finetune.toml"
+    path.write_text(
+        f"""
+[model]
+preset = "base"
+{model}
+[data]
+tokenizer = "x"
+[[data.train]]
+manifest = "m.jsonl"
+shards = "s"
+[finetune]
+{finetune}
+""",
+        encoding="utf-8",
+    )
+    return path
+
+
+def test_finetune_is_off_by_default():
+    assert load_config(ROOT / "training" / "configs" / "base6.toml").finetune is None
+
+
+def test_finetune_table_is_parsed(tmp_path):
+    sha = "ab" * 32
+    config = load_config(
+        _with_finetune(tmp_path, "", f'init_checkpoint = "ckpt.pt"\nsha256 = "{sha}"')
+    )
+    assert config.finetune.init_checkpoint == tmp_path / "ckpt.pt"
+    assert config.finetune.sha256 == sha
+    assert config.finetune.weights == "ema"
+
+
+def test_finetune_rejects_model_init_bad_sha_and_weights(tmp_path):
+    with pytest.raises(ValueError, match="replaces model.init"):
+        load_config(_with_finetune(tmp_path, 'init = "w.pt"', 'init_checkpoint = "c.pt"'))
+    with pytest.raises(ValueError, match="sha256"):
+        load_config(_with_finetune(tmp_path, "", 'init_checkpoint = "c.pt"\nsha256 = "abc"'))
+    with pytest.raises(ValueError, match="weights"):
+        load_config(_with_finetune(tmp_path, "", 'init_checkpoint = "c.pt"\nweights = "best"'))
+    with pytest.raises(ValueError, match="init_checkpoint"):
+        load_config(_with_finetune(tmp_path, "", 'weights = "ema"'))
+
+
+def test_e027_arm_and_control_differ_only_by_the_tts_source():
+    control = load_config(ROOT / "training" / "configs" / "base6-e027-control.toml")
+    arm = load_config(ROOT / "training" / "configs" / "base6-e027-tts.toml")
+    r1 = load_config(ROOT / "training" / "configs" / "base6-e023-r1.toml")
+
+    assert arm.data.train[:-1] == control.data.train == r1.data.train
+    assert arm.data.train[-1].manifest.name == "tts_e027.jsonl"
+    assert replace(arm, path=control.path, data=control.data) == control
+    assert control.model.init is None
+    assert control.finetune.init_checkpoint.name == "ckpt_best.pt"
+    assert control.finetune.init_checkpoint.parent.parent.name == "r1-s0"
+    assert control.finetune.weights == "ema"
+    assert control.max_steps == 8000
+    assert control.optimizer.lr_encoder == 1e-5
+    assert control.optimizer.lr_head == 1e-4

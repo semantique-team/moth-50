@@ -245,6 +245,38 @@
         "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
       },
       "bytes": 3090000000
+    },
+    {
+      "id": "kokoro-82m",
+      "role": "E-027 TTS engine, generation only: Italian voices if_sara and im_nicola speak the E-027 script; the audio is training data of the TTS arm, the model never ships",
+      "version": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+      "url": "https://huggingface.co/hexgrad/Kokoro-82M",
+      "license": "Apache-2.0",
+      "provenance_note": "the model card says v1.0 was trained on permissive audio, including synthetic audio from closed TTS providers; the README data decision admits Kokoro, and E-027 records the risk",
+      "status": "pinned 2026-11-23 from the Hub API (LFS oids, config.json downloaded); not yet downloaded on the training Mac",
+      "files": {
+        "kokoro-v1_0.pth": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+        "config.json": "5abb01e2403b072bf03d04fde160443e209d7a0dad49a423be15196b9b43c17f",
+        "voices/if_sara.pt": "6c0b253b955fe32f1a1a86006aebe83d050ea95afd0e7be15182f087deedbf55",
+        "voices/im_nicola.pt": "234ed06648649f9bd874b37508ea17560b9c993ef85b4ddb3e3a71e062bd2c12"
+      },
+      "bytes": 328261343
+    },
+    {
+      "id": "piper-voices-it",
+      "role": "E-027 TTS voices, generation only: it_IT-paola-medium and it_IT-serena-medium speak the E-027 script; never shipped",
+      "version": "e9c8a39444359388adaa94255becb37a5a2b8e51",
+      "url": "https://huggingface.co/rhasspy/piper-voices",
+      "license": "MIT (repository); paola: dataset CC0, fine-tuned from the Hi-Fi TTS reader 92 base (CC-BY-4.0); serena: dataset committa/serena-synthetic-it-27h (CC-BY-4.0, Qwen3-TTS Apache-2.0 synthetic audio)",
+      "provenance_note": "serena's training audio is synthetic (Qwen3-TTS, a fixed synthetic reference voice) over a corpus with ~10 % LLM-written sentences; riccardo is excluded (x_low, M-AILABS licence not verified)",
+      "status": "pinned 2026-11-23 from the Hub API (LFS oids, JSON configs downloaded); not yet downloaded on the training Mac",
+      "files": {
+        "it/it_IT/paola/medium/it_IT-paola-medium.onnx": "f9b8658aa8c01f8280aa88488f6e7643a639b6225a81514c40440a01f6364a20",
+        "it/it_IT/paola/medium/it_IT-paola-medium.onnx.json": "10e46e8534dd2d4051f1534ba6542f189f854454acea44a6d45ff464a83260fa",
+        "it/it_IT/serena/medium/it_IT-serena-medium.onnx": "fe4e26b2c1236e2a44d2e295cad564d94a0d8b0a9fca1ccdfd70dd4af3116eb5",
+        "it/it_IT/serena/medium/it_IT-serena-medium.onnx.json": "14cb4995874138b2792ae07753b5540942124761af9ae6609f9b520f28837881"
+      },
+      "bytes": 126749403
     }
   ]
 }
