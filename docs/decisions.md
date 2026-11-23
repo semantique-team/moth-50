@@ -710,6 +710,27 @@ contains the answer, so this is a ceiling, never a gate or ranking input.
 - Artifacts: `runs/E-022/RESULT.md`, `tools/keyterm_probe.py`,
   `experiments/next-experiments.md` §E-022.
 
+## D33 — E-020 LLM-written LM text: no effect, not adopted (2026-11-23)
+
+E-025 added 3,521 filtered sentences (Qwen2.5-1.5B-Instruct, Apache-2.0,
+pinned `989aa798…`) to the E-034c corpus: 6,000 generated, 249 dropped for
+4-gram overlap with S1-dev/T/A, 1,385 for missing seed terms, 139 duplicates,
+plus length/category drops. The combined corpus is 188,624 rows; the LM is
+12,375,336 B MOTHLMB1 and packs losslessly to **7,833,032 B** (package
+49,249,624 B, 750,376 B room).
+
+On **R-S1-cal** it scores **12.8917 % / 75.6291 %** vs **12.8469 / 75.4967**
+for E-034c: WER +0.0448 pp [−0.0900, +0.1807], ETA +0.1325 pp [0, +0.4178],
+both **ties**, 7/400 clips differ. Gate 1 (a calibration win) fails, so
+S1-dev, dev-macro and T were **not** read; **E-034c stays the product LM**.
+A 1.9 % corpus addition (≈90k tokens) is too small to move the unpruned
+2.3M-trigram LM at the frozen decoder, or the generator's distribution is too
+far from the product. A larger generation or a stronger generator is a new
+experiment with its own pre-registration; no package/browser/T read changed.
+Artifacts: `experiments/E-025-e020-llm-text.md`,
+`experiments/E-025-prompts.json`, `runs/E-025/RESULT.md`,
+`tools/e020_generate.py`, `tools/e020_filter.py`, `tools/e020_combine.py`.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

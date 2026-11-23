@@ -42,9 +42,11 @@ Voxtral was excluded for cost on the 16 GB M5. E-019 therefore stays
 monolingual Italian (D31). **E-022** gives a positive keyterm oracle ceiling
 (acronym+brand ETA +5.82 pp; S1-dev oracle 10.47 / 84.96 vs 13.38 / 75.15 at
 bonus 5.0) but is **not shipped**; a realistic glossary/UI decision remains
-open (D32). The plan is `experiments/next-experiments.md`; E-004, E-009–E-012,
-E-016–E-018, E-022–E-024 have run, the rest has not. Read `STATUS.md` first when
-resuming.
+open (D32). **E-025/E-020** added 3,521 filtered LLM sentences to the LM: the
+packed LM fits at 7,833,032 B but R-S1-cal is a tie (12.8917 / 75.6291 vs
+12.8469 / 75.4967), so E-034c stays (D33). The plan is
+`experiments/next-experiments.md`; E-004, E-009–E-012, E-016–E-018, E-022–E-025
+have run, the rest needs training. Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -206,6 +208,7 @@ runs/E-016/               browser checks: RTFx, parity, vendored runtime smoke
 runs/E-024/               P8 ×3-term LM: build, pack, cal and S1-dev readouts
 runs/E-018/               teacher bake-off: pins, hyps, metrics, exclusion
 runs/E-022/               keyterm oracle upper bound and bonus curve
+runs/E-025/               LLM text generation/filter, LM build, cal readout
 tests/                    tests for tools/ and the vendored code
 training/                 MOTH-50 trainer port (config, data, model, EMA, loop)
 training/configs/         E-003/E-005 configs, the E-010 arm, smoke configs
@@ -226,6 +229,9 @@ tools/e018_whisper.py     Whisper teacher runner (E-018)
 tools/e018_teacher.py     Canary/Voxtral teacher runner (E-018)
 tools/e018_summary.py     teacher table and selection rule (E-018)
 tools/keyterm_probe.py    oracle/distractor ContextualBias probe (E-022)
+tools/e020_generate.py    pinned LLM text generation (E-020/E-025)
+tools/e020_filter.py      leakage/quality filter for generated text
+tools/e020_combine.py     combine base corpus and filtered text
 tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
 tools/release_notice.py   the MOTH-50 package NOTICE

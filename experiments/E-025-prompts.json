@@ -1,0 +1,80 @@
+{
+  "name": "E-025 (E-020) LLM dictation prompts",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "count": 6000,
+  "seed": 0,
+  "decoding": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "max_new_tokens": 60
+  },
+  "system": "Sei un assistente che scrive una sola frase breve di dettatura per un sistema di riconoscimento vocale italiano/inglese. Scrivi solo la frase, senza virgolette, elenchi, spiegazioni o traduzioni. Usa un italiano naturale da ufficio e tecnologia; quando la categoria lo richiede, mescola inglese e italiano come farebbe una persona che detta. Non copiare frasi di valutazione e non aggiungere commenti.",
+  "categories": {
+    "single_word": {
+      "weight": 1,
+      "instruction": "Scrivi una frase italiana breve (6-14 parole) che contenga esattamente uno di questi termini inglesi: {terms}.",
+      "examples": [
+        "Ho aggiornato il file sul drive.",
+        "Il team ha fatto un check finale."
+      ]
+    },
+    "phrase": {
+      "weight": 1,
+      "instruction": "Scrivi una frase italiana breve (8-16 parole) che contenga una breve espressione inglese naturale, usando uno di questi spunti: {terms}.",
+      "examples": [
+        "Facciamo un quick sync prima della call.",
+        "Il feedback è pronto per la review."
+      ]
+    },
+    "brand": {
+      "weight": 1,
+      "instruction": "Scrivi una frase italiana breve (6-14 parole) su lavoro o tecnologia che nomini uno di questi marchi/prodotti: {terms}.",
+      "examples": [
+        "Il nuovo monitor è un Dell.",
+        "Ho comprato un paio di Nike."
+      ]
+    },
+    "acronym": {
+      "weight": 1,
+      "instruction": "Scrivi una frase italiana breve (6-14 parole) che usi uno di questi acronimi inglesi in modo naturale: {terms}.",
+      "examples": [
+        "Il report è in formato PDF.",
+        "La riunione è alle 10 in UTC."
+      ]
+    },
+    "switch": {
+      "weight": 1,
+      "instruction": "Scrivi una frase breve (8-18 parole) che alterni italiano e inglese, come una persona bilingue a lavoro; puoi partire da questi termini: {terms}.",
+      "examples": [
+        "Il deploy è andato ok, domani facciamo il review.",
+        "Mandami il link, poi facciamo un check insieme."
+      ]
+    },
+    "italianized": {
+      "weight": 1,
+      "instruction": "Scrivi una frase italiana breve (6-14 parole) con un verbo o participio italianizzato da un termine inglese (es. downloadato, wrappato, checkato), ispirato a: {terms}.",
+      "examples": [
+        "Abbiamo downloadato il pacchetto e poi lo abbiamo testato.",
+        "Hanno wrappato la libreria prima del rilascio."
+      ]
+    },
+    "control_it": {
+      "weight": 1,
+      "instruction": "Scrivi una frase italiana breve (6-16 parole) su riunioni, ufficio, software o vita quotidiana, senza termini inglesi.",
+      "examples": [
+        "La riunione è stata spostata a giovedì.",
+        "Il nuovo collega lavora al progetto."
+      ]
+    },
+    "control_en": {
+      "weight": 1,
+      "instruction": "Write one short English sentence (6-16 words) about work, software, meetings or everyday life. Output only the sentence.",
+      "examples": [
+        "The meeting is moved to Thursday.",
+        "The new colleague works on the project."
+      ]
+    }
+  },
+  "notes": "Prompt seeds come from gold train terms and data/en_terms.txt only; never S1-dev, T or A. The filter is tools/e020_filter.py."
+}

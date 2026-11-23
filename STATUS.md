@@ -62,11 +62,12 @@ running, and the exact next commands. Update it at the end of each session.
   E-016/P4 and E-016b are done (D28/D29, web runtime vendored and patched);
   E-024/P8 ran and was not adopted (×3-term LM: cal identical, D30); E-018 found
   no qualifying mixed teacher (D31), so E-019 stays monolingual Italian;
-  E-022's keyterm oracle is positive but not shipped (D32).**
+  E-022's keyterm oracle is positive but not shipped (D32); E-025/E-020 added
+  LLM text but got only a calibration tie (D33).**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
-  without an explicit go-ahead. Next without training: E-020 (LM text);
-  E-019/E-021/E-006 need training and a go-ahead.
+  without an explicit go-ahead. The training-free queue is now empty; the next
+  steps are E-019/E-021/E-006 and E-013–E-015, all training.
 - **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
   the wrong ranking target; the LM is the lever and C no longer fits next to the
   E-034 LM; the E-011 ETA loss looks recipe-level. Procedure P0–P11: cross-machine
@@ -147,6 +148,7 @@ running, and the exact next commands. Update it at the end of each session.
 | E-024/P8 ×3-term LM | **done, not adopted (D30)**: same corpus/size/lossless pack; R-S1-cal **identical** (12.8469 / 75.4967, 0.0 pp), S1-dev tie 13.3966 / 75.0977 (+0.0146 / −0.0488, 4/960 clips); gate 1 failed, dev-macro/T not run | `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md` |
 | E-018 teacher bake-off | **done, no mixed teacher (D31)**: Parakeet 9.95/79.47/62.71; Whisper-it 9.92/80.12/70.76; Whisper-auto 10.99/82.60/69.92; Canary 13.60/68.62/61.44; Voxtral excluded (cost); E-019 stays monolingual Italian | `runs/E-018/RESULT.md`, `runs/E-018/summary.json` |
 | E-022 keyterm bias | **done, oracle ceiling, not shipped (D32)**: step 1 acr+brand ETA 40.78→46.60 (+5.82 pp); knee b=5 on cal (9.40/85.83); S1-dev oracle 10.47/84.96 vs 13.38/75.15 (−2.91/+9.81 pp); `control_it` insertion 0.24 unchanged | `runs/E-022/RESULT.md`, `tools/keyterm_probe.py` |
+| E-025/E-020 LLM text | **done, not adopted (D33)**: 6,000 generated → 3,521 filtered (249 eval 4-gram drops); LM packed 7,833,032 B lossless; R-S1-cal **12.8917/75.6291** vs 12.8469/75.4967 (WER +0.045, ETA +0.133, both ties, 7/400); gate 1 failed, S1-dev/dev-macro/T not run | `experiments/E-025-e020-llm-text.md`, `runs/E-025/RESULT.md` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
 | E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; control E-005 + E-034c **13.9212 % WER / 75.6291 % ETA**; no R1 readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/` |
 
@@ -165,25 +167,26 @@ done (D28/D29): the web runtime is vendored and patched, 1-thread RTFx passes,
 and S1-dev browser WER is **13.7180 %** against Python 13.3820 % (+0.34 pp
 [−0.13, +0.79], tie).
 
-1. **E-020 — LLM-written mixed text for the LM (no acoustic training).** Build
-   an A3-style LM with in-domain IT–EN dictation text from an open-weight LLM,
-   leakage-filtered, ranked on R-S1-cal with the S1-dev veto and the dev-macro
-   guard. This is the next training-free lever on the LM.
-2. **E-019 / E-021 / E-006 — need an explicit training go-ahead.** E-019 is now
-   restricted to monolingual Italian sources (D31); E-021 needs recordings and
-   E-006 is a multi-day data campaign. Each has its own pre-registration and
-   gate in `experiments/next-experiments.md`.
-3. **Optional, needs an explicit training go-ahead:** E-013 (extra blocks
-   before `final_ln`), E-014 (convolution in the extra blocks), E-015 (25 Hz,
-   only if the 1-thread gate had failed — it passed at 21.17× on 20 s), and a
-   third R1 seed with per-eval checkpoints (P11 is no longer a prerequisite).
+**The training-free queue is empty.** Every remaining experiment needs an
+explicit training go-ahead:
+
+1. **E-019 / E-021 / E-006 — training.** E-019 is restricted to monolingual
+   Italian sources (D31); E-021 needs new recordings plus fine-tunes; E-006 is
+   a multi-day data campaign. Each has its own pre-registration and gate in
+   `experiments/next-experiments.md`.
+2. **E-013 / E-014 / E-015 — training screens.** E-013 (extra blocks before
+   `final_ln`), E-014 (convolution in the extra blocks) and E-015 (25 Hz, only
+   if the 1-thread gate had failed — it passed at 21.17× on 20 s).
+3. **P11 — optional third R1 seed** with per-eval checkpoints; no longer a
+   prerequisite.
 
 P8/E-024 is closed: the ×3-term LM changed probabilities but no R-S1-cal
 decision (byte-identical hypotheses), S1-dev was a tie, and E-034c stays
 (D30). E-018 is closed: no mixed teacher qualifies, so E-019 stays monolingual
 Italian (D31). E-022 is closed as an oracle ceiling: keyterm bias is worth a
-realistic-glossary/UI decision but is not shipped (D32). None has a pending
-readout.
+realistic-glossary/UI decision but is not shipped (D32). E-025/E-020 is closed:
+the LLM text was leakage-clean and in budget but gave a calibration tie, so
+E-034c stays (D33). None has a pending readout.
 
 `R-S1-cal` and S1-dev stay as they are: no new recordings are planned. New
 cues never come from `text/pool.jsonl`, and future LM corpora must exclude the
@@ -295,13 +298,14 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D32, including checkpointing (D15), init (D16),
+- `docs/decisions.md` — D1–D33, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
   MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier
   models as teachers (D24, proposed), E-034c (D25), E-023 R1 by amendment
   (D26), R1 seed 0 as the product (D27), the vendored web runtime / E-016
   (D28), the min-runs-3 segmentation rule (D29), the rejected ×3-term LM (D30),
-  E-018's no-mixed-teacher result (D31) and the E-022 oracle ceiling (D32).
+  E-018's no-mixed-teacher result (D31), the E-022 oracle ceiling (D32) and the
+  rejected LLM-text LM (D33).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
   cannot give MOTH-50; licences; teachers.
@@ -328,6 +332,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md` — P8 ×3-term LM, negative.
 - `runs/E-018/RESULT.md` — teacher bake-off: Parakeet/Whisper/Canary results, Voxtral exclusion, no mixed teacher.
 - `runs/E-022/RESULT.md` — keyterm oracle upper bound, bonus curve, S1-dev ceiling.
+- `experiments/E-025-e020-llm-text.md`, `runs/E-025/RESULT.md` — LLM text, negative.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and
