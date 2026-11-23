@@ -62,7 +62,7 @@ external evidence.
 The rationale, parameter counts and gates for E-003–E-008 are in
 `docs/architecture-options.md`; the corrected Moth evidence, the measurements
 and the proposals that may change them are in `docs/review-2026-11-17.md`. The
-post-E-005 plan (E-009–E-022 and the re-scoped E-004/E-006) and its gates are in
+post-E-005 plan (E-009–E-023 and the re-scoped E-004/E-006) and its gates are in
 `experiments/next-experiments.md`; the frontier-model review behind E-017–E-022
 is `docs/frontier-stt-2026-11-19.md` (D24). Do
 not start E-003 before E-002 has frozen the evaluation protocol; T is a

@@ -51,13 +51,15 @@ running, and the exact next commands. Update it at the end of each session.
   **pre-A3 LM** (`dcf1d59f…`) and Moth 0.8.1's NOTICE. The verdict stood, and
   the final A3 numbers above supersede the old ones. The tools pin A3 by sha256
   (`tools/release_assets.py`).
-- **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-022.
+- **Plan:** `experiments/next-experiments.md` pre-registers E-009–E-023;
+  E-024 and E-025 were added later as separate pre-registrations.
   **E-009 kept the frozen decoder; E-012 passed both gates (16 kHz VAD + lossless
   MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21); E-011 won dev-macro but
   failed the S1-dev ETA rule on seed 0 and was not adopted (D22); E-004 arm B
   moved the product LM to E-034 N2_1_1 (D23). E-013–E-015 have not run.
   E-017 is done (400-cue `R-S1-cal` reviewed, recorded, level-matched,
-  manifest + shards built, E-002 §8 written); E-018–E-022 have not run.
+  manifest + shards built, E-002 §8 written); E-019 and E-021 have not run;
+  E-018, E-020/E-025 and E-022 are recorded below.
   E-023 R1 is adopted (E-002 §9 + D26, then D27 after the T-600 guard);
   E-016/P4 and E-016b are done (D28/D29, web runtime vendored and patched);
   E-024/P8 ran and was not adopted (×3-term LM: cal identical, D30); E-018 found
@@ -317,7 +319,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `experiments/E-002-s1-dev.md` — S1-dev recording and manifest runbook.
 - `experiments/E-003-plan.md` — arms, screen result and E-005 follow-up.
 - `experiments/next-experiments.md` — post-E-005 plan: E-005 addendum and
-  FLEURS, E-009–E-022, re-scoped E-004/E-006, gates and commands.
+  FLEURS, E-009–E-023, re-scoped E-004/E-006, gates and commands.
 - `runs/E-005/RESULT.md` — long fine-tune, A3 readout, S1-dev, term analysis,
   package, browser.
 - `runs/E-010/RESULT.md` — encoder-LR screen; base+6 at 1e-4 wins.
