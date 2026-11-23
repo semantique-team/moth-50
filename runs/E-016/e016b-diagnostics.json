@@ -1,0 +1,291 @@
+{
+  "tool": "runs/E-016/e016b-diagnostics.json",
+  "note": "E-016b diagnostics; the T-600 concatenation is diagnostic only and never a selection input.",
+  "mls_it_dev": {
+    "clips": 100,
+    "ref_words": 5476,
+    "duration_s": [
+      21.41,
+      28.37
+    ],
+    "variants": {
+      "segment": {
+        "wer": 0.20672023374726078,
+        "wer_ci": [
+          0.1872692104800422,
+          0.2281735404392073
+        ],
+        "eta": null,
+        "insertion_rate": 2.794010226442659,
+        "paired_vs_segment": {
+          "wer_diff": 0.0,
+          "wer_diff_ci": [
+            0.0,
+            0.0
+          ],
+          "wer_tie": true,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      },
+      "noseg": {
+        "wer": 0.18571950328707085,
+        "wer_ci": [
+          0.16959375554372894,
+          0.20332480818414322
+        ],
+        "eta": null,
+        "insertion_rate": 2.6296566837107376,
+        "paired_vs_segment": {
+          "wer_diff": -0.021000730460189937,
+          "wer_diff_ci": [
+            -0.03363518758085382,
+            -0.009262622593534331
+          ],
+          "wer_tie": false,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      },
+      "minruns3": {
+        "wer": 0.20672023374726078,
+        "wer_ci": [
+          0.1872692104800422,
+          0.2281735404392073
+        ],
+        "eta": null,
+        "insertion_rate": 2.794010226442659,
+        "paired_vs_segment": {
+          "wer_diff": 0.0,
+          "wer_diff_ci": [
+            0.0,
+            0.0
+          ],
+          "wer_tie": true,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      }
+    }
+  },
+  "t600_concat": {
+    "clips": 100,
+    "ref_words": 2903,
+    "duration_s": [
+      10.48,
+      17.712
+    ],
+    "variants": {
+      "segment": {
+        "wer": 0.12125387530141234,
+        "wer_ci": [
+          0.10314376545390322,
+          0.13891726251276812
+        ],
+        "eta": null,
+        "insertion_rate": 0.7233895969686531,
+        "paired_vs_segment": {
+          "wer_diff": 0.0,
+          "wer_diff_ci": [
+            0.0,
+            0.0
+          ],
+          "wer_tie": true,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      },
+      "noseg": {
+        "wer": 0.1426110919738202,
+        "wer_ci": [
+          0.12546499830909705,
+          0.15993265993265993
+        ],
+        "eta": null,
+        "insertion_rate": 0.9989665862900448,
+        "paired_vs_segment": {
+          "wer_diff": 0.02135721667240785,
+          "wer_diff_ci": [
+            0.007703081232492998,
+            0.034891598915989155
+          ],
+          "wer_tie": false,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      },
+      "minruns3": {
+        "wer": 0.12125387530141234,
+        "wer_ci": [
+          0.10314376545390322,
+          0.13891726251276812
+        ],
+        "eta": null,
+        "insertion_rate": 0.7233895969686531,
+        "paired_vs_segment": {
+          "wer_diff": 0.0,
+          "wer_diff_ci": [
+            0.0,
+            0.0
+          ],
+          "wer_tie": true,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      }
+    }
+  },
+  "gold_train_concat": {
+    "clips": 100,
+    "ref_words": 2890,
+    "duration_s": [
+      12.304,
+      20.581
+    ],
+    "variants": {
+      "segment": {
+        "wer": 0.004844290657439446,
+        "wer_ci": [
+          0.0010630758327427356,
+          0.009813874788494078
+        ],
+        "eta": null,
+        "insertion_rate": 0.06920415224913495,
+        "paired_vs_segment": {
+          "wer_diff": 0.0,
+          "wer_diff_ci": [
+            0.0,
+            0.0
+          ],
+          "wer_tie": true,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      },
+      "noseg": {
+        "wer": 0.0058823529411764705,
+        "wer_ci": [
+          0.0027816411682892906,
+          0.0100974930362117
+        ],
+        "eta": null,
+        "insertion_rate": 0.0,
+        "paired_vs_segment": {
+          "wer_diff": 0.0010380622837370245,
+          "wer_diff_ci": [
+            -0.002106741573033708,
+            0.00418702023726448
+          ],
+          "wer_tie": true,
+          "eta_diff": null,
+          "eta_diff_ci": null,
+          "eta_tie": false
+        }
+      }
+    }
+  },
+  "s1_dev_by_vad_runs": {
+    "runs=1": {
+      "clips": 882,
+      "default": {
+        "wer": 0.13889386074816537,
+        "wer_ci": [
+          0.12871287128712872,
+          0.14957187101475677
+        ],
+        "eta": 0.7454764776839565,
+        "insertion_rate": 1.6108824055843924
+      },
+      "noseg": {
+        "wer": 0.13889386074816537,
+        "wer_ci": [
+          0.12871287128712872,
+          0.14957187101475677
+        ],
+        "eta": 0.7454764776839565,
+        "insertion_rate": 1.6108824055843924
+      },
+      "minruns3": {
+        "wer": 0.13889386074816537,
+        "wer_ci": [
+          0.12871287128712872,
+          0.14957187101475677
+        ],
+        "eta": 0.7454764776839565,
+        "insertion_rate": 1.6108824055843924
+      }
+    },
+    "runs=2": {
+      "clips": 73,
+      "default": {
+        "wer": 0.1559633027522936,
+        "wer_ci": [
+          0.13191881918819187,
+          0.18317757009345795
+        ],
+        "eta": 0.7317073170731707,
+        "insertion_rate": 2.293577981651376
+      },
+      "noseg": {
+        "wer": 0.13211009174311927,
+        "wer_ci": [
+          0.11188811188811189,
+          0.15283018867924528
+        ],
+        "eta": 0.7357723577235772,
+        "insertion_rate": 1.3761467889908257
+      },
+      "minruns3": {
+        "wer": 0.13211009174311927,
+        "wer_ci": [
+          0.11188811188811189,
+          0.15283018867924528
+        ],
+        "eta": 0.7357723577235772,
+        "insertion_rate": 1.3761467889908257
+      }
+    },
+    "runs>=3": {
+      "clips": 5,
+      "default": {
+        "wer": 0.1130952380952381,
+        "wer_ci": [
+          0.09714285714285714,
+          0.12962962962962962
+        ],
+        "eta": 0.9166666666666666,
+        "insertion_rate": 2.9761904761904763
+      },
+      "noseg": {
+        "wer": 0.11904761904761904,
+        "wer_ci": [
+          0.10778443113772455,
+          0.13836477987421383
+        ],
+        "eta": 0.9097222222222222,
+        "insertion_rate": 3.5714285714285716
+      },
+      "minruns3": {
+        "wer": 0.1130952380952381,
+        "wer_ci": [
+          0.09714285714285714,
+          0.12962962962962962
+        ],
+        "eta": 0.9166666666666666,
+        "insertion_rate": 2.9761904761904763
+      }
+    }
+  },
+  "long_audio_smoke": {
+    "audio_seconds": 35.0,
+    "segments": 8,
+    "note": "35 s clip with eight pauses; the >30 s path still segments."
+  }
+}

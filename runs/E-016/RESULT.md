@@ -2,14 +2,16 @@
 
 > **Status: done 2026-11-23.** The 1-thread non-isolated gate passes
 > (**10.93× / 19.74× / 21.17×** on 5 / 10 / 20 s, gate ≥ 8×). The
-> browser-vs-Python comparison is explained rather than identical: the runtime
+> browser-vs-Python comparison is explained rather than identical: the upstream
 > default (VAD segmentation) is **+0.72 pp WER** (CI excludes zero), while
 > `segment: false` is a statistical tie (**+0.35 pp** [−0.13, +0.82]); the
 > residual 263/960 differences are numerical near-ties, the same class Moth
-> E-022 measured at 70–77 % identity. The web runtime is vendored byte-identical
-> at `0e15442` (D28). **Finding:** the browser default costs ~0.4–0.7 pp WER on
-> S1-dev versus the Python readout; a follow-up should auto-disable segmentation
-> when the clip fits one 30 s segment. No product change was made here.
+> E-022 measured at 70–77 % identity. The web runtime is vendored at `0e15442`
+> (D28). **E-016b (D29) then adopted a one-file rule:** split at **three or
+> more VAD runs** for clips that fit one 30 s segment (two or more for longer
+> audio). S1-dev browser WER is now **13.7180 %** vs Python 13.3820 % (+0.34 pp
+> [−0.13, +0.79], tie), and the multi-sentence diagnostics keep the segmented
+> behaviour. See `runs/E-016/E-016b.md`.
 
 ## 1-thread RTFx without cross-origin isolation
 
@@ -66,22 +68,25 @@ by `tools/serve_web.py`, Chromium 159, 4 threads, isolated. Scoring:
 - **No release-package bug was found.** The graph, LM and decoder are the same;
   the browser verifies every sha256 and transcribes the reference clip exactly.
 
-**Finding, not fixed here.** The product runtime's default gives **14.10 %**
-on S1-dev against the Python readout's **13.38 %**, while `segment: false`
-gives **13.73 %** (tie). The page records at most 30 s, but the file input
-accepts longer audio, where segmentation is required. The follow-up is a dated
-runtime decision (E-016b): auto-disable segmentation when `pcm.length` fits one
-30 s segment, keep it for longer inputs, and re-read S1-dev. Until then the
-Python readout numbers remain the reported product WER, with the browser gap
-recorded. `runs/E-016/browser-vs-python.json`.
+**Finding → E-016b (D29).** The upstream default gave **14.10 %** on S1-dev
+against the Python readout's **13.38 %**, while `segment: false` gave
+**13.73 %** (tie). A blanket auto-off below 30 s was rejected: it removes
+segmentation from multi-sentence clips and lost 2.14 pp on a five-sentence
+diagnostic. The adopted rule splits at **three or more VAD runs** for clips
+that fit one 30 s segment and at two or more for longer recordings. S1-dev is
+now **13.7180 %** (+0.34 pp [−0.13, +0.79], tie), and the 35 s smoke still
+yields 8 segments. Details and the multi-sentence diagnostics are in
+`runs/E-016/E-016b.md`; `runs/E-016/browser-vs-python.json` keeps the three
+S1-dev variants.
 
 ## Vendored runtime
 
-`vendor/moth-stt-web/` contains 12 files byte-identical to
-`semantique-team/moth-stt` at `0e15442ecb85dffcb4edd68e9d9ece18af6f35df`
-(on top of `b0fa11c`), Apache-2.0. Hashes and the re-sync rule are in
-`vendor/moth-stt-web/PROVENANCE.md`. `node_modules/` is not vendored; install
-with `npm ci --prefix vendor/moth-stt-web`. Upstream `tests/` and `acceptance/`
+`vendor/moth-stt-web/` contains 12 files from `semantique-team/moth-stt` at
+`0e15442ecb85dffcb4edd68e9d9ece18af6f35df` (on top of `b0fa11c`),
+Apache-2.0. Eleven are byte-identical; `ort.js` carries the one-file E-016b
+segmentation patch (`96d099b5…`, diff and rationale in `PROVENANCE.md`).
+`node_modules/` is not vendored; install with
+`npm ci --prefix vendor/moth-stt-web`. Upstream `tests/` and `acceptance/`
 are not vendored because they depend on Moth's private runs and fixtures.
 
 New tooling:
@@ -120,9 +125,10 @@ python tools/serve_web.py --release runs/E-023/release-0.9.7 \
 node tools/browser_probe.mjs rtfx --base-url http://127.0.0.1:8791 \
   --threads 1 --clips /clips/clip-5s.wav,/clips/clip-10s.wav,/clips/clip-20s.wav \
   --out runs/E-016/rtfx-1thread-nonisolated.json
+# current runtime (min runs 3)
 node tools/browser_probe.mjs s1dev --base-url http://127.0.0.1:8790 \
   --threads 4 --manifest /dataset/manifests/R-S1-dev.jsonl \
-  --audio-base /dataset/ --out runs/E-016/s1-dev-browser-default.json
+  --audio-base /dataset/ --out runs/E-016/s1-dev-browser-minruns3.json
 node tools/browser_probe.mjs s1dev --base-url http://127.0.0.1:8790 \
   --threads 4 --manifest /dataset/manifests/R-S1-dev.jsonl \
   --audio-base /dataset/ --segment false --out runs/E-016/s1-dev-browser-noseg.json
@@ -130,7 +136,10 @@ uv run --frozen --project ../moth-stt --extra training -- \
   python tools/browser_parity.py \
   --manifest ../moth-cs-dataset/manifests/R-S1-dev.jsonl \
   --reference-hyp runs/E-023/s1-dev-s0.hyp.jsonl \
-  --browser runs/E-016/s1-dev-browser-default.json \
-  --browser runs/E-016/s1-dev-browser-noseg.json \
-  --out runs/E-016/browser-vs-python.json
+  --browser runs/E-016/s1-dev-browser-minruns3.json \
+  --out runs/E-016/browser-vs-python-minruns3.json
 ```
+
+`s1-dev-browser-default.json` was measured with the **upstream** two-run rule,
+before the E-016b patch. To reproduce it, restore `ort.js` from `0e15442` (or
+reverse `vendor/moth-stt-web/PATCH-2026-11-23.diff`) and run the same probe.
