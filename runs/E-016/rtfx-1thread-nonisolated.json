@@ -1,0 +1,93 @@
+{
+  "tool": "tools/browser_probe.mjs",
+  "mode": "rtfx",
+  "base_url": "http://127.0.0.1:8791",
+  "threads": 1,
+  "segment": null,
+  "browser": {
+    "version": "159.0.8154.6"
+  },
+  "errors": [],
+  "environment": {
+    "crossOriginIsolated": false,
+    "sharedArrayBuffer": false,
+    "numThreads": 1,
+    "simd": true,
+    "loadMs": 65.19999998807907,
+    "version": "0.9.7-e023-r1"
+  },
+  "results": [
+    {
+      "clip": "/clips/clip-5s.wav",
+      "audio_seconds": 5,
+      "single": {
+        "total_ms": 509.0999999642372,
+        "rtfx": 9.8212531925972,
+        "text": "ho spostato il meeting a domani ho sp"
+      },
+      "benchmark": {
+        "runs": 5,
+        "audio_s": 5,
+        "total_ms_median": 457.30000001192093,
+        "total_ms_min": 456.2999999523163,
+        "vad_ms_median": 20.69999998807907,
+        "feature_ms_median": 35.299999952316284,
+        "inference_ms_median": 390.7999999523163,
+        "decode_ms_median": 9.600000023841858,
+        "rtfx_median": 10.933741526065296,
+        "rtfx_inference": 12.7942681694219,
+        "num_threads": 1,
+        "cross_origin_isolated": false,
+        "simd": true
+      }
+    },
+    {
+      "clip": "/clips/clip-10s.wav",
+      "audio_seconds": 10,
+      "single": {
+        "total_ms": 505.89999997615814,
+        "rtfx": 19.76675232352496,
+        "text": "ho spostato il meeting è domani ho spostato il meeting di domani ho spostato il meeting a doman"
+      },
+      "benchmark": {
+        "runs": 5,
+        "audio_s": 10,
+        "total_ms_median": 506.60000002384186,
+        "total_ms_min": 505.5,
+        "vad_ms_median": 39.700000047683716,
+        "feature_ms_median": 38.10000002384186,
+        "inference_ms_median": 416.4000000357628,
+        "decode_ms_median": 10.599999964237213,
+        "rtfx_median": 19.739439398992054,
+        "rtfx_inference": 24.01536983463291,
+        "num_threads": 1,
+        "cross_origin_isolated": false,
+        "simd": true
+      }
+    },
+    {
+      "clip": "/clips/clip-20s.wav",
+      "audio_seconds": 20,
+      "single": {
+        "total_ms": 943.8000000119209,
+        "rtfx": 21.190930281571713,
+        "text": "ho spostato il meeting è domani ho spostato il meeting di domani ho spostato il meeting di domani ho spostato il meeting è domani ho spostato il meeting di domani"
+      },
+      "benchmark": {
+        "runs": 5,
+        "audio_s": 20,
+        "total_ms_median": 944.7999999523163,
+        "total_ms_min": 943.7000000476837,
+        "vad_ms_median": 78.80000001192093,
+        "feature_ms_median": 71.20000004768372,
+        "inference_ms_median": 773.6999999284744,
+        "decode_ms_median": 19.299999952316284,
+        "rtfx_median": 21.168501271178442,
+        "rtfx_inference": 25.849812591248448,
+        "num_threads": 1,
+        "cross_origin_isolated": false,
+        "simd": true
+      }
+    }
+  ]
+}

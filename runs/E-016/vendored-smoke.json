@@ -1,0 +1,34 @@
+{
+  "tool": "OpenCode in-app browser (browser tools)",
+  "runtime": "vendor/moth-stt-web",
+  "release": "runs/E-023/release-0.9.7",
+  "server": "tools/serve_web.py --release runs/E-023/release-0.9.7 --port 8780",
+  "page": "http://127.0.0.1:8780/web/index.html?threads=4",
+  "environment": {
+    "crossOriginIsolated": true,
+    "sharedArrayBuffer": true,
+    "numThreads": 4,
+    "simd": true,
+    "loadMs": 525.0900000333786,
+    "version": "0.9.7-e023-r1"
+  },
+  "sample": {
+    "audio": "../moth-cs-dataset/audio/T/S1/S1_0001.wav",
+    "reference": "ho spostato il meeting a domani",
+    "seconds": 3.9893125
+  },
+  "transcript": "ho spostato il meeting a domani",
+  "transcript_exact_match": true,
+  "frames": 399,
+  "outFrames": 199,
+  "segments": 1,
+  "timings_ms": {
+    "vad": 48.51500004529953,
+    "feature": 37.064999997615814,
+    "inference": 148.13499999046326,
+    "decode": 12.514999985694885,
+    "total": 247.30500000715256
+  },
+  "rtfx": 16.13114372893642,
+  "note": "Cold load in the in-app browser (525 ms); the package loads, verifies every sha256 and transcribes the T clip exactly. The RTFx here is a single run, not the median benchmark."
+}
