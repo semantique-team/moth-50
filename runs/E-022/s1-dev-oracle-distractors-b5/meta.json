@@ -1,0 +1,21 @@
+{
+  "tool": "tools/keyterm_probe.py",
+  "release": "runs/E-023/release-0.9.7",
+  "manifest": "../moth-cs-dataset/manifests/R-S1-dev.jsonl",
+  "audio_root": "../moth-cs-dataset",
+  "context": "oracle-distractors",
+  "bonus": 5.0,
+  "prefix_bonus": 0.25,
+  "segment": false,
+  "distractors_requested": 500,
+  "distractors_used": 480000,
+  "clips": 960,
+  "terms_used": 1994,
+  "terms_skipped": 0,
+  "errors": [],
+  "audio_seconds": 3078.07,
+  "wall_seconds": 94.41,
+  "rtfx": 32.603,
+  "output": "runs/E-022/s1-dev-oracle-distractors-b5/hyp.jsonl",
+  "note": "oracle context contains the answers; report-only, never a gate"
+}

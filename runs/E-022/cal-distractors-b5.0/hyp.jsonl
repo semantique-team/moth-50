@@ -1,0 +1,400 @@
+{"id": "R-S1-CAL-0001", "hyp": "il download si è fermato a metà", "latency_s": 0.0424}
+{"id": "R-S1-CAL-0002", "hyp": "ho fatto un backup prima di uscire", "latency_s": 0.0449}
+{"id": "R-S1-CAL-0003", "hyp": "il prossimo upgrade è stato rimandato", "latency_s": 0.0456}
+{"id": "R-S1-CAL-0004", "hyp": "mi serve un feedback sul testo", "latency_s": 0.0411}
+{"id": "R-S1-CAL-0005", "hyp": "la nuova deadline è a fine mese", "latency_s": 0.0406}
+{"id": "R-S1-CAL-0006", "hyp": "il budget non copre altre spese", "latency_s": 0.0427}
+{"id": "R-S1-CAL-0007", "hyp": "ho letto il report fino in fondo", "latency_s": 0.0429}
+{"id": "R-S1-CAL-0008", "hyp": "il preview del documento è vuoto", "latency_s": 0.041}
+{"id": "R-S1-CAL-0009", "hyp": "il login non funziona da ieri", "latency_s": 0.0427}
+{"id": "R-S1-CAL-0010", "hyp": "ho fatto logout il riaperto tutto", "latency_s": 0.0482}
+{"id": "R-S1-CAL-0011", "hyp": "il percorso di onboarding dura due settimane", "latency_s": 0.0502}
+{"id": "R-S1-CAL-0012", "hyp": "il workshop è stato davvero utile", "latency_s": 0.0457}
+{"id": "R-S1-CAL-0013", "hyp": "il briefing è iniziato con ritardo", "latency_s": 0.0404}
+{"id": "R-S1-CAL-0014", "hyp": "faccio coaching con una collega", "latency_s": 0.0506}
+{"id": "R-S1-CAL-0015", "hyp": "lo sprint chiude tre giorni", "latency_s": 0.0446}
+{"id": "R-S1-CAL-0016", "hyp": "lo standup è alle nove e mezza", "latency_s": 0.0438}
+{"id": "R-S1-CAL-0017", "hyp": "il ticket è ancora aperto", "latency_s": 0.0351}
+{"id": "R-S1-CAL-0018", "hyp": "ho trovato un buger nel form", "latency_s": 0.043}
+{"id": "R-S1-CAL-0019", "hyp": "la task è assegnata a me", "latency_s": 0.0402}
+{"id": "R-S1-CAL-0020", "hyp": "il template va aggiornato subito", "latency_s": 0.0399}
+{"id": "R-S1-CAL-0021", "hyp": "la dashboard mostra dati i vecchi", "latency_s": 0.046}
+{"id": "R-S1-CAL-0022", "hyp": "il cluster è andato in errore", "latency_s": 0.0459}
+{"id": "R-S1-CAL-0023", "hyp": "il server ha bisogno di memoria", "latency_s": 0.0454}
+{"id": "R-S1-CAL-0024", "hyp": "il database è in manutenzione", "latency_s": 0.042}
+{"id": "R-S1-CAL-0025", "hyp": "la cache si è svuotata da sola", "latency_s": 0.0426}
+{"id": "R-S1-CAL-0026", "hyp": "ho settato i cooki per sbaglio", "latency_s": 0.0341}
+{"id": "R-S1-CAL-0027", "hyp": "il browser si chiude da solo", "latency_s": 0.0381}
+{"id": "R-S1-CAL-0028", "hyp": "il desktop è troppo vecchio", "latency_s": 0.0381}
+{"id": "R-S1-CAL-0029", "hyp": "il laptop scalda molto in estate", "latency_s": 0.0495}
+{"id": "R-S1-CAL-0030", "hyp": "il monitor grande è rotto", "latency_s": 0.0393}
+{"id": "R-S1-CAL-0031", "hyp": "il mouse non risponde click", "latency_s": 0.0359}
+{"id": "R-S1-CAL-0032", "hyp": "la chiboard ha un tasto rotto", "latency_s": 0.0341}
+{"id": "R-S1-CAL-0033", "hyp": "lo scanner è incepato di nuovo", "latency_s": 0.0512}
+{"id": "R-S1-CAL-0034", "hyp": "la cloud costa troppo ogni mese", "latency_s": 0.0522}
+{"id": "R-S1-CAL-0035", "hyp": "lo storage è quasi pieno", "latency_s": 0.038}
+{"id": "R-S1-CAL-0036", "hyp": "la folder dei contratti è vuota", "latency_s": 0.0451}
+{"id": "R-S1-CAL-0037", "hyp": "il file pesante non parte", "latency_s": 0.0396}
+{"id": "R-S1-CAL-0038", "hyp": "il link della riunione è sbagliato", "latency_s": 0.0433}
+{"id": "R-S1-CAL-0039", "hyp": "il mio account è stato bloccato", "latency_s": 0.0377}
+{"id": "R-S1-CAL-0040", "hyp": "la password scade domani mattina", "latency_s": 0.0399}
+{"id": "R-S1-CAL-0041", "hyp": "il mio profilo è in stand byy", "latency_s": 0.04}
+{"id": "R-S1-CAL-0042", "hyp": "le settings sono cambiate da sole", "latency_s": 0.0501}
+{"id": "R-S1-CAL-0043", "hyp": "il nuovo update è partito stano", "latency_s": 0.0431}
+{"id": "R-S1-CAL-0044", "hyp": "la patch è arrivata ieri", "latency_s": 0.0371}
+{"id": "R-S1-CAL-0045", "hyp": "la release esce lunedì mattina", "latency_s": 0.0412}
+{"id": "R-S1-CAL-0046", "hyp": "il rollback è stato veloce", "latency_s": 0.042}
+{"id": "R-S1-CAL-0047", "hyp": "il checkpoint è salvato sul disco", "latency_s": 0.0452}
+{"id": "R-S1-CAL-0048", "hyp": "la pipeline si è fermata", "latency_s": 0.0371}
+{"id": "R-S1-CAL-0049", "hyp": "il milestone è stato aggiunto", "latency_s": 0.0396}
+{"id": "R-S1-CAL-0050", "hyp": "la roadmap è ancora provisorie", "latency_s": 0.0409}
+{"id": "R-S1-CAL-0051", "hyp": "la free trial dura un mese", "latency_s": 0.035}
+{"id": "R-S1-CAL-0052", "hyp": "lo stress test è andato male", "latency_s": 0.0463}
+{"id": "R-S1-CAL-0053", "hyp": "mi piace la user experience", "latency_s": 0.045}
+{"id": "R-S1-CAL-0054", "hyp": "il customer care risponde tardi", "latency_s": 0.0469}
+{"id": "R-S1-CAL-0055", "hyp": "la code review è chiusa", "latency_s": 0.0333}
+{"id": "R-S1-CAL-0056", "hyp": "il design system è pronto", "latency_s": 0.0409}
+{"id": "R-S1-CAL-0057", "hyp": "lo sprint planning è lunedì", "latency_s": 0.0376}
+{"id": "R-S1-CAL-0058", "hyp": "il daily standup dura poco", "latency_s": 0.0436}
+{"id": "R-S1-CAL-0059", "hyp": "la release note è troppo lunga", "latency_s": 0.0403}
+{"id": "R-S1-CAL-0060", "hyp": "il rollback plan è pronto", "latency_s": 0.0352}
+{"id": "R-S1-CAL-0061", "hyp": "ho scritto un bug report", "latency_s": 0.0389}
+{"id": "R-S1-CAL-0062", "hyp": "la feature flag è disattivata", "latency_s": 0.0441}
+{"id": "R-S1-CAL-0063", "hyp": "il load balancer è scaduto", "latency_s": 0.0439}
+{"id": "R-S1-CAL-0064", "hyp": "questo è un edge case", "latency_s": 0.0367}
+{"id": "R-S1-CAL-0065", "hyp": "il use case è chiaro", "latency_s": 0.0379}
+{"id": "R-S1-CAL-0066", "hyp": "il test segue un happy pet", "latency_s": 0.0435}
+{"id": "R-S1-CAL-0067", "hyp": "il smoke test è passato", "latency_s": 0.0456}
+{"id": "R-S1-CAL-0068", "hyp": "lo unit test copre poco", "latency_s": 0.0388}
+{"id": "R-S1-CAL-0069", "hyp": "abbiamo fatto un test end to end", "latency_s": 0.0454}
+{"id": "R-S1-CAL-0070", "hyp": "il progetto è open source", "latency_s": 0.0382}
+{"id": "R-S1-CAL-0071", "hyp": "studiamo machine learning da mesi", "latency_s": 0.0437}
+{"id": "R-S1-CAL-0072", "hyp": "il corso di deep learning è lungo", "latency_s": 0.0419}
+{"id": "R-S1-CAL-0073", "hyp": "il large language model è costoso", "latency_s": 0.0533}
+{"id": "R-S1-CAL-0074", "hyp": "faccio p engineering tutto il giorno", "latency_s": 0.047}
+{"id": "R-S1-CAL-0075", "hyp": "il fine thing è finito", "latency_s": 0.0382}
+{"id": "R-S1-CAL-0076", "hyp": "il modello è zero shot", "latency_s": 0.0425}
+{"id": "R-S1-CAL-0077", "hyp": "abbiamo usato fix shot per prova", "latency_s": 0.041}
+{"id": "R-S1-CAL-0078", "hyp": "il chin of thought aiuta", "latency_s": 0.0417}
+{"id": "R-S1-CAL-0079", "hyp": "la context window è piena", "latency_s": 0.0408}
+{"id": "R-S1-CAL-0080", "hyp": "il token budget è finito", "latency_s": 0.0352}
+{"id": "R-S1-CAL-0081", "hyp": "la latency budget è stretta", "latency_s": 0.048}
+{"id": "R-S1-CAL-0082", "hyp": "il nostro er rate è salito", "latency_s": 0.0443}
+{"id": "R-S1-CAL-0083", "hyp": "la conversion rate è bassa", "latency_s": 0.0416}
+{"id": "R-S1-CAL-0084", "hyp": "il churn rate è troppo alto", "latency_s": 0.0425}
+{"id": "R-S1-CAL-0085", "hyp": "la retention rate è stabile", "latency_s": 0.0412}
+{"id": "R-S1-CAL-0086", "hyp": "il net promoter score è alto", "latency_s": 0.0482}
+{"id": "R-S1-CAL-0087", "hyp": "la quarterly review è domani", "latency_s": 0.0454}
+{"id": "R-S1-CAL-0088", "hyp": "il board meeting è ririnviato", "latency_s": 0.0388}
+{"id": "R-S1-CAL-0089", "hyp": "ho want to one con lei", "latency_s": 0.0398}
+{"id": "R-S1-CAL-0090", "hyp": "parliamone off the record domani", "latency_s": 0.0658}
+{"id": "R-S1-CAL-0091", "hyp": "siamo on the same page", "latency_s": 0.0425}
+{"id": "R-S1-CAL-0092", "hyp": "il nostro action item è tuo", "latency_s": 0.0429}
+{"id": "R-S1-CAL-0093", "hyp": "facciamo un follow up lunedì", "latency_s": 0.0364}
+{"id": "R-S1-CAL-0094", "hyp": "il kickoff è alle dieci", "latency_s": 0.0377}
+{"id": "R-S1-CAL-0095", "hyp": "il rapup è stato veloce", "latency_s": 0.035}
+{"id": "R-S1-CAL-0096", "hyp": "facciamo un deep dive sul tema", "latency_s": 0.0471}
+{"id": "R-S1-CAL-0097", "hyp": "per noi è un quick win", "latency_s": 0.0357}
+{"id": "R-S1-CAL-0098", "hyp": "ho ordinato il cavo su express", "latency_s": 0.0493}
+{"id": "R-S1-CAL-0099", "hyp": "il sito gira su shopify", "latency_s": 0.0372}
+{"id": "R-S1-CAL-0100", "hyp": "la coda è davvero spaziosa", "latency_s": 0.0517}
+{"id": "R-S1-CAL-0101", "hyp": "ormai invito sempre con rom", "latency_s": 0.0426}
+{"id": "R-S1-CAL-0102", "hyp": "il trapano è un bash", "latency_s": 0.0401}
+{"id": "R-S1-CAL-0103", "hyp": "lo scaffale è il romerlan", "latency_s": 0.0467}
+{"id": "R-S1-CAL-0104", "hyp": "il caffèllo prende da starbucks", "latency_s": 0.0405}
+{"id": "R-S1-CAL-0105", "hyp": "ho comprato le candele da ikea", "latency_s": 0.0405}
+{"id": "R-S1-CAL-0106", "hyp": "la giacca è di decathlon", "latency_s": 0.0348}
+{"id": "R-S1-CAL-0107", "hyp": "la maglietta nuova è uniclo", "latency_s": 0.0499}
+{"id": "R-S1-CAL-0108", "hyp": "il pimino è di zara", "latency_s": 0.0305}
+{"id": "R-S1-CAL-0109", "hyp": "le scarpe nuove sono i", "latency_s": 0.0326}
+{"id": "R-S1-CAL-0110", "hyp": "la bon nuova è adidas", "latency_s": 0.0345}
+{"id": "R-S1-CAL-0111", "hyp": "i calzini nuovi sono puma", "latency_s": 0.0372}
+{"id": "R-S1-CAL-0112", "hyp": "il telefono nuovo è apple", "latency_s": 0.0406}
+{"id": "R-S1-CAL-0113", "hyp": "il tablet nuovo è samsung", "latency_s": 0.0367}
+{"id": "R-S1-CAL-0114", "hyp": "lo scooter è nuovo è shoom", "latency_s": 0.0354}
+{"id": "R-S1-CAL-0115", "hyp": "il router è nuovo è wway", "latency_s": 0.0407}
+{"id": "R-S1-CAL-0116", "hyp": "il portatile è nuovo è l novo", "latency_s": 0.0376}
+{"id": "R-S1-CAL-0117", "hyp": "il monitor nuovo ède", "latency_s": 0.0387}
+{"id": "R-S1-CAL-0118", "hyp": "la stampante è nuova è a kp", "latency_s": 0.0382}
+{"id": "R-S1-CAL-0119", "hyp": "la scheda madre è aus", "latency_s": 0.0388}
+{"id": "R-S1-CAL-0120", "hyp": "il computer fisso è hcher", "latency_s": 0.0405}
+{"id": "R-S1-CAL-0121", "hyp": "il televisorre è nuovo è sony", "latency_s": 0.0405}
+{"id": "R-S1-CAL-0122", "hyp": "la cassa portatile è bose", "latency_s": 0.0505}
+{"id": "R-S1-CAL-0123", "hyp": "la cassa nuova è jbl", "latency_s": 0.0387}
+{"id": "R-S1-CAL-0124", "hyp": "l'odio della corsa è garming", "latency_s": 0.036}
+{"id": "R-S1-CAL-0125", "hyp": "il bracciale è nuovo è fit bat", "latency_s": 0.0336}
+{"id": "R-S1-CAL-0126", "hyp": "la macchina elettrica è isla", "latency_s": 0.0409}
+{"id": "R-S1-CAL-0127", "hyp": "la macchina nuova è toyota", "latency_s": 0.0387}
+{"id": "R-S1-CAL-0128", "hyp": "il furgone aziendale è vu vin", "latency_s": 0.0477}
+{"id": "R-S1-CAL-0129", "hyp": "la panda vecchia è fat", "latency_s": 0.0356}
+{"id": "R-S1-CAL-0130", "hyp": "la bolletta della luce ède", "latency_s": 0.0452}
+{"id": "R-S1-CAL-0131", "hyp": "il gus della casa è a hei", "latency_s": 0.0372}
+{"id": "R-S1-CAL-0132", "hyp": "la linea di casa è team", "latency_s": 0.0354}
+{"id": "R-S1-CAL-0133", "hyp": "la sim nuova e v da fon", "latency_s": 0.0339}
+{"id": "R-S1-CAL-0134", "hyp": "il contratto nuovo è win tre", "latency_s": 0.0446}
+{"id": "R-S1-CAL-0135", "hyp": "l'offerta più conveniente è iliad", "latency_s": 0.0444}
+{"id": "R-S1-CAL-0136", "hyp": "il conto corrente è uni credit", "latency_s": 0.0403}
+{"id": "R-S1-CAL-0137", "hyp": "la banca è intesa san paolo", "latency_s": 0.0368}
+{"id": "R-S1-CAL-0138", "hyp": "ormai uso satispy per pagare", "latency_s": 0.0413}
+{"id": "R-S1-CAL-0139", "hyp": "pago quasi sempre con paypal", "latency_s": 0.0365}
+{"id": "R-S1-CAL-0140", "hyp": "ordino quasi tutto su amazon", "latency_s": 0.0363}
+{"id": "R-S1-CAL-0141", "hyp": "la serie è su netflix", "latency_s": 0.0409}
+{"id": "R-S1-CAL-0142", "hyp": "ascolto le canzoni su spotify", "latency_s": 0.0383}
+{"id": "R-S1-CAL-0143", "hyp": "il cartone è su disney", "latency_s": 0.0354}
+{"id": "R-S1-CAL-0144", "hyp": "la puntata è su paramount", "latency_s": 0.0358}
+{"id": "R-S1-CAL-0145", "hyp": "l'appartamento in centro è su airbnb", "latency_s": 0.0475}
+{"id": "R-S1-CAL-0146", "hyp": "il volo di domani è riio", "latency_s": 0.0479}
+{"id": "R-S1-CAL-0147", "hyp": "il treno veloce è italo", "latency_s": 0.0377}
+{"id": "R-S1-CAL-0148", "hyp": "serve il codice che per la pratica", "latency_s": 0.0605}
+{"id": "R-S1-CAL-0149", "hyp": "il mcv è stato calcolato bene", "latency_s": 0.0463}
+{"id": "R-S1-CAL-0150", "hyp": "abbiamo pagato li in anticipo", "latency_s": 0.0416}
+{"id": "R-S1-CAL-0151", "hyp": "il tcv è salito molto", "latency_s": 0.0418}
+{"id": "R-S1-CAL-0152", "hyp": "stiamo provando un elm è più piccolo", "latency_s": 0.0453}
+{"id": "R-S1-CAL-0153", "hyp": "il dk va aggiornato questa settimana", "latency_s": 0.0438}
+{"id": "R-S1-CAL-0154", "hyp": "le api risponde spesso in ritardo", "latency_s": 0.0436}
+{"id": "R-S1-CAL-0155", "hyp": "l'url del form non è valido", "latency_s": 0.0455}
+{"id": "R-S1-CAL-0156", "hyp": "il file html è rotto", "latency_s": 0.045}
+{"id": "R-S1-CAL-0157", "hyp": "il c ss è da rif", "latency_s": 0.0422}
+{"id": "R-S1-CAL-0158", "hyp": "il file json è vuoto", "latency_s": 0.036}
+{"id": "R-S1-CAL-0159", "hyp": "il file xml è vuoto", "latency_s": 0.0508}
+{"id": "R-S1-CAL-0160", "hyp": "la quar swl è lenta", "latency_s": 0.0403}
+{"id": "R-S1-CAL-0161", "hyp": "ilmal ha un errore", "latency_s": 0.0452}
+{"id": "R-S1-CAL-0162", "hyp": "il csv contiene duemila righe", "latency_s": 0.0458}
+{"id": "R-S1-CAL-0163", "hyp": "il pdf è troppo pesante", "latency_s": 0.0381}
+{"id": "R-S1-CAL-0164", "hyp": "il docx non si apre", "latency_s": 0.0317}
+{"id": "R-S1-CAL-0165", "hyp": "il file excels è corrotto", "latency_s": 0.0535}
+{"id": "R-S1-CAL-0166", "hyp": "l'immagine png è troppo sfocata", "latency_s": 0.0506}
+{"id": "R-S1-CAL-0167", "hyp": "la foto jpg è scu", "latency_s": 0.0353}
+{"id": "R-S1-CAL-0168", "hyp": "il logo svg è vettoriale", "latency_s": 0.0683}
+{"id": "R-S1-CAL-0169", "hyp": "la gif è troppo grande", "latency_s": 0.036}
+{"id": "R-S1-CAL-0170", "hyp": "l'udio wav si sente male", "latency_s": 0.0448}
+{"id": "R-S1-CAL-0171", "hyp": "il video avi è bloccato", "latency_s": 0.0458}
+{"id": "R-S1-CAL-0172", "hyp": "il wifi non arriva in cucina", "latency_s": 0.0468}
+{"id": "R-S1-CAL-0173", "hyp": "la vpn è caduta di nuovo", "latency_s": 0.0462}
+{"id": "R-S1-CAL-0174", "hyp": "il dns è lento oggi", "latency_s": 0.0409}
+{"id": "R-S1-CAL-0175", "hyp": "l'indirizzo ip è cambiato stanotte", "latency_s": 0.0487}
+{"id": "R-S1-CAL-0176", "hyp": "il tcp è più affidabile", "latency_s": 0.0463}
+{"id": "R-S1-CAL-0177", "hyp": "ludp perde pacchetti in rete", "latency_s": 0.0453}
+{"id": "R-S1-CAL-0178", "hyp": "il sitotp è in sicuro", "latency_s": 0.059}
+{"id": "R-S1-CAL-0179", "hyp": "la pagina atps è sicuro", "latency_s": 0.0579}
+{"id": "R-S1-CAL-0180", "hyp": "la sessione ssh è scaduta", "latency_s": 0.0542}
+{"id": "R-S1-CAL-0181", "hyp": "il ftp è ancora attivo sul server", "latency_s": 0.0494}
+{"id": "R-S1-CAL-0182", "hyp": "il server smtp è giù", "latency_s": 0.0394}
+{"id": "R-S1-CAL-0183", "hyp": "la cpu lavora troppo da ore", "latency_s": 0.0567}
+{"id": "R-S1-CAL-0184", "hyp": "la gpu nuova scalda poco", "latency_s": 0.0426}
+{"id": "R-S1-CAL-0185", "hyp": "la ram è insufficiente per tutto", "latency_s": 0.0491}
+{"id": "R-S1-CAL-0186", "hyp": "il disco ssd è pieno", "latency_s": 0.0537}
+{"id": "R-S1-CAL-0187", "hyp": "il ladd è quasi pieno di foto", "latency_s": 0.0521}
+{"id": "R-S1-CAL-0188", "hyp": "la porta usb è bloccata", "latency_s": 0.0534}
+{"id": "R-S1-CAL-0189", "hyp": "mi serve un cavo hma lungo", "latency_s": 0.0648}
+{"id": "R-S1-CAL-0190", "hyp": "il pagamento nfc è passato", "latency_s": 0.0557}
+{"id": "R-S1-CAL-0191", "hyp": "il badgefd è smagnetizzato", "latency_s": 0.0714}
+{"id": "R-S1-CAL-0192", "hyp": "il qr code è illeggibile", "latency_s": 0.0533}
+{"id": "R-S1-CAL-0193", "hyp": "il pin è troppo semplice", "latency_s": 0.0392}
+{"id": "R-S1-CAL-0194", "hyp": "lotp non arriva sul telefono", "latency_s": 0.0524}
+{"id": "R-S1-CAL-0195", "hyp": "il kpi è in crescita", "latency_s": 0.0502}
+{"id": "R-S1-CAL-0196", "hyp": "il roi è negativo da mesi", "latency_s": 0.0468}
+{"id": "R-S1-CAL-0197", "hyp": "il batte da è migliorato molto", "latency_s": 0.0457}
+{"id": "R-S1-CAL-0198", "hyp": "il data breach è stato chiuso", "latency_s": 0.0434}
+{"id": "R-S1-CAL-0199", "hyp": "la weekly review è lunedì", "latency_s": 0.0468}
+{"id": "R-S1-CAL-0200", "hyp": "il customer journey è troppo lungo", "latency_s": 0.0451}
+{"id": "R-S1-CAL-0201", "hyp": "scrivo i next steps nel messaggio", "latency_s": 0.0513}
+{"id": "R-S1-CAL-0202", "hyp": "il low hanging for it è un altro", "latency_s": 0.0594}
+{"id": "R-S1-CAL-0203", "hyp": "ogni tanto le best practis cambiano", "latency_s": 0.0563}
+{"id": "R-S1-CAL-0204", "hyp": "ho wish listato due giochi per natale", "latency_s": 0.0493}
+{"id": "R-S1-CAL-0205", "hyp": "ho up uploadato le foto ieri", "latency_s": 0.042}
+{"id": "R-S1-CAL-0206", "hyp": "hanno downgradato il programma ieri", "latency_s": 0.0538}
+{"id": "R-S1-CAL-0207", "hyp": "hanno briefato tutti sul lancio", "latency_s": 0.0436}
+{"id": "R-S1-CAL-0208", "hyp": "ho mailato il documento al capo", "latency_s": 0.0461}
+{"id": "R-S1-CAL-0209", "hyp": "ho flaggato la foto volgare", "latency_s": 0.0471}
+{"id": "R-S1-CAL-0210", "hyp": "abbiamo deployato la nuova versione", "latency_s": 0.0468}
+{"id": "R-S1-CAL-0211", "hyp": "ho shippato la funzione in anticipo", "latency_s": 0.0524}
+{"id": "R-S1-CAL-0212", "hyp": "ho testato il flusso completo", "latency_s": 0.039}
+{"id": "R-S1-CAL-0213", "hyp": "ho fixato il problema in mattinata", "latency_s": 0.0504}
+{"id": "R-S1-CAL-0214", "hyp": "ho patchato il sistema stanotte", "latency_s": 0.0599}
+{"id": "R-S1-CAL-0215", "hyp": "ho rollbackato l'ultima modifica ieri", "latency_s": 0.0577}
+{"id": "R-S1-CAL-0216", "hyp": "ho taggato tutti nel canale", "latency_s": 0.0459}
+{"id": "R-S1-CAL-0217", "hyp": "ho postato l'annuncio sul sito", "latency_s": 0.0396}
+{"id": "R-S1-CAL-0218", "hyp": "ho chattato con il supporto", "latency_s": 0.0466}
+{"id": "R-S1-CAL-0219", "hyp": "ho streammato la presentazione per tutti", "latency_s": 0.0533}
+{"id": "R-S1-CAL-0220", "hyp": "ho googlato il nome del cliente", "latency_s": 0.0486}
+{"id": "R-S1-CAL-0221", "hyp": "mi ha whatsappato molto tardi", "latency_s": 0.0447}
+{"id": "R-S1-CAL-0222", "hyp": "ho zoommato con il fornitore", "latency_s": 0.0616}
+{"id": "R-S1-CAL-0223", "hyp": "ho linkato il documento giusto", "latency_s": 0.0443}
+{"id": "R-S1-CAL-0224", "hyp": "ho scrollato tutta la pagina", "latency_s": 0.0402}
+{"id": "R-S1-CAL-0225", "hyp": "ho swipato la carta due volte", "latency_s": 0.0499}
+{"id": "R-S1-CAL-0226", "hyp": "mi hanno matchato con un mento", "latency_s": 0.0472}
+{"id": "R-S1-CAL-0227", "hyp": "ho schedulato due colloqui per domani", "latency_s": 0.0462}
+{"id": "R-S1-CAL-0228", "hyp": "il sistema è crescito di nuovo", "latency_s": 0.0426}
+{"id": "R-S1-CAL-0229", "hyp": "la funzione è buggta dopo la modifica", "latency_s": 0.0586}
+{"id": "R-S1-CAL-0230", "hyp": "il video è laggato per minuti", "latency_s": 0.0438}
+{"id": "R-S1-CAL-0231", "hyp": "il portatile si è frizzato", "latency_s": 0.0421}
+{"id": "R-S1-CAL-0232", "hyp": "mi hanno bannato dal gruppo", "latency_s": 0.0442}
+{"id": "R-S1-CAL-0233", "hyp": "mi hanno kickato la riunione", "latency_s": 0.0444}
+{"id": "R-S1-CAL-0234", "hyp": "mi sono loggato dal telefono", "latency_s": 0.0418}
+{"id": "R-S1-CAL-0235", "hyp": "ho backuppato tutti i file", "latency_s": 0.0483}
+{"id": "R-S1-CAL-0236", "hyp": "ho dmpato tutti i dati", "latency_s": 0.0319}
+{"id": "R-S1-CAL-0237", "hyp": "ho spoilerato tutta la serie", "latency_s": 0.0471}
+{"id": "R-S1-CAL-0238", "hyp": "ho shoppato per quasi un'ora", "latency_s": 0.0459}
+{"id": "R-S1-CAL-0239", "hyp": "ho c chinato i hotel ieri sera", "latency_s": 0.0701}
+{"id": "R-S1-CAL-0240", "hyp": "ho chektato in ritardo stamattina", "latency_s": 0.0506}
+{"id": "R-S1-CAL-0241", "hyp": "ho onboardato due nuovi colleghi", "latency_s": 0.0429}
+{"id": "R-S1-CAL-0242", "hyp": "hanno offboardato il consulente esterno", "latency_s": 0.052}
+{"id": "R-S1-CAL-0243", "hyp": "ho predicato il risultato finale", "latency_s": 0.0427}
+{"id": "R-S1-CAL-0244", "hyp": "ho performato meglio del previsto", "latency_s": 0.0436}
+{"id": "R-S1-CAL-0245", "hyp": "abbiamo targettizzato il pubblico giusto", "latency_s": 0.0497}
+{"id": "R-S1-CAL-0246", "hyp": "ho customizzato la pagina iniziale", "latency_s": 0.0503}
+{"id": "R-S1-CAL-0247", "hyp": "hanno randomizzato l'ordine dei turni", "latency_s": 0.0478}
+{"id": "R-S1-CAL-0248", "hyp": "abbiamo standardizzato il processo interno", "latency_s": 0.0564}
+{"id": "R-S1-CAL-0249", "hyp": "ho forwardato la richiesta al capo", "latency_s": 0.0431}
+{"id": "R-S1-CAL-0250", "hyp": "ho replyato subito al cliente", "latency_s": 0.0575}
+{"id": "R-S1-CAL-0251", "hyp": "ho pingato il collega due volte", "latency_s": 0.0421}
+{"id": "R-S1-CAL-0252", "hyp": "ho refreshato la schermata due volte", "latency_s": 0.0527}
+{"id": "R-S1-CAL-0253", "hyp": "ho droppato il progetto vecchio", "latency_s": 0.0388}
+{"id": "R-S1-CAL-0254", "hyp": "quell'esame è a piece of cake", "latency_s": 0.0488}
+{"id": "R-S1-CAL-0255", "hyp": "il capo ha scritto it is orgent", "latency_s": 0.0489}
+{"id": "R-S1-CAL-0256", "hyp": "let me think un attimo", "latency_s": 0.0432}
+{"id": "R-S1-CAL-0257", "hyp": "i have no idea onestamente", "latency_s": 0.0388}
+{"id": "R-S1-CAL-0258", "hyp": "il piano era out of date", "latency_s": 0.0437}
+{"id": "R-S1-CAL-0259", "hyp": "siamo on the same page sul prezzo", "latency_s": 0.0479}
+{"id": "R-S1-CAL-0260", "hyp": "facciamo un follow up domani", "latency_s": 0.0379}
+{"id": "R-S1-CAL-0261", "hyp": "serve un deep dive sul tema", "latency_s": 0.042}
+{"id": "R-S1-CAL-0262", "hyp": "è un quick win per tutti", "latency_s": 0.0406}
+{"id": "R-S1-CAL-0263", "hyp": "questo risultato è un game charger", "latency_s": 0.0406}
+{"id": "R-S1-CAL-0264", "hyp": "per me è un win win", "latency_s": 0.0351}
+{"id": "R-S1-CAL-0265", "hyp": "never mind oggi risolto tutto", "latency_s": 0.0462}
+{"id": "R-S1-CAL-0266", "hyp": "by the way ho chiamato il fornitore", "latency_s": 0.0455}
+{"id": "R-S1-CAL-0267", "hyp": "rispondi as soon as possible", "latency_s": 0.043}
+{"id": "R-S1-CAL-0268", "hyp": "tienimi in the loop per favore", "latency_s": 0.0425}
+{"id": "R-S1-CAL-0269", "hyp": "questo è out of scope", "latency_s": 0.034}
+{"id": "R-S1-CAL-0270", "hyp": "quello resta in scope per ora", "latency_s": 0.0461}
+{"id": "R-S1-CAL-0271", "hyp": "il progetto è on track", "latency_s": 0.0386}
+{"id": "R-S1-CAL-0272", "hyp": "la spesa è of truck", "latency_s": 0.0369}
+{"id": "R-S1-CAL-0273", "hyp": "at the end of the day vince il cliente", "latency_s": 0.0409}
+{"id": "R-S1-CAL-0274", "hyp": "long sy short è andata bene", "latency_s": 0.0345}
+{"id": "R-S1-CAL-0275", "hyp": "siamo back to square one", "latency_s": 0.0426}
+{"id": "R-S1-CAL-0276", "hyp": "the bottom online è semplice", "latency_s": 0.0368}
+{"id": "R-S1-CAL-0277", "hyp": "la richiesta è a bit of stretch", "latency_s": 0.0491}
+{"id": "R-S1-CAL-0278", "hyp": "grazie per il food for sort", "latency_s": 0.0516}
+{"id": "R-S1-CAL-0279", "hyp": "per me è un no brainer", "latency_s": 0.0335}
+{"id": "R-S1-CAL-0280", "hyp": "colita a day e andiamo", "latency_s": 0.0406}
+{"id": "R-S1-CAL-0281", "hyp": "take it thei domani mattina", "latency_s": 0.0385}
+{"id": "R-S1-CAL-0282", "hyp": "keep me posted sul resto", "latency_s": 0.0428}
+{"id": "R-S1-CAL-0283", "hyp": "let me know appena sai", "latency_s": 0.0334}
+{"id": "R-S1-CAL-0284", "hyp": "sounds swood per me davvero", "latency_s": 0.0391}
+{"id": "R-S1-CAL-0285", "hyp": "fair enough ci sto io", "latency_s": 0.0446}
+{"id": "R-S1-CAL-0286", "hyp": "makes sense adesso per me", "latency_s": 0.0399}
+{"id": "R-S1-CAL-0287", "hyp": "no wri per il ritardo", "latency_s": 0.0433}
+{"id": "R-S1-CAL-0288", "hyp": "my bed ho sbagliato tutto", "latency_s": 0.0334}
+{"id": "R-S1-CAL-0289", "hyp": "fingers c crossed per domani mattina", "latency_s": 0.0423}
+{"id": "R-S1-CAL-0290", "hyp": "il piano è up to date", "latency_s": 0.0455}
+{"id": "R-S1-CAL-0291", "hyp": "il gruppo è under pressure", "latency_s": 0.04}
+{"id": "R-S1-CAL-0292", "hyp": "siamo in the same boat", "latency_s": 0.0475}
+{"id": "R-S1-CAL-0293", "hyp": "è un problema che chicken and egg", "latency_s": 0.0481}
+{"id": "R-S1-CAL-0294", "hyp": "il prezzo è over the top", "latency_s": 0.0391}
+{"id": "R-S1-CAL-0295", "hyp": "il servizio è top notch", "latency_s": 0.0376}
+{"id": "R-S1-CAL-0296", "hyp": "la riunione è stata a waste of time", "latency_s": 0.0515}
+{"id": "R-S1-CAL-0297", "hyp": "il cliente è very demanding", "latency_s": 0.0421}
+{"id": "R-S1-CAL-0298", "hyp": "il capo è always on my case case", "latency_s": 0.0454}
+{"id": "R-S1-CAL-0299", "hyp": "la proposta è still on the table", "latency_s": 0.0425}
+{"id": "R-S1-CAL-0300", "hyp": "il contratto è set in stone", "latency_s": 0.0437}
+{"id": "R-S1-CAL-0301", "hyp": "la torta è rimasta in forno troppo", "latency_s": 0.0383}
+{"id": "R-S1-CAL-0302", "hyp": "domani compagno i bambini a scuola", "latency_s": 0.052}
+{"id": "R-S1-CAL-0303", "hyp": "il treno delle sette era pieno", "latency_s": 0.0486}
+{"id": "R-S1-CAL-0304", "hyp": "ho dimenticato le chiavi in cucina", "latency_s": 0.0481}
+{"id": "R-S1-CAL-0305", "hyp": "mia madre ha preparato la lasagna", "latency_s": 0.0487}
+{"id": "R-S1-CAL-0306", "hyp": "l'orto ha bisogno di acqua", "latency_s": 0.0427}
+{"id": "R-S1-CAL-0307", "hyp": "abbiamo camminato lungo il fiume", "latency_s": 0.0464}
+{"id": "R-S1-CAL-0308", "hyp": "il pane fresco finisce subito", "latency_s": 0.0471}
+{"id": "R-S1-CAL-0309", "hyp": "ho letto un libro molto lungo", "latency_s": 0.0407}
+{"id": "R-S1-CAL-0310", "hyp": "la pioggia è durata tutta la notte", "latency_s": 0.0444}
+{"id": "R-S1-CAL-0311", "hyp": "il medico mi ha consigliato riposo", "latency_s": 0.0446}
+{"id": "R-S1-CAL-0312", "hyp": "ho comprato il pace mercato", "latency_s": 0.0418}
+{"id": "R-S1-CAL-0313", "hyp": "la macchina è dal meccanico", "latency_s": 0.047}
+{"id": "R-S1-CAL-0314", "hyp": "il vicino ha portato le rose", "latency_s": 0.0388}
+{"id": "R-S1-CAL-0315", "hyp": "siamo andati al mare in treno", "latency_s": 0.0426}
+{"id": "R-S1-CAL-0316", "hyp": "la minestra è troppo salata", "latency_s": 0.0448}
+{"id": "R-S1-CAL-0317", "hyp": "ho perso il treno per pochi secondi", "latency_s": 0.0525}
+{"id": "R-S1-CAL-0318", "hyp": "il bambino ha imparato a notare", "latency_s": 0.0472}
+{"id": "R-S1-CAL-0319", "hyp": "la nonna racconta sempre le stesse storie", "latency_s": 0.054}
+{"id": "R-S1-CAL-0320", "hyp": "ho sistemato la scrivania ieri sera", "latency_s": 0.0469}
+{"id": "R-S1-CAL-0321", "hyp": "il frigorifero fa un rumore strano", "latency_s": 0.0446}
+{"id": "R-S1-CAL-0322", "hyp": "la bolletta dell'acqua è aumentata", "latency_s": 0.0481}
+{"id": "R-S1-CAL-0323", "hyp": "abbiamo invitato gli amici a cena", "latency_s": 0.0481}
+{"id": "R-S1-CAL-0324", "hyp": "il camino è spento da mesi", "latency_s": 0.0532}
+{"id": "R-S1-CAL-0325", "hyp": "ho portato la bici riparazione", "latency_s": 0.0501}
+{"id": "R-S1-CAL-0326", "hyp": "la partita è finita in pareggio", "latency_s": 0.0458}
+{"id": "R-S1-CAL-0327", "hyp": "l'all allenatore ha cambiato la formazione", "latency_s": 0.0482}
+{"id": "R-S1-CAL-0328", "hyp": "il portiere ha parato tutto", "latency_s": 0.0464}
+{"id": "R-S1-CAL-0329", "hyp": "ho prenotato una visita medica", "latency_s": 0.0429}
+{"id": "R-S1-CAL-0330", "hyp": "la farmacia chiude alle sette", "latency_s": 0.0377}
+{"id": "R-S1-CAL-0331", "hyp": "il sentiero era pieno di foglia", "latency_s": 0.0603}
+{"id": "R-S1-CAL-0332", "hyp": "abbiamo raccolto le olive insieme", "latency_s": 0.0506}
+{"id": "R-S1-CAL-0333", "hyp": "la vigna è in collina", "latency_s": 0.0403}
+{"id": "R-S1-CAL-0334", "hyp": "il vino nuovo è ancora torbido", "latency_s": 0.0499}
+{"id": "R-S1-CAL-0335", "hyp": "ho aggiustato la sede rotta", "latency_s": 0.0463}
+{"id": "R-S1-CAL-0336", "hyp": "il quadro è appeso al muro", "latency_s": 0.0426}
+{"id": "R-S1-CAL-0337", "hyp": "la porta non chiude bene", "latency_s": 0.0387}
+{"id": "R-S1-CAL-0338", "hyp": "ho pagato la bolletta in ritardo", "latency_s": 0.0509}
+{"id": "R-S1-CAL-0339", "hyp": "il postino ha suonato due volte", "latency_s": 0.0476}
+{"id": "R-S1-CAL-0340", "hyp": "la lettera è arrivata ieri mattina", "latency_s": 0.0467}
+{"id": "R-S1-CAL-0341", "hyp": "ho chiamato mia zia per gli auguri", "latency_s": 0.0524}
+{"id": "R-S1-CAL-0342", "hyp": "la cena di domenica è alle otto", "latency_s": 0.0566}
+{"id": "R-S1-CAL-0343", "hyp": "il tavolo è apparecchiato per sei", "latency_s": 0.0594}
+{"id": "R-S1-CAL-0344", "hyp": "ho spento la luce del corridoio", "latency_s": 0.0615}
+{"id": "R-S1-CAL-0345", "hyp": "il gatto dorme su la poltrona", "latency_s": 0.0467}
+{"id": "R-S1-CAL-0346", "hyp": "la lavatrice è finita da poco", "latency_s": 0.0431}
+{"id": "R-S1-CAL-0347", "hyp": "ho steso i panni sul balcone", "latency_s": 0.0464}
+{"id": "R-S1-CAL-0348", "hyp": "il sole era monta dietro la chiesa", "latency_s": 0.0444}
+{"id": "R-S1-CAL-0349", "hyp": "la piazza era piena di gente", "latency_s": 0.0477}
+{"id": "R-S1-CAL-0350", "hyp": "siamo tornati a casa a piedi", "latency_s": 0.0513}
+{"id": "R-S1-CAL-0351", "hyp": "the pats along the river is quiet", "latency_s": 0.0604}
+{"id": "R-S1-CAL-0352", "hyp": "il it looks strange but it works", "latency_s": 0.0507}
+{"id": "R-S1-CAL-0353", "hyp": "i watched cook for an hour", "latency_s": 0.0419}
+{"id": "R-S1-CAL-0354", "hyp": "i fail when i earry", "latency_s": 0.0427}
+{"id": "R-S1-CAL-0355", "hyp": "the meeting run longer than the expected", "latency_s": 0.0557}
+{"id": "R-S1-CAL-0356", "hyp": "we should leave before the rain", "latency_s": 0.0401}
+{"id": "R-S1-CAL-0357", "hyp": "she keeps the keys in her bug", "latency_s": 0.0456}
+{"id": "R-S1-CAL-0358", "hyp": "my brother fixed the old bike", "latency_s": 0.0508}
+{"id": "R-S1-CAL-0359", "hyp": "the coffee here is too strong", "latency_s": 0.0436}
+{"id": "R-S1-CAL-0360", "hyp": "i forgot to call the doctor", "latency_s": 0.0495}
+{"id": "R-S1-CAL-0361", "hyp": "they moved to a smaller house", "latency_s": 0.0499}
+{"id": "R-S1-CAL-0362", "hyp": "the train was the late again", "latency_s": 0.0425}
+{"id": "R-S1-CAL-0363", "hyp": "i need to a quiet place to work", "latency_s": 0.0385}
+{"id": "R-S1-CAL-0364", "hyp": "he reads the news every morning", "latency_s": 0.0445}
+{"id": "R-S1-CAL-0365", "hyp": "we walked until the sunset", "latency_s": 0.0474}
+{"id": "R-S1-CAL-0366", "hyp": "the keats are playing in the yard", "latency_s": 0.053}
+{"id": "R-S1-CAL-0367", "hyp": "i left my a brella on the bus", "latency_s": 0.0583}
+{"id": "R-S1-CAL-0368", "hyp": "she speaks softly and clearly", "latency_s": 0.0521}
+{"id": "R-S1-CAL-0369", "hyp": "the shop closes at seven", "latency_s": 0.0454}
+{"id": "R-S1-CAL-0370", "hyp": "we cooked dinner for our friends", "latency_s": 0.0508}
+{"id": "R-S1-CAL-0371", "hyp": "i have never seen that film", "latency_s": 0.0415}
+{"id": "R-S1-CAL-0372", "hyp": "the garden looks better now", "latency_s": 0.0491}
+{"id": "R-S1-CAL-0373", "hyp": "he lost his wallet at the station", "latency_s": 0.0589}
+{"id": "R-S1-CAL-0374", "hyp": "i will finish the report to night", "latency_s": 0.0535}
+{"id": "R-S1-CAL-0375", "hyp": "the dog barked at the postman", "latency_s": 0.0568}
+{"id": "R-S1-CAL-0376", "hyp": "we stayed home all weekend", "latency_s": 0.043}
+{"id": "R-S1-CAL-0377", "hyp": "the water is holder than expected", "latency_s": 0.0531}
+{"id": "R-S1-CAL-0378", "hyp": "she bought a green coo today", "latency_s": 0.0533}
+{"id": "R-S1-CAL-0379", "hyp": "i cannot find the right word", "latency_s": 0.0456}
+{"id": "R-S1-CAL-0380", "hyp": "the arrived just before dinner", "latency_s": 0.0439}
+{"id": "R-S1-CAL-0381", "hyp": "the book was better than the film", "latency_s": 0.0467}
+{"id": "R-S1-CAL-0382", "hyp": "i keep forgetting his name", "latency_s": 0.0459}
+{"id": "R-S1-CAL-0383", "hyp": "we need more time for this", "latency_s": 0.0496}
+{"id": "R-S1-CAL-0384", "hyp": "the sky grey in minutes", "latency_s": 0.0528}
+{"id": "R-S1-CAL-0385", "hyp": "he works from home on fridays", "latency_s": 0.0512}
+{"id": "R-S1-CAL-0386", "hyp": "i span the coffee on my short", "latency_s": 0.0401}
+{"id": "R-S1-CAL-0387", "hyp": "the old bridge is still closed", "latency_s": 0.0475}
+{"id": "R-S1-CAL-0388", "hyp": "she signs in a small choir", "latency_s": 0.0464}
+{"id": "R-S1-CAL-0389", "hyp": "we met at the corner caffè", "latency_s": 0.0515}
+{"id": "R-S1-CAL-0390", "hyp": "the baby is slept through the night", "latency_s": 0.0491}
+{"id": "R-S1-CAL-0391", "hyp": "i sold my old computer yesterday", "latency_s": 0.0543}
+{"id": "R-S1-CAL-0392", "hyp": "they planted the trees along the road", "latency_s": 0.0479}
+{"id": "R-S1-CAL-0393", "hyp": "the so needs a little soult", "latency_s": 0.0388}
+{"id": "R-S1-CAL-0394", "hyp": "i missed the last train home", "latency_s": 0.0392}
+{"id": "R-S1-CAL-0395", "hyp": "she wrote a long letter to him", "latency_s": 0.0523}
+{"id": "R-S1-CAL-0396", "hyp": "the office is quiet on mondays", "latency_s": 0.0459}
+{"id": "R-S1-CAL-0397", "hyp": "we watched the storm from inside", "latency_s": 0.0535}
+{"id": "R-S1-CAL-0398", "hyp": "i finally cleaned the garage", "latency_s": 0.0482}
+{"id": "R-S1-CAL-0399", "hyp": "the market opens early on sunday", "latency_s": 0.0593}
+{"id": "R-S1-CAL-0400", "hyp": "he told the the same story twice", "latency_s": 0.0498}
