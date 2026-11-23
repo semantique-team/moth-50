@@ -627,15 +627,14 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 
-**Status: seed 0 complete 2026-11-22; seed 1 running since 14:01.** E-017 is
+**Status: both seeds complete 2026-11-23; formal gate FAIL on 2b.** E-017 is
 done and frozen (`manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, E-002 §8),
-the control E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it. Seed 0
-(`runs/E-023/r1-s0`, 40,000 steps, 15.78 h): dev-macro **14.3274 %**
-(−2.6623 pp, pass), S1-dev **13.3820 / 75.1465** (pass), R-S1-cal
-**12.8469 / 75.4967** (pooled ETA tie; `control_en` −1.33 and `switch`
-−2.78 vs E-005 miss the 0.5 pp clause). Seed 1: `runs/E-023/r1-s1`, PID
-58671; the category clause is judged on the seed mean.
-`runs/E-023/RESULT.md`.
+the control E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it. Seed mean
+(`runs/E-023/r1-s{0,1}`, 40,000 steps each, 15.78/15.80 h): dev-macro
+**14.3578 %** (−2.6320 pp, pass), S1-dev **13.7911 / 74.6826** (pass),
+R-S1-cal **12.6679 / 75.4305** (pooled ETA tie; `control_en` −1.83 and
+`switch` −2.43 vs E-005 miss the 0.5 pp clause). No product change adopted;
+R2 or a dated amendment is the decision. `runs/E-023/RESULT.md`.
 
 - **Why:** P6 re-read E-011 with E-034c and failed on clean-S1-dev ETA
   (−1.7578 pp [−3.1844, −0.1422] on the seed mean) while dev-macro passed
@@ -675,18 +674,20 @@ the control E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it. Seed 0
 - **Risk:** 3e-5 may under-train the encoder and lose the dev-macro gain. If it
   does, H1 is not the lever and H3/gold (R2) is next.
 
-**Result (seed 0, 2026-11-22).** 40,000 steps in 15.78 h; best greedy dev
-17.0771 % (E-011 s0 18.3373). INT8 + E-034c: dev-macro **14.3274 %**
-(−2.6623 pp [−2.8611, −2.4666] vs E-005, gate 1 pass); S1-dev
-**13.3820 % / 75.1465 %** (WER −1.5924, ETA +1.2207, veto pass); R-S1-cal
-**12.8469 % / 75.4967 %** (pooled ETA −0.1325 pp, CI includes zero; WER
-−1.0743 pp, CI includes zero). Against E-011 s0 on the same cal set, R1
-recovers ETA 74.3046 → 75.4967, `control_en` 84.00 → 87.00, `switch`
-66.67 → 70.83. The formal 0.5 pp clause against **E-005** still misses
-(`control_en` −1.33, `switch` −2.78); the trigger is treated as met because
-R1 beats E-011 and recovers ETA relative to it, so seed 1 is running and the
-clause is judged on the seed mean. INT8 cost 0.0641 pp dev-macro and 0.0895 pp
-cal WER. `runs/E-023/RESULT.md`.
+**Result (both seeds, 2026-11-23).** 40,000 steps each in 15.78 / 15.80 h;
+best greedy dev 17.0771 % (s0) and 17.3026 % (s1), vs E-011 18.3373 / 18.6531.
+INT8 + E-034c seed mean: dev-macro **14.3578 %**
+(−2.6320 pp [−2.8253, −2.4515] vs E-005, gate 1 pass); S1-dev
+**13.7911 % / 74.6826 %** (WER −1.1833 [−1.7660, −0.5459], ETA +0.7568
+[−0.5000, +2.1149], veto pass); R-S1-cal **12.6679 % / 75.4305 %** (WER
+−1.2534 [−2.3767, −0.0446], ETA −0.1987 [−2.2603, +1.8844], pooled pass).
+Against E-011 on the same cal set, R1 recovers ETA 74.7682 → 75.4305,
+`control_en` 84.34 → 86.50, `switch` 68.41 → 71.18. The formal 0.5 pp clause
+against **E-005** still misses (`control_en` −1.83, `switch` −2.43; both CIs
+include zero), so the pre-registered gate **FAILS on 2b**. Gates 1, 2 pooled,
+3 and 4 (dev-macro) pass; INT8 cost 0.0232 pp dev-macro, 0.2910 pp cal WER,
+0.0 cal ETA. R2 or a dated amendment accepting R1 is the next decision.
+`runs/E-023/RESULT.md`.
 
 ### E-008 addition — ceilings for the paper
 

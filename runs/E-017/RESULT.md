@@ -113,9 +113,10 @@ E-023's gate keeps the S1-dev veto and uses the calibration set for ranking.
    mel shards exist, and **E-002 §8** names `R-S1-cal` and the rule (rank on
    calibration, dev-macro guard, S1-dev veto) before any calibration readout.
 2. **Control readout is done** (E-005 + E-034c: WER 13.9212 %, ETA 75.6291 %).
-   R1 (E-023) seed 0 is complete in `runs/E-023/r1-s0`,
+   Both R1 (E-023) seeds are complete in `runs/E-023/r1-s{0,1}`,
    ranking against this control with
-   `--reference-hyp runs/E-017/control-e005-e034c.hyp.jsonl`.
+   `--reference-hyp runs/E-017/control-e005-e034c.hyp.jsonl`; the seed-mean
+   gate fails only on the cal `control_en`/`switch` 0.5 pp clause.
 3. Keep `R-S1-cal` out of every training and dev-loader configuration. The
    `split: dev` label is a trainer guard, not a gate role.
 4. T-600 S3 still checks speaker generalisation at release; T and FLEURS never

@@ -119,6 +119,11 @@ def main() -> None:
     )
     parser.add_argument("--bootstrap", type=int, default=1000)
     parser.add_argument("--bootstrap-seed", type=int, default=0)
+    parser.add_argument(
+        "--category",
+        action="store_true",
+        help="also report per-category metrics and paired comparisons",
+    )
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
 
@@ -169,6 +174,40 @@ def main() -> None:
             "eta_ci": eta_ci,
         }
 
+    categories = None
+    if args.category:
+        category_groups: dict[str, list[str]] = {}
+        for row in rows:
+            category = row.get("category")
+            if category is not None:
+                category_groups.setdefault(str(category), []).append(str(row["id"]))
+        categories = {}
+        for category, category_ids in category_groups.items():
+            group = {"all": category_ids}
+            category_comparisons = {}
+            for name, system in [
+                ("seed_mean", mean),
+                *[(f"seed_{i}", s) for i, s in enumerate(seeds)],
+            ]:
+                wer_diff, wer_ci = _diff(
+                    system, control, group, "wer", args.bootstrap, args.bootstrap_seed
+                )
+                eta_diff, eta_ci = _diff(
+                    system, control, group, "eta", args.bootstrap, args.bootstrap_seed
+                )
+                category_comparisons[name] = {
+                    "wer_diff": wer_diff,
+                    "wer_ci": wer_ci,
+                    "eta_diff": eta_diff,
+                    "eta_ci": eta_ci,
+                }
+            categories[category] = {
+                "n": len(category_ids),
+                "control": metric(control, group),
+                "seed_mean": metric(mean, group),
+                "comparisons": category_comparisons,
+            }
+
     report = {
         "tool": "tools/seed_mean.py",
         "mode": "macro" if args.macro else "pooled",
@@ -181,6 +220,7 @@ def main() -> None:
         ],
         "seed_mean": {"metrics": systems["seed_mean"], "seeds": len(seeds)},
         "comparisons": comparisons,
+        "categories": categories,
         "bootstrap": {"resamples": args.bootstrap, "seed": args.bootstrap_seed},
         "convention": "difference = candidate - control; negative WER better, positive ETA better",
     }

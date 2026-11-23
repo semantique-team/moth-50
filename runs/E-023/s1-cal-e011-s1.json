@@ -1,0 +1,1195 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "mixed",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-011/release-s1/model.int8.onnx",
+  "onnx_sha256": "3b36a893adbd48e17dbd36a44ca69252abbff5be41e7c5257d9c9cffd0325fd8",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "set": {
+    "name": "s1-cal-e011-s1",
+    "manifest": "../moth-cs-dataset/manifests/R-S1-cal.jsonl",
+    "manifest_sha256": "ef34c3f8646b5b63adee9a7810bb1b7733f64a863b199e8f43a3bc1c6c596a7f",
+    "shards": "data/shards/s1-cal",
+    "limit": 0
+  },
+  "metrics": {
+    "n": 400,
+    "ref_words": 2234,
+    "wer": 0.12085944494180842,
+    "wer_ci": [
+      0.1041388518024032,
+      0.1369740376007162
+    ],
+    "eta": 0.752317880794702,
+    "insertion_rate": 1.6562220232766338,
+    "eta_errors": [
+      {
+        "id": "R-S1-CAL-0008",
+        "term": "preview",
+        "got": "previe"
+      },
+      {
+        "id": "R-S1-CAL-0011",
+        "term": "onboarding",
+        "got": "boarding"
+      },
+      {
+        "id": "R-S1-CAL-0026",
+        "term": "cookie",
+        "got": "cooki"
+      },
+      {
+        "id": "R-S1-CAL-0027",
+        "term": "browser",
+        "got": "brows"
+      },
+      {
+        "id": "R-S1-CAL-0031",
+        "term": "mouse",
+        "got": "mo"
+      },
+      {
+        "id": "R-S1-CAL-0039",
+        "term": "account",
+        "got": "count"
+      },
+      {
+        "id": "R-S1-CAL-0041",
+        "term": "standby",
+        "got": "by"
+      },
+      {
+        "id": "R-S1-CAL-0047",
+        "term": "checkpoint",
+        "got": "point"
+      },
+      {
+        "id": "R-S1-CAL-0051",
+        "term": "free",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0051",
+        "term": "trial",
+        "got": "fretal"
+      },
+      {
+        "id": "R-S1-CAL-0055",
+        "term": "code",
+        "got": "coda"
+      },
+      {
+        "id": "R-S1-CAL-0066",
+        "term": "path",
+        "got": "pet"
+      },
+      {
+        "id": "R-S1-CAL-0072",
+        "term": "deep",
+        "got": "de"
+      },
+      {
+        "id": "R-S1-CAL-0072",
+        "term": "learning",
+        "got": "plarning"
+      },
+      {
+        "id": "R-S1-CAL-0074",
+        "term": "prompt",
+        "got": "prat"
+      },
+      {
+        "id": "R-S1-CAL-0075",
+        "term": "tuning",
+        "got": "pining"
+      },
+      {
+        "id": "R-S1-CAL-0077",
+        "term": "few",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0077",
+        "term": "shot",
+        "got": "fushot"
+      },
+      {
+        "id": "R-S1-CAL-0078",
+        "term": "thought",
+        "got": "swat"
+      },
+      {
+        "id": "R-S1-CAL-0079",
+        "term": "context",
+        "got": "conte"
+      },
+      {
+        "id": "R-S1-CAL-0082",
+        "term": "error",
+        "got": "er"
+      },
+      {
+        "id": "R-S1-CAL-0084",
+        "term": "churn",
+        "got": "char"
+      },
+      {
+        "id": "R-S1-CAL-0089",
+        "term": "one",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0089",
+        "term": "to",
+        "got": "w"
+      },
+      {
+        "id": "R-S1-CAL-0094",
+        "term": "kick",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0094",
+        "term": "off",
+        "got": "kickoff"
+      },
+      {
+        "id": "R-S1-CAL-0095",
+        "term": "wrap",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0095",
+        "term": "up",
+        "got": "drapp"
+      },
+      {
+        "id": "R-S1-CAL-0098",
+        "term": "aliexpress",
+        "got": "express"
+      },
+      {
+        "id": "R-S1-CAL-0100",
+        "term": "skoda",
+        "got": "coda"
+      },
+      {
+        "id": "R-S1-CAL-0101",
+        "term": "chrome",
+        "got": "crom"
+      },
+      {
+        "id": "R-S1-CAL-0102",
+        "term": "bosch",
+        "got": "bash"
+      },
+      {
+        "id": "R-S1-CAL-0103",
+        "term": "leroy",
+        "got": "le"
+      },
+      {
+        "id": "R-S1-CAL-0103",
+        "term": "merlin",
+        "got": "romerline"
+      },
+      {
+        "id": "R-S1-CAL-0107",
+        "term": "uniqlo",
+        "got": "uniclo"
+      },
+      {
+        "id": "R-S1-CAL-0113",
+        "term": "samsung",
+        "got": "ss"
+      },
+      {
+        "id": "R-S1-CAL-0114",
+        "term": "xiaomi",
+        "got": "shom"
+      },
+      {
+        "id": "R-S1-CAL-0115",
+        "term": "huawei",
+        "got": "wway"
+      },
+      {
+        "id": "R-S1-CAL-0116",
+        "term": "lenovo",
+        "got": "novo"
+      },
+      {
+        "id": "R-S1-CAL-0117",
+        "term": "dell",
+        "got": "e"
+      },
+      {
+        "id": "R-S1-CAL-0118",
+        "term": "hp",
+        "got": "ap"
+      },
+      {
+        "id": "R-S1-CAL-0119",
+        "term": "asus",
+        "got": "aus"
+      },
+      {
+        "id": "R-S1-CAL-0121",
+        "term": "sony",
+        "got": "suoni"
+      },
+      {
+        "id": "R-S1-CAL-0122",
+        "term": "bose",
+        "got": "book"
+      },
+      {
+        "id": "R-S1-CAL-0124",
+        "term": "garmin",
+        "got": "garm"
+      },
+      {
+        "id": "R-S1-CAL-0125",
+        "term": "fitbit",
+        "got": "bit"
+      },
+      {
+        "id": "R-S1-CAL-0128",
+        "term": "volkswagen",
+        "got": "vari"
+      },
+      {
+        "id": "R-S1-CAL-0129",
+        "term": "fiat",
+        "got": "f"
+      },
+      {
+        "id": "R-S1-CAL-0130",
+        "term": "enel",
+        "got": "ele"
+      },
+      {
+        "id": "R-S1-CAL-0132",
+        "term": "tim",
+        "got": "team"
+      },
+      {
+        "id": "R-S1-CAL-0133",
+        "term": "vodafone",
+        "got": "vdaf"
+      },
+      {
+        "id": "R-S1-CAL-0134",
+        "term": "windtre",
+        "got": "tre"
+      },
+      {
+        "id": "R-S1-CAL-0136",
+        "term": "unicredit",
+        "got": "it"
+      },
+      {
+        "id": "R-S1-CAL-0137",
+        "term": "intesa",
+        "got": "san"
+      },
+      {
+        "id": "R-S1-CAL-0137",
+        "term": "sanpaolo",
+        "got": "paolo"
+      },
+      {
+        "id": "R-S1-CAL-0138",
+        "term": "satispay",
+        "got": "usossatis"
+      },
+      {
+        "id": "R-S1-CAL-0146",
+        "term": "ryanair",
+        "got": "re"
+      },
+      {
+        "id": "R-S1-CAL-0148",
+        "term": "cig",
+        "got": "chick"
+      },
+      {
+        "id": "R-S1-CAL-0150",
+        "term": "l'imu",
+        "got": "limo"
+      },
+      {
+        "id": "R-S1-CAL-0151",
+        "term": "tcv",
+        "got": "ticiv"
+      },
+      {
+        "id": "R-S1-CAL-0152",
+        "term": "llm",
+        "got": "è"
+      },
+      {
+        "id": "R-S1-CAL-0153",
+        "term": "l'sdk",
+        "got": "ildca"
+      },
+      {
+        "id": "R-S1-CAL-0154",
+        "term": "l'api",
+        "got": "api"
+      },
+      {
+        "id": "R-S1-CAL-0156",
+        "term": "html",
+        "got": "caml"
+      },
+      {
+        "id": "R-S1-CAL-0160",
+        "term": "sql",
+        "got": "sq"
+      },
+      {
+        "id": "R-S1-CAL-0161",
+        "term": "yaml",
+        "got": "ilal"
+      },
+      {
+        "id": "R-S1-CAL-0164",
+        "term": "docx",
+        "got": "e"
+      },
+      {
+        "id": "R-S1-CAL-0165",
+        "term": "xlsx",
+        "got": "excels"
+      },
+      {
+        "id": "R-S1-CAL-0167",
+        "term": "jpg",
+        "got": "jpeg"
+      },
+      {
+        "id": "R-S1-CAL-0168",
+        "term": "svg",
+        "got": "svgg"
+      },
+      {
+        "id": "R-S1-CAL-0170",
+        "term": "wav",
+        "got": "web"
+      },
+      {
+        "id": "R-S1-CAL-0171",
+        "term": "avi",
+        "got": "aviy"
+      },
+      {
+        "id": "R-S1-CAL-0172",
+        "term": "wifi",
+        "got": "fiy"
+      },
+      {
+        "id": "R-S1-CAL-0175",
+        "term": "ip",
+        "got": "l'indirizzop"
+      },
+      {
+        "id": "R-S1-CAL-0176",
+        "term": "tcp",
+        "got": "tdp"
+      },
+      {
+        "id": "R-S1-CAL-0177",
+        "term": "l'udp",
+        "got": "ludp"
+      },
+      {
+        "id": "R-S1-CAL-0181",
+        "term": "l'ftp",
+        "got": "l'tp"
+      },
+      {
+        "id": "R-S1-CAL-0187",
+        "term": "l'hdd",
+        "got": "ladd"
+      },
+      {
+        "id": "R-S1-CAL-0189",
+        "term": "hdmi",
+        "got": "accma"
+      },
+      {
+        "id": "R-S1-CAL-0191",
+        "term": "rfid",
+        "got": "èf"
+      },
+      {
+        "id": "R-S1-CAL-0194",
+        "term": "l'otp",
+        "got": "lotp"
+      },
+      {
+        "id": "R-S1-CAL-0197",
+        "term": "l'ebitda",
+        "got": "da"
+      },
+      {
+        "id": "R-S1-CAL-0202",
+        "term": "fruit",
+        "got": "it"
+      },
+      {
+        "id": "R-S1-CAL-0203",
+        "term": "practice",
+        "got": "spractis"
+      },
+      {
+        "id": "R-S1-CAL-0204",
+        "term": "wishlistato",
+        "got": "listato"
+      },
+      {
+        "id": "R-S1-CAL-0222",
+        "term": "zoomato",
+        "got": "zoommato"
+      },
+      {
+        "id": "R-S1-CAL-0228",
+        "term": "crashato",
+        "got": "crescito"
+      },
+      {
+        "id": "R-S1-CAL-0229",
+        "term": "buggata",
+        "got": "bugata"
+      },
+      {
+        "id": "R-S1-CAL-0230",
+        "term": "laggato",
+        "got": "èlaggato"
+      },
+      {
+        "id": "R-S1-CAL-0231",
+        "term": "freezato",
+        "got": "frezzato"
+      },
+      {
+        "id": "R-S1-CAL-0233",
+        "term": "kickato",
+        "got": "cachato"
+      },
+      {
+        "id": "R-S1-CAL-0236",
+        "term": "dumpato",
+        "got": "dampato"
+      },
+      {
+        "id": "R-S1-CAL-0239",
+        "term": "checkinato",
+        "got": "chinato"
+      },
+      {
+        "id": "R-S1-CAL-0240",
+        "term": "checkoutato",
+        "got": "checktato"
+      },
+      {
+        "id": "R-S1-CAL-0241",
+        "term": "onboardato",
+        "got": "combardato"
+      },
+      {
+        "id": "R-S1-CAL-0242",
+        "term": "offboardato",
+        "got": "bordato"
+      },
+      {
+        "id": "R-S1-CAL-0243",
+        "term": "predictato",
+        "got": "predicato"
+      },
+      {
+        "id": "R-S1-CAL-0245",
+        "term": "targettizzato",
+        "got": "targhettizzato"
+      },
+      {
+        "id": "R-S1-CAL-0247",
+        "term": "randomizzato",
+        "got": "randmizzato"
+      },
+      {
+        "id": "R-S1-CAL-0248",
+        "term": "standardizzato",
+        "got": "standardarlizzato"
+      },
+      {
+        "id": "R-S1-CAL-0255",
+        "term": "urgent",
+        "got": "orgent"
+      },
+      {
+        "id": "R-S1-CAL-0256",
+        "term": "me",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0256",
+        "term": "think",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0257",
+        "term": "i",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0257",
+        "term": "have",
+        "got": "la"
+      },
+      {
+        "id": "R-S1-CAL-0263",
+        "term": "game",
+        "got": "ga"
+      },
+      {
+        "id": "R-S1-CAL-0263",
+        "term": "changer",
+        "got": "chaner"
+      },
+      {
+        "id": "R-S1-CAL-0267",
+        "term": "soon",
+        "got": "su"
+      },
+      {
+        "id": "R-S1-CAL-0270",
+        "term": "in",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0270",
+        "term": "scope",
+        "got": "incope"
+      },
+      {
+        "id": "R-S1-CAL-0271",
+        "term": "on",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0271",
+        "term": "track",
+        "got": "ontrack"
+      },
+      {
+        "id": "R-S1-CAL-0272",
+        "term": "off",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0273",
+        "term": "at",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0273",
+        "term": "the",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0273",
+        "term": "end",
+        "got": "lazia"
+      },
+      {
+        "id": "R-S1-CAL-0274",
+        "term": "long",
+        "got": "lo"
+      },
+      {
+        "id": "R-S1-CAL-0275",
+        "term": "back",
+        "got": "ba"
+      },
+      {
+        "id": "R-S1-CAL-0276",
+        "term": "bottom",
+        "got": "botto"
+      },
+      {
+        "id": "R-S1-CAL-0276",
+        "term": "line",
+        "got": "online"
+      },
+      {
+        "id": "R-S1-CAL-0277",
+        "term": "a",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0278",
+        "term": "thought",
+        "got": "sort"
+      },
+      {
+        "id": "R-S1-CAL-0279",
+        "term": "no",
+        "got": "nebra"
+      },
+      {
+        "id": "R-S1-CAL-0279",
+        "term": "brainer",
+        "got": "trainer"
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "call",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "it",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "a",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "day",
+        "got": "colitab"
+      },
+      {
+        "id": "R-S1-CAL-0281",
+        "term": "it",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0281",
+        "term": "easy",
+        "got": "iti"
+      },
+      {
+        "id": "R-S1-CAL-0283",
+        "term": "let",
+        "got": "le"
+      },
+      {
+        "id": "R-S1-CAL-0283",
+        "term": "know",
+        "got": "no"
+      },
+      {
+        "id": "R-S1-CAL-0284",
+        "term": "sounds",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0284",
+        "term": "good",
+        "got": "soundwood"
+      },
+      {
+        "id": "R-S1-CAL-0286",
+        "term": "makes",
+        "got": "make"
+      },
+      {
+        "id": "R-S1-CAL-0288",
+        "term": "bad",
+        "got": "bed"
+      },
+      {
+        "id": "R-S1-CAL-0289",
+        "term": "crossed",
+        "got": "cross"
+      },
+      {
+        "id": "R-S1-CAL-0293",
+        "term": "and",
+        "got": "an"
+      },
+      {
+        "id": "R-S1-CAL-0296",
+        "term": "waste",
+        "got": "west"
+      },
+      {
+        "id": "R-S1-CAL-0299",
+        "term": "still",
+        "got": "ste"
+      },
+      {
+        "id": "R-S1-CAL-0300",
+        "term": "set",
+        "got": "s"
+      },
+      {
+        "id": "R-S1-CAL-0351",
+        "term": "path",
+        "got": "ps"
+      },
+      {
+        "id": "R-S1-CAL-0351",
+        "term": "river",
+        "got": "lever"
+      },
+      {
+        "id": "R-S1-CAL-0352",
+        "term": "but",
+        "got": "about"
+      },
+      {
+        "id": "R-S1-CAL-0353",
+        "term": "him",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-CAL-0354",
+        "term": "when",
+        "got": "what"
+      },
+      {
+        "id": "R-S1-CAL-0354",
+        "term": "hurry",
+        "got": "earri"
+      },
+      {
+        "id": "R-S1-CAL-0355",
+        "term": "ran",
+        "got": "run"
+      },
+      {
+        "id": "R-S1-CAL-0355",
+        "term": "than",
+        "got": "and"
+      },
+      {
+        "id": "R-S1-CAL-0356",
+        "term": "rain",
+        "got": "train"
+      },
+      {
+        "id": "R-S1-CAL-0358",
+        "term": "bike",
+        "got": "buke"
+      },
+      {
+        "id": "R-S1-CAL-0365",
+        "term": "sun",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0365",
+        "term": "set",
+        "got": "sunset"
+      },
+      {
+        "id": "R-S1-CAL-0366",
+        "term": "kids",
+        "got": "keats"
+      },
+      {
+        "id": "R-S1-CAL-0366",
+        "term": "playing",
+        "got": "play"
+      },
+      {
+        "id": "R-S1-CAL-0367",
+        "term": "umbrella",
+        "got": "ammbrella"
+      },
+      {
+        "id": "R-S1-CAL-0373",
+        "term": "he",
+        "got": "il"
+      },
+      {
+        "id": "R-S1-CAL-0373",
+        "term": "his",
+        "got": "issw"
+      },
+      {
+        "id": "R-S1-CAL-0374",
+        "term": "tonight",
+        "got": "night"
+      },
+      {
+        "id": "R-S1-CAL-0375",
+        "term": "dog",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0375",
+        "term": "barked",
+        "got": "dogbark"
+      },
+      {
+        "id": "R-S1-CAL-0375",
+        "term": "at",
+        "got": "è"
+      },
+      {
+        "id": "R-S1-CAL-0376",
+        "term": "stayed",
+        "got": "stay"
+      },
+      {
+        "id": "R-S1-CAL-0376",
+        "term": "all",
+        "got": "or"
+      },
+      {
+        "id": "R-S1-CAL-0377",
+        "term": "colder",
+        "got": "coldder"
+      },
+      {
+        "id": "R-S1-CAL-0377",
+        "term": "than",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-CAL-0378",
+        "term": "coat",
+        "got": "caught"
+      },
+      {
+        "id": "R-S1-CAL-0379",
+        "term": "right",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0379",
+        "term": "word",
+        "got": "rightward"
+      },
+      {
+        "id": "R-S1-CAL-0380",
+        "term": "they",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-CAL-0382",
+        "term": "his",
+        "got": "is"
+      },
+      {
+        "id": "R-S1-CAL-0383",
+        "term": "this",
+        "got": "these"
+      },
+      {
+        "id": "R-S1-CAL-0384",
+        "term": "sky",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0384",
+        "term": "turned",
+        "got": "skiurn"
+      },
+      {
+        "id": "R-S1-CAL-0384",
+        "term": "grey",
+        "got": "gray"
+      },
+      {
+        "id": "R-S1-CAL-0385",
+        "term": "on",
+        "got": "of"
+      },
+      {
+        "id": "R-S1-CAL-0386",
+        "term": "spilled",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-CAL-0386",
+        "term": "coffee",
+        "got": "coffe"
+      },
+      {
+        "id": "R-S1-CAL-0388",
+        "term": "sings",
+        "got": "signs"
+      },
+      {
+        "id": "R-S1-CAL-0388",
+        "term": "choir",
+        "got": "char"
+      },
+      {
+        "id": "R-S1-CAL-0389",
+        "term": "cafe",
+        "got": "caffè"
+      },
+      {
+        "id": "R-S1-CAL-0393",
+        "term": "soup",
+        "got": "supp"
+      },
+      {
+        "id": "R-S1-CAL-0393",
+        "term": "salt",
+        "got": "so"
+      },
+      {
+        "id": "R-S1-CAL-0397",
+        "term": "watched",
+        "got": "watch"
+      },
+      {
+        "id": "R-S1-CAL-0398",
+        "term": "finally",
+        "got": "aly"
+      },
+      {
+        "id": "R-S1-CAL-0398",
+        "term": "cleaned",
+        "got": "clean"
+      },
+      {
+        "id": "R-S1-CAL-0399",
+        "term": "opens",
+        "got": "open"
+      }
+    ],
+    "category": {
+      "single_word": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 11,
+        "del": 1,
+        "ins": 7,
+        "wer": 0.06529209621993128,
+        "insertion_rate": 2.4054982817869415,
+        "eta": 0.84
+      },
+      "phrase": {
+        "n": 50,
+        "ref_words": 273,
+        "sub": 16,
+        "del": 6,
+        "ins": 0,
+        "wer": 0.08058608058608059,
+        "insertion_rate": 0.0,
+        "eta": 0.8148148148148148
+      },
+      "brand": {
+        "n": 50,
+        "ref_words": 259,
+        "sub": 39,
+        "del": 2,
+        "ins": 11,
+        "wer": 0.20077220077220076,
+        "insertion_rate": 4.2471042471042475,
+        "eta": 0.4423076923076923
+      },
+      "acronym": {
+        "n": 50,
+        "ref_words": 262,
+        "sub": 33,
+        "del": 2,
+        "ins": 8,
+        "wer": 0.16412213740458015,
+        "insertion_rate": 3.053435114503817,
+        "eta": 0.5098039215686274
+      },
+      "switch": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 35,
+        "del": 16,
+        "ins": 2,
+        "wer": 0.18213058419243985,
+        "insertion_rate": 0.6872852233676976,
+        "eta": 0.7013888888888888
+      },
+      "italianized": {
+        "n": 50,
+        "ref_words": 267,
+        "sub": 17,
+        "del": 1,
+        "ins": 2,
+        "wer": 0.0749063670411985,
+        "insertion_rate": 0.7490636704119851,
+        "eta": 0.68
+      },
+      "control_it": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 6,
+        "del": 2,
+        "ins": 2,
+        "wer": 0.03436426116838488,
+        "insertion_rate": 0.6872852233676976,
+        "eta": null
+      },
+      "control_en": {
+        "n": 50,
+        "ref_words": 300,
+        "sub": 42,
+        "del": 4,
+        "ins": 5,
+        "wer": 0.17,
+        "insertion_rate": 1.6666666666666667,
+        "eta": 0.8466666666666667
+      }
+    },
+    "speaker": {
+      "S1": {
+        "n": 400,
+        "ref_words": 2234,
+        "sub": 199,
+        "del": 34,
+        "ins": 37,
+        "wer": 0.12085944494180842,
+        "insertion_rate": 1.6562220232766338,
+        "eta": 0.752317880794702
+      }
+    }
+  },
+  "reference": {
+    "hyp": "runs/E-017/control-e005-e034c.hyp.jsonl",
+    "hyp_sha256": "152f3f1610e51d62ccceb3824d2251166f9ec96947885ab1cdfd478e8009c0ac",
+    "wer": 0.13921217547000894,
+    "eta": 0.7562913907284768,
+    "category": {
+      "single_word": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 18,
+        "del": 5,
+        "ins": 2,
+        "wer": 0.0859106529209622,
+        "insertion_rate": 0.6872852233676976,
+        "eta": 0.8
+      },
+      "phrase": {
+        "n": 50,
+        "ref_words": 273,
+        "sub": 18,
+        "del": 9,
+        "ins": 0,
+        "wer": 0.0989010989010989,
+        "insertion_rate": 0.0,
+        "eta": 0.7962962962962963
+      },
+      "brand": {
+        "n": 50,
+        "ref_words": 259,
+        "sub": 51,
+        "del": 5,
+        "ins": 18,
+        "wer": 0.2857142857142857,
+        "insertion_rate": 6.94980694980695,
+        "eta": 0.3076923076923077
+      },
+      "acronym": {
+        "n": 50,
+        "ref_words": 262,
+        "sub": 34,
+        "del": 3,
+        "ins": 13,
+        "wer": 0.19083969465648856,
+        "insertion_rate": 4.961832061068702,
+        "eta": 0.49019607843137253
+      },
+      "switch": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 33,
+        "del": 10,
+        "ins": 5,
+        "wer": 0.16494845360824742,
+        "insertion_rate": 1.7182130584192439,
+        "eta": 0.7361111111111112
+      },
+      "italianized": {
+        "n": 50,
+        "ref_words": 267,
+        "sub": 20,
+        "del": 2,
+        "ins": 3,
+        "wer": 0.09363295880149813,
+        "insertion_rate": 1.1235955056179776,
+        "eta": 0.66
+      },
+      "control_it": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 16,
+        "del": 3,
+        "ins": 2,
+        "wer": 0.07216494845360824,
+        "insertion_rate": 0.6872852233676976,
+        "eta": null
+      },
+      "control_en": {
+        "n": 50,
+        "ref_words": 300,
+        "sub": 32,
+        "del": 3,
+        "ins": 6,
+        "wer": 0.13666666666666666,
+        "insertion_rate": 2.0,
+        "eta": 0.8833333333333333
+      }
+    }
+  },
+  "paired": {
+    "other": "runs/E-017/control-e005-e034c.hyp.jsonl",
+    "other_manifest_sha256": null,
+    "wer_diff": -0.018352730528200523,
+    "wer_diff_ci": [
+      -0.03160270880361174,
+      -0.00583744948361023
+    ],
+    "wer_tie": false,
+    "eta_diff": -0.003973509933774877,
+    "eta_diff_ci": [
+      -0.031088082901554404,
+      0.024324324324324298
+    ],
+    "eta_tie": true
+  },
+  "no_regression": {
+    "has_ci": true,
+    "wer_diff_pp": -1.8353,
+    "eta_diff_pp": -0.3974,
+    "wer_regression": false,
+    "eta_regression": false,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  },
+  "elapsed_seconds": 11.8
+}
