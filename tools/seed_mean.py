@@ -9,7 +9,8 @@ own; no seed is ever selected on S1-dev.
 With ``--macro`` the metric is the equal-language macro WER over the manifest
 ``lang`` values (the dev-macro gate); without it the metric is pooled WER/ETA
 for one mixed set (S1-dev). Differences are candidate − control: negative WER is
-better, positive ETA is better.
+better, positive ETA is better. ``--control`` may be repeated: a multi-seed
+control (E-027's same-length fine-tune) is then its own seed mean.
 
     python tools/seed_mean.py --macro \\
       --manifest ../moth-stt/data/manifests/mls_it_dev.jsonl \\
@@ -105,12 +106,23 @@ def mean_system(systems: list[dict], ids: list[str]) -> dict:
     return result
 
 
+def control_system(systems: list[dict], ids: list[str]) -> dict:
+    """One control readout as is, or the seed mean of several control seeds (E-027)."""
+    return systems[0] if len(systems) == 1 else mean_system(systems, ids)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument("--manifest", type=Path, action="append", required=True)
-    parser.add_argument("--control", type=Path, required=True)
+    parser.add_argument(
+        "--control",
+        type=Path,
+        action="append",
+        required=True,
+        help="control hypotheses; repeat it for a multi-seed control (its seed mean)",
+    )
     parser.add_argument("--seed", type=Path, action="append", required=True)
     parser.add_argument(
         "--macro",
@@ -151,7 +163,7 @@ def main() -> None:
             raise SystemExit(f"{path}: {len(missing)} manifest ids have no hypothesis")
         return result["per_utterance"]
 
-    control = scored(args.control)
+    control = control_system([scored(path) for path in args.control], ids)
     seeds = [scored(path) for path in args.seed]
     mean = mean_system(seeds, ids)
 
@@ -214,7 +226,12 @@ def main() -> None:
         "manifests": manifest_rows,
         "rows": len(rows),
         "groups": {lang: len(ids) for lang, ids in groups.items()},
-        "control": {"path": str(args.control), "metrics": systems["control"]},
+        "control": {
+            "path": str(args.control[0]) if len(args.control) == 1 else None,
+            "paths": [str(path) for path in args.control],
+            "seeds": len(args.control),
+            "metrics": systems["control"],
+        },
         "seeds": [
             {"path": str(p), "metrics": systems[f"seed_{i}"]} for i, p in enumerate(args.seed)
         ],

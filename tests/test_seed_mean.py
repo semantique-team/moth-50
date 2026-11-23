@@ -1,4 +1,4 @@
-from seed_mean import mean_system, metric
+from seed_mean import control_system, mean_system, metric
 
 
 def _utterance(ref=10, sub=0, dele=0, ins=0, en_ref=4, en_hit=4):
@@ -43,3 +43,11 @@ def test_mean_system_averages_counts_across_seeds():
     assert mean["u"]["sub"] == 1.0
     assert mean["u"]["en_hit"] == 3.0
     assert mean["u"]["ref_words"] == 10
+
+
+def test_control_system_is_one_readout_or_the_seed_mean():
+    first = {"u": _utterance(sub=0, en_hit=2)}
+    second = {"u": _utterance(sub=2, en_hit=4)}
+
+    assert control_system([first], ["u"]) is first
+    assert control_system([first, second], ["u"]) == mean_system([first, second], ["u"])
