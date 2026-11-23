@@ -1,0 +1,9 @@
+[
+  {
+    "system": "voxtral-mini-3b-2507",
+    "reason": "not run on gold: 9.36 GB model, 1 clip at 0.009 RTFx on the 16 GB M5 (>100 h for 57.6 min); resource exclusion",
+    "license": "Apache-2.0",
+    "revision": "3060fe34b35ba5d44202ce9ff3c097642914f8f3",
+    "evidence": "runs/E-018/voxtral-mini-3b-2507/EXCLUDED.md"
+  }
+]

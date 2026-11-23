@@ -1,0 +1,1413 @@
+{"id": "R-S1-0001", "hyp": "La mia squadra ha perso il denby.", "latency_s": 0.1163}
+{"id": "R-S1-0002", "hyp": "Il coach ha cambiato modulo all'intervallo.", "latency_s": 0.0954}
+{"id": "R-S1-0003", "hyp": "Il gol è arrivato al novantesimo.", "latency_s": 0.0783}
+{"id": "R-S1-0004", "hyp": "Il match è iniziato con dieci minuti di ritardo.", "latency_s": 0.0933}
+{"id": "R-S1-0005", "hyp": "Il nuovo sponsor è una banca locale.", "latency_s": 0.0905}
+{"id": "R-S1-0006", "hyp": "Ho comprato la Jersey della Nazionale.", "latency_s": 0.1}
+{"id": "R-S1-0007", "hyp": "Faccio fitness tre volte a settimana.", "latency_s": 0.0764}
+{"id": "R-S1-0008", "hyp": "In gym trovo sempre coda ai macchinari.", "latency_s": 0.1274}
+{"id": "R-S1-0009", "hyp": "Il mio running è migliorato molto.", "latency_s": 0.0925}
+{"id": "R-S1-0010", "hyp": "Ho cambiato il walkout del lunedì.", "latency_s": 0.0898}
+{"id": "R-S1-0011", "hyp": "Il score era pari a fine primo tempo.", "latency_s": 0.1075}
+{"id": "R-S1-0012", "hyp": "Ho vinto il primo set senza fatica.", "latency_s": 0.0806}
+{"id": "R-S1-0013", "hyp": "Il game è stato noioso fino alla fine.", "latency_s": 0.0881}
+{"id": "R-S1-0014", "hyp": "Il Blayer si è infortunato al ginocchio.", "latency_s": 0.0915}
+{"id": "R-S1-0015", "hyp": "Sono un grande fan di questo gioco.", "latency_s": 0.107}
+{"id": "R-S1-0016", "hyp": "Il club ha cambiato allenatore ieri.", "latency_s": 0.0906}
+{"id": "R-S1-0017", "hyp": "Il corner è stato battuto male.", "latency_s": 0.0707}
+{"id": "R-S1-0018", "hyp": "Il penalty è stato sbagliato di poco.", "latency_s": 0.0896}
+{"id": "R-S1-0019", "hyp": "Il referì ha fischiato la fine.", "latency_s": 0.0952}
+{"id": "R-S1-0020", "hyp": "Siamo fuori dai playoff per un punto.", "latency_s": 0.0828}
+{"id": "R-S1-0021", "hyp": "Il ranking è aggiornato ogni lunedì.", "latency_s": 0.0874}
+{"id": "R-S1-0022", "hyp": "Hanno alzato il trofi davanti ai tifosi.", "latency_s": 0.105}
+{"id": "R-S1-0023", "hyp": "Ha battuto il record della pista.", "latency_s": 0.0961}
+{"id": "R-S1-0024", "hyp": "Il time out è finito troppo presto.", "latency_s": 0.1222}
+{"id": "R-S1-0025", "hyp": "La partita è andata ai Overtime.", "latency_s": 0.0874}
+{"id": "R-S1-0026", "hyp": "La session di allenamento è stata due?", "latency_s": 0.0855}
+{"id": "R-S1-0027", "hyp": "Il trainer ha preparato un programma nuovo.", "latency_s": 0.0957}
+{"id": "R-S1-0028", "hyp": "Seguo una diet fega da un mese.", "latency_s": 0.094}
+{"id": "R-S1-0029", "hyp": "Faccio detox dopo le feste.", "latency_s": 0.0985}
+{"id": "R-S1-0030", "hyp": "Il mio wellness è migliorato.", "latency_s": 0.085}
+{"id": "R-S1-0031", "hyp": "Ho prenotato un check up complete.", "latency_s": 0.0781}
+{"id": "R-S1-0032", "hyp": "Il stress mi sta consumando.", "latency_s": 0.0962}
+{"id": "R-S1-0033", "hyp": "Rischio il burn out con questi ritmi.", "latency_s": 0.0933}
+{"id": "R-S1-0034", "hyp": "Cura postur alla scrivania.", "latency_s": 0.0941}
+{"id": "R-S1-0035", "hyp": "Ho misurato Jabs dopo un mese.", "latency_s": 0.1012}
+{"id": "R-S1-0036", "hyp": "Faccio 10 squot ogni mattina.", "latency_s": 0.1022}
+{"id": "R-S1-0037", "hyp": "Tengo il blank per due minuti.", "latency_s": 0.0755}
+{"id": "R-S1-0038", "hyp": "Il cardio mi annoia un po'.", "latency_s": 0.0752}
+{"id": "R-S1-0039", "hyp": "Ho comprato un tappetino per lo stretching.", "latency_s": 0.0852}
+{"id": "R-S1-0040", "hyp": "Misuro gli step ogni giorno.", "latency_s": 0.1126}
+{"id": "R-S1-0041", "hyp": "Bevo uno smoothie dopo la palestra.", "latency_s": 0.0878}
+{"id": "R-S1-0042", "hyp": "Preparo un milsake alla banana.", "latency_s": 0.0897}
+{"id": "R-S1-0043", "hyp": "La colazione è un branch abbondante.", "latency_s": 0.0925}
+{"id": "R-S1-0044", "hyp": "Ho preso uno snack prima di uscire.", "latency_s": 0.1036}
+{"id": "R-S1-0045", "hyp": "Mangi un toast con l'avocado.", "latency_s": 0.0984}
+{"id": "R-S1-0046", "hyp": "Ho comprato i muffin al cioccolato.", "latency_s": 0.0886}
+{"id": "R-S1-0047", "hyp": "La domenica faccio i pancake.", "latency_s": 0.0732}
+{"id": "R-S1-0048", "hyp": "Il popcorn è pronto per la serie.", "latency_s": 0.0843}
+{"id": "R-S1-0049", "hyp": "Ho ordinato un burger con le patatine.", "latency_s": 0.0999}
+{"id": "R-S1-0050", "hyp": "Mi preparo un sandwich veloce.", "latency_s": 0.0798}
+{"id": "R-S1-0051", "hyp": "La recipi della nonna è segreta.", "latency_s": 0.1026}
+{"id": "R-S1-0052", "hyp": "Uso il mixer per la tonta.", "latency_s": 0.0728}
+{"id": "R-S1-0053", "hyp": "Il blender si è rotto ieri.", "latency_s": 0.0797}
+{"id": "R-S1-0054", "hyp": "Il toaster, pongo con mucha cano.", "latency_s": 0.0942}
+{"id": "R-S1-0055", "hyp": "Il kettle bolla in un minuto.", "latency_s": 0.081}
+{"id": "R-S1-0056", "hyp": "Il freezer è pieno di verdure.", "latency_s": 0.0648}
+{"id": "R-S1-0057", "hyp": "Facciamo un barbecue in giardino.", "latency_s": 0.0902}
+{"id": "R-S1-0058", "hyp": "Il picnic è saltato per la pioggia.", "latency_s": 0.089}
+{"id": "R-S1-0059", "hyp": "Prendiamo un takeaway stasera.", "latency_s": 0.0842}
+{"id": "R-S1-0060", "hyp": "Il boarding inizia alle sette.", "latency_s": 0.0679}
+{"id": "R-S1-0061", "hyp": "Il gate è cambiato all'ultimo.", "latency_s": 0.0671}
+{"id": "R-S1-0062", "hyp": "Il luggage è rimasto in aeroporto.", "latency_s": 0.0814}
+{"id": "R-S1-0063", "hyp": "Ho comprato un backpack nuovo.", "latency_s": 0.068}
+{"id": "R-S1-0064", "hyp": "Il flight è stato cancellato.", "latency_s": 0.0724}
+{"id": "R-S1-0065", "hyp": "Il transfer dall'aeropor è incluso.", "latency_s": 0.0922}
+{"id": "R-S1-0066", "hyp": "Il tour dura tre giorni.", "latency_s": 0.0869}
+{"id": "R-S1-0067", "hyp": "Ho trovato un outlet vicino al confine.", "latency_s": 0.0894}
+{"id": "R-S1-0068", "hyp": "Il re sotto ha una piscina enorme.", "latency_s": 0.0896}
+{"id": "R-S1-0069", "hyp": "Ho perso il wallet in spiaggia.", "latency_s": 0.0785}
+{"id": "R-S1-0070", "hyp": "Il nuovo album esce a settembre.", "latency_s": 0.0782}
+{"id": "R-S1-0071", "hyp": "Il nuovo single è già in classifica.", "latency_s": 0.1107}
+{"id": "R-S1-0072", "hyp": "Il du passa anche da comma.", "latency_s": 0.0711}
+{"id": "R-S1-0073", "hyp": "La setlist era piena di classici.", "latency_s": 0.1082}
+{"id": "R-S1-0074", "hyp": "Hanno fatto due encore.", "latency_s": 0.0736}
+{"id": "R-S1-0075", "hyp": "Il remix è meglio dell'originale.", "latency_s": 0.0878}
+{"id": "R-S1-0076", "hyp": "Hanno suonato una cover dei Beatles.", "latency_s": 0.086}
+{"id": "R-S1-0077", "hyp": "Il studio di registrazione è in centro.", "latency_s": 0.115}
+{"id": "R-S1-0078", "hyp": "Lo stage era troppo alto.", "latency_s": 0.0882}
+{"id": "R-S1-0079", "hyp": "Il soundcheck è durato un'ora", "latency_s": 0.0797}
+{"id": "R-S1-0080", "hyp": "Siamo entrati nel backstage.", "latency_s": 0.0837}
+{"id": "R-S1-0081", "hyp": "Ho comprato il merch del concerto.", "latency_s": 0.0851}
+{"id": "R-S1-0082", "hyp": "Il Festival dura tre giorni.", "latency_s": 0.0833}
+{"id": "R-S1-0083", "hyp": "Ho visto il trailer in anteprima.", "latency_s": 0.0874}
+{"id": "R-S1-0084", "hyp": "Il cast è quasi tutto nuovo.", "latency_s": 0.0842}
+{"id": "R-S1-0085", "hyp": "La plot è troppo complicata.", "latency_s": 0.096}
+{"id": "R-S1-0086", "hyp": "Il sequel esce il prossimo anno.", "latency_s": 0.0898}
+{"id": "R-S1-0087", "hyp": "Hanno annunciato il prequel.", "latency_s": 0.0829}
+{"id": "R-S1-0088", "hyp": "Il remake non mi convince.", "latency_s": 0.0784}
+{"id": "R-S1-0089", "hyp": "Quel blockbuster ha incassato molto.", "latency_s": 0.0906}
+{"id": "R-S1-0090", "hyp": "Ho fatto un binge di tre episodi.", "latency_s": 0.1067}
+{"id": "R-S1-0091", "hyp": "La scene finale è bellissima.", "latency_s": 0.0714}
+{"id": "R-S1-0092", "hyp": "Lo script è stato riscritto.", "latency_s": 0.0851}
+{"id": "R-S1-0093", "hyp": "C'è un cameo a sorpresa.", "latency_s": 0.0893}
+{"id": "R-S1-0094", "hyp": "Il campus è enorme.", "latency_s": 0.0729}
+{"id": "R-S1-0095", "hyp": "Ho finito il master a giugno.", "latency_s": 0.0784}
+{"id": "R-S1-0096", "hyp": "Il bachelor dura tre anni.", "latency_s": 0.0847}
+{"id": "R-S1-0097", "hyp": "La Tisis è quasi pronta.", "latency_s": 0.0862}
+{"id": "R-S1-0098", "hyp": "Il quiz era difficile.", "latency_s": 0.0699}
+{"id": "R-S1-0099", "hyp": "Ho passato il test di ammissione.", "latency_s": 0.0868}
+{"id": "R-S1-0100", "hyp": "Il tutor risponde tardi.", "latency_s": 0.0798}
+{"id": "R-S1-0101", "hyp": "Il seminar inizia alle nove.", "latency_s": 0.0821}
+{"id": "R-S1-0102", "hyp": "Ho consegnato un essay in ritardo.", "latency_s": 0.0868}
+{"id": "R-S1-0103", "hyp": "Il paper è stato pubblicato.", "latency_s": 0.0708}
+{"id": "R-S1-0104", "hyp": "Il pet dorme sul divano.", "latency_s": 0.0702}
+{"id": "R-S1-0105", "hyp": "Il pappi mordto.", "latency_s": 0.0733}
+{"id": "R-S1-0106", "hyp": "Il kitten è appena arrivato.", "latency_s": 0.0879}
+{"id": "R-S1-0107", "hyp": "Porto il cane al grooming.", "latency_s": 0.0827}
+{"id": "R-S1-0108", "hyp": "Il vet ha fatto il richiamo.", "latency_s": 0.0892}
+{"id": "R-S1-0109", "hyp": "Il lisce è troppo corto.", "latency_s": 0.074}
+{"id": "R-S1-0110", "hyp": "Il cane mandò dal bowl.", "latency_s": 0.0796}
+{"id": "R-S1-0111", "hyp": "Don't al cane.", "latency_s": 0.0778}
+{"id": "R-S1-0112", "hyp": "Ho prelevato del cache allo spontello.", "latency_s": 0.087}
+{"id": "R-S1-0113", "hyp": "Il coupon scade domani.", "latency_s": 0.0686}
+{"id": "R-S1-0114", "hyp": "Il discount è solo per oggi.", "latency_s": 0.0754}
+{"id": "R-S1-0115", "hyp": "Il bonus è stato accreditato.", "latency_s": 0.0877}
+{"id": "R-S1-0116", "hyp": "Il salari arriva il ventisette.", "latency_s": 0.0857}
+{"id": "R-S1-0117", "hyp": "La bill è più alta del solito.", "latency_s": 0.0849}
+{"id": "R-S1-0118", "hyp": "Ho lasciato una tip generosa.", "latency_s": 0.0886}
+{"id": "R-S1-0119", "hyp": "Ho chiesto un loan alla banca.", "latency_s": 0.0828}
+{"id": "R-S1-0120", "hyp": "Il so fa è troppo grande.", "latency_s": 0.0853}
+{"id": "R-S1-0121", "hyp": "Ho montato lo shelf da solo.", "latency_s": 0.0886}
+{"id": "R-S1-0122", "hyp": "La blanket è sul divano.", "latency_s": 0.0871}
+{"id": "R-S1-0123", "hyp": "Il pillow è troppo morbido.", "latency_s": 0.0916}
+{"id": "R-S1-0124", "hyp": "Il matres va cambiato.", "latency_s": 0.0857}
+{"id": "R-S1-0125", "hyp": "Il Mirgor è appeso male.", "latency_s": 0.0984}
+{"id": "R-S1-0126", "hyp": "La lamp non si accende.", "latency_s": 0.0775}
+{"id": "R-S1-0127", "hyp": "Il carpet è pieno di polvere.", "latency_s": 0.0882}
+{"id": "R-S1-0128", "hyp": "La curtain è da lavare.", "latency_s": 0.0828}
+{"id": "R-S1-0129", "hyp": "Il mio outfit è molto semplice.", "latency_s": 0.0871}
+{"id": "R-S1-0130", "hyp": "Il look è cambiato poco.", "latency_s": 0.0704}
+{"id": "R-S1-0131", "hyp": "Le sicket sono nuove.", "latency_s": 0.0863}
+{"id": "R-S1-0132", "hyp": "La UD è troppo calda.", "latency_s": 0.0751}
+{"id": "R-S1-0133", "hyp": "I jeans sono stretti.", "latency_s": 0.0814}
+{"id": "R-S1-0134", "hyp": "Il driver non è aggiornato.", "latency_s": 0.0865}
+{"id": "R-S1-0135", "hyp": "Il traffic è terribile stamattina.", "latency_s": 0.0762}
+{"id": "R-S1-0136", "hyp": "Il packing è pieno.", "latency_s": 0.0673}
+{"id": "R-S1-0137", "hyp": "La SPI della connessione è bassa.", "latency_s": 0.0862}
+{"id": "R-S1-0138", "hyp": "Il van non parte stamattina.", "latency_s": 0.0825}
+{"id": "R-S1-0139", "hyp": "Lengine fa un rumore strano.", "latency_s": 0.0836}
+{"id": "R-S1-0140", "hyp": "Il break è usurato.", "latency_s": 0.0647}
+{"id": "R-S1-0141", "hyp": "Quella correzione è un quick win per il gruppo.", "latency_s": 0.1221}
+{"id": "R-S1-0142", "hyp": "Mi sembra una mattina di Deep, senza riunioni.", "latency_s": 0.11}
+{"id": "R-S1-0143", "hyp": "Ho fatto un power nap dopo pranzo.", "latency_s": 0.0907}
+{"id": "R-S1-0144", "hyp": "Il capo ha messo un hard stop alle cinque.", "latency_s": 0.1078}
+{"id": "R-S1-0145", "hyp": "Faremo un soft launch la prossima settimana.", "latency_s": 0.1076}
+{"id": "R-S1-0146", "hyp": "Ho mandato una call mail a dieci aziende.", "latency_s": 0.0957}
+{"id": "R-S1-0147", "hyp": "Il commerciale ha fatto una cold call lunghissima.", "latency_s": 0.1402}
+{"id": "R-S1-0148", "hyp": "Questo contatto è un warm lead per omettente.", "latency_s": 0.1144}
+{"id": "R-S1-0149", "hyp": "Prepariamo il Sales Pitch per domani.", "latency_s": 0.1175}
+{"id": "R-S1-0150", "hyp": "Un elevator pitch dura 30 secondi.", "latency_s": 0.1042}
+{"id": "R-S1-0151", "hyp": "Ho perso il user manual della macchina.", "latency_s": 0.1298}
+{"id": "R-S1-0152", "hyp": "Sembe un quick fix prima del rilascio.", "latency_s": 0.151}
+{"id": "R-S1-0153", "hyp": "La sostenibilità è un hot topic in azienda.", "latency_s": 0.1237}
+{"id": "R-S1-0154", "hyp": "Resta una open question sul bilancio.", "latency_s": 0.1172}
+{"id": "R-S1-0155", "hyp": "Ogni action item ha un responsabile.", "latency_s": 0.1145}
+{"id": "R-S1-0156", "hyp": "Il next step è fissare una riunione.", "latency_s": 0.1179}
+{"id": "R-S1-0157", "hyp": "Dobbiamo fare follow through sulle promesse.", "latency_s": 0.1079}
+{"id": "R-S1-0158", "hyp": "Ci sentiamo per un touch base veloce.", "latency_s": 0.1011}
+{"id": "R-S1-0159", "hyp": "Ti faccio un sick callback la settimana prossima.", "latency_s": 0.1105}
+{"id": "R-S1-0160", "hyp": "Posiamo roll up i risultati in un foglio.", "latency_s": 0.1262}
+{"id": "R-S1-0161", "hyp": "Dobbiamo scale down il progetto per l'estate.", "latency_s": 0.1167}
+{"id": "R-S1-0162", "hyp": "Facciamo spin up un ambiente di prova.", "latency_s": 0.1378}
+{"id": "R-S1-0163", "hyp": "Prova a logon con il tuo profilo.", "latency_s": 0.1369}
+{"id": "R-S1-0164", "hyp": "Prima di uscire fai sign off.", "latency_s": 0.102}
+{"id": "R-S1-0165", "hyp": "Ho scelto The Opt in alla newsletter.", "latency_s": 0.1412}
+{"id": "R-S1-0166", "hyp": "Puoi opt out in qualsiasi momento.", "latency_s": 0.1066}
+{"id": "R-S1-0167", "hyp": "Facciamo una zoom call domani alle 10.", "latency_s": 0.1124}
+{"id": "R-S1-0168", "hyp": "Il day di Scrum è alle nove e mezza.", "latency_s": 0.1117}
+{"id": "R-S1-0169", "hyp": "Lo sprint goal è chiaro a tutti", "latency_s": 0.0934}
+{"id": "R-S1-0170", "hyp": "Questo story point è troppo alto.", "latency_s": 0.1017}
+{"id": "R-S1-0171", "hyp": "Guardiamo il burn down insieme.", "latency_s": 0.0877}
+{"id": "R-S1-0172", "hyp": "Quel cod va sistemato.", "latency_s": 0.0888}
+{"id": "R-S1-0173", "hyp": "Scrivo uno unit test per quella funzione.", "latency_s": 0.1134}
+{"id": "R-S1-0174", "hyp": "Lo smoke test è passato.", "latency_s": 0.0834}
+{"id": "R-S1-0175", "hyp": "Seve un regression test prima del rilascio.", "latency_s": 0.1123}
+{"id": "R-S1-0176", "hyp": "Il load test ha detto bene.", "latency_s": 0.0829}
+{"id": "R-S1-0177", "hyp": "Soak test è durato tutta la notte.", "latency_s": 0.1262}
+{"id": "R-S1-0178", "hyp": "Siamo nella fase di endgame.", "latency_s": 0.0822}
+{"id": "R-S1-0179", "hyp": "Il release train panta venerdì.", "latency_s": 0.0932}
+{"id": "R-S1-0180", "hyp": "Abbiamo deciso una feature freeze.", "latency_s": 0.1207}
+{"id": "R-S1-0181", "hyp": "La code freeze inizia lunedì.", "latency_s": 0.1156}
+{"id": "R-S1-0182", "hyp": "Dobbiamo call forward le modifiche.", "latency_s": 0.1125}
+{"id": "R-S1-0183", "hyp": "Non voglio branch out senza un piano.", "latency_s": 0.1355}
+{"id": "R-S1-0184", "hyp": "Il Man to Conflict mi ha bloccato.", "latency_s": 0.0939}
+{"id": "R-S1-0185", "hyp": "Scrivi un comit message decente.", "latency_s": 0.0897}
+{"id": "R-S1-0186", "hyp": "Il nostro issue tracker è pieno.", "latency_s": 0.0809}
+{"id": "R-S1-0187", "hyp": "La versione desktop app è più stabile.", "latency_s": 0.1148}
+{"id": "R-S1-0188", "hyp": "Preferisco il mobile web al telefono.", "latency_s": 0.0968}
+{"id": "R-S1-0189", "hyp": "La casa è smart on, ormai.", "latency_s": 0.095}
+{"id": "R-S1-0190", "hyp": "Lavoro dal home office due giorni.", "latency_s": 0.107}
+{"id": "R-S1-0191", "hyp": "Il nostro Open Office non mi piace.", "latency_s": 0.1192}
+{"id": "R-S1-0192", "hyp": "Il corner office è vuoto da mesi.", "latency_s": 0.1044}
+{"id": "R-S1-0193", "hyp": "Prendo sempre le meeting notes.", "latency_s": 0.1148}
+{"id": "R-S1-0194", "hyp": "Il stand up meeting dura quindici minuti.", "latency_s": 0.1089}
+{"id": "R-S1-0195", "hyp": "Lo status meeting è stato rimandato.", "latency_s": 0.1009}
+{"id": "R-S1-0196", "hyp": "Il weekly sync è il lunedì.", "latency_s": 0.0947}
+{"id": "R-S1-0197", "hyp": "Il Montly Report è pronto.", "latency_s": 0.096}
+{"id": "R-S1-0198", "hyp": "La annual revue è a dicembre.", "latency_s": 0.1109}
+{"id": "R-S1-0199", "hyp": "La performance cheview è andata bene.", "latency_s": 0.1066}
+{"id": "R-S1-0200", "hyp": "Ho chiesto uno skip level con il capo.", "latency_s": 0.1203}
+{"id": "R-S1-0201", "hyp": "Il team Lunch è offerto dall'azienda.", "latency_s": 0.1056}
+{"id": "R-S1-0202", "hyp": "Il team dinner è sabato se aga.", "latency_s": 0.0892}
+{"id": "R-S1-0203", "hyp": "La Office Party è a fine mese.", "latency_s": 0.0982}
+{"id": "R-S1-0204", "hyp": "Il Company retreat dura tre giorni.", "latency_s": 0.0966}
+{"id": "R-S1-0205", "hyp": "Il walk trip è stato rimandato.", "latency_s": 0.0911}
+{"id": "R-S1-0206", "hyp": "Il business trip mi stanca molto.", "latency_s": 0.107}
+{"id": "R-S1-0207", "hyp": "Facciamo un City Break a mazzo.", "latency_s": 0.1073}
+{"id": "R-S1-0208", "hyp": "Il road trip è stato memorabile.", "latency_s": 0.0982}
+{"id": "R-S1-0209", "hyp": "Check un weekend gateway economico.", "latency_s": 0.1085}
+{"id": "R-S1-0210", "hyp": "Mi sembra un day off al più presto.", "latency_s": 0.1067}
+{"id": "R-S1-0211", "hyp": "Ho preso time off per il compleanno.", "latency_s": 0.104}
+{"id": "R-S1-0212", "hyp": "È un sic live da lunedì.", "latency_s": 0.1198}
+{"id": "R-S1-0213", "hyp": "La maternity leave dura cinque mesi.", "latency_s": 0.1091}
+{"id": "R-S1-0214", "hyp": "Ho chiesto un gare in break.", "latency_s": 0.1131}
+{"id": "R-S1-0215", "hyp": "See a presumab here.", "latency_s": 0.104}
+{"id": "R-S1-0216", "hyp": "Il suo side assol è la fotografia.", "latency_s": 0.1086}
+{"id": "R-S1-0217", "hyp": "Il Passion Project è cresciuto.", "latency_s": 0.0951}
+{"id": "R-S1-0218", "hyp": "", "latency_s": 0.1573}
+{"id": "R-S1-0219", "hyp": "Lavoro part time da settembre.", "latency_s": 0.1049}
+{"id": "R-S1-0220", "hyp": "Cerco un full time incento.", "latency_s": 0.1157}
+{"id": "R-S1-0221", "hyp": "Il flex time è utile con i figli.", "latency_s": 0.1193}
+{"id": "R-S1-0222", "hyp": "Il shift walk rovina il sonno.", "latency_s": 0.1269}
+{"id": "R-S1-0223", "hyp": "Il remote walk è ormai normale.", "latency_s": 0.1009}
+{"id": "R-S1-0224", "hyp": "L'ibridwalk è il nostro modello.", "latency_s": 0.1155}
+{"id": "R-S1-0225", "hyp": "Uso un Nob Desk quando vengo.", "latency_s": 0.103}
+{"id": "R-S1-0226", "hyp": "La conference room è occupata.", "latency_s": 0.1289}
+{"id": "R-S1-0227", "hyp": "Aspetto nella waiting room.", "latency_s": 0.0949}
+{"id": "R-S1-0228", "hyp": "La break room è al pianoterra.", "latency_s": 0.1006}
+{"id": "R-S1-0229", "hyp": "Mangiamo uno street food al mercato.", "latency_s": 0.1152}
+{"id": "R-S1-0230", "hyp": "Il food truck è arrivato in piazza.", "latency_s": 0.1087}
+{"id": "R-S1-0231", "hyp": "Adoro il comfant food d'inverno.", "latency_s": 0.106}
+{"id": "R-S1-0232", "hyp": "Facciamo una coffee break insieme.", "latency_s": 0.0978}
+{"id": "R-S1-0233", "hyp": "Il lunch break dura un'ora.", "latency_s": 0.0954}
+{"id": "R-S1-0234", "hyp": "Il happy hour inizia alle sei.", "latency_s": 0.1127}
+{"id": "R-S1-0235", "hyp": "L'adress code è chiara.", "latency_s": 0.0994}
+{"id": "R-S1-0236", "hyp": "Vanno bene i Smart Casual.", "latency_s": 0.107}
+{"id": "R-S1-0237", "hyp": "Il business casual è accettato.", "latency_s": 0.0984}
+{"id": "R-S1-0238", "hyp": "Abbiamo un team player in squadra.", "latency_s": 0.1085}
+{"id": "R-S1-0239", "hyp": "SB un groot mindset begreichere.", "latency_s": 0.1179}
+{"id": "R-S1-0240", "hyp": "Il design thinking aiuta a innovare.", "latency_s": 0.1105}
+{"id": "R-S1-0241", "hyp": "Facciamo un design sprint di tre giorni.", "latency_s": 0.112}
+{"id": "R-S1-0242", "hyp": "Il user è la base.", "latency_s": 0.0936}
+{"id": "R-S1-0243", "hyp": "Il customer journey va semplificato.", "latency_s": 0.1351}
+{"id": "R-S1-0244", "hyp": "Il Sales funn per de pezzi", "latency_s": 0.1157}
+{"id": "R-S1-0245", "hyp": "La brand Awareness è cresciuta.", "latency_s": 0.1126}
+{"id": "R-S1-0246", "hyp": "Il social media manager è in ferie.", "latency_s": 0.106}
+{"id": "R-S1-0247", "hyp": "La content strategy è da rivedere.", "latency_s": 0.1063}
+{"id": "R-S1-0248", "hyp": "Il digital marketing cambia in fretta.", "latency_s": 0.1038}
+{"id": "R-S1-0249", "hyp": "La email marketing funziona ancora.", "latency_s": 0.1037}
+{"id": "R-S1-0250", "hyp": "Il call to action è poco chiaro.", "latency_s": 0.1051}
+{"id": "R-S1-0251", "hyp": "La landing page convente bene.", "latency_s": 0.1107}
+{"id": "R-S1-0252", "hyp": "Il convestion rate è migliorato.", "latency_s": 0.1047}
+{"id": "R-S1-0253", "hyp": "La churn rate è troppo alta.", "latency_s": 0.1126}
+{"id": "R-S1-0254", "hyp": "Il Customer supporter risponde in fretta.", "latency_s": 0.1355}
+{"id": "R-S1-0255", "hyp": "La Customer satisfaction è al massimo.", "latency_s": 0.1276}
+{"id": "R-S1-0256", "hyp": "Il product market fit non è ancora chiaro.", "latency_s": 0.1548}
+{"id": "R-S1-0257", "hyp": "La Product Roadmap è stata aggiornata.", "latency_s": 0.1375}
+{"id": "R-S1-0258", "hyp": "Il Minimum Viable Product è pronto.", "latency_s": 0.1483}
+{"id": "R-S1-0259", "hyp": "Il Go to Market è settembre.", "latency_s": 0.0992}
+{"id": "R-S1-0260", "hyp": "La value proposition è chiara.", "latency_s": 0.0904}
+{"id": "R-S1-0261", "hyp": "Il business model va cambiato.", "latency_s": 0.095}
+{"id": "R-S1-0262", "hyp": "La Pricing Strategy è discussa.", "latency_s": 0.1085}
+{"id": "R-S1-0263", "hyp": "Il cash flow è in ordine.", "latency_s": 0.0843}
+{"id": "R-S1-0264", "hyp": "Il break even è vicino.", "latency_s": 0.1008}
+{"id": "R-S1-0265", "hyp": "La supply chain è in difficoltà.", "latency_s": 0.0992}
+{"id": "R-S1-0266", "hyp": "Il Quality Assurance ha trovato un difetto.", "latency_s": 0.1281}
+{"id": "R-S1-0267", "hyp": "La quality control è troppo lenta.", "latency_s": 0.1105}
+{"id": "R-S1-0268", "hyp": "Ho ascoltato il nuovo album su Spotify.", "latency_s": 0.1339}
+{"id": "R-S1-0269", "hyp": "La serie è uscita su Netflix.", "latency_s": 0.0945}
+{"id": "R-S1-0270", "hyp": "Ho comprato il caricatore su Amazon.", "latency_s": 0.1057}
+{"id": "R-S1-0271", "hyp": "Affitto la casa con Airbnb.", "latency_s": 0.1056}
+{"id": "R-S1-0272", "hyp": "La consegna è arrivata con globo.", "latency_s": 0.1219}
+{"id": "R-S1-0273", "hyp": "Ho pagato il conto con PayPal.", "latency_s": 0.0991}
+{"id": "R-S1-0274", "hyp": "Il foglio è su Google Sheets.", "latency_s": 0.0958}
+{"id": "R-S1-0275", "hyp": "Il colloquio è su Microsoft Teams.", "latency_s": 0.1155}
+{"id": "R-S1-0276", "hyp": "Le idee sono su un Ocean.", "latency_s": 0.0902}
+{"id": "R-S1-0277", "hyp": "Il mock up è su Figma.", "latency_s": 0.091}
+{"id": "R-S1-0278", "hyp": "Il progetto è su GitHub.", "latency_s": 0.0792}
+{"id": "R-S1-0279", "hyp": "Il canale è su Slack.", "latency_s": 0.0862}
+{"id": "R-S1-0280", "hyp": "La call è su Zoom.", "latency_s": 0.0962}
+{"id": "R-S1-0281", "hyp": "Il documento è su Google Docs.", "latency_s": 0.0881}
+{"id": "R-S1-0282", "hyp": "Il video è su YouTube.", "latency_s": 0.0745}
+{"id": "R-S1-0283", "hyp": "Il balletto è su TikTok.", "latency_s": 0.0912}
+{"id": "R-S1-0284", "hyp": "Lo stream è su Twitch.", "latency_s": 0.0795}
+{"id": "R-S1-0285", "hyp": "A playlist as well music.", "latency_s": 0.0959}
+{"id": "R-S1-0286", "hyp": "La posizione è su Google Maps.", "latency_s": 0.0992}
+{"id": "R-S1-0287", "hyp": "La posta è su Gmail.", "latency_s": 0.0823}
+{"id": "R-S1-0288", "hyp": "I documenti sono su Dropbox.", "latency_s": 0.1059}
+{"id": "R-S1-0289", "hyp": "Le note sono su Evernote.", "latency_s": 0.1155}
+{"id": "R-S1-0290", "hyp": "La bacheca è su trello.", "latency_s": 0.1056}
+{"id": "R-S1-0291", "hyp": "I task sono su Asana.", "latency_s": 0.1018}
+{"id": "R-S1-0292", "hyp": "La ricevuta è su Stripe.", "latency_s": 0.1038}
+{"id": "R-S1-0293", "hyp": "Ho trovato l'albergo con Buching.", "latency_s": 0.0969}
+{"id": "R-S1-0294", "hyp": "Ho visto un hotel su Trivago.", "latency_s": 0.1067}
+{"id": "R-S1-0295", "hyp": "Il pullman è di Flix Bus.", "latency_s": 0.0986}
+{"id": "R-S1-0296", "hyp": "La macchina è con Uber.", "latency_s": 0.0847}
+{"id": "R-S1-0297", "hyp": "La cena è arrivata con Delivery.", "latency_s": 0.1202}
+{"id": "R-S1-0298", "hyp": "Il pranzo è arrivato con Just hit.", "latency_s": 0.1005}
+{"id": "R-S1-0299", "hyp": "La giacca è di Zalando.", "latency_s": 0.1013}
+{"id": "R-S1-0300", "hyp": "Lo zaino è di Deathlon.", "latency_s": 0.0931}
+{"id": "R-S1-0301", "hyp": "La libreria è di Ikea.", "latency_s": 0.1077}
+{"id": "R-S1-0302", "hyp": "La partita è su Xbox.", "latency_s": 0.1086}
+{"id": "R-S1-0303", "hyp": "Il gioco è su Nintendo Switch.", "latency_s": 0.0986}
+{"id": "R-S1-0304", "hyp": "La serie è su Prime Video.", "latency_s": 0.0909}
+{"id": "R-S1-0305", "hyp": "Il cartone è su Disney<unk>.", "latency_s": 0.093}
+{"id": "R-S1-0306", "hyp": "La partita è su da zone.", "latency_s": 0.0889}
+{"id": "R-S1-0307", "hyp": "La radio è su San Cloud.", "latency_s": 0.0998}
+{"id": "R-S1-0308", "hyp": "Ascolto un audiolibro su Audible.", "latency_s": 0.1059}
+{"id": "R-S1-0309", "hyp": "Il romanzo è su Kindle.", "latency_s": 0.0898}
+{"id": "R-S1-0310", "hyp": "Le immagini sono Google Photos.", "latency_s": 0.0961}
+{"id": "R-S1-0311", "hyp": "Le copie sono su iCloud.", "latency_s": 0.0921}
+{"id": "R-S1-0312", "hyp": "Le note sono su Apple Notes.", "latency_s": 0.0975}
+{"id": "R-S1-0313", "hyp": "Gli appuntam sono su Google Calendar.", "latency_s": 0.1055}
+{"id": "R-S1-0314", "hyp": "Il back up è su One Drive.", "latency_s": 0.101}
+{"id": "R-S1-0315", "hyp": "La tabella è su Excel.", "latency_s": 0.0823}
+{"id": "R-S1-0316", "hyp": "La posta è su Outlook.", "latency_s": 0.0932}
+{"id": "R-S1-0317", "hyp": "I messaggi sono su Whatsapp.", "latency_s": 0.0896}
+{"id": "R-S1-0318", "hyp": "Il gruppo è su Telegram.", "latency_s": 0.0891}
+{"id": "R-S1-0319", "hyp": "La videochiamata è su Skype.", "latency_s": 0.1004}
+{"id": "R-S1-0320", "hyp": "In meeting as a Webex.", "latency_s": 0.0918}
+{"id": "R-S1-0321", "hyp": "La mappa mentale è su Miron.", "latency_s": 0.1101}
+{"id": "R-S1-0322", "hyp": "Il blog è su Wordpress.", "latency_s": 0.0897}
+{"id": "R-S1-0323", "hyp": "La vetrina è su Shopify.", "latency_s": 0.0895}
+{"id": "R-S1-0324", "hyp": "La newsletter è su MailChimp.", "latency_s": 0.1189}
+{"id": "R-S1-0325", "hyp": "I contatti sono su Sales Fox.", "latency_s": 0.1069}
+{"id": "R-S1-0326", "hyp": "Le richieste sono su Zen Desk.", "latency_s": 0.1071}
+{"id": "R-S1-0327", "hyp": "Le attività sono su gira.", "latency_s": 0.0924}
+{"id": "R-S1-0328", "hyp": "La pipeline è su Jenkins.", "latency_s": 0.0917}
+{"id": "R-S1-0329", "hyp": "Il sistema è suo AWS.", "latency_s": 0.0902}
+{"id": "R-S1-0330", "hyp": "I dati sono su MongoDB.", "latency_s": 0.0935}
+{"id": "R-S1-0331", "hyp": "Il sito è protetto da Cloudflare.", "latency_s": 0.1123}
+{"id": "R-S1-0332", "hyp": "Il nome è su Go Daddy.", "latency_s": 0.1043}
+{"id": "R-S1-0333", "hyp": "Le credenziali sono su Last Pass.", "latency_s": 0.1098}
+{"id": "R-S1-0334", "hyp": "Le clip sono su Vimeo.", "latency_s": 0.0893}
+{"id": "R-S1-0335", "hyp": "I file sono su WeTransfer.", "latency_s": 0.1002}
+{"id": "R-S1-0336", "hyp": "Il portatile è un MacBook.", "latency_s": 0.1033}
+{"id": "R-S1-0337", "hyp": "Lo smartphone è un iPhone.", "latency_s": 0.1}
+{"id": "R-S1-0338", "hyp": "L'assistente è Alexa.", "latency_s": 0.0902}
+{"id": "R-S1-0339", "hyp": "Il KPI settimanale è migliorato.", "latency_s": 0.1087}
+{"id": "R-S1-0340", "hyp": "Il Roy è sotto le attese.", "latency_s": 0.095}
+{"id": "R-S1-0341", "hyp": "Il CEO visita la sede a marzo.", "latency_s": 0.1365}
+{"id": "R-S1-0342", "hyp": "Il CTO ha scritto una nota.", "latency_s": 0.1115}
+{"id": "R-S1-0343", "hyp": "Il CfO chiede più dettagli.", "latency_s": 0.1175}
+{"id": "R-S1-0344", "hyp": "Il CEO ha rinviato la decisione.", "latency_s": 0.1665}
+{"id": "R-S1-0345", "hyp": "L'ufficio HR cerca un nostragista.", "latency_s": 0.1162}
+{"id": "R-S1-0346", "hyp": "Il supporto IT ha chiuso il caso.", "latency_s": 0.1145}
+{"id": "R-S1-0347", "hyp": "Gli H' Yar vanno rivisti a giugno.", "latency_s": 0.1239}
+{"id": "R-S1-0348", "hyp": "Un Mvp servendo luglio.", "latency_s": 0.1287}
+{"id": "R-S1-0349", "hyp": "La nuova API è più veloce.", "latency_s": 0.108}
+{"id": "R-S1-0350", "hyp": "Il CPU scalda anche a riposo.", "latency_s": 0.0907}
+{"id": "R-S1-0351", "hyp": "La GPU è inutile per questo lavoro.", "latency_s": 0.1029}
+{"id": "R-S1-0352", "hyp": "Ho ordinato altra rama.", "latency_s": 0.1001}
+{"id": "R-S1-0353", "hyp": "Il disco SSD è in offerta.", "latency_s": 0.1173}
+{"id": "R-S1-0354", "hyp": "La chiavetta Usb è sparita.", "latency_s": 0.1038}
+{"id": "R-S1-0355", "hyp": "Il PDF non si apre.", "latency_s": 0.0804}
+{"id": "R-S1-0356", "hyp": "Questo URL è troppo lungo.", "latency_s": 0.0865}
+{"id": "R-S1-0357", "hyp": "Le fak sono in fondo.", "latency_s": 0.1002}
+{"id": "R-S1-0358", "hyp": "Il Chm è in manutenzione.", "latency_s": 0.1004}
+{"id": "R-S1-0359", "hyp": "Il vecchio ERP va spento.", "latency_s": 0.1109}
+{"id": "R-S1-0360", "hyp": "Il servizio SaaS è in prova.", "latency_s": 0.1065}
+{"id": "R-S1-0361", "hyp": "Il pin va cambiato spesso.", "latency_s": 0.1076}
+{"id": "R-S1-0362", "hyp": "Il nuovo Otp è arrivato.", "latency_s": 0.0962}
+{"id": "R-S1-0363", "hyp": "Il codice QR è scaduto.", "latency_s": 0.0927}
+{"id": "R-S1-0364", "hyp": "Un sms è più veloce di una chiamata.", "latency_s": 0.1202}
+{"id": "R-S1-0365", "hyp": "Il modulo AI risponde bene.", "latency_s": 0.123}
+{"id": "R-S1-0366", "hyp": "Il Poc è durato due settimane.", "latency_s": 0.1049}
+{"id": "R-S1-0367", "hyp": "Il tempo eta è troppo ottimista.", "latency_s": 0.1096}
+{"id": "R-S1-0368", "hyp": "Rispondi Aisap se puoi.", "latency_s": 0.1105}
+{"id": "R-S1-0369", "hyp": "Lo Sla è di un giorno.", "latency_s": 0.1178}
+{"id": "R-S1-0370", "hyp": "La procedura KYC è obbligatoria.", "latency_s": 0.1805}
+{"id": "R-S1-0371", "hyp": "Il Roy va calcolato meglio.", "latency_s": 0.0994}
+{"id": "R-S1-0372", "hyp": "Il KPI di settembre è basso.", "latency_s": 0.1102}
+{"id": "R-S1-0373", "hyp": "Il CEO ha parlato in diretta.", "latency_s": 0.1402}
+{"id": "R-S1-0374", "hyp": "Il Cto ha lasciato il gruppo.", "latency_s": 0.0996}
+{"id": "R-S1-0375", "hyp": "Il Cfo arriva lunedì.", "latency_s": 0.0997}
+{"id": "R-S1-0376", "hyp": "L'ufficio Har ha cambiato sede.", "latency_s": 0.0916}
+{"id": "R-S1-0377", "hyp": "Il reparto It è in trasfetta.", "latency_s": 0.1062}
+{"id": "R-S1-0378", "hyp": "Gli OKR sono troppo ambiziosi.", "latency_s": 0.1125}
+{"id": "R-S1-0379", "hyp": "Il nostro MVP non è pronto.", "latency_s": 0.1025}
+{"id": "R-S1-0380", "hyp": "Il servizio API è in versione beta.", "latency_s": 0.1138}
+{"id": "R-S1-0381", "hyp": "La CPU è al limite.", "latency_s": 0.0812}
+{"id": "R-S1-0382", "hyp": "La Gpu è in ritardo nella consegna.", "latency_s": 0.1065}
+{"id": "R-S1-0383", "hyp": "La RAM non basta più.", "latency_s": 0.0878}
+{"id": "R-S1-0384", "hyp": "Il disco SSD ha superato la verifica.", "latency_s": 0.1043}
+{"id": "R-S1-0385", "hyp": "La ponta USB è rotta.", "latency_s": 0.0917}
+{"id": "R-S1-0386", "hyp": "Il PDF è stato protetto.", "latency_s": 0.0916}
+{"id": "R-S1-0387", "hyp": "Il nuovo URL rimanda a una pagina vuota.", "latency_s": 0.1248}
+{"id": "R-S1-0388", "hyp": "Le fac vanno aggiornate.", "latency_s": 0.0926}
+{"id": "R-S1-0389", "hyp": "Il Cm è lento oggi.", "latency_s": 0.0885}
+{"id": "R-S1-0390", "hyp": "Il sistema ERP richiede un aggiornamento.", "latency_s": 0.1186}
+{"id": "R-S1-0391", "hyp": "Il piano Sas è scaduto.", "latency_s": 0.1012}
+{"id": "R-S1-0392", "hyp": "Il pin non è più valido", "latency_s": 0.0882}
+{"id": "R-S1-0393", "hyp": "Il codice OTP è arrivato in ritardo.", "latency_s": 0.1108}
+{"id": "R-S1-0394", "hyp": "Il QR è sul biglietto.", "latency_s": 0.1107}
+{"id": "R-S1-0395", "hyp": "Un sms è bastato.", "latency_s": 0.0861}
+{"id": "R-S1-0396", "hyp": "Il sistema AI sbaglia spesso.", "latency_s": 0.107}
+{"id": "R-S1-0397", "hyp": "Il POC è stato rimandato.", "latency_s": 0.0889}
+{"id": "R-S1-0398", "hyp": "Il tempo età è peggiorato.", "latency_s": 0.0981}
+{"id": "R-S1-0399", "hyp": "Il gruppo ha deployato la correzione in notturno.", "latency_s": 0.1161}
+{"id": "R-S1-0400", "hyp": "Ho fuor dato il riepilogo alla direzione.", "latency_s": 0.1194}
+{"id": "R-S1-0401", "hyp": "Mi ha taggato nella storia del viaggio.", "latency_s": 0.109}
+{"id": "R-S1-0402", "hyp": "Ho linkato il modulo nella nota.", "latency_s": 0.1528}
+{"id": "R-S1-0403", "hyp": "Ho scroll il profilo fino ai post vecchi.", "latency_s": 0.1224}
+{"id": "R-S1-0404", "hyp": "Ho downloadato la fattura dal portale.", "latency_s": 0.1151}
+{"id": "R-S1-0405", "hyp": "Ho appato il progetto sul server.", "latency_s": 0.1259}
+{"id": "R-S1-0406", "hyp": "Ho postato l'annuncio della mostra.", "latency_s": 0.1067}
+{"id": "R-S1-0407", "hyp": "Abbiamo chattato fino tardi.", "latency_s": 0.0885}
+{"id": "R-S1-0408", "hyp": "Ho cliccato per sbaglio su quella pubblicità.", "latency_s": 0.1217}
+{"id": "R-S1-0409", "hyp": "Mi sono loggato dal telefono nuovo.", "latency_s": 0.1116}
+{"id": "R-S1-0410", "hyp": "Ho settato la sveglia alle sei.", "latency_s": 0.0904}
+{"id": "R-S1-0411", "hyp": "Ho resettato il router di casa", "latency_s": 0.1045}
+{"id": "R-S1-0412", "hyp": "Ho schedulato il volo per ottobre.", "latency_s": 0.1096}
+{"id": "R-S1-0413", "hyp": "Abbiamo splittato il control della cena.", "latency_s": 0.12}
+{"id": "R-S1-0414", "hyp": "Ho testato la ricetta per i ospiti.", "latency_s": 0.1165}
+{"id": "R-S1-0415", "hyp": "Ho fissato la lampada del salotto.", "latency_s": 0.106}
+{"id": "R-S1-0416", "hyp": "Ho pecciato il programma prima di uscire.", "latency_s": 0.1179}
+{"id": "R-S1-0417", "hyp": "Ho commettato il lavoro della mattina.", "latency_s": 0.1042}
+{"id": "R-S1-0418", "hyp": "Ho pushato la correzione sul ramo sbagliato.", "latency_s": 0.1201}
+{"id": "R-S1-0419", "hyp": "Omergiato due rami in conflitto.", "latency_s": 0.1044}
+{"id": "R-S1-0420", "hyp": "Ho buildato l'applicazione per la demo.", "latency_s": 0.113}
+{"id": "R-S1-0421", "hyp": "Ho fleggato la risposta come sospetta.", "latency_s": 0.1181}
+{"id": "R-S1-0422", "hyp": "Ho rifresciato la lista delle prenotazioni.", "latency_s": 0.1203}
+{"id": "R-S1-0423", "hyp": "Ho updateato le informazioni del profilo.", "latency_s": 0.1167}
+{"id": "R-S1-0424", "hyp": "Ho upgradato la memoria del portatile.", "latency_s": 0.0976}
+{"id": "R-S1-0425", "hyp": "Ho becappato le foto delle vacanze.", "latency_s": 0.1178}
+{"id": "R-S1-0426", "hyp": "Ho scippato la correzione, prima delle ferie.", "latency_s": 0.1711}
+{"id": "R-S1-0427", "hyp": "Ho droppato l'idea dopo la riunione.", "latency_s": 0.0943}
+{"id": "R-S1-0428", "hyp": "Ho bannato lo spam dalla pagina.", "latency_s": 0.1125}
+{"id": "R-S1-0429", "hyp": "Mi ha spolerato tutta la trama.", "latency_s": 0.097}
+{"id": "R-S1-0430", "hyp": "Ho streamato il concerto per mia sorella.", "latency_s": 0.1162}
+{"id": "R-S1-0431", "hyp": "Ho googlato il numero del ristorante.", "latency_s": 0.1316}
+{"id": "R-S1-0432", "hyp": "Mi ha Whatsappato la foto del cane.", "latency_s": 0.112}
+{"id": "R-S1-0433", "hyp": "Ho photshoppato la locandina.", "latency_s": 0.0947}
+{"id": "R-S1-0434", "hyp": "Ho zoomato sulla scritta piccola.", "latency_s": 0.0991}
+{"id": "R-S1-0435", "hyp": "Ho schippato la parte noiosa.", "latency_s": 0.1011}
+{"id": "R-S1-0436", "hyp": "Ho stoppato l'allenamento per il caldo.", "latency_s": 0.1144}
+{"id": "R-S1-0437", "hyp": "Ho startato la lavatrice stasera.", "latency_s": 0.1175}
+{"id": "R-S1-0438", "hyp": "Ho restantato il telefono due volte.", "latency_s": 0.1099}
+{"id": "R-S1-0439", "hyp": "Ho formattato la chiavetta.", "latency_s": 0.09}
+{"id": "R-S1-0440", "hyp": "Ho printato i documenti per la firma.", "latency_s": 0.1075}
+{"id": "R-S1-0441", "hyp": "Ho scannato le fatture del mese.", "latency_s": 0.1423}
+{"id": "R-S1-0442", "hyp": "Ho mailato l'invito a tutti.", "latency_s": 0.0973}
+{"id": "R-S1-0443", "hyp": "Ho pingato il collega per un dubbio.", "latency_s": 0.1462}
+{"id": "R-S1-0444", "hyp": "Ho costato la cena a casa mia.", "latency_s": 0.1022}
+{"id": "R-S1-0445", "hyp": "Il nuovo assunto è stato onbordato ieri.", "latency_s": 0.1302}
+{"id": "R-S1-0446", "hyp": "Ho briffato il fornitore sul progetto.", "latency_s": 0.1181}
+{"id": "R-S1-0447", "hyp": "Ho debrifato con il gruppo dopo la trasferta.", "latency_s": 0.1483}
+{"id": "R-S1-0448", "hyp": "Ho picciato l'idea al cliente.", "latency_s": 0.0975}
+{"id": "R-S1-0449", "hyp": "Ho targhettato le famiglie giovani.", "latency_s": 0.1111}
+{"id": "R-S1-0450", "hyp": "Ho liccato la foto della mostra.", "latency_s": 0.106}
+{"id": "R-S1-0451", "hyp": "Ho scerato la ricetta nel gruppo.", "latency_s": 0.0952}
+{"id": "R-S1-0452", "hyp": "Ho followato la pagina del museo.", "latency_s": 0.1156}
+{"id": "R-S1-0453", "hyp": "Ho un followato chi pubblica tocco pubblicità.", "latency_s": 0.1345}
+{"id": "R-S1-0454", "hyp": "Ho bloccato quell'utente maleducato.", "latency_s": 0.1134}
+{"id": "R-S1-0455", "hyp": "Ho matchato con un vecchio compagno.", "latency_s": 0.0971}
+{"id": "R-S1-0456", "hyp": "Ho shoppato i regali di Natale.", "latency_s": 0.1012}
+{"id": "R-S1-0457", "hyp": "Dobbiamo deployare anche di domenica.", "latency_s": 0.1158}
+{"id": "R-S1-0458", "hyp": "Devi fuoruardare la richiesta al reparto.", "latency_s": 0.1417}
+{"id": "R-S1-0459", "hyp": "Voglio taggare la posizione del ristorante.", "latency_s": 0.1398}
+{"id": "R-S1-0460", "hyp": "Provo a linkare il video nel commento.", "latency_s": 0.1193}
+{"id": "R-S1-0461", "hyp": "Continua a scrollare la classifica.", "latency_s": 0.1176}
+{"id": "R-S1-0462", "hyp": "Devo downloadare il modulo dal sito.", "latency_s": 0.1151}
+{"id": "R-S1-0463", "hyp": "Posso appare le foto stasera.", "latency_s": 0.122}
+{"id": "R-S1-0464", "hyp": "Vorrei postare una recensione.", "latency_s": 0.107}
+{"id": "R-S1-0465", "hyp": "Possiamo chattare con l'assistenza.", "latency_s": 0.1154}
+{"id": "R-S1-0466", "hyp": "Devi cliccare due volte per confermare.", "latency_s": 0.1253}
+{"id": "R-S1-0467", "hyp": "Prova a loggare con la posta di casa.", "latency_s": 0.1078}
+{"id": "R-S1-0468", "hyp": "Dobbiamo settare i parametri giusti.", "latency_s": 0.1172}
+{"id": "R-S1-0469", "hyp": "Prova a gettare la stampante.", "latency_s": 0.1045}
+{"id": "R-S1-0470", "hyp": "Dobbiamo schedulare le ferie.", "latency_s": 0.0986}
+{"id": "R-S1-0471", "hyp": "Possiamo splittare le spese.", "latency_s": 0.1031}
+{"id": "R-S1-0472", "hyp": "Dobbiamo testare il nuovo percorso.", "latency_s": 0.1167}
+{"id": "R-S1-0473", "hyp": "Prova a fissare la connessione.", "latency_s": 0.0986}
+{"id": "R-S1-0474", "hyp": "Dobbiamo pecciare la versione vecchia.", "latency_s": 0.109}
+{"id": "R-S1-0475", "hyp": "Voglio committare prima di cena.", "latency_s": 0.1012}
+{"id": "R-S1-0476", "hyp": "Devo pushare la correzione.", "latency_s": 0.0979}
+{"id": "R-S1-0477", "hyp": "Possiamo ommergiare i due rami.", "latency_s": 0.0958}
+{"id": "R-S1-0478", "hyp": "Hoppato il corso di inglese.", "latency_s": 0.1011}
+{"id": "R-S1-0479", "hyp": "Ho schippato la pubblicità.", "latency_s": 0.0943}
+{"id": "R-S1-0480", "hyp": "Ho stoppato il timer.", "latency_s": 0.0907}
+{"id": "R-S1-0481", "hyp": "Ho restartato il modem.", "latency_s": 0.0997}
+{"id": "R-S1-0482", "hyp": "Ho scannato il codice a barra.", "latency_s": 0.0931}
+{"id": "R-S1-0483", "hyp": "Ho printato la ricevuta.", "latency_s": 0.0995}
+{"id": "R-S1-0484", "hyp": "Ho mailato il curriculum.", "latency_s": 0.0997}
+{"id": "R-S1-0485", "hyp": "Ho pingato il server.", "latency_s": 0.1008}
+{"id": "R-S1-0486", "hyp": "Ho stato una cena per otto.", "latency_s": 0.1114}
+{"id": "R-S1-0487", "hyp": "Ho briffato la nuova collega.", "latency_s": 0.1216}
+{"id": "R-S1-0488", "hyp": "Ho picciato la proposta al capo.", "latency_s": 0.1082}
+{"id": "R-S1-0489", "hyp": "Ho targhetato il pubblico sbagliato.", "latency_s": 0.1173}
+{"id": "R-S1-0490", "hyp": "Ho liccato il messaggio di auguri.", "latency_s": 0.1202}
+{"id": "R-S1-0491", "hyp": "Domani piove, so we stay home.", "latency_s": 0.1042}
+{"id": "R-S1-0492", "hyp": "Il treno è perso. We Take the Next One.", "latency_s": 0.1546}
+{"id": "R-S1-0493", "hyp": "La cena è pronta. Come to the table.", "latency_s": 0.1182}
+{"id": "R-S1-0494", "hyp": "O farming, let us order something.", "latency_s": 0.1196}
+{"id": "R-S1-0495", "hyp": "Sono stanco, I'm going to bed.", "latency_s": 0.1173}
+{"id": "R-S1-0496", "hyp": "Il film ha iniziato, You Missed the Beginning.", "latency_s": 0.1345}
+{"id": "R-S1-0497", "hyp": "La mostra è chiusa, We Can Go Tomorrow.", "latency_s": 0.1131}
+{"id": "R-S1-0498", "hyp": "Il negozio è vuoto. Where is everyone?", "latency_s": 0.1307}
+{"id": "R-S1-0499", "hyp": "He's kinda buyer, he wants to go out.", "latency_s": 0.1222}
+{"id": "R-S1-0500", "hyp": "La bici è rotta, I will take the bus.", "latency_s": 0.1166}
+{"id": "R-S1-0501", "hyp": "Il caffè è finito, who drank the last one?", "latency_s": 0.121}
+{"id": "R-S1-0502", "hyp": "La riunione è finita. We can go home.", "latency_s": 0.1264}
+{"id": "R-S1-0503", "hyp": "La strada è bloccata. We need another way.", "latency_s": 0.1335}
+{"id": "R-S1-0504", "hyp": "Il telefono squilla, Can you Answer It?", "latency_s": 0.1212}
+{"id": "R-S1-0505", "hyp": "La porta è aperta. Did you forget to lock it?", "latency_s": 0.1388}
+{"id": "R-S1-0506", "hyp": "Il conto è salato, We Should Split It.", "latency_s": 0.1225}
+{"id": "R-S1-0507", "hyp": "Il pane è finito, I will buy some tomorrow.", "latency_s": 0.1453}
+{"id": "R-S1-0508", "hyp": "La lavatrice è rotta. The technician is coming.", "latency_s": 0.1504}
+{"id": "R-S1-0509", "hyp": "Il giardino è grande, we need a gardener.", "latency_s": 0.1435}
+{"id": "R-S1-0510", "hyp": "La macchina è sporca, I Will Wash It Later.", "latency_s": 0.1436}
+{"id": "R-S1-0511", "hyp": "La camera è pronta. You can check in.", "latency_s": 0.1126}
+{"id": "R-S1-0512", "hyp": "Il museo è gratis. Let us go now.", "latency_s": 0.1196}
+{"id": "R-S1-0513", "hyp": "La pizza è arrivata. It looks amazing.", "latency_s": 0.1225}
+{"id": "R-S1-0514", "hyp": "Il vino è buono, When Did You Buy It?", "latency_s": 0.1224}
+{"id": "R-S1-0515", "hyp": "La torta è pronta. Blow out the candles.", "latency_s": 0.1243}
+{"id": "R-S1-0516", "hyp": "La nonna arriva we should pick her up.", "latency_s": 0.1334}
+{"id": "R-S1-0517", "hyp": "Il dottore è occupato, we have to wait.", "latency_s": 0.1157}
+{"id": "R-S1-0518", "hyp": "La farmacia è chiusa. It is a holiday.", "latency_s": 0.1574}
+{"id": "R-S1-0519", "hyp": "La banca è aperta, I Need to Go.", "latency_s": 0.1088}
+{"id": "R-S1-0520", "hyp": "La strada è lunga, Are We There Yet?", "latency_s": 0.1096}
+{"id": "R-S1-0521", "hyp": "Il mare è calmo, let us swim.", "latency_s": 0.1183}
+{"id": "R-S1-0522", "hyp": "La spiaggia è piena. Let us find a spot.", "latency_s": 0.1356}
+{"id": "R-S1-0523", "hyp": "It's so forte, I need the sunscreen.", "latency_s": 0.1131}
+{"id": "R-S1-0524", "hyp": "La pioggia è finita, we can go out.", "latency_s": 0.1092}
+{"id": "R-S1-0525", "hyp": "Il vento è forte. Close the window.", "latency_s": 0.1211}
+{"id": "R-S1-0526", "hyp": "La neve è arrivata The Roads are closed.", "latency_s": 0.1362}
+{"id": "R-S1-0527", "hyp": "Il camino è acceso, It Feels Cozy.", "latency_s": 0.1194}
+{"id": "R-S1-0528", "hyp": "La legna è finita. I will order more.", "latency_s": 0.1406}
+{"id": "R-S1-0529", "hyp": "Il camino fuma, We Need to Clean It.", "latency_s": 0.1095}
+{"id": "R-S1-0530", "hyp": "La casa è fredda, Turn Up the Eat.", "latency_s": 0.1174}
+{"id": "R-S1-0531", "hyp": "Il riscaldamento è rotto, call the technician.", "latency_s": 0.1241}
+{"id": "R-S1-0532", "hyp": "La bolletta è arrivata. It is higher again.", "latency_s": 0.1238}
+{"id": "R-S1-0533", "hyp": "Lo stipendio è arrivato, Let us celebrate.", "latency_s": 0.1231}
+{"id": "R-S1-0534", "hyp": "Il mutuo è scaduto, we need to talk to the bank.", "latency_s": 0.152}
+{"id": "R-S1-0535", "hyp": "La spesa è arrivata. Everything looks fresh.", "latency_s": 0.1345}
+{"id": "R-S1-0536", "hyp": "Il pacco è ritardo, I will Call the Courier.", "latency_s": 0.1398}
+{"id": "R-S1-0537", "hyp": "La bici è nuova, I Boug It Yesterday.", "latency_s": 0.1235}
+{"id": "R-S1-0538", "hyp": "Il cane è stanco, we had a long walk.", "latency_s": 0.1169}
+{"id": "R-S1-0539", "hyp": "Il gat è scappato, help me find him.", "latency_s": 0.1105}
+{"id": "R-S1-0540", "hyp": "La lezione è finita. See you next week.", "latency_s": 0.122}
+{"id": "R-S1-0541", "hyp": "L'esame è andato bene. I am so relieved.", "latency_s": 0.1281}
+{"id": "R-S1-0542", "hyp": "Il colloquio è domani, I am a bit nervous.", "latency_s": 0.1411}
+{"id": "R-S1-0543", "hyp": "Il contratto è pronto, you can sign it.", "latency_s": 0.1187}
+{"id": "R-S1-0544", "hyp": "La proposta è interessante. Let me think about it.", "latency_s": 0.1316}
+{"id": "R-S1-0545", "hyp": "Il progetto è partito, we are very excited.", "latency_s": 0.112}
+{"id": "R-S1-0546", "hyp": "Domenica andiamo a trovare i nonni in campagna.", "latency_s": 0.1124}
+{"id": "R-S1-0547", "hyp": "Ho comprato le mele al mercato.", "latency_s": 0.0994}
+{"id": "R-S1-0548", "hyp": "La zuppa è troppo salata.", "latency_s": 0.0792}
+{"id": "R-S1-0549", "hyp": "Il tetto perde da mesi.", "latency_s": 0.0757}
+{"id": "R-S1-0550", "hyp": "Ho portato la macchina dal gommista.", "latency_s": 0.0907}
+{"id": "R-S1-0551", "hyp": "La maestra ha convocato i genitori.", "latency_s": 0.0958}
+{"id": "R-S1-0552", "hyp": "Mio cugino si è laureato ieri.", "latency_s": 0.1017}
+{"id": "R-S1-0553", "hyp": "Il pane è appena sfornato.", "latency_s": 0.0919}
+{"id": "R-S1-0554", "hyp": "Abbiamo dipinto il salotto di verde.", "latency_s": 0.1184}
+{"id": "R-S1-0555", "hyp": "Il vicino ha acceso il camino.", "latency_s": 0.1099}
+{"id": "R-S1-0556", "hyp": "La stufa non si accende.", "latency_s": 0.1039}
+{"id": "R-S1-0557", "hyp": "Ho preparato la marmellata di fichi.", "latency_s": 0.1138}
+{"id": "R-S1-0558", "hyp": "Il sentiero è pieno di sassi.", "latency_s": 0.0975}
+{"id": "R-S1-0559", "hyp": "Domani porto i bambini al palco.", "latency_s": 0.097}
+{"id": "R-S1-0560", "hyp": "La biblioteca ha cambiato orario.", "latency_s": 0.1188}
+{"id": "R-S1-0561", "hyp": "Ho perso l'autobus per un minuto.", "latency_s": 0.0906}
+{"id": "R-S1-0562", "hyp": "Il medico mi ha prescritto uno sceroppo.", "latency_s": 0.1017}
+{"id": "R-S1-0563", "hyp": "La lavatrice perde acqua.", "latency_s": 0.0865}
+{"id": "R-S1-0564", "hyp": "Abbiamo prenotato una casa al lago.", "latency_s": 0.0984}
+{"id": "R-S1-0565", "hyp": "Il nonno racconta sempre le stesse storie.", "latency_s": 0.1129}
+{"id": "R-S1-0566", "hyp": "La torta è venuta benissimo.", "latency_s": 0.0878}
+{"id": "R-S1-0567", "hyp": "Ho tagliato le erba del giardino.", "latency_s": 0.1041}
+{"id": "R-S1-0568", "hyp": "Il mercato del paese è il martedì.", "latency_s": 0.1054}
+{"id": "R-S1-0569", "hyp": "La corriera passa ogni mezz'ora.", "latency_s": 0.0885}
+{"id": "R-S1-0570", "hyp": "Ho scritto una lettera al comune.", "latency_s": 0.0902}
+{"id": "R-S1-0571", "hyp": "Il bagno è il piano di sopra.", "latency_s": 0.0908}
+{"id": "R-S1-0572", "hyp": "Abbiamo raccolle olive a novembre.", "latency_s": 0.0957}
+{"id": "R-S1-0573", "hyp": "La nebbia copre tutta la valle.", "latency_s": 0.09}
+{"id": "R-S1-0574", "hyp": "Il cane ha scavato una buca.", "latency_s": 0.0885}
+{"id": "R-S1-0575", "hyp": "Mia zia prepara un liquore buonissimo.", "latency_s": 0.1118}
+{"id": "R-S1-0576", "hyp": "La chiesa è piena per la funzione.", "latency_s": 0.0965}
+{"id": "R-S1-0577", "hyp": "Ho aggiustato la sedia con la colla.", "latency_s": 0.1167}
+{"id": "R-S1-0578", "hyp": "Il prato è pieno di margherite.", "latency_s": 0.1193}
+{"id": "R-S1-0579", "hyp": "La cena di Natale è a casa nostra.", "latency_s": 0.1127}
+{"id": "R-S1-0580", "hyp": "Domani mattina vado dal dentista.", "latency_s": 0.0854}
+{"id": "R-S1-0581", "hyp": "I need to buy a present for my sister.", "latency_s": 0.108}
+{"id": "R-S1-0582", "hyp": "The kitchen table is full of books.", "latency_s": 0.0968}
+{"id": "R-S1-0583", "hyp": "We're going to the mountains next week.", "latency_s": 0.1}
+{"id": "R-S1-0584", "hyp": "She works in a m small bookshop.", "latency_s": 0.1237}
+{"id": "R-S1-0585", "hyp": "The bus arrives every twenty minutes.", "latency_s": 0.0955}
+{"id": "R-S1-0586", "hyp": "I forgot to water the plants.", "latency_s": 0.1014}
+{"id": "R-S1-0587", "hyp": "He is learning to cook Italian food.", "latency_s": 0.104}
+{"id": "R-S1-0588", "hyp": "The concept starts at eight.", "latency_s": 0.0975}
+{"id": "R-S1-0589", "hyp": "We should leave before the traffic gets bad.", "latency_s": 0.1197}
+{"id": "R-S1-0590", "hyp": "My brother plays the piano very well.", "latency_s": 0.1061}
+{"id": "R-S1-0591", "hyp": "The museum is free on Sundays.", "latency_s": 0.1046}
+{"id": "R-S1-0592", "hyp": "I have a dentist appointment tomorrow.", "latency_s": 0.1132}
+{"id": "R-S1-0593", "hyp": "The children are building a tree house.", "latency_s": 0.0996}
+{"id": "R-S1-0594", "hyp": "We watched the sunset from the beach.", "latency_s": 0.1078}
+{"id": "R-S1-0595", "hyp": "The shop on the corner sells fresh bread.", "latency_s": 0.1222}
+{"id": "R-S1-0596", "hyp": "I need to charge my phone before we leave.", "latency_s": 0.1075}
+{"id": "R-S1-0597", "hyp": "The garden looks beautiful in spring.", "latency_s": 0.1076}
+{"id": "R-S1-0598", "hyp": "He fixed the whole radio by himself.", "latency_s": 0.116}
+{"id": "R-S1-0599", "hyp": "We are planning a trip to the north.", "latency_s": 0.1061}
+{"id": "R-S1-0600", "hyp": "The cat is leaping under the chair.", "latency_s": 0.0876}
+{"id": "R-S1-0601", "hyp": "Ci possiamo chattare domani sera.", "latency_s": 0.1}
+{"id": "R-S1-0602", "hyp": "Evita di gattare durante la riunione.", "latency_s": 0.1203}
+{"id": "R-S1-0603", "hyp": "Abbiamo prenotato una sala del co-working.", "latency_s": 0.1267}
+{"id": "R-S1-0604", "hyp": "Il Cow Walking ha una stampante veloce.", "latency_s": 0.1117}
+{"id": "R-S1-0605", "hyp": "La CPU del server è al limite.", "latency_s": 0.1181}
+{"id": "R-S1-0606", "hyp": "Controlla la temperatura della CPU.", "latency_s": 0.1167}
+{"id": "R-S1-0607", "hyp": "Devi downloadare l'allegato entro stasera.", "latency_s": 0.1569}
+{"id": "R-S1-0608", "hyp": "Riesci a downloadare il pacchetto completo.", "latency_s": 0.1575}
+{"id": "R-S1-0609", "hyp": "Il tecnico ha fissato la stampante.", "latency_s": 0.1137}
+{"id": "R-S1-0610", "hyp": "Era tutto fissato già ieri.", "latency_s": 0.1043}
+{"id": "R-S1-0611", "hyp": "Dopo il merge rifacciamo i controlli.", "latency_s": 0.1029}
+{"id": "R-S1-0612", "hyp": "Possiamo ommergiare solo i controlli verdi.", "latency_s": 0.1311}
+{"id": "R-S1-0613", "hyp": "Preferisco mangiare tutto insieme.", "latency_s": 0.1093}
+{"id": "R-S1-0614", "hyp": "Scrivi il codice OTP nella casella.", "latency_s": 0.1404}
+{"id": "R-S1-0615", "hyp": "Mi serve il codice OTP per entrare.", "latency_s": 0.1327}
+{"id": "R-S1-0616", "hyp": "La campagna di phishing ha colpito molti utenti.", "latency_s": 0.1359}
+{"id": "R-S1-0617", "hyp": "Ogni settimana arriva un phisho.", "latency_s": 0.12}
+{"id": "R-S1-0618", "hyp": "Ho busciato la correzione sul ramo.", "latency_s": 0.1152}
+{"id": "R-S1-0619", "hyp": "Chi ha pushato senza controllare?", "latency_s": 0.1101}
+{"id": "R-S1-0620", "hyp": "Il recap di fine mese è pronto.", "latency_s": 0.1132}
+{"id": "R-S1-0621", "hyp": "Scrivi un gap delle decisioni.", "latency_s": 0.1155}
+{"id": "R-S1-0622", "hyp": "Serve uno scroll down per vedere tutto.", "latency_s": 0.1391}
+{"id": "R-S1-0623", "hyp": "Fai scroll up e leggi il paragrafo.", "latency_s": 0.119}
+{"id": "R-S1-0624", "hyp": "Possiamo splittare gli acquisti in due.", "latency_s": 0.1171}
+{"id": "R-S1-0625", "hyp": "Splittare la spesa in due parti conviene.", "latency_s": 0.1357}
+{"id": "R-S1-0626", "hyp": "Ho comprato un SSD da un terabyte.", "latency_s": 0.1349}
+{"id": "R-S1-0627", "hyp": "L'Sd è più veloce del disco vecchio.", "latency_s": 0.1536}
+{"id": "R-S1-0628", "hyp": "Il daily stand up è stato utile.", "latency_s": 0.1335}
+{"id": "R-S1-0629", "hyp": "Salto il daily stand up di oggi.", "latency_s": 0.1133}
+{"id": "R-S1-0630", "hyp": "Dimentico sempre di taggare il responsabile.", "latency_s": 0.1311}
+{"id": "R-S1-0631", "hyp": "Taggare tutti in un messaggio è sbagliato.", "latency_s": 0.1156}
+{"id": "R-S1-0632", "hyp": "Incolla un URL nel messaggio.", "latency_s": 0.1083}
+{"id": "R-S1-0633", "hyp": "L'indirizzo URL contiene il numero di versione.", "latency_s": 0.1315}
+{"id": "R-S1-0634", "hyp": "La Warrant è scaduta il mese scorso.", "latency_s": 0.1324}
+{"id": "R-S1-0635", "hyp": "Chiedi la guaranti al negozio.", "latency_s": 0.1171}
+{"id": "R-S1-0636", "hyp": "Lo stand up meeting dura venti minuti.", "latency_s": 0.1109}
+{"id": "R-S1-0637", "hyp": "Facciamo uno stand up call domani.", "latency_s": 0.1148}
+{"id": "R-S1-0638", "hyp": "Lo stand up diam è alle dieci.", "latency_s": 0.1194}
+{"id": "R-S1-0639", "hyp": "Il nostro stand up quotidiano salta oggi.", "latency_s": 0.1489}
+{"id": "R-S1-0640", "hyp": "Prepariamo lo stand up meeting per lunedì.", "latency_s": 0.1265}
+{"id": "R-S1-0641", "hyp": "Dopo lo stand up scrivo le note.", "latency_s": 0.111}
+{"id": "R-S1-0642", "hyp": "Gli EPOD si sono scaricati durante la calla.", "latency_s": 0.1388}
+{"id": "R-S1-0643", "hyp": "Abbiamo preso gelato da Baskin Robbins.", "latency_s": 0.1242}
+{"id": "R-S1-0644", "hyp": "Il codice del progetto è su Bitbucket.", "latency_s": 0.1076}
+{"id": "R-S1-0645", "hyp": "La cioccolata Cadbury è finita.", "latency_s": 0.1295}
+{"id": "R-S1-0646", "hyp": "Ho lasciato il charger in ufficio.", "latency_s": 0.0973}
+{"id": "R-S1-0647", "hyp": "Il check out non accetta la mia carta.", "latency_s": 0.1095}
+{"id": "R-S1-0648", "hyp": "Il Chromecast non trovo la rete.", "latency_s": 0.0893}
+{"id": "R-S1-0649", "hyp": "Il delivery è arrivato in ritardo.", "latency_s": 0.0969}
+{"id": "R-S1-0650", "hyp": "Il domain del sito scade a dicembre.", "latency_s": 0.1039}
+{"id": "R-S1-0651", "hyp": "L'aspirapolvere Dizon è potentissimo.", "latency_s": 0.1028}
+{"id": "R-S1-0652", "hyp": "Il mio exam d'inglese è andato bene.", "latency_s": 0.1175}
+{"id": "R-S1-0653", "hyp": "Salva i file nella fold condivisa.", "latency_s": 0.1258}
+{"id": "R-S1-0654", "hyp": "Il piano di Hosting scade oggi.", "latency_s": 0.1051}
+{"id": "R-S1-0655", "hyp": "Il design è su Invision.", "latency_s": 0.1112}
+{"id": "R-S1-0656", "hyp": "Il mio iPad non si carica.", "latency_s": 0.0968}
+{"id": "R-S1-0657", "hyp": "Il KfC vicino alla stazione è pieno.", "latency_s": 0.134}
+{"id": "R-S1-0658", "hyp": "Fai il logout prima di chiudere.", "latency_s": 0.1064}
+{"id": "R-S1-0659", "hyp": "I Mondays in ufficio sono pesanti.", "latency_s": 0.1176}
+{"id": "R-S1-0660", "hyp": "Domani ho un oral exam di inglese.", "latency_s": 0.1391}
+{"id": "R-S1-0661", "hyp": "Chiudi quel pop up e riprova.", "latency_s": 0.1037}
+{"id": "R-S1-0662", "hyp": "Il prototype è pronto per la demo.", "latency_s": 0.101}
+{"id": "R-S1-0663", "hyp": "Devo fare un reset della password.", "latency_s": 0.1202}
+{"id": "R-S1-0664", "hyp": "Fai un restart del server.", "latency_s": 0.1069}
+{"id": "R-S1-0665", "hyp": "Il bomba è bloccato sotto il divano.", "latency_s": 0.1121}
+{"id": "R-S1-0666", "hyp": "Mandami uno screenshot delle errore.", "latency_s": 0.1103}
+{"id": "R-S1-0667", "hyp": "Ci siamo fatti un self in ufficio.", "latency_s": 0.1049}
+{"id": "R-S1-0668", "hyp": "Lo screen sharing non funziona.", "latency_s": 0.1015}
+{"id": "R-S1-0669", "hyp": "Lo shutdown è previsto per le sei.", "latency_s": 0.1073}
+{"id": "R-S1-0670", "hyp": "Le foto sono prese da Shatterstock.", "latency_s": 0.1126}
+{"id": "R-S1-0671", "hyp": "Ho aggiunto le skills nel profilo.", "latency_s": 0.1012}
+{"id": "R-S1-0672", "hyp": "Ho cercato il volo su SkyScanner.", "latency_s": 0.135}
+{"id": "R-S1-0673", "hyp": "Lo Smart mi conta i passi.", "latency_s": 0.1046}
+{"id": "R-S1-0674", "hyp": "Facciamo una sessione di problem solving.", "latency_s": 0.1342}
+{"id": "R-S1-0675", "hyp": "Ho preso un caffè da Starbucks.", "latency_s": 0.0969}
+{"id": "R-S1-0676", "hyp": "La start up ha chiuso un round.", "latency_s": 0.1137}
+{"id": "R-S1-0677", "hyp": "Ho mangiato un panino da Sabway.", "latency_s": 0.1007}
+{"id": "R-S1-0678", "hyp": "Fai swipe a destra per accettare.", "latency_s": 0.1093}
+{"id": "R-S1-0679", "hyp": "Ho letto le recensioni su TripAvisor.", "latency_s": 0.1265}
+{"id": "R-S1-0680", "hyp": "Il Ted Winings è nella credenza.", "latency_s": 0.123}
+{"id": "R-S1-0681", "hyp": "Ho fatto un follow a quel profilo.", "latency_s": 0.0921}
+{"id": "R-S1-0682", "hyp": "Il file è in upload da stamattina.", "latency_s": 0.1283}
+{"id": "R-S1-0683", "hyp": "Ho cambiato il wallpaper del desktop.", "latency_s": 0.1237}
+{"id": "R-S1-0684", "hyp": "Il website aziendale è lento.", "latency_s": 0.1054}
+{"id": "R-S1-0685", "hyp": "Il check out del website è lento.", "latency_s": 0.1018}
+{"id": "R-S1-0686", "hyp": "Prima un reset, poi un restart del router.", "latency_s": 0.1321}
+{"id": "R-S1-0687", "hyp": "Metti lo screenshot nella folder del progetto.", "latency_s": 0.1235}
+{"id": "R-S1-0688", "hyp": "Il file è in upload e lo screen sharing non parte.", "latency_s": 0.1546}
+{"id": "R-S1-0689", "hyp": "Abbiamo fatto un selfie da Starbucks.", "latency_s": 0.0996}
+{"id": "R-S1-0690", "hyp": "Il mio iPad è scarico e il charger è a caso.", "latency_s": 0.1397}
+{"id": "R-S1-0691", "hyp": "La Scale Up ha assunto tre sviluppatori.", "latency_s": 0.1481}
+{"id": "R-S1-0692", "hyp": "Start up assume un nuovo designer.", "latency_s": 0.0947}
+{"id": "R-S1-0693", "hyp": "La start up cerca un ufficio più grande.", "latency_s": 0.1354}
+{"id": "R-S1-0694", "hyp": "Ogni startup vuole crescere in fretta.", "latency_s": 0.1232}
+{"id": "R-S1-0695", "hyp": "La startup ha vinto un bando regionale.", "latency_s": 0.116}
+{"id": "R-S1-0696", "hyp": "Abbiamo testato il prototype con tre utenti.", "latency_s": 0.1378}
+{"id": "R-S1-0697", "hyp": "Il prototype costa troppo per ora.", "latency_s": 0.1144}
+{"id": "R-S1-0698", "hyp": "Il nuovo prototype ha uno schermante.", "latency_s": 0.1486}
+{"id": "R-S1-0699", "hyp": "Manca ancora un prototype completo.", "latency_s": 0.1239}
+{"id": "R-S1-0700", "hyp": "Il Chromcast si è spento da solo.", "latency_s": 0.1113}
+{"id": "R-S1-0701", "hyp": "Presta il Chromecast con la presentazione.", "latency_s": 0.1478}
+{"id": "R-S1-0702", "hyp": "Il Chromcast supporta solo due servizi.", "latency_s": 0.1351}
+{"id": "R-S1-0703", "hyp": "Ho perso il telecomando del Chromecast.", "latency_s": 0.1273}
+{"id": "R-S1-0704", "hyp": "Mi serve un charger più potente.", "latency_s": 0.1129}
+{"id": "R-S1-0705", "hyp": "Il charger nuovo scalda troppo.", "latency_s": 0.1258}
+{"id": "R-S1-0706", "hyp": "Porta il charger per il portatile.", "latency_s": 0.1124}
+{"id": "R-S1-0707", "hyp": "Il charger è rimasto nella sala riunioni.", "latency_s": 0.1201}
+{"id": "R-S1-0708", "hyp": "Un exam di programmazione è previsto giugno.", "latency_s": 0.1417}
+{"id": "R-S1-0709", "hyp": "Il mio exam di tedesco è andato male.", "latency_s": 0.1305}
+{"id": "R-S1-0710", "hyp": "Un exam scritto vale più di un orale.", "latency_s": 0.133}
+{"id": "R-S1-0711", "hyp": "Dopo un exam ci si rilassa.", "latency_s": 0.1005}
+{"id": "R-S1-0712", "hyp": "I Mondays sono i giorni peggiori.", "latency_s": 0.1078}
+{"id": "R-S1-0713", "hyp": "Odio i Mondays pieni di riunioni.", "latency_s": 0.115}
+{"id": "R-S1-0714", "hyp": "I Mondays iniziano sempre con una sorpresa.", "latency_s": 0.1173}
+{"id": "R-S1-0715", "hyp": "I Mondays mi mettono di cattivo umore.", "latency_s": 0.1195}
+{"id": "R-S1-0716", "hyp": "Gli Apps e il mio iPad si caricano insieme.", "latency_s": 0.1562}
+{"id": "R-S1-0717", "hyp": "Baskin Robbins e KfC sono entrambi affollati.", "latency_s": 0.1822}
+{"id": "R-S1-0718", "hyp": "La folder del progetto è su Bitbucket.", "latency_s": 0.1145}
+{"id": "R-S1-0719", "hyp": "Ho preso una Cadbury da Starbucks.", "latency_s": 0.1217}
+{"id": "R-S1-0720", "hyp": "Il check out del website è lento anche oggi.", "latency_s": 0.1249}
+{"id": "R-S1-0721", "hyp": "Il domain e il piano di hosting scadono insieme.", "latency_s": 0.15}
+{"id": "R-S1-0722", "hyp": "Il Dyson e il Romba sono in carica.", "latency_s": 0.138}
+{"id": "R-S1-0723", "hyp": "Carica lo screenshot su Invision.", "latency_s": 0.1189}
+{"id": "R-S1-0724", "hyp": "Dopo il logout compare un pop up.", "latency_s": 0.1013}
+{"id": "R-S1-0725", "hyp": "Un reset seguito da un restante risolve tutto.", "latency_s": 0.1331}
+{"id": "R-S1-0726", "hyp": "Facciamo un selfie, poi riprendiamo lo screen sharing.", "latency_s": 0.1506}
+{"id": "R-S1-0727", "hyp": "Un upload del wallpaper dura dieci minuti.", "latency_s": 0.1436}
+{"id": "R-S1-0728", "hyp": "Il delivery arriva entro le sette.", "latency_s": 0.1495}
+{"id": "R-S1-0729", "hyp": "Un'oral dura venti minuti.", "latency_s": 0.0989}
+{"id": "R-S1-0730", "hyp": "Lo scale up ha raddoppato i pendenti.", "latency_s": 0.1448}
+{"id": "R-S1-0731", "hyp": "Lo shutdown del server è pianificato.", "latency_s": 0.1273}
+{"id": "R-S1-0732", "hyp": "Le foto arrivano da Shot at Stock.", "latency_s": 0.0924}
+{"id": "R-S1-0733", "hyp": "Le skills richieste sono diverse.", "latency_s": 0.0979}
+{"id": "R-S1-0734", "hyp": "Confronto i prezzi su Sky Scanner.", "latency_s": 0.1079}
+{"id": "R-S1-0735", "hyp": "Lo smartwatch misura anche il sonno.", "latency_s": 0.13}
+{"id": "R-S1-0736", "hyp": "Il problem solving richiede calma.", "latency_s": 0.1251}
+{"id": "R-S1-0737", "hyp": "La metro è più veloce del Subway.", "latency_s": 0.1142}
+{"id": "R-S1-0738", "hyp": "Lo swipe a destra apre il menù.", "latency_s": 0.1272}
+{"id": "R-S1-0739", "hyp": "TripAdvisor ha cambiato la classifica.", "latency_s": 0.1136}
+{"id": "R-S1-0740", "hyp": "Il Twinings è finito di nuovo.", "latency_s": 0.1044}
+{"id": "R-S1-0741", "hyp": "Ho fatto un follow senza pensarci.", "latency_s": 0.1058}
+{"id": "R-S2-0002", "hyp": "Preferisco chattare invece di fare una telefonata.", "latency_s": 0.1131}
+{"id": "R-S2-0003", "hyp": "Inizia a chattare con gruppo quando sei pronto.", "latency_s": 0.1274}
+{"id": "R-S2-0004", "hyp": "Lo spazio di coworking è al terzo piano.", "latency_s": 0.1326}
+{"id": "R-S2-0005", "hyp": "Cerco un co working vicino alla stazione.", "latency_s": 0.1463}
+{"id": "R-S2-0006", "hyp": "Il coworking chiude alle 8 di sera.", "latency_s": 0.1351}
+{"id": "R-S2-0007", "hyp": "La CPU va al massimo con questo programma.", "latency_s": 0.1064}
+{"id": "R-S2-0008", "hyp": "Ho cambiato la CPU del portatile.", "latency_s": 0.0946}
+{"id": "R-S2-0009", "hyp": "La CPU scalda troppo durante l'esportazione.", "latency_s": 0.1054}
+{"id": "R-S2-0010", "hyp": "Devo downloadare il documento prima di partire.", "latency_s": 0.1039}
+{"id": "R-S2-0011", "hyp": "Puoi downloadare la versione nuova stasera.", "latency_s": 0.1315}
+{"id": "R-S2-0012", "hyp": "Non riesco a dolorare niente con questa rete.", "latency_s": 0.1537}
+{"id": "R-S2-0013", "hyp": "Ho fissato l'errore ieri notte.", "latency_s": 0.0991}
+{"id": "R-S2-0014", "hyp": "Il problema è stato fissato in fretta.", "latency_s": 0.1026}
+{"id": "R-S2-0015", "hyp": "Abbiamo fissato tutto prima della presentazione.", "latency_s": 0.1108}
+{"id": "R-S2-0016", "hyp": "Il merge è andato a buon fine.", "latency_s": 0.0852}
+{"id": "R-S2-0017", "hyp": "Aspetto il merge prima di chiudere la giornata.", "latency_s": 0.0858}
+{"id": "R-S2-0018", "hyp": "Fammi sapere quando il merge è pronto.", "latency_s": 0.085}
+{"id": "R-S2-0019", "hyp": "Possiamo emergiare domani mattina.", "latency_s": 0.085}
+{"id": "R-S2-0020", "hyp": "Conviene emergiare solo dopo i controlli.", "latency_s": 0.1162}
+{"id": "R-S2-0021", "hyp": "Non mergiare adesso che è tutto rotto.", "latency_s": 0.0998}
+{"id": "R-S2-0022", "hyp": "Mi è arrivato il codice OTP sul telefono.", "latency_s": 0.1171}
+{"id": "R-S2-0023", "hyp": "Inserisci il codici OTP entro due minuti.", "latency_s": 0.1129}
+{"id": "R-S2-0024", "hyp": "Il codice ATP è scaduto e non funziona.", "latency_s": 0.0997}
+{"id": "R-S2-0025", "hyp": "Mi è arrivato un messaggio di phishing.", "latency_s": 0.0836}
+{"id": "R-S2-0026", "hyp": "Quel collegamento sembra phishing.", "latency_s": 0.0822}
+{"id": "R-S2-0027", "hyp": "Hanno bloccato il dominio per phish.", "latency_s": 0.0861}
+{"id": "R-S2-0028", "hyp": "Non ho ancora puzzato niente.", "latency_s": 0.0746}
+{"id": "R-S2-0029", "hyp": "Abbiamo pushato tutto dopo la revisione.", "latency_s": 0.0957}
+{"id": "R-S2-0030", "hyp": "Facciamo un recap veloce della riunione.", "latency_s": 0.1006}
+{"id": "R-S2-0031", "hyp": "Il recap è nel documento condiviso.", "latency_s": 0.1316}
+{"id": "R-S2-0032", "hyp": "Mandami un recap prima di domani.", "latency_s": 0.0939}
+{"id": "R-S2-0033", "hyp": "Fai scroll down fino in fondo.", "latency_s": 0.1071}
+{"id": "R-S2-0034", "hyp": "Usa Scroll up per tornare all'inizio.", "latency_s": 0.1038}
+{"id": "R-S2-0035", "hyp": "Serve uno scroldown per leggere tutto.", "latency_s": 0.0829}
+{"id": "R-S2-0036", "hyp": "Dobbiamo splittare il lavoro in due parti.", "latency_s": 0.0849}
+{"id": "R-S2-0037", "hyp": "Vorrei spittare il progetto la settimana prossima.", "latency_s": 0.1076}
+{"id": "R-S2-0038", "hyp": "Splittare adesso crea solo confusione.", "latency_s": 0.1116}
+{"id": "R-S2-0039", "hyp": "Ho messo un SSD più grande nel portatile.", "latency_s": 0.1248}
+{"id": "R-S2-0040", "hyp": "La SSD rende l'avvio molto rapido.", "latency_s": 0.1143}
+{"id": "R-S2-0041", "hyp": "Il daily stand up dura dieci minuti.", "latency_s": 0.103}
+{"id": "R-S2-0042", "hyp": "Facciamo il daily stand up alle nove.", "latency_s": 0.0866}
+{"id": "R-S2-0043", "hyp": "Oggi il devi stand up salta.", "latency_s": 0.0818}
+{"id": "R-S2-0044", "hyp": "Devo taggare i colleghi nel commento.", "latency_s": 0.0843}
+{"id": "R-S2-0045", "hyp": "Puoi taggare tutti nella conversazione?", "latency_s": 0.0824}
+{"id": "R-S2-0046", "hyp": "Taggare ogni persona è noioso.", "latency_s": 0.0858}
+{"id": "R-S2-0047", "hyp": "Questo urlo non si apre.", "latency_s": 0.0772}
+{"id": "R-S2-0048", "hyp": "Copia questo URL e incollano nel messaggio.", "latency_s": 0.1188}
+{"id": "R-S2-0049", "hyp": "Un urlo più corto è meglio.", "latency_s": 0.1014}
+{"id": "R-S2-0050", "hyp": "Il venditore ha rifiutato la warranty.", "latency_s": 0.1007}
+{"id": "R-S2-0051", "hyp": "Ho perso il documento della warranty.", "latency_s": 0.1031}
+{"id": "R-S2-0052", "hyp": "Hanno spostato il meeting a giovedì.", "latency_s": 0.1039}
+{"id": "R-S2-0053", "hyp": "Non trovo più il file con le note.", "latency_s": 0.0827}
+{"id": "R-S2-0054", "hyp": "Consegno al report entro stasera.", "latency_s": 0.0897}
+{"id": "R-S2-0055", "hyp": "Il budget è stato approvato ieri.", "latency_s": 0.0851}
+{"id": "R-S2-0056", "hyp": "Facciamo un backup dei dati ogni notte.", "latency_s": 0.088}
+{"id": "R-S2-0057", "hyp": "Il feedback dei clienti è positivo.", "latency_s": 0.077}
+{"id": "R-S2-0058", "hyp": "La roadmap è cambiata dopo la riunione.", "latency_s": 0.0868}
+{"id": "R-S2-0059", "hyp": "Abbiamo chiuso il ticket in mattinata.", "latency_s": 0.1056}
+{"id": "R-S2-0060", "hyp": "Il server si è riavviato da solo.", "latency_s": 0.0982}
+{"id": "R-S2-0061", "hyp": "Il workshop dura tutta la giornata.", "latency_s": 0.0959}
+{"id": "R-S2-0062", "hyp": "Il laptop non si accende più.", "latency_s": 0.0852}
+{"id": "R-S2-0063", "hyp": "Ho dimenticato la password.", "latency_s": 0.0783}
+{"id": "R-S2-0064", "hyp": "Il template va aggiornato con i nuovi dati.", "latency_s": 0.0967}
+{"id": "R-S2-0065", "hyp": "La milestone è stata raggiunta in anticipo.", "latency_s": 0.1071}
+{"id": "R-S2-0066", "hyp": "Il kick off è fissato per lunedì.", "latency_s": 0.0946}
+{"id": "R-S2-0067", "hyp": "Abbiamo ricevuto il briefing del cliente.", "latency_s": 0.1159}
+{"id": "R-S2-0068", "hyp": "Il deck per la presentazione è pronto.", "latency_s": 0.1208}
+{"id": "R-S2-0069", "hyp": "Il target di vendita è troppo alto.", "latency_s": 0.1101}
+{"id": "R-S2-0070", "hyp": "Il benchmark ha dato risultati simili.", "latency_s": 0.1192}
+{"id": "R-S2-0071", "hyp": "La compliance richiede un controllo in più.", "latency_s": 0.1104}
+{"id": "R-S2-0072", "hyp": "Il turnover è aumentato quest'anno.", "latency_s": 0.1091}
+{"id": "R-S2-0073", "hyp": "Il payrol va chiuso entro il venticinque.", "latency_s": 0.0997}
+{"id": "R-S2-0074", "hyp": "Il planning settimanale è confermato.", "latency_s": 0.099}
+{"id": "R-S2-0075", "hyp": "Il processo di onboarding inizia lunedì.", "latency_s": 0.1116}
+{"id": "R-S2-0076", "hyp": "Il forecast delle vendite è prudente.", "latency_s": 0.1149}
+{"id": "R-S2-0077", "hyp": "La pipeline è piena di occasioni.", "latency_s": 0.1023}
+{"id": "R-S2-0078", "hyp": "Il Raute è previsto a novembre.", "latency_s": 0.0912}
+{"id": "R-S2-0079", "hyp": "La retention dei clienti è cresciuta.", "latency_s": 0.0994}
+{"id": "R-S2-0080", "hyp": "Il pricing è visto a settembre.", "latency_s": 0.1123}
+{"id": "R-S2-0081", "hyp": "Fai scroll down per vedere il resto.", "latency_s": 0.1035}
+{"id": "R-S2-0082", "hyp": "Serve un follow up la settimana prossima.", "latency_s": 0.106}
+{"id": "R-S2-0083", "hyp": "Abbiamo fatto un deep dive sui costi.", "latency_s": 0.0941}
+{"id": "R-S2-0084", "hyp": "Il ce qu'in settimanale dura poco.", "latency_s": 0.1027}
+{"id": "R-S2-0085", "hyp": "Prepariamo il live per venerdì.", "latency_s": 0.1018}
+{"id": "R-S2-0086", "hyp": "Il rollback ha sistemato tutto.", "latency_s": 0.1061}
+{"id": "R-S2-0087", "hyp": "Serve un workaround per oggi.", "latency_s": 0.0812}
+{"id": "R-S2-0088", "hyp": "Il setup iniziale richiede un'ora.", "latency_s": 0.0978}
+{"id": "R-S2-0089", "hyp": "La conference call rimandata.", "latency_s": 0.0903}
+{"id": "R-S2-0090", "hyp": "Il look and feel è piaciuto a tutti.", "latency_s": 0.0926}
+{"id": "R-S2-0091", "hyp": "Chiudiamo lo sprint review in anticipo.", "latency_s": 0.0892}
+{"id": "R-S2-0092", "hyp": "Il customer care risponde in giornata.", "latency_s": 0.092}
+{"id": "R-S2-0093", "hyp": "Il dropdown non funziona sul telefono.", "latency_s": 0.0889}
+{"id": "R-S2-0094", "hyp": "Il check out dell'hotel è alle dieci.", "latency_s": 0.0964}
+{"id": "R-S2-0095", "hyp": "Prepariamo il pres kit per il lancio.", "latency_s": 0.1009}
+{"id": "R-S2-0096", "hyp": "Il full backup dura due ore.", "latency_s": 0.106}
+{"id": "R-S2-0097", "hyp": "Il time di tre settimane.", "latency_s": 0.1032}
+{"id": "R-S2-0098", "hyp": "Il dataset va ripulito prima dell'analisi.", "latency_s": 0.1102}
+{"id": "R-S2-0099", "hyp": "Il machine learning ci aiuta poco, qui.", "latency_s": 0.0784}
+{"id": "R-S2-0100", "hyp": "Il cloud storage costa troppo.", "latency_s": 0.0828}
+{"id": "R-S2-0101", "hyp": "Il pricing model va cambiato.", "latency_s": 0.0734}
+{"id": "R-S2-0102", "hyp": "Il turn around è stato rapido.", "latency_s": 0.0726}
+{"id": "R-S2-0103", "hyp": "Il test drive è confermato per sabato.", "latency_s": 0.08}
+{"id": "R-S2-0104", "hyp": "Scrivi su slack quando vuoi.", "latency_s": 0.0678}
+{"id": "R-S2-0105", "hyp": "Ci vediamo su Zoom alle tre.", "latency_s": 0.0699}
+{"id": "R-S2-0106", "hyp": "Il documento è su Dropbox.", "latency_s": 0.078}
+{"id": "R-S2-0107", "hyp": "Abbiamo comprato il dominio su Goddy.", "latency_s": 0.1008}
+{"id": "R-S2-0108", "hyp": "La fattura è arrivata da Stripe.", "latency_s": 0.0994}
+{"id": "R-S2-0109", "hyp": "Il pagamento passa da PayPal.", "latency_s": 0.0804}
+{"id": "R-S2-0110", "hyp": "La ricerca su Google non trova niente.", "latency_s": 0.093}
+{"id": "R-S2-0111", "hyp": "La riunione su Teams", "latency_s": 0.081}
+{"id": "R-S2-0112", "hyp": "Il codice sta su Github.", "latency_s": 0.0906}
+{"id": "R-S2-0113", "hyp": "Il testo è su Word.", "latency_s": 0.0798}
+{"id": "R-S2-0114", "hyp": "Il profilo è su LinkedIn.", "latency_s": 0.0747}
+{"id": "R-S2-0115", "hyp": "Il messaggio su Whatsapp.", "latency_s": 0.0811}
+{"id": "R-S2-0116", "hyp": "Abbiamo aperto il documento su Nocean.", "latency_s": 0.0937}
+{"id": "R-S2-0117", "hyp": "Il KPI principale è in calo.", "latency_s": 0.0892}
+{"id": "R-S2-0118", "hyp": "Il sistema ERP va aggiornato entro dicembre.", "latency_s": 0.1298}
+{"id": "R-S2-0119", "hyp": "Il servizio API risponde con un errore.", "latency_s": 0.1014}
+{"id": "R-S2-0120", "hyp": "Il pacchetto SDK è documentato male.", "latency_s": 0.0947}
+{"id": "R-S2-0121", "hyp": "Il VPN si disconnette spesso.", "latency_s": 0.1066}
+{"id": "R-S2-0122", "hyp": "Il CDN ha ridotto i tempi.", "latency_s": 0.083}
+{"id": "R-S2-0123", "hyp": "La slap vede quattro ore.", "latency_s": 0.0824}
+{"id": "R-S2-0124", "hyp": "Il errore del progetto è basso.", "latency_s": 0.0662}
+{"id": "R-S2-0125", "hyp": "Il se ha cambiato idea.", "latency_s": 0.0644}
+{"id": "R-S2-0126", "hyp": "Il primo chiaro del trimestre è chiaro.", "latency_s": 0.1023}
+{"id": "R-S2-0127", "hyp": "Il PDF è protetto.", "latency_s": 0.0878}
+{"id": "R-S2-0128", "hyp": "La memoria RAM è piena.", "latency_s": 0.0864}
+{"id": "R-S2-0129", "hyp": "Il BIOS non riconosce il disco.", "latency_s": 0.1081}
+{"id": "R-S2-0130", "hyp": "Il gruppo Oops ha tenuto acceso tutto.", "latency_s": 0.1139}
+{"id": "R-S2-0131", "hyp": "Il Gd PR impone regole severe.", "latency_s": 0.0904}
+{"id": "R-S2-0132", "hyp": "Dobbiamo debuggare il processo.", "latency_s": 0.0968}
+{"id": "R-S2-0133", "hyp": "Dobbiamo testare il flusso completo.", "latency_s": 0.0884}
+{"id": "R-S2-0134", "hyp": "Splittare il monte ore è complicato.", "latency_s": 0.0804}
+{"id": "R-S2-0135", "hyp": "Ho droppato il pacchetto per errore.", "latency_s": 0.0983}
+{"id": "R-S2-0136", "hyp": "L'ho flaggato come urgente.", "latency_s": 0.0895}
+{"id": "R-S2-0137", "hyp": "Mi sono loggato con il profilo vecchio.", "latency_s": 0.106}
+{"id": "R-S2-0138", "hyp": "Abbiamo sciupato in ritardo.", "latency_s": 0.0957}
+{"id": "R-S2-0139", "hyp": "Ho cliccato due volte sullo stesso pulsante.", "latency_s": 0.1104}
+{"id": "R-S2-0140", "hyp": "Ho postato l'annuncio sul canale.", "latency_s": 0.0929}
+{"id": "R-S2-0141", "hyp": "Ho facciato il sistema ieri.", "latency_s": 0.0817}
+{"id": "R-S2-0142", "hyp": "Dobbiamo deployare stasera.", "latency_s": 0.0894}
+{"id": "R-S2-0143", "hyp": "Conviene a roll beccare subito.", "latency_s": 0.0724}
+{"id": "R-S2-0144", "hyp": "Hanno stressato il sistema per ore.", "latency_s": 0.0795}
+{"id": "R-S2-0145", "hyp": "Dobbiamo wrappare la funzione.", "latency_s": 0.091}
+{"id": "R-S2-0146", "hyp": "Hanno bannato l'utente.", "latency_s": 0.083}
+{"id": "R-S2-0147", "hyp": "Dobbiamo bekappare i dati.", "latency_s": 0.1112}
+{"id": "R-S2-0148", "hyp": "Dobbiamo linkare la pagina.", "latency_s": 0.0963}
+{"id": "R-S2-0149", "hyp": "Dobbiamo customizzare il tema.", "latency_s": 0.0812}
+{"id": "R-S2-0150", "hyp": "Hanno locato l'account.", "latency_s": 0.0754}
+{"id": "R-S2-0151", "hyp": "Dobbiamo refresciare la pagina.", "latency_s": 0.0885}
+{"id": "R-S2-0152", "hyp": "Conviene formattare il documento.", "latency_s": 0.0878}
+{"id": "R-S2-0153", "hyp": "Hanno stampato il modulo sbagliato.", "latency_s": 0.0853}
+{"id": "R-S2-0154", "hyp": "Secondo me il meeting è dato bene, ma dobbiamo fissare due cose.", "latency_s": 0.1214}
+{"id": "R-S2-0155", "hyp": "Il budget è approvato, però il timeline è troppo stretto.", "latency_s": 0.1073}
+{"id": "R-S2-0156", "hyp": "Abbiamo fatto il kick off, adesso serve un follow up.", "latency_s": 0.0996}
+{"id": "R-S2-0157", "hyp": "Il cliente vuole una demo e anche un report.", "latency_s": 0.1093}
+{"id": "R-S2-0158", "hyp": "La deadline è vicina, quindi prepariamo il deck.", "latency_s": 0.1218}
+{"id": "R-S2-0159", "hyp": "Il team è piccolo, però il workload è alto.", "latency_s": 0.1078}
+{"id": "R-S2-0160", "hyp": "Hanno chiesto un update sul progetto e un recap delle spese.", "latency_s": 0.1197}
+{"id": "R-S2-0161", "hyp": "Il workspace è pieno e il co working è chiuso.", "latency_s": 0.1144}
+{"id": "R-S2-0162", "hyp": "Dobbiamo fare un backup e poi un restore completo.", "latency_s": 0.09}
+{"id": "R-S2-0163", "hyp": "La feature è pronta, ma il deploy is later already.", "latency_s": 0.0952}
+{"id": "R-S2-0164", "hyp": "Il manager ha chiesto un briefing e un piano.", "latency_s": 0.107}
+{"id": "R-S2-0165", "hyp": "Lo sprint finisce venerdì e la review è lunedì.", "latency_s": 0.1238}
+{"id": "R-S2-0166", "hyp": "Il server è lento e il database è pieno.", "latency_s": 0.1052}
+{"id": "R-S2-0167", "hyp": "Il ticket è aperto, il bug non è chiaro.", "latency_s": 0.1103}
+{"id": "R-S2-0168", "hyp": "La pipeline è rotta e il build non parte.", "latency_s": 0.1203}
+{"id": "R-S2-0169", "hyp": "Domani vado in ufficio con il treno delle sette.", "latency_s": 0.1138}
+{"id": "R-S2-0170", "hyp": "La riunione di famiglia è rimandata domenica.", "latency_s": 0.0934}
+{"id": "R-S2-0171", "hyp": "Il museo apre alle nove e chiude alle 6.", "latency_s": 0.0863}
+{"id": "R-S2-0172", "hyp": "Ho prenotato un ristorante per sabato sera.", "latency_s": 0.1032}
+{"id": "R-S2-0173", "hyp": "Il treno per Milano par binario 3.", "latency_s": 0.1243}
+{"id": "R-S2-0174", "hyp": "La biblioteca chiude per ferie d'agosto.", "latency_s": 0.1119}
+{"id": "R-S2-0175", "hyp": "Ho portato la macchina del meccanico stamattina.", "latency_s": 0.1087}
+{"id": "R-S2-0176", "hyp": "The meeting was moved to next week.", "latency_s": 0.0919}
+{"id": "R-S2-0177", "hyp": "Please send me the report before Friday.", "latency_s": 0.1079}
+{"id": "R-S2-0178", "hyp": "We need a new plan for the launch.", "latency_s": 0.0861}
+{"id": "R-S2-0179", "hyp": "The server has been down since this morning.", "latency_s": 0.1003}
+{"id": "R-S2-0180", "hyp": "She will join the call from the office.", "latency_s": 0.0884}
+{"id": "R-S2-0181", "hyp": "The budget was approved by the board.", "latency_s": 0.0872}
+{"id": "R-S2-0182", "hyp": "I think the demo went well today.", "latency_s": 0.0775}
+{"id": "R-S2-0183", "hyp": "Il meeting di domani salta.", "latency_s": 0.0782}
+{"id": "R-S2-0184", "hyp": "Archival file appear.", "latency_s": 0.0814}
+{"id": "R-S2-0185", "hyp": "Il report mensile è già pronto.", "latency_s": 0.0903}
+{"id": "R-S2-0186", "hyp": "Questo budget non basta per tutto.", "latency_s": 0.0916}
+{"id": "R-S2-0187", "hyp": "Fai un backup prima di spegnere.", "latency_s": 0.079}
+{"id": "R-S2-0188", "hyp": "Il suo feedback mi ha aiutato.", "latency_s": 0.0733}
+{"id": "R-S2-0189", "hyp": "La roadmap la decidiamo a gennaio.", "latency_s": 0.0885}
+{"id": "R-S2-0190", "hyp": "Quel ticket è rimasto aperto.", "latency_s": 0.0714}
+{"id": "R-S2-0191", "hyp": "Su Slack trovi il canale giusto.", "latency_s": 0.073}
+{"id": "R-S2-0192", "hyp": "Apri Zoom tra cinque minuti.", "latency_s": 0.0681}
+{"id": "R-S2-0193", "hyp": "Carica tutto su Dropbox.", "latency_s": 0.0834}
+{"id": "R-S2-0194", "hyp": "La fattura di stripe è sbagliata.", "latency_s": 0.091}
+{"id": "R-S2-0195", "hyp": "PayPal non accetta questa carta.", "latency_s": 0.0986}
+{"id": "R-S2-0196", "hyp": "Cer su Google il numero.", "latency_s": 0.0766}
+{"id": "R-S2-0197", "hyp": "Il foglio Excel è bloccato.", "latency_s": 0.0775}
+{"id": "R-S2-0198", "hyp": "Chità è lento oggi.", "latency_s": 0.068}
+{"id": "R-S2-0199", "hyp": "Il CRM ha perso i contatti.", "latency_s": 0.0909}
+{"id": "R-S2-0200", "hyp": "Il modulo ERP è fermo.", "latency_s": 0.0779}
+{"id": "R-S2-0201", "hyp": "La GPU è al limite.", "latency_s": 0.0644}
+{"id": "R-S2-0202", "hyp": "Il V PN non funziona da ieri.", "latency_s": 0.1046}
+{"id": "R-S2-0203", "hyp": "Il CEO ha parlato con tutti.", "latency_s": 0.0618}
+{"id": "R-S2-0204", "hyp": "È inutile debuggare adesso.", "latency_s": 0.0652}
+{"id": "R-S2-0205", "hyp": "Dobbiamo testare tutto prima di uscire.", "latency_s": 0.0771}
+{"id": "R-S2-0206", "hyp": "Ho commentato sul ramo sbagliato.", "latency_s": 0.0852}
+{"id": "R-S2-0207", "hyp": "Durante le ferie il backlog è cresciuto.", "latency_s": 0.0955}
+{"id": "R-S2-0208", "hyp": "La release è bloccata da un controllo.", "latency_s": 0.0878}
+{"id": "R-S2-0209", "hyp": "Questo incidente è chiuso in fretta.", "latency_s": 0.081}
+{"id": "R-S2-0210", "hyp": "Il post mortem è stato utile a tutti.", "latency_s": 0.0913}
+{"id": "R-S2-0211", "hyp": "La latency è salita dopo il cambio.", "latency_s": 0.0856}
+{"id": "R-S2-0212", "hyp": "Il firewall blocca il traffico in uscita.", "latency_s": 0.0924}
+{"id": "R-S2-0213", "hyp": "Il malware è entrato da un allegato.", "latency_s": 0.0809}
+{"id": "R-S2-0214", "hyp": "Il token scade dopo un'ora.", "latency_s": 0.0658}
+{"id": "R-S2-0215", "hyp": "La Cash va svuotata ogni tanto.", "latency_s": 0.0696}
+{"id": "R-S2-0216", "hyp": "Il cluster ha perso un nodo.", "latency_s": 0.0729}
+{"id": "R-S2-0217", "hyp": "Il container non parte più.", "latency_s": 0.0825}
+{"id": "R-S2-0218", "hyp": "Il log è pieno di avvisi.", "latency_s": 0.0805}
+{"id": "R-S2-0219", "hyp": "Un alert è arrivato troppo tardi.", "latency_s": 0.0699}
+{"id": "R-S2-0220", "hyp": "Il Rumbook spiega tutti i passi.", "latency_s": 0.0885}
+{"id": "R-S2-0221", "hyp": "Il playbook è stato aggiornato.", "latency_s": 0.0902}
+{"id": "R-S2-0222", "hyp": "Questo Epic è troppo grande.", "latency_s": 0.0713}
+{"id": "R-S2-0223", "hyp": "La storia non è ancora stimata.", "latency_s": 0.0767}
+{"id": "R-S2-0224", "hyp": "Lo scope del progetto è cambiato.", "latency_s": 0.0801}
+{"id": "R-S2-0225", "hyp": "Il requirement principale è la velocità.", "latency_s": 0.0907}
+{"id": "R-S2-0226", "hyp": "Il wireframe è pronto per la revisione.", "latency_s": 0.086}
+{"id": "R-S2-0227", "hyp": "Il mock up piace al cliente.", "latency_s": 0.0722}
+{"id": "R-S2-0228", "hyp": "Il survey ha raccolto poche risposte.", "latency_s": 0.0708}
+{"id": "R-S2-0229", "hyp": "Il processo di offboarding richiede due settimane.", "latency_s": 0.1198}
+{"id": "R-S2-0230", "hyp": "Quella in voice è una pagata in ritardo.", "latency_s": 0.0893}
+{"id": "R-S2-0231", "hyp": "Il vendor ha consegnato il ritardo.", "latency_s": 0.0998}
+{"id": "R-S2-0232", "hyp": "Lo stakeholder vuole più dettagli.", "latency_s": 0.0856}
+{"id": "R-S2-0233", "hyp": "Il Cherne è sotto controllo.", "latency_s": 0.0758}
+{"id": "R-S2-0234", "hyp": "La revenue è cresciuta dal 10%.", "latency_s": 0.088}
+{"id": "R-S2-0235", "hyp": "Il downtime è durato tre ore.", "latency_s": 0.0875}
+{"id": "R-S2-0236", "hyp": "Il proof of concept è pronto.", "latency_s": 0.0733}
+{"id": "R-S2-0237", "hyp": "Serve una change request per questo.", "latency_s": 0.0686}
+{"id": "R-S2-0238", "hyp": "La root cause non è chiara.", "latency_s": 0.062}
+{"id": "R-S2-0239", "hyp": "La code review è rimandata.", "latency_s": 0.0595}
+{"id": "R-S2-0240", "hyp": "Il P programming aiuta molto.", "latency_s": 0.0785}
+{"id": "R-S2-0241", "hyp": "Il bug bounty è aperto a tutti.", "latency_s": 0.0776}
+{"id": "R-S2-0242", "hyp": "Il feature flag è spento.", "latency_s": 0.0736}
+{"id": "R-S2-0243", "hyp": "Il roll out è iniziato ieri.", "latency_s": 0.0759}
+{"id": "R-S2-0244", "hyp": "Il blue green deploy è più sicuro.", "latency_s": 0.0844}
+{"id": "R-S2-0245", "hyp": "The load balancer is saturated.", "latency_s": 0.0731}
+{"id": "R-S2-0246", "hyp": "Il data breach va denunciato.", "latency_s": 0.079}
+{"id": "R-S2-0247", "hyp": "Il pen test è fissato per venerdì.", "latency_s": 0.0851}
+{"id": "R-S2-0248", "hyp": "Il Zero Day è stato corretto.", "latency_s": 0.0856}
+{"id": "R-S2-0249", "hyp": "Il timesheet va compilato.", "latency_s": 0.0737}
+{"id": "R-S2-0250", "hyp": "Il business case non convince.", "latency_s": 0.0727}
+{"id": "R-S2-0251", "hyp": "Il break even è ancora lontano.", "latency_s": 0.0588}
+{"id": "R-S2-0252", "hyp": "Il cash flow è negativo.", "latency_s": 0.0575}
+{"id": "R-S2-0253", "hyp": "Il Go to Market è pronto.", "latency_s": 0.0594}
+{"id": "R-S2-0254", "hyp": "Il content marketing funziona.", "latency_s": 0.0752}
+{"id": "R-S2-0255", "hyp": "La Lead Generation è ferma.", "latency_s": 0.0764}
+{"id": "R-S2-0256", "hyp": "Il churn rate è alto.", "latency_s": 0.0726}
+{"id": "R-S2-0257", "hyp": "Il Net Promoter Score è salito.", "latency_s": 0.0827}
+{"id": "R-S2-0258", "hyp": "Il focus group ha da dos punti.", "latency_s": 0.0738}
+{"id": "R-S2-0259", "hyp": "The spreadsheet is Google Sheets.", "latency_s": 0.0805}
+{"id": "R-S2-0260", "hyp": "La baker summon.", "latency_s": 0.0595}
+{"id": "R-S2-0261", "hyp": "Il documento su Confluence", "latency_s": 0.0675}
+{"id": "R-S2-0262", "hyp": "Lasciate su Discord.", "latency_s": 0.0596}
+{"id": "R-S2-0263", "hyp": "Le note sono su Obsidian.", "latency_s": 0.0552}
+{"id": "R-S2-0264", "hyp": "Il design è su Sketch.", "latency_s": 0.0695}
+{"id": "R-S2-0265", "hyp": "La fattura è suero.", "latency_s": 0.0614}
+{"id": "R-S2-0266", "hyp": "Il pagamento su Revolut.", "latency_s": 0.0619}
+{"id": "R-S2-0267", "hyp": "Il pacco è su Amazon.", "latency_s": 0.049}
+{"id": "R-S2-0268", "hyp": "La map is ways.", "latency_s": 0.0497}
+{"id": "R-S2-0269", "hyp": "L'annuncio su Facebook.", "latency_s": 0.0591}
+{"id": "R-S2-0270", "hyp": "Il DNS non risolve il nome.", "latency_s": 0.0769}
+{"id": "R-S2-0271", "hyp": "Il Dhp assegna gli indirizzi.", "latency_s": 0.1117}
+{"id": "R-S2-0272", "hyp": "La Vulan è configurata male.", "latency_s": 0.0825}
+{"id": "R-S2-0273", "hyp": "La SO aziendale non funziona.", "latency_s": 0.0851}
+{"id": "R-S2-0274", "hyp": "La MFA è obbligatoria.", "latency_s": 0.0745}
+{"id": "R-S2-0275", "hyp": "Il TLS va aggiornato.", "latency_s": 0.0719}
+{"id": "R-S2-0276", "hyp": "Htp risponde in chiaro.", "latency_s": 0.0816}
+{"id": "R-S2-0277", "hyp": "Il JSON è malformato.", "latency_s": 0.0559}
+{"id": "R-S2-0278", "hyp": "Il Cs V ha una colonna in più.", "latency_s": 0.077}
+{"id": "R-S2-0279", "hyp": "L'XML è troppo grande.", "latency_s": 0.063}
+{"id": "R-S2-0280", "hyp": "Il Nasa due dischi.", "latency_s": 0.0535}
+{"id": "R-S2-0281", "hyp": "Il P va protetto.", "latency_s": 0.0759}
+{"id": "R-S2-0282", "hyp": "Il TCO è troppo alto.", "latency_s": 0.0724}
+{"id": "R-S2-0283", "hyp": "Il Capex è stato tagliato.", "latency_s": 0.0784}
+{"id": "R-S2-0284", "hyp": "Questo Opex crescendo di anno.", "latency_s": 0.0825}
+{"id": "R-S2-0285", "hyp": "Il PSU è rumoso.", "latency_s": 0.0697}
+{"id": "R-S2-0286", "hyp": "SSL cotta ieri.", "latency_s": 0.0759}
+{"id": "R-S2-0287", "hyp": "Fittip non è sicuro.", "latency_s": 0.0808}
+{"id": "R-S2-0288", "hyp": "La SMTP è lento.", "latency_s": 0.088}
+{"id": "R-S2-0289", "hyp": "Not complicated.", "latency_s": 0.0584}
+{"id": "R-S2-0290", "hyp": "Dobbiamo abbassare i dati grezi.", "latency_s": 0.0676}
+{"id": "R-S2-0291", "hyp": "Ho renderizzato il video.", "latency_s": 0.0604}
+{"id": "R-S2-0292", "hyp": "Dobbiamo triggerare il processo.", "latency_s": 0.0664}
+{"id": "R-S2-0293", "hyp": "Ho scriptato la procedura.", "latency_s": 0.0587}
+{"id": "R-S2-0294", "hyp": "Dobbiamo lasciare la password.", "latency_s": 0.0671}
+{"id": "R-S2-0295", "hyp": "Hanno stato lo sito da noi.", "latency_s": 0.071}
+{"id": "R-S2-0296", "hyp": "Dobbiamo settare la variabile.", "latency_s": 0.0834}
+{"id": "R-S2-0297", "hyp": "Ho loggato l'errore nel registro.", "latency_s": 0.0818}
+{"id": "R-S2-0298", "hyp": "Dobbiamo buildare l'immagine.", "latency_s": 0.0729}
+{"id": "R-S2-0299", "hyp": "Ho con un altro repository.", "latency_s": 0.0721}
+{"id": "R-S2-0300", "hyp": "Dobbiamo forcare il progetto.", "latency_s": 0.0883}
+{"id": "R-S2-0301", "hyp": "Hanno droppato la connessione.", "latency_s": 0.0726}
+{"id": "R-S2-0302", "hyp": "Dobbiamo pingare il server.", "latency_s": 0.0885}
+{"id": "R-S2-0303", "hyp": "Dobbiamo printare il risultato.", "latency_s": 0.0819}
+{"id": "R-S2-0304", "hyp": "Conviene frappare tutto in una classe.", "latency_s": 0.0945}
+{"id": "R-S2-0305", "hyp": "Dobbiamo splittare il traffico.", "latency_s": 0.0745}
+{"id": "R-S2-0306", "hyp": "Dobbiamo schedulare il backup.", "latency_s": 0.0754}
+{"id": "R-S2-0307", "hyp": "Hanno affecciato la pagina.", "latency_s": 0.0723}
+{"id": "R-S2-0308", "hyp": "Dobbiamo flippare la configurazione.", "latency_s": 0.0972}
+{"id": "R-S2-0309", "hyp": "Dobbiamo scannare la rete.", "latency_s": 0.094}
+{"id": "R-S2-0310", "hyp": "Dobbiamo boccare il servizio.", "latency_s": 0.091}
+{"id": "R-S2-0311", "hyp": "Hanno deployato senza avvisare.", "latency_s": 0.0816}
+{"id": "R-S2-0312", "hyp": "Dobbiamo rollbackare la modifica.", "latency_s": 0.0834}
+{"id": "R-S2-0313", "hyp": "Ho commettato senza controllare.", "latency_s": 0.0785}
+{"id": "R-S2-0314", "hyp": "Dobbiamo stressare il sistema.", "latency_s": 0.0754}
+{"id": "R-S2-0315", "hyp": "Il backlog è pieno, quindi serve un plan in serio.", "latency_s": 0.0967}
+{"id": "R-S2-0316", "hyp": "La release è slitta e il team è stanco.", "latency_s": 0.0788}
+{"id": "R-S2-0317", "hyp": "Il feedback è buono, ma il pricing è alto.", "latency_s": 0.0694}
+{"id": "R-S2-0318", "hyp": "Serve un Offix prima della demo.", "latency_s": 0.059}
+{"id": "R-S2-0319", "hyp": "Il budget è finito e il forecast è incerto.", "latency_s": 0.0991}
+{"id": "R-S2-0320", "hyp": "La dashboard è lenta, il fabri è enorme.", "latency_s": 0.0902}
+{"id": "R-S2-0321", "hyp": "Il ticket è chiuso, ma il bug resta.", "latency_s": 0.091}
+{"id": "R-S2-0322", "hyp": "Il workshop è utile e il feedback è chiaro.", "latency_s": 0.1006}
+{"id": "R-S2-0323", "hyp": "La deadline è saltata, e il planning è aperto.", "latency_s": 0.117}
+{"id": "R-S2-0324", "hyp": "Il manager è nuovo e il team è piccolo.", "latency_s": 0.089}
+{"id": "R-S2-0325", "hyp": "La feature è pronta e il roll out parte lunedì.", "latency_s": 0.0955}
+{"id": "R-S2-0326", "hyp": "Il server è acceso, ma il deploy è fermo.", "latency_s": 0.0834}
+{"id": "R-S2-0327", "hyp": "La pipeline è veloce e il build è stabile.", "latency_s": 0.0899}
+{"id": "R-S2-0328", "hyp": "Il report è pronto e il deck è quasi finito.", "latency_s": 0.0793}
+{"id": "R-S2-0329", "hyp": "Il meeting è lungo e il briefing è inutile.", "latency_s": 0.0865}
+{"id": "R-S2-0330", "hyp": "Domenica andiamo al mare con i bambini.", "latency_s": 0.1106}
+{"id": "R-S2-0331", "hyp": "Il fornaio apre le sei del mattino.", "latency_s": 0.0924}
+{"id": "R-S2-0332", "hyp": "Ho lasciato le chiavi sul tavolo della cucina.", "latency_s": 0.1044}
+{"id": "R-S2-0333", "hyp": "La partita è finita con un pareggio.", "latency_s": 0.0811}
+{"id": "R-S2-0334", "hyp": "Abbiamo piantato due alberi in giardino.", "latency_s": 0.0807}
+{"id": "R-S2-0335", "hyp": "Il medico mi ha consigliato di camminare.", "latency_s": 0.0852}
+{"id": "R-S2-0336", "hyp": "La mostra fotografica chiude domenica.", "latency_s": 0.0807}
+{"id": "R-S2-0337", "hyp": "Preparo la cena per sette e mezza.", "latency_s": 0.0768}
+{"id": "R-S2-0338", "hyp": "We should review the numbers before the meeting.", "latency_s": 0.0766}
+{"id": "R-S2-0339", "hyp": "The client asked for a different design.", "latency_s": 0.0932}
+{"id": "R-S2-0340", "hyp": "I will send the files tomorrow morning.", "latency_s": 0.0858}
+{"id": "R-S2-0341", "hyp": "They moved the office to another building.", "latency_s": 0.0885}
+{"id": "R-S2-0342", "hyp": "The project that needs more time and money.", "latency_s": 0.098}
+{"id": "R-S2-0343", "hyp": "She explained the plan to the whole team.", "latency_s": 0.091}
+{"id": "R-S2-0344", "hyp": "Our team fixed the problem in one hour.", "latency_s": 0.0867}
+{"id": "R-S2-0345", "hyp": "Il throughput è di mezzo dopo il cambio.", "latency_s": 0.0864}
+{"id": "R-S2-0346", "hyp": "La bandwidth non basta per il video.", "latency_s": 0.0747}
+{"id": "R-S2-0347", "hyp": "Il ransomware ha criptato i documenti.", "latency_s": 0.0832}
+{"id": "R-S2-0348", "hyp": "La session scade dopo dieci minuti.", "latency_s": 0.0787}
+{"id": "R-S2-0349", "hyp": "Il cookie va cancellato dalle impostazioni.", "latency_s": 0.07}
+{"id": "R-S2-0350", "hyp": "Il pod è stato riavviato.", "latency_s": 0.0592}
+{"id": "R-S2-0351", "hyp": "Il kernel va aggiornato.", "latency_s": 0.0599}
+{"id": "R-S2-0352", "hyp": "Il firmware è vecchio.", "latency_s": 0.0631}
+{"id": "R-S2-0353", "hyp": "La pace è uscita ieri.", "latency_s": 0.065}
+{"id": "R-S2-0354", "hyp": "Lo snapshot del mese scorso.", "latency_s": 0.0852}
+{"id": "R-S2-0355", "hyp": "Il proxy blocca le richieste.", "latency_s": 0.0729}
+{"id": "R-S2-0356", "hyp": "Il gateway non risponde.", "latency_s": 0.0655}
+{"id": "R-S2-0357", "hyp": "Questo endpoint situisce un errore.", "latency_s": 0.0753}
+{"id": "R-S2-0358", "hyp": "Il pelote è troppo grande.", "latency_s": 0.0752}
+{"id": "R-S2-0359", "hyp": "Lo schermo va rivisto.", "latency_s": 0.0717}
+{"id": "R-S2-0360", "hyp": "La migration è partita.", "latency_s": 0.0645}
+{"id": "R-S2-0361", "hyp": "Il fixture non è stato caricato.", "latency_s": 0.0798}
+{"id": "R-S2-0362", "hyp": "Lo stab risponde sempre uguale.", "latency_s": 0.0643}
+{"id": "R-S2-0363", "hyp": "Il mock è troppo semplice.", "latency_s": 0.0628}
+{"id": "R-S2-0364", "hyp": "La coverage è al 70%.", "latency_s": 0.0966}
+{"id": "R-S2-0365", "hyp": "Il l'int segnalato i problemi.", "latency_s": 0.0813}
+{"id": "R-S2-0366", "hyp": "Questo artifact è stato caricato.", "latency_s": 0.0757}
+{"id": "R-S2-0367", "hyp": "Il registry è giù.", "latency_s": 0.0605}
+{"id": "R-S2-0368", "hyp": "La License scade a giugno.", "latency_s": 0.0765}
+{"id": "R-S2-0369", "hyp": "La quota è finita.", "latency_s": 0.0622}
+{"id": "R-S2-0370", "hyp": "Il tenant è nuovo.", "latency_s": 0.0582}
+{"id": "R-S2-0371", "hyp": "Il widget non si carica.", "latency_s": 0.0708}
+{"id": "R-S2-0372", "hyp": "Il banner copre il testo.", "latency_s": 0.0777}
+{"id": "R-S2-0373", "hyp": "La newsletter esce il martedì.", "latency_s": 0.0716}
+{"id": "R-S2-0374", "hyp": "Abbiamo fatto un code freeze fino a lunedì", "latency_s": 0.0916}
+{"id": "R-S2-0375", "hyp": "Serve un smoke test prima del rilascio.", "latency_s": 0.0848}
+{"id": "R-S2-0376", "hyp": "Il fail over ha funzionato.", "latency_s": 0.0748}
+{"id": "R-S2-0377", "hyp": "Dobbiamo fare un load test stasera.", "latency_s": 0.0918}
+{"id": "R-S2-0378", "hyp": "Lo skill up è partito da solo.", "latency_s": 0.0818}
+{"id": "R-S2-0379", "hyp": "Manca la user story principale.", "latency_s": 0.0824}
+{"id": "R-S2-0380", "hyp": "Gli acceptance criteria non sono chiari.", "latency_s": 0.0938}
+{"id": "R-S2-0381", "hyp": "La definition of done è sul documento.", "latency_s": 0.0892}
+{"id": "R-S2-0382", "hyp": "Facciamo lo sprint planning domani.", "latency_s": 0.0774}
+{"id": "R-S2-0383", "hyp": "Il backlog Grooming ha rimandato.", "latency_s": 0.079}
+{"id": "R-S2-0384", "hyp": "La retro meeting dura un'ora.", "latency_s": 0.0859}
+{"id": "R-S2-0385", "hyp": "La Warroom è al piano di sopra.", "latency_s": 0.0686}
+{"id": "R-S2-0386", "hyp": "Che è un call questa settimana?", "latency_s": 0.0716}
+{"id": "R-S2-0387", "hyp": "Il Rambook è nel documento.", "latency_s": 0.0586}
+{"id": "R-S2-0388", "hyp": "Le release notes vanoscritte.", "latency_s": 0.071}
+{"id": "R-S2-0389", "hyp": "Il bug report è incompleto.", "latency_s": 0.0764}
+{"id": "R-S2-0390", "hyp": "La feature request viene dal cliente.", "latency_s": 0.0892}
+{"id": "R-S2-0391", "hyp": "Questo action item è tuo.", "latency_s": 0.0723}
+{"id": "R-S2-0392", "hyp": "I next steps sono tre.", "latency_s": 0.0688}
+{"id": "R-S2-0393", "hyp": "Serve il sign off del responsabile.", "latency_s": 0.0836}
+{"id": "R-S2-0394", "hyp": "Il ramp up dura un mese.", "latency_s": 0.0805}
+{"id": "R-S2-0395", "hyp": "Il tech dead è cresciuto.", "latency_s": 0.0791}
+{"id": "R-S2-0396", "hyp": "Il design system è condiviso.", "latency_s": 0.0872}
+{"id": "R-S2-0397", "hyp": "Lo style di hai da vecchio.", "latency_s": 0.0805}
+{"id": "R-S2-0398", "hyp": "La Happy Path funziona.", "latency_s": 0.0687}
+{"id": "R-S2-0399", "hyp": "Il progetto è sua sana.", "latency_s": 0.0614}
+{"id": "R-S2-0400", "hyp": "La bucket is to click up.", "latency_s": 0.0616}
+{"id": "R-S2-0401", "hyp": "Le idee sono su, Mir.", "latency_s": 0.0641}
+{"id": "R-S2-0402", "hyp": "Questa automazione su Zapper.", "latency_s": 0.0754}
+{"id": "R-S2-0403", "hyp": "I contatti sono su HubSpot.", "latency_s": 0.0742}
+{"id": "R-S2-0404", "hyp": "Le vendite sono su Salesforce.", "latency_s": 0.0817}
+{"id": "R-S2-0405", "hyp": "Gli eventi sono su Amplitude.", "latency_s": 0.0887}
+{"id": "R-S2-0406", "hyp": "Le metriche sono su mix panel.", "latency_s": 0.0841}
+{"id": "R-S2-0407", "hyp": "I log sono sul data log.", "latency_s": 0.0711}
+{"id": "R-S2-0408", "hyp": "Gli Alert sono su Pager Duty.", "latency_s": 0.0813}
+{"id": "R-S2-0409", "hyp": "Gli errori sono su Sentry.", "latency_s": 0.0672}
+{"id": "R-S2-0410", "hyp": "La build gira su Jenkins.", "latency_s": 0.0723}
+{"id": "R-S2-0411", "hyp": "I test girano su Circle C", "latency_s": 0.0751}
+{"id": "R-S2-0412", "hyp": "Questa infrastruttura è su terraforma.", "latency_s": 0.0684}
+{"id": "R-S2-0413", "hyp": "El sito es universal.", "latency_s": 0.0541}
+{"id": "R-S2-0414", "hyp": "Il dominio pasta Cloudflare.", "latency_s": 0.0658}
+{"id": "R-S2-0415", "hyp": "I messaggi partono da Twilio.", "latency_s": 0.0857}
+{"id": "R-S2-0416", "hyp": "", "latency_s": 0.0769}
+{"id": "R-S2-0417", "hyp": "Il Cto ha approvato il piano.", "latency_s": 0.0844}
+{"id": "R-S2-0418", "hyp": "Il COO vole i numeri.", "latency_s": 0.0748}
+{"id": "R-S2-0419", "hyp": "Il reparto di Ciara scritto.", "latency_s": 0.0685}
+{"id": "R-S2-0420", "hyp": "Il gruppo Q<unk>A ha trovato un difetto.", "latency_s": 0.0903}
+{"id": "R-S2-0421", "hyp": "Il piano IP è sbagliato.", "latency_s": 0.0595}
+{"id": "R-S2-0422", "hyp": "Il Mac address è cambiato.", "latency_s": 0.0649}
+{"id": "R-S2-0423", "hyp": "Il cavo is di è mai rotto.", "latency_s": 0.0833}
+{"id": "R-S2-0424", "hyp": "La V la V CPU è al massimo.", "latency_s": 0.0721}
+{"id": "R-S2-0425", "hyp": "Gli IOPS sono bassi.", "latency_s": 0.0641}
+{"id": "R-S2-0426", "hyp": "Il PR è aperto da ieri.", "latency_s": 0.0761}
+{"id": "R-S2-0427", "hyp": "La richiesta RMA è partita.", "latency_s": 0.0743}
+{"id": "R-S2-0428", "hyp": "Il contratto NDA va firmato.", "latency_s": 0.0841}
+{"id": "R-S2-0429", "hyp": "La cicla sco è sbagliata.", "latency_s": 0.081}
+{"id": "R-S2-0430", "hyp": "Il codice Ean non si legge.", "latency_s": 0.0981}
+{"id": "R-S2-0431", "hyp": "Il formato GIF è pesante.", "latency_s": 0.0657}
+{"id": "R-S2-0432", "hyp": "Questa immagine PNG è corrotta.", "latency_s": 0.0888}
+{"id": "R-S2-0433", "hyp": "Il protocollo SsH è sicuro.", "latency_s": 0.0818}
+{"id": "R-S2-0434", "hyp": "La chiave GPG è scaduta.", "latency_s": 0.0818}
+{"id": "R-S2-0435", "hyp": "Il GPS non prende.", "latency_s": 0.0653}
+{"id": "R-S2-0436", "hyp": "Dobbiamo pulare le modifiche.", "latency_s": 0.0603}
+{"id": "R-S2-0437", "hyp": "Dobbiamo pushare la correzione.", "latency_s": 0.0685}
+{"id": "R-S2-0438", "hyp": "Dobbiamo apploudare il documento.", "latency_s": 0.0564}
+{"id": "R-S2-0439", "hyp": "Ho streamato riunione.", "latency_s": 0.0523}
+{"id": "R-S2-0440", "hyp": "Dobbiamo shottare la schermata.", "latency_s": 0.0688}
+{"id": "R-S2-0441", "hyp": "Ho replayato il messaggio.", "latency_s": 0.0684}
+{"id": "R-S2-0442", "hyp": "Dobbiamo far guardare la richiesta.", "latency_s": 0.082}
+{"id": "R-S2-0443", "hyp": "Dobbiamo fissare il problema.", "latency_s": 0.0671}
+{"id": "R-S2-0444", "hyp": "Dobbiamo splittare il documento.", "latency_s": 0.0731}
+{"id": "R-S2-0445", "hyp": "Conviene linkare la fonte.", "latency_s": 0.0616}
+{"id": "R-S2-0446", "hyp": "Dobbiamo testare la procedura.", "latency_s": 0.0694}
+{"id": "R-S2-0447", "hyp": "Dobbiamo debuggare la funzione.", "latency_s": 0.0755}
+{"id": "R-S2-0448", "hyp": "Dobbiamo deployare la versione.", "latency_s": 0.0764}
+{"id": "R-S2-0449", "hyp": "Dobbiamo committare la modifica.", "latency_s": 0.0724}
+{"id": "R-S2-0450", "hyp": "Dobbiamo mergiare il ramo.", "latency_s": 0.0518}
+{"id": "R-S2-0451", "hyp": "Dobbiamo taggare il ticket.", "latency_s": 0.065}
+{"id": "R-S2-0452", "hyp": "Dobbiamo allungare l'evento.", "latency_s": 0.0585}
+{"id": "R-S2-0453", "hyp": "Dobbiamo buildare il pacchetto.", "latency_s": 0.0628}
+{"id": "R-S2-0454", "hyp": "Dobbiamo passare alla risposta.", "latency_s": 0.0668}
+{"id": "R-S2-0455", "hyp": "Dobbiamo renderizzare la scena.", "latency_s": 0.0743}
+{"id": "R-S2-0456", "hyp": "Dobbiamo lasciare i valori.", "latency_s": 0.0703}
+{"id": "R-S2-0457", "hyp": "Dobbiamo stare al servizio.", "latency_s": 0.064}
+{"id": "R-S2-0458", "hyp": "Dobbiamo clonare la macchina.", "latency_s": 0.0643}
+{"id": "R-S2-0459", "hyp": "Dobbiamo wrappare il risultato.", "latency_s": 0.0736}
+{"id": "R-S2-0460", "hyp": "Il throughput è basso e il team lo sa.", "latency_s": 0.0866}
+{"id": "R-S2-0461", "hyp": "La pace è pronta, ma il deploy è fermo.", "latency_s": 0.0765}
+{"id": "R-S2-0462", "hyp": "Puta el token pura.", "latency_s": 0.0574}
+{"id": "R-S2-0463", "hyp": "Il proxy giù e il gateway pure.", "latency_s": 0.0828}
+{"id": "R-S2-0464", "hyp": "Il firmware è vecchio e il driver manca.", "latency_s": 0.0852}
+{"id": "R-S2-0465", "hyp": "La quota è finita e il tenente nuovo.", "latency_s": 0.0768}
+{"id": "R-S2-0466", "hyp": "Il widget è lento e il banner pesa.", "latency_s": 0.0747}
+{"id": "R-S2-0467", "hyp": "La newsletter è pronta, la campaign parte", "latency_s": 0.0851}
+{"id": "R-S2-0468", "hyp": "Il pod è morto e il cluster è instabile.", "latency_s": 0.0866}
+{"id": "R-S2-0469", "hyp": "Il KR l'haggiornato ma il driver no.", "latency_s": 0.0848}
+{"id": "R-S2-0470", "hyp": "Lo snapshot è vecchio e il backup manca.", "latency_s": 0.0972}
+{"id": "R-S2-0471", "hyp": "La coverage è bassa e il link segnala.", "latency_s": 0.0945}
+{"id": "R-S2-0472", "hyp": "Il registry è lento e il package manca.", "latency_s": 0.0839}
+{"id": "R-S2-0473", "hyp": "Il Monk è pronto, il fixture pure.", "latency_s": 0.0826}
+{"id": "R-S2-0474", "hyp": "La migration è finita e il rollback pure.", "latency_s": 0.0934}
+{"id": "R-S2-0475", "hyp": "Domenica ho sistemato la bicicletta in garaggio.", "latency_s": 0.0781}
+{"id": "R-S2-0476", "hyp": "Il pesce era buonissimo ma troppo salato.", "latency_s": 0.0853}
+{"id": "R-S2-0477", "hyp": "Abbiamo perso il treno per dieci minuti.", "latency_s": 0.0749}
+{"id": "R-S2-0478", "hyp": "La nonna ha preparato i biscotti.", "latency_s": 0.0682}
+{"id": "R-S2-0479", "hyp": "Il giardino ha bisogno di acqua.", "latency_s": 0.0699}
+{"id": "R-S2-0480", "hyp": "Ho letto un libro bellissimo la settimana scorsa.", "latency_s": 0.0951}
+{"id": "R-S2-0481", "hyp": "La strada nuova apre il mese prossimo.", "latency_s": 0.0921}
+{"id": "R-S2-0482", "hyp": "Il caffè del bar è migliorato.", "latency_s": 0.0727}
+{"id": "R-S2-0483", "hyp": "The report is on the table.", "latency_s": 0.0725}
+{"id": "R-S2-0484", "hyp": "We met the new client yesterday.", "latency_s": 0.0763}
+{"id": "R-S2-0485", "hyp": "Please close the window before you leave.", "latency_s": 0.0834}
+{"id": "R-S2-0486", "hyp": "The train was twenty minutes late.", "latency_s": 0.0853}
+{"id": "R-S2-0487", "hyp": "I forgot my keys at home.", "latency_s": 0.0657}
+{"id": "R-S2-0488", "hyp": "They are building a new school.", "latency_s": 0.0678}
+{"id": "R-S2-0489", "hyp": "The weather is getting colder.", "latency_s": 0.0704}
+{"id": "R-S2-0490", "hyp": "Il trial è durato due settimane.", "latency_s": 0.0638}
+{"id": "R-S2-0491", "hyp": "La subscription include il supporto.", "latency_s": 0.083}
+{"id": "R-S2-0492", "hyp": "Il refund è stato rifiutato.", "latency_s": 0.0811}
+{"id": "R-S2-0493", "hyp": "Il badge non apre la porta.", "latency_s": 0.0733}
+{"id": "R-S2-0494", "hyp": "La Severity è alta.", "latency_s": 0.08}
+{"id": "R-S2-0495", "hyp": "Lo status è cambiato.", "latency_s": 0.0659}
+{"id": "R-S2-0496", "hyp": "La priority è bassa.", "latency_s": 0.0702}
+{"id": "R-S2-0497", "hyp": "Questo uno è assente.", "latency_s": 0.0682}
+{"id": "R-S2-0498", "hyp": "Il blocker è ancora aperto.", "latency_s": 0.0808}
+{"id": "R-S2-0499", "hyp": "La dependency non è risolta.", "latency_s": 0.0784}
+{"id": "R-S2-0500", "hyp": "Questa estimate è troppo ottimista.", "latency_s": 0.0979}
+{"id": "R-S2-0501", "hyp": "La velocity è calata.", "latency_s": 0.0691}
+{"id": "R-S2-0502", "hyp": "Il burn down è piatto.", "latency_s": 0.0605}
+{"id": "R-S2-0503", "hyp": "La capacity è finita.", "latency_s": 0.0571}
+{"id": "R-S2-0504", "hyp": "Questo uptime è al novanove per cento.", "latency_s": 0.0831}
+{"id": "R-S2-0505", "hyp": "Questo outage è durato venti minuti.", "latency_s": 0.0853}
+{"id": "R-S2-0506", "hyp": "Lotfix è pronto.", "latency_s": 0.0731}
+{"id": "R-S2-0507", "hyp": "Il rollback è stato in dolore.", "latency_s": 0.0777}
+{"id": "R-S2-0508", "hyp": "Il mirror è fermo.", "latency_s": 0.0694}
+{"id": "R-S2-0509", "hyp": "Il seed va rifatto.", "latency_s": 0.0668}
+{"id": "R-S2-0510", "hyp": "Lo spike ha durato due giorni.", "latency_s": 0.0728}
+{"id": "R-S2-0511", "hyp": "Il deliverable è in ritardo.", "latency_s": 0.0841}
+{"id": "R-S2-0512", "hyp": "Questo rischio è stato accettato.", "latency_s": 0.0812}
+{"id": "R-S2-0513", "hyp": "La Recift è stata inviata.", "latency_s": 0.0718}
+{"id": "R-S2-0514", "hyp": "Questo upgrade è previsto.", "latency_s": 0.0676}
+{"id": "R-S2-0515", "hyp": "Serve un end to end completo.", "latency_s": 0.0661}
+{"id": "R-S2-0516", "hyp": "Questo edge case è gestito.", "latency_s": 0.0694}
+{"id": "R-S2-0517", "hyp": "Il nostro unit test è rosso.", "latency_s": 0.0706}
+{"id": "R-S2-0518", "hyp": "Facciamo un peer review.", "latency_s": 0.0814}
+{"id": "R-S2-0519", "hyp": "Il design review è domani.", "latency_s": 0.0971}
+{"id": "R-S2-0520", "hyp": "La tech talk è utile.", "latency_s": 0.0848}
+{"id": "R-S2-0521", "hyp": "Il changelog è aggiornato.", "latency_s": 0.0881}
+{"id": "R-S2-0522", "hyp": "Il Bug Bush settimana prossima.", "latency_s": 0.1037}
+{"id": "R-S2-0523", "hyp": "La security audit è partita.", "latency_s": 0.0881}
+{"id": "R-S2-0524", "hyp": "Il cost model è sbagliato.", "latency_s": 0.095}
+{"id": "R-S2-0525", "hyp": "La growth strategy è chiara.", "latency_s": 0.0729}
+{"id": "R-S2-0526", "hyp": "Il data warehouse è pieno.", "latency_s": 0.078}
+{"id": "R-S2-0527", "hyp": "The release train part.", "latency_s": 0.077}
+{"id": "R-S2-0528", "hyp": "Il service level è rispettato.", "latency_s": 0.0864}
+{"id": "R-S2-0529", "hyp": "Il response time è alto.", "latency_s": 0.085}
+{"id": "R-S2-0530", "hyp": "Il log level è troppo alto.", "latency_s": 0.083}
+{"id": "R-S2-0531", "hyp": "Il page load è lento.", "latency_s": 0.0714}
+{"id": "R-S2-0532", "hyp": "Il click through è basso.", "latency_s": 0.0671}
+{"id": "R-S2-0533", "hyp": "La user experience è migliorata.", "latency_s": 0.074}
+{"id": "R-S2-0534", "hyp": "Brand identity and mobile.", "latency_s": 0.0633}
+{"id": "R-S2-0535", "hyp": "I documenti sono su box.", "latency_s": 0.0627}
+{"id": "R-S2-0536", "hyp": "Le foto sono su Flickr.", "latency_s": 0.0664}
+{"id": "R-S2-0537", "hyp": "Il codice è su GitLab.", "latency_s": 0.0678}
+{"id": "R-S2-0538", "hyp": "", "latency_s": 0.0538}
+{"id": "R-S2-0539", "hyp": "The group uses a mattermost.", "latency_s": 0.0566}
+{"id": "R-S2-0540", "hyp": "Le riunioni sono su Verby.", "latency_s": 0.0585}
+{"id": "R-S2-0541", "hyp": "Il form is a type form.", "latency_s": 0.0555}
+{"id": "R-S2-0542", "hyp": "La fattura è su QuickBooks.", "latency_s": 0.0633}
+{"id": "R-S2-0543", "hyp": "Il pagamento è su Wise.", "latency_s": 0.073}
+{"id": "R-S2-0544", "hyp": "Il supporto su Zendesk.", "latency_s": 0.085}
+{"id": "R-S2-0545", "hyp": "The chat and su intercom.", "latency_s": 0.0884}
+{"id": "R-S2-0546", "hyp": "Le email sono su MailChimp.", "latency_s": 0.0779}
+{"id": "R-S2-0547", "hyp": "Il calendario è su Calent Fly.", "latency_s": 0.0907}
+{"id": "R-S2-0548", "hyp": "La ricerca è sua Algolia.", "latency_s": 0.0832}
+{"id": "R-S2-0549", "hyp": "Le sessioni sono su Redis.", "latency_s": 0.0767}
+{"id": "R-S2-0550", "hyp": "I messaggi sono su RabbitMQ.", "latency_s": 0.087}
+{"id": "R-S2-0551", "hyp": "Il TTL è troppo lungo.", "latency_s": 0.0666}
+{"id": "R-S2-0552", "hyp": "Il QPS è alto.", "latency_s": 0.0648}
+{"id": "R-S2-0553", "hyp": "Il sox calda.", "latency_s": 0.0594}
+{"id": "R-S2-0554", "hyp": "La NfC non funziona.", "latency_s": 0.0575}
+{"id": "R-S2-0555", "hyp": "La SIM non si legge.", "latency_s": 0.0554}
+{"id": "R-S2-0556", "hyp": "Il DPI è troppo alto.", "latency_s": 0.0656}
+{"id": "R-S2-0557", "hyp": "Il TDP è basso.", "latency_s": 0.0734}
+{"id": "R-S2-0558", "hyp": "Il Led è rosso.", "latency_s": 0.0719}
+{"id": "R-S2-0559", "hyp": "Il tasto esque non risponde.", "latency_s": 0.0804}
+{"id": "R-S2-0560", "hyp": "Il tasto control è bloccato.", "latency_s": 0.0707}
+{"id": "R-S2-0561", "hyp": "Il formato JPEG è pesante.", "latency_s": 0.0766}
+{"id": "R-S2-0562", "hyp": "Questa immagine Tif è enorme.", "latency_s": 0.0759}
+{"id": "R-S2-0563", "hyp": "il formato WAF è grande", "latency_s": 0.0802}
+{"id": "R-S2-0564", "hyp": "La porta Lan è occupata.", "latency_s": 0.0777}
+{"id": "R-S2-0565", "hyp": "Il modulo RAM è difettoso.", "latency_s": 0.0634}
+{"id": "R-S2-0566", "hyp": "La ventola Pm ferma.", "latency_s": 0.0858}
+{"id": "R-S2-0567", "hyp": "Dobbiamo splittare la tabella.", "latency_s": 0.056}
+{"id": "R-S2-0568", "hyp": "Dobbiamo mergiare i brami.", "latency_s": 0.0542}
+{"id": "R-S2-0569", "hyp": "Dobbiamo pushare il ramo.", "latency_s": 0.0556}
+{"id": "R-S2-0570", "hyp": "Dobbiamo bullare il ramo.", "latency_s": 0.0731}
+{"id": "R-S2-0571", "hyp": "Dobbiamo committare il fix.", "latency_s": 0.0702}
+{"id": "R-S2-0572", "hyp": "Dobbiamo taggare la versione.", "latency_s": 0.0645}
+{"id": "R-S2-0573", "hyp": "Dobbiamo schedulare il job.", "latency_s": 0.0556}
+{"id": "R-S2-0574", "hyp": "Dobbiamo loggare la richiesta.", "latency_s": 0.0658}
+{"id": "R-S2-0575", "hyp": "Dobbiamo buildare il progetto.", "latency_s": 0.0683}
+{"id": "R-S2-0576", "hyp": "Dobbiamo passare il testo.", "latency_s": 0.0633}
+{"id": "R-S2-0577", "hyp": "Dobbiamo renderizzare il modello.", "latency_s": 0.0719}
+{"id": "R-S2-0578", "hyp": "Dobbiamo lasciare la stringa.", "latency_s": 0.0742}
+{"id": "R-S2-0579", "hyp": "Dobbiamo ostare il sito.", "latency_s": 0.0636}
+{"id": "R-S2-0580", "hyp": "Dobbiamo clonare il disco.", "latency_s": 0.0622}
+{"id": "R-S2-0581", "hyp": "Dobbiamo forcare il codice.", "latency_s": 0.0602}
+{"id": "R-S2-0582", "hyp": "Dobbiamo wrappare la risposta.", "latency_s": 0.0634}
+{"id": "R-S2-0583", "hyp": "Dobbiamo muccare il modulo.", "latency_s": 0.0579}
+{"id": "R-S2-0584", "hyp": "Dobbiamo stressare il server.", "latency_s": 0.0679}
+{"id": "R-S2-0585", "hyp": "Dobbiamo flippare il valore.", "latency_s": 0.0708}
+{"id": "R-S2-0586", "hyp": "Dobbiamo cacciare la risposta.", "latency_s": 0.0741}
+{"id": "R-S2-0587", "hyp": "Dobbiamo scannare il documento.", "latency_s": 0.0717}
+{"id": "R-S2-0588", "hyp": "Dobbiamo linkare il capitolo.", "latency_s": 0.0669}
+{"id": "R-S2-0589", "hyp": "Il trial è finito, e la subscription parte", "latency_s": 0.0994}
+{"id": "R-S2-0590", "hyp": "Il badge non funziona e il gate è chiuso.", "latency_s": 0.0842}
+{"id": "R-S2-0591", "hyp": "La Severity è alta e il blocker è aperto.", "latency_s": 0.0854}
+{"id": "R-S2-0592", "hyp": "Lo status è cambiato e la priority pure.", "latency_s": 0.0857}
+{"id": "R-S2-0593", "hyp": "La capacity è finita e il team è stanco.", "latency_s": 0.0856}
+{"id": "R-S2-0594", "hyp": "L'hothfix è pronto, ma il rollback è rischioso.", "latency_s": 0.0926}
+{"id": "R-S2-0595", "hyp": "Il mirror è fermo, e il Sid è vecchio.", "latency_s": 0.0784}
+{"id": "R-S2-0596", "hyp": "Il deliverable è in ritardo, il risk è alto.", "latency_s": 0.0997}
+{"id": "R-S2-0597", "hyp": "La Recept è inviata e il refund è in corso.", "latency_s": 0.1009}
+{"id": "R-S2-0598", "hyp": "Questo upgrade è pronto, il downgrade pure.", "latency_s": 0.0902}
+{"id": "R-S2-0599", "hyp": "La release train parte e il team è pronto.", "latency_s": 0.0944}
+{"id": "R-S2-0600", "hyp": "Il response time è alto e il log level è basso.", "latency_s": 0.1101}
+{"id": "R-S2-0601", "hyp": "Il pane fresco è finito prima di cena.", "latency_s": 0.0779}
+{"id": "R-S2-0602", "hyp": "Abbiamo visto un film noioso ma corto.", "latency_s": 0.0752}
+{"id": "R-S2-0603", "hyp": "La bicicletta ha una gomma bucata.", "latency_s": 0.0736}
+{"id": "R-S2-0604", "hyp": "La zuppa era troppo calda.", "latency_s": 0.0607}
+{"id": "R-S2-0605", "hyp": "Ho perso l'ombello sull'autobus.", "latency_s": 0.0659}
+{"id": "R-S2-0606", "hyp": "The keys are on the kitchen table.", "latency_s": 0.0645}
+{"id": "R-S2-0607", "hyp": "We walked home after dinner.", "latency_s": 0.058}
+{"id": "R-S2-0608", "hyp": "The film starts at eight.", "latency_s": 0.0672}
+{"id": "R-S2-0609", "hyp": "She bought a new pair of shoes.", "latency_s": 0.0794}
+{"id": "R-S2-0610", "hyp": "My brother works in a bank.", "latency_s": 0.0754}
+{"id": "R-S2-0611", "hyp": "The garden needs water.", "latency_s": 0.0645}
+{"id": "R-S2-0612", "hyp": "Lo stand up meeting inizia alle nove e trenta.", "latency_s": 0.0992}
+{"id": "R-S2-0613", "hyp": "Lo stand up call è stato rimandato.", "latency_s": 0.0745}
+{"id": "R-S2-0614", "hyp": "Lo stand up di team dura un quarto d'ora.", "latency_s": 0.0852}
+{"id": "R-S2-0615", "hyp": "Facciamo uno stand up veloce prima di pranzo.", "latency_s": 0.0824}
+{"id": "R-S2-0616", "hyp": "Il daily stand up è stato spostato alle dieci.", "latency_s": 0.0877}
+{"id": "R-S2-0617", "hyp": "Nello stand up parliamo dei blocchi aperti.", "latency_s": 0.0846}
+{"id": "R-S2-0618", "hyp": "Lo stand up meeting con il cliente domani.", "latency_s": 0.0752}
+{"id": "R-S2-0619", "hyp": "Chiudiamo lo stand up in dieci minuti.", "latency_s": 0.0697}
+{"id": "R-S2-0620", "hyp": "Preparo il epilogo per lo stand up.", "latency_s": 0.0805}
+{"id": "R-S2-0621", "hyp": "Lo stand up call con il fornitore salta.", "latency_s": 0.1001}
+{"id": "R-S2-0622", "hyp": "Lo stand up dell lunedì è sempre lungo.", "latency_s": 0.0766}
+{"id": "R-S2-0623", "hyp": "Dopo lo stand up facciamo una revisione.", "latency_s": 0.0727}
+{"id": "R-S2-0624", "hyp": "But", "latency_s": 0.1113}
+{"id": "R-S2-0625", "hyp": "Il gelato di Baskell Robbins è troppo dolce.", "latency_s": 0.1042}
+{"id": "R-S2-0626", "hyp": "Abbiamo spostato i repository su Gitbucket.", "latency_s": 0.1043}
+{"id": "R-S2-0627", "hyp": "Ho comprato una tavoletta Cadbury.", "latency_s": 0.0888}
+{"id": "R-S2-0628", "hyp": "Il charger del telefono è nel cassetto.", "latency_s": 0.0905}
+{"id": "R-S2-0629", "hyp": "Il check out online richie la verifica.", "latency_s": 0.0772}
+{"id": "R-S2-0630", "hyp": "Ho collegato il Chromecast alla televisione.", "latency_s": 0.1233}
+{"id": "R-S2-0631", "hyp": "Il delivery costa cinque euro.", "latency_s": 0.0921}
+{"id": "R-S2-0632", "hyp": "Abbiamo comprato un domain nuovo.", "latency_s": 0.0823}
+{"id": "R-S2-0633", "hyp": "Il Dyson fa più rumore del previsto.", "latency_s": 0.1011}
+{"id": "R-S2-0634", "hyp": "Il mio exame di domani è stato spostato.", "latency_s": 0.0971}
+{"id": "R-S2-0635", "hyp": "Crea una folder per ogni cliente.", "latency_s": 0.0867}
+{"id": "R-S2-0636", "hyp": "Abbiamo cambiato hosting per risparmiare.", "latency_s": 0.0926}
+{"id": "R-S2-0637", "hyp": "Il prototipo è caricato su Invision.", "latency_s": 0.0971}
+{"id": "R-S2-0638", "hyp": "Il mio iPad serve per prendere appunti.", "latency_s": 0.0841}
+{"id": "R-S2-0639", "hyp": "Abbiamo ordinato il polo da KfC.", "latency_s": 0.0812}
+{"id": "R-S2-0640", "hyp": "Dopo il logout la sessione scade.", "latency_s": 0.0928}
+{"id": "R-S2-0641", "hyp": "I Mondays dopo le ferie sono difficili.", "latency_s": 0.104}
+{"id": "R-S2-0642", "hyp": "Un ora l'exam è fissato per lunedì.", "latency_s": 0.1076}
+{"id": "R-S2-0643", "hyp": "Il pop up della privacy blocca il sito.", "latency_s": 0.0993}
+{"id": "R-S2-0644", "hyp": "Il prototype ha superato il test.", "latency_s": 0.0823}
+{"id": "R-S2-0645", "hyp": "Un reset del modem risolve spesso.", "latency_s": 0.0938}
+{"id": "R-S2-0646", "hyp": "Serve il restart dell'applicazione.", "latency_s": 0.0849}
+{"id": "R-S2-0647", "hyp": "Il rumba pulisce il soggiorno ogni mattina.", "latency_s": 0.094}
+{"id": "R-S2-0648", "hyp": "La scale up cerca nuovi investitori.", "latency_s": 0.0891}
+{"id": "R-S2-0649", "hyp": "Allega uno screenshot alla segnalazione.", "latency_s": 0.0782}
+{"id": "R-S2-0650", "hyp": "Il selfie con il tema è venuto bene.", "latency_s": 0.0882}
+{"id": "R-S2-0651", "hyp": "Lo screen sharing consuma molta banda.", "latency_s": 0.1032}
+{"id": "R-S2-0652", "hyp": "Lo shutdown del sistema è automatico.", "latency_s": 0.0911}
+{"id": "R-S2-0653", "hyp": "Abbiamo comprato le immagini su Shutterstock.", "latency_s": 0.0982}
+{"id": "R-S2-0654", "hyp": "Le skills tecniche si imparano sul campo.", "latency_s": 0.0965}
+{"id": "R-S2-0655", "hyp": "Il volo più economico è su Sky Scanner.", "latency_s": 0.11}
+{"id": "R-S2-0656", "hyp": "Lo smartwat ha la batteria scarica.", "latency_s": 0.0909}
+{"id": "R-S2-0657", "hyp": "Il problem solving è la competenza più richiesta.", "latency_s": 0.109}
+{"id": "R-S2-0658", "hyp": "Il caffè di Starbucks costa troppo.", "latency_s": 0.0757}
+{"id": "R-S2-0659", "hyp": "La start up ha aperto una sede a Milano.", "latency_s": 0.0783}
+{"id": "R-S2-0660", "hyp": "Il subway della stazione è chiuso.", "latency_s": 0.0863}
+{"id": "R-S2-0661", "hyp": "Lo swipe verso sinistra cancella il messaggio.", "latency_s": 0.1165}
+{"id": "R-S2-0662", "hyp": "Le recensioni su Tripadvisor erano ottime.", "latency_s": 0.1253}
+{"id": "R-S2-0663", "hyp": "Ho comprato il Tet Winings al supermercato.", "latency_s": 0.1274}
+{"id": "R-S2-0664", "hyp": "Ho fatto un follow dopo quel post.", "latency_s": 0.0989}
+{"id": "R-S2-0665", "hyp": "Il servizio di upload richiede tempo.", "latency_s": 0.1124}
+{"id": "R-S2-0666", "hyp": "Il wallpaper nuovo è troppo scuro.", "latency_s": 0.0961}
+{"id": "R-S2-0667", "hyp": "Il web site non si apre da mobile.", "latency_s": 0.1068}
+{"id": "R-S2-0668", "hyp": "Il check out sul domen nuovo non funziona.", "latency_s": 0.0972}
+{"id": "R-S2-0669", "hyp": "Un reset e un restart risolvono il problema.", "latency_s": 0.102}
+{"id": "R-S2-0670", "hyp": "Lo screenshot era folder debug.", "latency_s": 0.0977}
+{"id": "R-S2-0671", "hyp": "Il servizio di upload è lento e lo screen sharing si blocca.", "latency_s": 0.1351}
+{"id": "R-S2-0672", "hyp": "Un self da Starbucks è quasi obbligatorio.", "latency_s": 0.1036}
+{"id": "R-S2-0673", "hyp": "Il mio iPad e il Giulio sono lo zaino.", "latency_s": 0.1009}

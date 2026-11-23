@@ -1,0 +1,17 @@
+{
+  "tool": "tools/e018_teacher.py",
+  "system": "canary",
+  "model_dir": "/private/var/folders/x0/5y3qlknn6ylgcjkh_65vp0tr0000gn/T/opencode/e018/models/canary-1b-v2",
+  "manifest": "../moth-cs-dataset/manifests/train.jsonl",
+  "audio_root": "../moth-cs-dataset",
+  "language": "it",
+  "device": "mps",
+  "torch": "2.14.1",
+  "transformers": "5.20.1",
+  "clips": 1413,
+  "errors": [],
+  "audio_seconds": 3457.79,
+  "wall_seconds": 245.58,
+  "rtfx": 14.08,
+  "output": "runs/E-018/canary-1b-v2-it/gold_train.jsonl"
+}

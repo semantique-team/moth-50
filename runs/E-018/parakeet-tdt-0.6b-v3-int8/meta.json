@@ -1,0 +1,21 @@
+{
+  "system": "parakeet-tdt-0.6b-v3",
+  "variant": "multilingual",
+  "hotwords_mode": "none",
+  "created_at": "2026-11-23T11:33:14+0100",
+  "sets": {
+    "gold_train": {
+      "manifest": "/private/var/folders/x0/5y3qlknn6ylgcjkh_65vp0tr0000gn/T/opencode/e018/manifests/gold_train.jsonl",
+      "n": 1413,
+      "errors": [],
+      "audio_seconds": 3457.79,
+      "wall_seconds": 135.699,
+      "rtfx": 25.481321273878574,
+      "hotwords": 0,
+      "oracle_hotwords": false
+    }
+  },
+  "engine": "sherpa-onnx",
+  "num_threads": 4,
+  "size_bytes": 670576784
+}

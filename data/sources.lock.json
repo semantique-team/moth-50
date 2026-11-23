@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-19",
+  "updated": "2026-11-23",
   "note": "Pins versions, URLs and checksums for the E-003 mixture. Audio is not vendored. Status 'pinned' means the identifier/checksum is recorded; it does not mean the archive was downloaded or re-verified in this checkout.",
   "sources": [
     {
@@ -152,6 +152,81 @@
       "sha256": "1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3",
       "license": "MIT",
       "status": "pinned; byte-identical to the Moth 0.8.1 and E-005 asset. The 16 kHz-only graph silero_vad_16k_op15.onnx (1,289,603 B, sha256 7ed98ddb...) at the same commit is the E-012 candidate"
+    },
+    {
+      "id": "whisper-large-v3-turbo",
+      "role": "E-018 teacher candidate, inference only; never training data or a shipped model",
+      "version": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
+      "url": "https://huggingface.co/openai/whisper-large-v3-turbo",
+      "license": "MIT",
+      "status": "pinned, downloaded and used in E-018 (2026-11-23); inference only",
+      "files": {
+        "model.safetensors": "542566a422ae4f3fd23f1ba11add198fca01bbf82e66e6a2857b3f608b1eb9d1",
+        "config.json": "c5b526b3e3cd64cd8940dabb45e8ba726629e22d8ed389c29b552f9140daf04a",
+        "generation_config.json": "cce11bfe3aaa6ae9e072ea2637caaec8795e68d9b67e655a5af16ee509681a4c",
+        "preprocessor_config.json": "7ccc62c6f2765af1f3b46c00c9b5894426835a05021c8b9c01eecb6dfb542711",
+        "tokenizer.json": "297b13372ac43916285644fb9687add3cc62ee2a1adb60da3dc25cc94c1871fd",
+        "tokenizer_config.json": "844b642c73a91359722f47b35705f7174686df33d252695d8572cf9ac03a6389",
+        "vocab.json": "e2aa043ef015641d363d8288e7c241c85e36a5c761fb303598e0710233344387",
+        "merges.txt": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6",
+        "normalizer.json": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd",
+        "added_tokens.json": "3c51f66c4c21f9e126970078f11ae77a78c74aee8df606ee9daba86e467108e0",
+        "special_tokens_map.json": "baea4ea09372eb4fca86b4e4346139fd73cb807d5087e9de0948e971739c3e74"
+      },
+      "bytes": 1620000000
+    },
+    {
+      "id": "parakeet-tdt-0.6b-v3-int8",
+      "role": "E-018 teacher candidate, inference only; never training data or a shipped model",
+      "version": "ed5d745623472f97cfc2e6c2916ee248798fc5a8",
+      "url": "https://huggingface.co/csukuangfj/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8",
+      "upstream": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3",
+      "license": "CC-BY-4.0 (converted from nvidia/parakeet-tdt-0.6b-v3)",
+      "status": "pinned, downloaded and used in E-018 (2026-11-23); inference only",
+      "files": {
+        "encoder.int8.onnx": "1afbe69c1ffdabee94755f42e4daf1d93549131a3da11356bda84fcef0f2c479",
+        "decoder.int8.onnx": "0222a86147299d4dee90edf95b6d13827edb42ad8b7c9cf0b2582f030937c0b5",
+        "joiner.int8.onnx": "cbd02f3696e9944970111fb439d9c3fd365a80374565f13f2b9c7007d253fc98",
+        "tokens.txt": "d58544679ea4bc6ac563d1f545eb7d474bd6cfa467f0a6e2c1dc1c7d37e3c35d"
+      },
+      "bytes": 671000000
+    },
+    {
+      "id": "canary-1b-v2",
+      "role": "E-018 teacher candidate, inference only; never training data or a shipped model",
+      "version": "d455706339a6b32e1aa40f82c713a482a0c938e2",
+      "url": "https://huggingface.co/nvidia/canary-1b-v2",
+      "license": "CC-BY-4.0",
+      "status": "pinned, downloaded and used in E-018 (2026-11-23); inference only",
+      "files": {
+        "model.safetensors": "4f6d381f6a939b95e9f8516212148b701e9b3805d26462c4c3e9e34f3d89b6f8",
+        "config.json": "e6818410f7dd0a460a4f09324d5fb4ec76b64410416e1ce172e06658335b2aa2",
+        "tokenizer.json": "286dd42a7b27e15332195df556c2df6d383bb4c4869774b055e1666a72e6bc64",
+        "tokenizer_config.json": "82126b51f23a52cfe5a9be05cf15d9b30e454693a72d1ed6f0a43f9292975843",
+        "processor_config.json": "07936c62f5d52898d05fc0c78b632121413cebc35e194432c7230196f3638e4a",
+        "generation_config.json": "e7c62fe7fbc09a036f7a2be62f02491c71720a5557c7d761f18262ed54191cb4",
+        "chat_template.jinja": "5c06139c492bc95a9cf6ebe7e37aa4611af525485aeba32310dca560f8f1a78b"
+      },
+      "bytes": 3916173816
+    },
+    {
+      "id": "voxtral-mini-3b-2507",
+      "role": "E-018 teacher candidate, inference only; never training data or a shipped model",
+      "version": "3060fe34b35ba5d44202ce9ff3c097642914f8f3",
+      "url": "https://huggingface.co/mistralai/Voxtral-Mini-3B-2507",
+      "license": "Apache-2.0",
+      "status": "pinned and downloaded 2026-11-23; inference only; requires mistral-common[audio]",
+      "files": {
+        "model-00001-of-00002.safetensors": "1facdc4c5a0e84f2881a59c4756441b7030a1f1036b2124c117540408d0e5fe9",
+        "model-00002-of-00002.safetensors": "0a103ba715bc0d656e94bf79d637d4f8f0f4fe6d76fb1d4db7ee46c6b940f631",
+        "model.safetensors.index.json": "7506794dd65e4324685f9634b3d83f20d36a723543650c1e6b72d81965289930",
+        "config.json": "368124c9a9171b3a6c0cdb35cd7fedeff465eefecf315e2a621684bbed7dcd7e",
+        "params.json": "4a37e19f2524a44bebf36a3da37a55dde31b8df9eab9b35d359b9a315c74e991",
+        "preprocessor_config.json": "86d67d926e17d3a9bb0bae334c9fc46bc163181992357a0357c0aec2c7e131d1",
+        "generation_config.json": "cebeed3d4a1680c9b311863385d32b91008480dfbf8cf7abc2142447b8f73b76",
+        "tekken.json": "4aaf3836c2a5332f029ce85a7a62255c966f47b6797ef81dedd0ade9c862e4a8"
+      },
+      "bytes": 9348806528
     }
   ]
 }

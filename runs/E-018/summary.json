@@ -1,0 +1,102 @@
+{
+  "tool": "tools/e018_summary.py",
+  "gates": {
+    "wer_max": 0.07,
+    "eta_min": 0.85,
+    "italianized_eta_min": 0.723,
+    "tie_pp": 0.005
+  },
+  "teachers": [
+    {
+      "system": "canary",
+      "dir": "runs/E-018/canary-1b-v2-it",
+      "clips": 1413,
+      "ref_words": 8425,
+      "wer": 0.13602373887240357,
+      "wer_ci": [
+        0.12233790818741126,
+        0.15021916834498283
+      ],
+      "eta": 0.6861675756073377,
+      "italianized_eta": 0.614406779661017,
+      "insertion_rate": 1.1869436201780414,
+      "rtfx": 14.08,
+      "model_bytes": 3918442617,
+      "language": "it",
+      "device": "mps",
+      "label": "canary (it)",
+      "qualifies": false
+    },
+    {
+      "system": "parakeet-tdt-0.6b-v3",
+      "dir": "runs/E-018/parakeet-tdt-0.6b-v3-int8",
+      "clips": 1413,
+      "ref_words": 8425,
+      "wer": 0.09946587537091989,
+      "wer_ci": [
+        0.09166370212261354,
+        0.10741444866920152
+      ],
+      "eta": 0.7947446703024293,
+      "italianized_eta": 0.6271186440677966,
+      "insertion_rate": 1.317507418397626,
+      "rtfx": 25.481321273878574,
+      "model_bytes": 670576784,
+      "language": null,
+      "device": null,
+      "label": "parakeet-tdt-0.6b-v3",
+      "qualifies": false
+    },
+    {
+      "system": "whisper-large-v3-turbo",
+      "dir": "runs/E-018/whisper-large-v3-turbo-auto",
+      "clips": 1413,
+      "ref_words": 8425,
+      "wer": 0.10991097922848665,
+      "wer_ci": [
+        0.09831762319532275,
+        0.1225590032346951
+      ],
+      "eta": 0.8259791769955379,
+      "italianized_eta": 0.6991525423728814,
+      "insertion_rate": 1.0445103857566767,
+      "rtfx": 1.512,
+      "model_bytes": 1622446247,
+      "language": "auto",
+      "device": "mps",
+      "label": "whisper-large-v3-turbo (auto)",
+      "qualifies": false
+    },
+    {
+      "system": "whisper-large-v3-turbo",
+      "dir": "runs/E-018/whisper-large-v3-turbo-it",
+      "clips": 1413,
+      "ref_words": 8425,
+      "wer": 0.09922848664688427,
+      "wer_ci": [
+        0.0887106428827966,
+        0.10994207353115025
+      ],
+      "eta": 0.8011898859692613,
+      "italianized_eta": 0.7076271186440678,
+      "insertion_rate": 1.1275964391691395,
+      "rtfx": 2.725,
+      "model_bytes": 1622446247,
+      "language": "it",
+      "device": "mps",
+      "label": "whisper-large-v3-turbo (it)",
+      "qualifies": false
+    }
+  ],
+  "excluded": [
+    {
+      "system": "voxtral-mini-3b-2507",
+      "reason": "not run on gold: 9.36 GB model, 1 clip at 0.009 RTFx on the 16 GB M5 (>100 h for 57.6 min); resource exclusion",
+      "license": "Apache-2.0",
+      "revision": "3060fe34b35ba5d44202ce9ff3c097642914f8f3",
+      "evidence": "runs/E-018/voxtral-mini-3b-2507/EXCLUDED.md"
+    }
+  ],
+  "selected": null,
+  "recommendation": "no teacher qualifies; E-019 keeps only monolingual Italian sources"
+}

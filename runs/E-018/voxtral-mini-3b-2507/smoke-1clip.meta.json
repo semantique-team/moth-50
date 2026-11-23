@@ -1,0 +1,17 @@
+{
+  "tool": "tools/e018_teacher.py",
+  "system": "voxtral",
+  "model_dir": "/private/var/folders/x0/5y3qlknn6ylgcjkh_65vp0tr0000gn/T/opencode/e018/models/Voxtral-Mini-3B-2507",
+  "manifest": "../moth-cs-dataset/manifests/train.jsonl",
+  "audio_root": "../moth-cs-dataset",
+  "language": "it",
+  "device": "mps",
+  "torch": "2.14.1",
+  "transformers": "5.20.1",
+  "clips": 1,
+  "errors": [],
+  "audio_seconds": 2.62,
+  "wall_seconds": 304.07,
+  "rtfx": 0.009,
+  "output": "/private/var/folders/x0/5y3qlknn6ylgcjkh_65vp0tr0000gn/T/opencode/e018/voxtral-test-mps/gold_train.jsonl"
+}
