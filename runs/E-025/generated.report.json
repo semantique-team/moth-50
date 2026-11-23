@@ -1,0 +1,21 @@
+{
+  "tool": "tools/e020_generate.py",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "prompts": "/Users/tancredi/Desktop/semantique/moth-50/experiments/E-025-prompts.json",
+  "count_requested": 6000,
+  "count_written": 6000,
+  "allocation": {
+    "single_word": 750,
+    "phrase": 750,
+    "brand": 750,
+    "acronym": 750,
+    "switch": 750,
+    "italianized": 750,
+    "control_it": 750,
+    "control_en": 750
+  },
+  "device": "mps",
+  "wall_seconds": 1550.2,
+  "output": "runs/E-025/generated.jsonl"
+}

@@ -1,0 +1,34 @@
+{
+  "tool": "tools/e020_filter.py",
+  "generated": "runs/E-025/generated.jsonl",
+  "out": "runs/E-025/filtered.jsonl",
+  "input": 6000,
+  "kept": 3522,
+  "dropped": 2478,
+  "reasons": {
+    "not_english": 223,
+    "seed_missing": 1385,
+    "length": 113,
+    "eval_4gram": 249,
+    "not_italianized": 62,
+    "not_mixed": 152,
+    "english_in_control_it": 155,
+    "exact_duplicate": 139
+  },
+  "by_category": {
+    "phrase": 315,
+    "switch": 476,
+    "italianized": 681,
+    "control_en": 435,
+    "brand": 593,
+    "control_it": 431,
+    "acronym": 320,
+    "single_word": 271
+  },
+  "eval_4grams": 5558,
+  "eval_sources": [
+    "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/R-S1-dev.jsonl",
+    "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/test.jsonl",
+    "/Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/anchor.jsonl"
+  ]
+}

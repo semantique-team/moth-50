@@ -1,0 +1,34 @@
+{
+  "tool": "tools/build_lm.py",
+  "name": "E-025_llmtext",
+  "corpus": {
+    "path": "/tmp/lm-corpus-e025.jsonl",
+    "sha256": "de9fc474a34ed89a0a58de2deac6932eea5ebdaafca0143f266d1beacc31c684",
+    "rows": 188624
+  },
+  "tokenizer": {
+    "path": "/Users/tancredi/Desktop/semantique/moth-50/data/tokenizer/moth_bpe.model",
+    "sha256": "d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd"
+  },
+  "builder": {
+    "module": "runs/E-031/build_lm.py",
+    "min_bigram": 1,
+    "min_trigram": 1,
+    "term_weight": 1,
+    "backoff": 0.4,
+    "term_sentences": 245
+  },
+  "pickle": {
+    "path": "runs/E-025/lm_e025.pkl.gz",
+    "bytes": 6955251,
+    "sha256": "46ec816947091f2fd2a971d22691f929386c2f586415781b08081fae9aa271bc"
+  },
+  "binary": {
+    "path": "runs/E-025/lm_e025.bin",
+    "bytes": 12375336,
+    "sha256": "1fefc038d25a51cabe68a7131996f090ce00abef72897ec247becf2283727cc4",
+    "bigram_entries": 266955,
+    "trigram_entries": 2292642
+  },
+  "seconds": 9.6
+}

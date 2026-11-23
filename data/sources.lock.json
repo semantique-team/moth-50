@@ -227,6 +227,24 @@
         "tekken.json": "4aaf3836c2a5332f029ce85a7a62255c966f47b6797ef81dedd0ade9c862e4a8"
       },
       "bytes": 9348806528
+    },
+    {
+      "id": "qwen2.5-1.5b-instruct",
+      "role": "E-020 text generator, inference only; outputs used for LM text after leakage filtering",
+      "version": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+      "license": "Apache-2.0",
+      "status": "pinned and downloaded 2026-11-23; inference only",
+      "files": {
+        "model.safetensors": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+        "config.json": "98d2ff8cc47488d08a2b0b3acf4eb99ef210779b42bd48605f6b8e36acdbf670",
+        "generation_config.json": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+        "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+        "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+        "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      "bytes": 3090000000
     }
   ]
 }

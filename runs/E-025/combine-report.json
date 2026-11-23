@@ -1,0 +1,29 @@
+{
+  "tool": "tools/e020_combine.py",
+  "base": {
+    "path": "/tmp/lm-corpus-nos1dev.jsonl",
+    "sha256": "569c8233a390afb41eaa45f0a2c7af488630931d2e1e63f97dfcfe41905188c1",
+    "rows": 185103
+  },
+  "generated": {
+    "path": "runs/E-025/filtered.jsonl",
+    "sha256": "81c4384828ead32322ed8d9e7ff69606e21a332f966400bf69a607a6e1f77671"
+  },
+  "added": 3521,
+  "duplicate_rows_dropped": 1,
+  "added_by_category": {
+    "phrase": 315,
+    "switch": 476,
+    "italianized": 681,
+    "control_en": 435,
+    "brand": 593,
+    "control_it": 431,
+    "acronym": 319,
+    "single_word": 271
+  },
+  "total_rows": 188624,
+  "out": {
+    "path": "/tmp/lm-corpus-e025.jsonl",
+    "sha256": "de9fc474a34ed89a0a58de2deac6932eea5ebdaafca0143f266d1beacc31c684"
+  }
+}
