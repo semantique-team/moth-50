@@ -66,12 +66,13 @@ running, and the exact next commands. Update it at the end of each session.
   no qualifying mixed teacher (D31), so E-019 stays monolingual Italian;
   E-022's keyterm oracle is positive but not shipped (D32); E-025/E-020 added
   LLM text but got only a calibration tie (D33). D34 rules out new recordings
-  and re-scopes the training arms; E-026 (E-022 step 3, realistic glossary) is
-  pre-registered.**
+  and re-scopes the training arms. E-026 (E-022 step 3) measured a realistic
+  glossary: safe on R-S1-cal and a real partial-recall win, but the S1-dev veto
+  failed, so it stays unexposed (D35).**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
-  without an explicit go-ahead. The next step is E-026 (training-free); after
-  it, the remaining steps are all training.
+  without an explicit go-ahead. The training-free queue is now empty; every
+  remaining step is training.
 - **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
   the wrong ranking target; the LM is the lever and C no longer fits next to the
   E-034 LM; the E-011 ETA loss looks recipe-level. Procedure P0–P11: cross-machine
@@ -88,12 +89,10 @@ running, and the exact next commands. Update it at the end of each session.
   zero). **Not adopted**; E-011 was superseded by R1 (D26/D27) and its S1-dev
   absolute numbers were inflated by the P2 leak, but the paired E-011-vs-E-005
   comparison used the same A3 LM. `runs/E-011/RESULT.md`.
-- **Tests:** 121 passed in the training env, 109 passed + 4 skipped (torch,
-  `stt.lm` parity and soundfile) in a plain venv; `ruff check` and
-  `ruff format --check` clean. The E-026 commit adds
-  `tests/test_keyterm_probe.py` (8 tests, pure selection logic, no Moth import;
-  they pass); `ruff` was not available on the machine that wrote it, so run
-  `ruff check` and `ruff format --check` at the start of the next session.
+- **Tests:** 117 passed + 4 skipped (torch, `stt.lm` parity and soundfile) in
+  the root env on 2026-11-23; `ruff check` and `ruff format --check` clean. The
+  E-026 probe adds `tests/test_keyterm_probe.py` (8 tests, pure selection logic,
+  no Moth import; they pass).
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
 
@@ -156,13 +155,14 @@ running, and the exact next commands. Update it at the end of each session.
 | E-018 teacher bake-off | **done, no mixed teacher (D31)**: Parakeet 9.95/79.47/62.71; Whisper-it 9.92/80.12/70.76; Whisper-auto 10.99/82.60/69.92; Canary 13.60/68.62/61.44; Voxtral excluded (cost); E-019 stays monolingual Italian | `runs/E-018/RESULT.md`, `runs/E-018/summary.json` |
 | E-022 keyterm bias | **done, oracle ceiling, not shipped (D32)**: step 1 acr+brand ETA 40.78→46.60 (+5.82 pp); knee b=5 on cal (9.40/85.83); S1-dev oracle 10.47/84.96 vs 13.38/75.15 (−2.91/+9.81 pp); `control_it` insertion 0.24 unchanged | `runs/E-022/RESULT.md`, `tools/keyterm_probe.py` |
 | E-025/E-020 LLM text | **done, not adopted (D33)**: 6,000 generated → 3,521 filtered (249 eval 4-gram drops); LM packed 7,833,032 B lossless; R-S1-cal **12.8917/75.6291** vs 12.8469/75.4967 (WER +0.045, ETA +0.133, both ties, 7/400); gate 1 failed, S1-dev/dev-macro/T not run | `experiments/E-025-e020-llm-text.md`, `runs/E-025/RESULT.md` |
+| E-026 realistic glossary | **done, not exposed (D35)**: 12 cal decodes; A500 harmless at every bonus (WER +0.00…+0.09 pp, CIs never entirely above zero); b\*=5.0, B50 cal **11.1012/80.9272** vs 12.8917/75.6291 (WER −1.7905, ETA +5.2980); S1-dev veto **fails**: WER +0.1315 pp [+0.0283, +0.2597] | `experiments/E-026-e022-glossary.md`, `runs/E-026/RESULT.md` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
 | E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; control E-005 + E-034c **13.9212 % WER / 75.6291 % ETA**; no R1 readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next steps: E-026 (no training); then training only with a go-ahead
+## Next steps: training only, with an explicit go-ahead
 
 **The product is E-023 R1 seed 0 + E-034c, version `0.9.7-e023-r1` (D27).**
 The T-600 guard passed on 2026-11-23 (12.2993 / 78.1400 vs 13.7041 / 76.1266),
@@ -174,26 +174,22 @@ done (D28/D29): the web runtime is vendored and patched, 1-thread RTFx passes,
 and S1-dev browser WER is **13.7180 %** against Python 13.3820 % (+0.34 pp
 [−0.13, +0.79], tie).
 
-**Next: E-026, training-free** (`experiments/E-026-e022-glossary.md`). It is
-E-022 step 3: realistic glossaries instead of oracle lists. On R-S1-cal, bonus
-grid {1, 2, 3, 5}: a distractor-only list of 500 terms (harm: WER point
-estimate at most +0.25 pp and CI not entirely above zero), partial recall
-*p* = 0.5 (benefit, CI excluding zero) and *p* = 0.25 (report-only); then one
-S1-dev veto of the distractor-only list at the chosen bonus. The distractor
-pool has only 541 terms, so the 2,000-term conditions were dropped by a dated
-amendment before any result (12 decodes, not 20). Pass → the glossary becomes
-an opt-in runtime option, documented for at most 500 terms (no model, LM or
-package change); fail → it stays unexposed. `tools/keyterm_probe.py` now has
-`--context distractors` and `--recall` (`tests/test_keyterm_probe.py`); the
-command block is in the amendment of the pre-registration. About 15 minutes of
-CPU on the M5.
+**E-026 is done: the glossary stays unexposed (D35).** On R-S1-cal a fixed
+~500-term distractor list is harmless at every bonus (WER ≤ +0.09 pp, CIs never
+entirely above zero), and B50 at the chosen *b\** = 5.0 gives **11.1012 /
+80.9272** vs 12.8917 / 75.6291 (WER −1.7905 pp, ETA +5.2980 pp). The single
+S1-dev veto fails: A500 at 5.0 is 13.3382 / 75.0977 vs 13.2067 / 75.3418, WER
+**+0.1315 pp** [+0.0283, +0.2597] — inside the +0.25 pp margin but with a CI
+entirely above zero. No `contextualSequences`, package, browser or decoder
+change; the B lists were not read on S1-dev, and T-600/FLEURS/dev-macro were
+not read. `runs/E-026/RESULT.md`.
 
 **No new recordings (D34).** E-019 arm B, E-021 arm 1 and E-006 arm 5 are
 dropped. Every remaining training arm is re-pre-registered before it runs, with
 R1 seed 0 + E-034c as the parent, a same-length control fine-tune, R-S1-cal
 ranking, the S1-dev veto and the dev-macro guard. Only changes expected to move
 WER or ETA by about 1 pp or more are worth a run: R-S1-cal cannot resolve less.
-After E-026, every remaining step needs an explicit training go-ahead:
+Every remaining step needs an explicit training go-ahead:
 
 1. **E-021 arm 2 (TTS) or E-006 arm 1 (VoxPopuli Italian).** TTS targets the
    product's English-term errors (acronym, brand, `switch`) and can reuse the
@@ -215,9 +211,10 @@ arm reports `switch` and `control_en` first.
 P8/E-024 is closed: the ×3-term LM changed probabilities but no R-S1-cal
 decision (byte-identical hypotheses), S1-dev was a tie, and E-034c stays
 (D30). E-018 is closed: no mixed teacher qualifies, so E-019 stays monolingual
-Italian (D31). E-022 steps 1–2 are closed as an oracle ceiling (D32); step 3 is
-E-026. E-025/E-020 is closed: the LLM text was leakage-clean and in budget but
-gave a calibration tie, so E-034c stays (D33).
+Italian (D31). E-022 steps 1–2 are closed as an oracle ceiling (D32); step 3
+(E-026) is closed as measured but not exposed (D35). E-025/E-020 is closed: the
+LLM text was leakage-clean and in budget but gave a calibration tie, so E-034c
+stays (D33).
 
 `R-S1-cal` and S1-dev stay as they are: no new recordings (D34). New cues never
 come from `text/pool.jsonl`, and future LM corpora must exclude the pool.
@@ -328,14 +325,15 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D33, including checkpointing (D15), init (D16),
+- `docs/decisions.md` — D1–D35, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
   MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier
   models as teachers (D24, proposed), E-034c (D25), E-023 R1 by amendment
   (D26), R1 seed 0 as the product (D27), the vendored web runtime / E-016
   (D28), the min-runs-3 segmentation rule (D29), the rejected ×3-term LM (D30),
   E-018's no-mixed-teacher result (D31), the E-022 oracle ceiling (D32), the
-  rejected LLM-text LM (D33) and the no-recordings re-scope (D34).
+  rejected LLM-text LM (D33), the no-recordings re-scope (D34) and the
+  unexposed E-026 glossary (D35).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
   cannot give MOTH-50; licences; teachers.
@@ -364,6 +362,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-022/RESULT.md` — keyterm oracle upper bound, bonus curve, S1-dev ceiling.
 - `experiments/E-025-e020-llm-text.md`, `runs/E-025/RESULT.md` — LLM text, negative.
 - `experiments/E-026-e022-glossary.md` — E-022 step 3 pre-registration: realistic glossary harm and partial recall.
+- `runs/E-026/RESULT.md` — realistic glossary: safe harm and partial-recall win on cal, S1-dev veto fails, not exposed.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and

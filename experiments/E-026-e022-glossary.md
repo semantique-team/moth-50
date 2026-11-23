@@ -9,6 +9,10 @@ changes the model, the LM, the package, the decoder defaults or a gate readout.
 > has 541 terms, so A2000 and C2000 are dropped and the harm gate uses A500
 > only. See [Amendment](#amendment-2026-11-23--distractor-pool).
 
+> **Result (2026-11-23):** steps 1–3 pass, the S1-dev veto fails (WER +0.1315 pp
+> [+0.0283, +0.2597], CI entirely above zero), so the glossary is **not
+> exposed** (D35). `runs/E-026/RESULT.md`.
+
 ## Question
 
 E-022 measured only lists that always contain the clip's own English terms: a

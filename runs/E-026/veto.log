@@ -1,0 +1,44 @@
+=== s1-dev none ===
+100/960 clips
+200/960 clips
+300/960 clips
+400/960 clips
+500/960 clips
+600/960 clips
+700/960 clips
+800/960 clips
+900/960 clips
+{
+  "context": "none",
+  "clips": 960,
+  "terms_used": 0,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 60.805
+}
+=== s1-dev A500 b=5.0 ===
+100/960 clips
+200/960 clips
+300/960 clips
+400/960 clips
+500/960 clips
+600/960 clips
+700/960 clips
+800/960 clips
+900/960 clips
+{
+  "context": "distractors",
+  "clips": 960,
+  "terms_used": 0,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 31.423
+}
+WER 0.1321 [0.1234, 0.1408]  ETA 0.7534  ins/100w 1.42  (6845 ref words)
+ETA errors: 505
+metrics written to runs/E-026/s1-dev-none/metrics.json
+WER 0.1334 [0.1249, 0.1423]  ETA 0.7510  ins/100w 1.42  (6845 ref words)
+ETA errors: 510
+vs runs/E-026/s1-dev-none/hyp.jsonl: WER diff +0.0013 (tie: False)
+metrics written to runs/E-026/s1-dev-A500/metrics.json
+=== VETO DONE ===

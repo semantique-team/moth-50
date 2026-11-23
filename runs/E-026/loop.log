@@ -1,0 +1,217 @@
+=== A500 b=1.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "distractors",
+  "clips": 400,
+  "terms_used": 0,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.757
+}
+=== B50 b=1.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 379,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.334
+}
+=== B25 b=1.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 206,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 30.47
+}
+=== A500 b=2.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "distractors",
+  "clips": 400,
+  "terms_used": 0,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 30.127
+}
+=== B50 b=2.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 379,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.709
+}
+=== B25 b=2.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 206,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.641
+}
+=== A500 b=3.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "distractors",
+  "clips": 400,
+  "terms_used": 0,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.32
+}
+=== B50 b=3.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 379,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.343
+}
+=== B25 b=3.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 206,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.131
+}
+=== A500 b=5.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "distractors",
+  "clips": 400,
+  "terms_used": 0,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 29.264
+}
+=== B50 b=5.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 379,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 23.587
+}
+=== B25 b=5.0 ===
+100/400 clips
+200/400 clips
+300/400 clips
+400/400 clips
+{
+  "context": "oracle-distractors",
+  "clips": 400,
+  "terms_used": 206,
+  "terms_skipped": 0,
+  "errors": [],
+  "rtfx": 28.368
+}
+=== EVAL runs/E-026/cal-A500-b1.0 ===
+WER 0.1294 [0.1137, 0.1461]  ETA 0.7550  ins/100w 1.92  (2234 ref words)
+ETA errors: 185
+vs runs/E-022/cal-none/hyp.jsonl: WER diff +0.0004 (tie: True)
+metrics written to runs/E-026/cal-A500-b1.0/metrics.json
+=== EVAL runs/E-026/cal-A500-b2.0 ===
+WER 0.1294 [0.1137, 0.1461]  ETA 0.7550  ins/100w 1.92  (2234 ref words)
+ETA errors: 185
+vs runs/E-022/cal-none/hyp.jsonl: WER diff +0.0004 (tie: True)
+metrics written to runs/E-026/cal-A500-b2.0/metrics.json
+=== EVAL runs/E-026/cal-A500-b3.0 ===
+WER 0.1289 [0.1133, 0.1453]  ETA 0.7550  ins/100w 1.92  (2234 ref words)
+ETA errors: 185
+vs runs/E-022/cal-none/hyp.jsonl: WER diff +0.0000 (tie: True)
+metrics written to runs/E-026/cal-A500-b3.0/metrics.json
+=== EVAL runs/E-026/cal-A500-b5.0 ===
+WER 0.1298 [0.1141, 0.1460]  ETA 0.7536  ins/100w 1.97  (2234 ref words)
+ETA errors: 186
+vs runs/E-022/cal-none/hyp.jsonl: WER diff +0.0009 (tie: True)
+metrics written to runs/E-026/cal-A500-b5.0/metrics.json
+=== EVAL runs/E-026/cal-B25-b1.0 ===
+WER 0.1253 [0.1097, 0.1417]  ETA 0.7669  ins/100w 1.92  (2234 ref words)
+ETA errors: 176
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0036 (tie: False)
+metrics written to runs/E-026/cal-B25-b1.0/metrics.json
+=== EVAL runs/E-026/cal-B25-b2.0 ===
+WER 0.1235 [0.1081, 0.1395]  ETA 0.7722  ins/100w 1.92  (2234 ref words)
+ETA errors: 172
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0054 (tie: False)
+metrics written to runs/E-026/cal-B25-b2.0/metrics.json
+=== EVAL runs/E-026/cal-B25-b3.0 ===
+WER 0.1200 [0.1054, 0.1359]  ETA 0.7801  ins/100w 1.92  (2234 ref words)
+ETA errors: 166
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0090 (tie: False)
+metrics written to runs/E-026/cal-B25-b3.0/metrics.json
+=== EVAL runs/E-026/cal-B25-b5.0 ===
+WER 0.1168 [0.1020, 0.1327]  ETA 0.7881  ins/100w 1.92  (2234 ref words)
+ETA errors: 160
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0121 (tie: False)
+metrics written to runs/E-026/cal-B25-b5.0/metrics.json
+=== EVAL runs/E-026/cal-B50-b1.0 ===
+WER 0.1222 [0.1065, 0.1395]  ETA 0.7762  ins/100w 1.92  (2234 ref words)
+ETA errors: 169
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0067 (tie: False)
+metrics written to runs/E-026/cal-B50-b1.0/metrics.json
+=== EVAL runs/E-026/cal-B50-b2.0 ===
+WER 0.1182 [0.1025, 0.1343]  ETA 0.7894  ins/100w 1.97  (2234 ref words)
+ETA errors: 159
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0107 (tie: False)
+metrics written to runs/E-026/cal-B50-b2.0/metrics.json
+=== EVAL runs/E-026/cal-B50-b3.0 ===
+WER 0.1141 [0.0992, 0.1304]  ETA 0.7987  ins/100w 1.97  (2234 ref words)
+ETA errors: 152
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0148 (tie: False)
+metrics written to runs/E-026/cal-B50-b3.0/metrics.json
+=== EVAL runs/E-026/cal-B50-b5.0 ===
+WER 0.1110 [0.0959, 0.1265]  ETA 0.8093  ins/100w 2.06  (2234 ref words)
+ETA errors: 144
+vs runs/E-022/cal-none/hyp.jsonl: WER diff -0.0179 (tie: False)
+metrics written to runs/E-026/cal-B50-b5.0/metrics.json
+=== DONE ===

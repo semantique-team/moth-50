@@ -759,6 +759,36 @@ number (E-008).
   only), matching the R-S1-cal direction (−2.43 pp) and opposite to S1-dev.
   Any data arm reports `switch` and `control_en` first.
 
+## D35 — E-026: glossary measured, S1-dev veto fails, not exposed (2026-11-23)
+
+**Decision: the product does not expose a user glossary.** E-026 ran the amended
+grid (12 R-S1-cal decodes: A500, B50, B25 × bonus 1/2/3/5) and the one S1-dev
+veto at the chosen bonus, all on `0.9.7-e023-r1`. Result in
+`runs/E-026/RESULT.md`.
+
+- **Steps 1–3 pass.** A500 is harmless at every bonus (WER +0.00 to +0.09 pp,
+  CIs never entirely above zero), *b\** = 5.0 is the lowest B50 (11.1012 %),
+  and B50 there is **−1.7905 pp** WER [−2.5333, −1.1287] and **+5.2980 pp**
+  ETA [+3.5573, +7.2603] against 12.8917 / 75.6291. The effect is concentrated
+  in acronym (ETA +9.80 pp) and brand (+3.85 pp) terms; `control_it` is
+  unchanged.
+- **Step 4 fails.** S1-dev A500 at 5.0 is 13.3382 / 75.0977 vs 13.2067 /
+  75.3418 (same tool): WER **+0.1315 pp** [+0.0283, +0.2597]. The point
+  estimate is inside the +0.25 pp margin, but the paired CI is entirely above
+  zero, and the veto requires it not to be. The decision rule is not
+  reinterpreted post hoc.
+- **Consequence.** The glossary stays unexposed: no `contextualSequences`
+  default, no package/browser change, no browser smoke, and no model, LM or
+  decoder change. The B lists are not read on S1-dev (they contain part of the
+  answers); T-600, FLEURS and dev-macro are not read.
+- **What the result says.** A fixed ~500-term glossary is safe for the product
+  case and partial recall is a real win on the calibration set, but the only
+  reference-independent harm guard cannot rule out a +0.13 pp WER cost. Any
+  future exposure needs a new pre-registration (for example a larger or
+  repeated harm set, or an explicitly accepted harm margin) and must not reuse
+  this S1-dev read as a fresh gate. The 541-term pool also means lists longer
+  than 500 single words remain untested.
+
 ## Open questions
 
 - ~~Exact S1 recording plan: how many hours, which sessions, and which held-out

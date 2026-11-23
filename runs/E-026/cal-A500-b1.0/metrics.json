@@ -1,0 +1,4280 @@
+{
+  "n_utterances": 400,
+  "overall": {
+    "n": 400,
+    "ref_words": 2234,
+    "sub": 208,
+    "del": 38,
+    "ins": 43,
+    "wer": 0.12936436884512087,
+    "insertion_rate": 1.9247985675917636,
+    "eta": 0.7549668874172185,
+    "eta_errors": [
+      {
+        "id": "R-S1-CAL-0003",
+        "term": "upgrade",
+        "got": "prossimograte"
+      },
+      {
+        "id": "R-S1-CAL-0018",
+        "term": "bug",
+        "got": "buger"
+      },
+      {
+        "id": "R-S1-CAL-0026",
+        "term": "cookie",
+        "got": "cooki"
+      },
+      {
+        "id": "R-S1-CAL-0027",
+        "term": "browser",
+        "got": "broer"
+      },
+      {
+        "id": "R-S1-CAL-0032",
+        "term": "keyboard",
+        "got": "chiboard"
+      },
+      {
+        "id": "R-S1-CAL-0039",
+        "term": "account",
+        "got": "mioount"
+      },
+      {
+        "id": "R-S1-CAL-0041",
+        "term": "standby",
+        "got": "byy"
+      },
+      {
+        "id": "R-S1-CAL-0047",
+        "term": "checkpoint",
+        "got": "point"
+      },
+      {
+        "id": "R-S1-CAL-0066",
+        "term": "path",
+        "got": "pet"
+      },
+      {
+        "id": "R-S1-CAL-0070",
+        "term": "open",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0070",
+        "term": "source",
+        "got": "opens"
+      },
+      {
+        "id": "R-S1-CAL-0072",
+        "term": "deep",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0072",
+        "term": "learning",
+        "got": "deeplarning"
+      },
+      {
+        "id": "R-S1-CAL-0074",
+        "term": "prompt",
+        "got": "p"
+      },
+      {
+        "id": "R-S1-CAL-0075",
+        "term": "tuning",
+        "got": "thing"
+      },
+      {
+        "id": "R-S1-CAL-0077",
+        "term": "few",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0077",
+        "term": "shot",
+        "got": "fho"
+      },
+      {
+        "id": "R-S1-CAL-0078",
+        "term": "chain",
+        "got": "chin"
+      },
+      {
+        "id": "R-S1-CAL-0078",
+        "term": "thought",
+        "got": "sought"
+      },
+      {
+        "id": "R-S1-CAL-0079",
+        "term": "context",
+        "got": "conte"
+      },
+      {
+        "id": "R-S1-CAL-0080",
+        "term": "token",
+        "got": "and"
+      },
+      {
+        "id": "R-S1-CAL-0082",
+        "term": "error",
+        "got": "er"
+      },
+      {
+        "id": "R-S1-CAL-0089",
+        "term": "one",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0089",
+        "term": "to",
+        "got": "want"
+      },
+      {
+        "id": "R-S1-CAL-0090",
+        "term": "off",
+        "got": "of"
+      },
+      {
+        "id": "R-S1-CAL-0094",
+        "term": "kick",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0094",
+        "term": "off",
+        "got": "kickoff"
+      },
+      {
+        "id": "R-S1-CAL-0095",
+        "term": "wrap",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0095",
+        "term": "up",
+        "got": "rapup"
+      },
+      {
+        "id": "R-S1-CAL-0098",
+        "term": "aliexpress",
+        "got": "express"
+      },
+      {
+        "id": "R-S1-CAL-0100",
+        "term": "skoda",
+        "got": "coda"
+      },
+      {
+        "id": "R-S1-CAL-0101",
+        "term": "chrome",
+        "got": "concrom"
+      },
+      {
+        "id": "R-S1-CAL-0102",
+        "term": "bosch",
+        "got": "bash"
+      },
+      {
+        "id": "R-S1-CAL-0103",
+        "term": "leroy",
+        "got": "il"
+      },
+      {
+        "id": "R-S1-CAL-0103",
+        "term": "merlin",
+        "got": "romerlan"
+      },
+      {
+        "id": "R-S1-CAL-0107",
+        "term": "uniqlo",
+        "got": "uniclo"
+      },
+      {
+        "id": "R-S1-CAL-0109",
+        "term": "nike",
+        "got": "i"
+      },
+      {
+        "id": "R-S1-CAL-0110",
+        "term": "adidas",
+        "got": "adid"
+      },
+      {
+        "id": "R-S1-CAL-0114",
+        "term": "xiaomi",
+        "got": "shoom"
+      },
+      {
+        "id": "R-S1-CAL-0115",
+        "term": "huawei",
+        "got": "wway"
+      },
+      {
+        "id": "R-S1-CAL-0116",
+        "term": "lenovo",
+        "got": "novo"
+      },
+      {
+        "id": "R-S1-CAL-0117",
+        "term": "dell",
+        "got": "ède"
+      },
+      {
+        "id": "R-S1-CAL-0118",
+        "term": "hp",
+        "got": "kp"
+      },
+      {
+        "id": "R-S1-CAL-0119",
+        "term": "asus",
+        "got": "aus"
+      },
+      {
+        "id": "R-S1-CAL-0120",
+        "term": "acer",
+        "got": "hcher"
+      },
+      {
+        "id": "R-S1-CAL-0121",
+        "term": "sony",
+        "got": "sy"
+      },
+      {
+        "id": "R-S1-CAL-0122",
+        "term": "bose",
+        "got": "bows"
+      },
+      {
+        "id": "R-S1-CAL-0123",
+        "term": "jbl",
+        "got": "jb"
+      },
+      {
+        "id": "R-S1-CAL-0124",
+        "term": "garmin",
+        "got": "garming"
+      },
+      {
+        "id": "R-S1-CAL-0125",
+        "term": "fitbit",
+        "got": "bat"
+      },
+      {
+        "id": "R-S1-CAL-0126",
+        "term": "tesla",
+        "got": "isla"
+      },
+      {
+        "id": "R-S1-CAL-0127",
+        "term": "toyota",
+        "got": "tota"
+      },
+      {
+        "id": "R-S1-CAL-0128",
+        "term": "volkswagen",
+        "got": "vin"
+      },
+      {
+        "id": "R-S1-CAL-0129",
+        "term": "fiat",
+        "got": "fat"
+      },
+      {
+        "id": "R-S1-CAL-0130",
+        "term": "enel",
+        "got": "ède"
+      },
+      {
+        "id": "R-S1-CAL-0131",
+        "term": "eni",
+        "got": "hei"
+      },
+      {
+        "id": "R-S1-CAL-0132",
+        "term": "tim",
+        "got": "team"
+      },
+      {
+        "id": "R-S1-CAL-0133",
+        "term": "vodafone",
+        "got": "fon"
+      },
+      {
+        "id": "R-S1-CAL-0134",
+        "term": "windtre",
+        "got": "tre"
+      },
+      {
+        "id": "R-S1-CAL-0136",
+        "term": "unicredit",
+        "got": "credit"
+      },
+      {
+        "id": "R-S1-CAL-0137",
+        "term": "intesa",
+        "got": "san"
+      },
+      {
+        "id": "R-S1-CAL-0137",
+        "term": "sanpaolo",
+        "got": "paolo"
+      },
+      {
+        "id": "R-S1-CAL-0138",
+        "term": "satispay",
+        "got": "satispy"
+      },
+      {
+        "id": "R-S1-CAL-0139",
+        "term": "paypal",
+        "got": "payp"
+      },
+      {
+        "id": "R-S1-CAL-0146",
+        "term": "ryanair",
+        "got": "riio"
+      },
+      {
+        "id": "R-S1-CAL-0148",
+        "term": "cig",
+        "got": "che"
+      },
+      {
+        "id": "R-S1-CAL-0150",
+        "term": "l'imu",
+        "got": "li"
+      },
+      {
+        "id": "R-S1-CAL-0152",
+        "term": "llm",
+        "got": "è"
+      },
+      {
+        "id": "R-S1-CAL-0153",
+        "term": "l'sdk",
+        "got": "dk"
+      },
+      {
+        "id": "R-S1-CAL-0154",
+        "term": "l'api",
+        "got": "api"
+      },
+      {
+        "id": "R-S1-CAL-0157",
+        "term": "css",
+        "got": "ss"
+      },
+      {
+        "id": "R-S1-CAL-0159",
+        "term": "xml",
+        "got": "xm"
+      },
+      {
+        "id": "R-S1-CAL-0160",
+        "term": "sql",
+        "got": "swl"
+      },
+      {
+        "id": "R-S1-CAL-0161",
+        "term": "yaml",
+        "got": "ilmal"
+      },
+      {
+        "id": "R-S1-CAL-0164",
+        "term": "docx",
+        "got": "x"
+      },
+      {
+        "id": "R-S1-CAL-0165",
+        "term": "xlsx",
+        "got": "excels"
+      },
+      {
+        "id": "R-S1-CAL-0167",
+        "term": "jpg",
+        "got": "gpg"
+      },
+      {
+        "id": "R-S1-CAL-0169",
+        "term": "gif",
+        "got": "gf"
+      },
+      {
+        "id": "R-S1-CAL-0170",
+        "term": "wav",
+        "got": "wb"
+      },
+      {
+        "id": "R-S1-CAL-0172",
+        "term": "wifi",
+        "got": "fi"
+      },
+      {
+        "id": "R-S1-CAL-0176",
+        "term": "tcp",
+        "got": "tdp"
+      },
+      {
+        "id": "R-S1-CAL-0177",
+        "term": "l'udp",
+        "got": "ludp"
+      },
+      {
+        "id": "R-S1-CAL-0178",
+        "term": "http",
+        "got": "è"
+      },
+      {
+        "id": "R-S1-CAL-0179",
+        "term": "https",
+        "got": "atps"
+      },
+      {
+        "id": "R-S1-CAL-0181",
+        "term": "l'ftp",
+        "got": "ftp"
+      },
+      {
+        "id": "R-S1-CAL-0187",
+        "term": "l'hdd",
+        "got": "cd"
+      },
+      {
+        "id": "R-S1-CAL-0189",
+        "term": "hdmi",
+        "got": "hma"
+      },
+      {
+        "id": "R-S1-CAL-0191",
+        "term": "rfid",
+        "got": "badgefd"
+      },
+      {
+        "id": "R-S1-CAL-0194",
+        "term": "l'otp",
+        "got": "lotp"
+      },
+      {
+        "id": "R-S1-CAL-0197",
+        "term": "l'ebitda",
+        "got": "da"
+      },
+      {
+        "id": "R-S1-CAL-0202",
+        "term": "fruit",
+        "got": "it"
+      },
+      {
+        "id": "R-S1-CAL-0203",
+        "term": "practice",
+        "got": "practis"
+      },
+      {
+        "id": "R-S1-CAL-0204",
+        "term": "wishlistato",
+        "got": "listato"
+      },
+      {
+        "id": "R-S1-CAL-0222",
+        "term": "zoomato",
+        "got": "zoommato"
+      },
+      {
+        "id": "R-S1-CAL-0228",
+        "term": "crashato",
+        "got": "crescito"
+      },
+      {
+        "id": "R-S1-CAL-0229",
+        "term": "buggata",
+        "got": "buggta"
+      },
+      {
+        "id": "R-S1-CAL-0230",
+        "term": "laggato",
+        "got": "loggato"
+      },
+      {
+        "id": "R-S1-CAL-0231",
+        "term": "freezato",
+        "got": "frizzato"
+      },
+      {
+        "id": "R-S1-CAL-0233",
+        "term": "kickato",
+        "got": "kiccato"
+      },
+      {
+        "id": "R-S1-CAL-0236",
+        "term": "dumpato",
+        "got": "dmpato"
+      },
+      {
+        "id": "R-S1-CAL-0239",
+        "term": "checkinato",
+        "got": "chinato"
+      },
+      {
+        "id": "R-S1-CAL-0240",
+        "term": "checkoutato",
+        "got": "chektato"
+      },
+      {
+        "id": "R-S1-CAL-0243",
+        "term": "predictato",
+        "got": "predicato"
+      },
+      {
+        "id": "R-S1-CAL-0245",
+        "term": "targettizzato",
+        "got": "targttizzato"
+      },
+      {
+        "id": "R-S1-CAL-0247",
+        "term": "randomizzato",
+        "got": "hannoandomizzato"
+      },
+      {
+        "id": "R-S1-CAL-0248",
+        "term": "standardizzato",
+        "got": "standardlizzato"
+      },
+      {
+        "id": "R-S1-CAL-0249",
+        "term": "forwardato",
+        "got": "forwwardardato"
+      },
+      {
+        "id": "R-S1-CAL-0250",
+        "term": "replyato",
+        "got": "replayato"
+      },
+      {
+        "id": "R-S1-CAL-0255",
+        "term": "urgent",
+        "got": "orgent"
+      },
+      {
+        "id": "R-S1-CAL-0263",
+        "term": "changer",
+        "got": "charger"
+      },
+      {
+        "id": "R-S1-CAL-0264",
+        "term": "win",
+        "got": "w"
+      },
+      {
+        "id": "R-S1-CAL-0267",
+        "term": "as",
+        "got": "è"
+      },
+      {
+        "id": "R-S1-CAL-0267",
+        "term": "soon",
+        "got": "su"
+      },
+      {
+        "id": "R-S1-CAL-0268",
+        "term": "the",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0268",
+        "term": "loop",
+        "got": "thelop"
+      },
+      {
+        "id": "R-S1-CAL-0269",
+        "term": "scope",
+        "got": "scop"
+      },
+      {
+        "id": "R-S1-CAL-0270",
+        "term": "in",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0270",
+        "term": "scope",
+        "got": "incope"
+      },
+      {
+        "id": "R-S1-CAL-0272",
+        "term": "off",
+        "got": "of"
+      },
+      {
+        "id": "R-S1-CAL-0272",
+        "term": "track",
+        "got": "truck"
+      },
+      {
+        "id": "R-S1-CAL-0274",
+        "term": "story",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0276",
+        "term": "bottom",
+        "got": "botto"
+      },
+      {
+        "id": "R-S1-CAL-0276",
+        "term": "line",
+        "got": "online"
+      },
+      {
+        "id": "R-S1-CAL-0277",
+        "term": "a",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0278",
+        "term": "thought",
+        "got": "sort"
+      },
+      {
+        "id": "R-S1-CAL-0279",
+        "term": "no",
+        "got": "hob"
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "call",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "it",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "a",
+        "got": "colita"
+      },
+      {
+        "id": "R-S1-CAL-0280",
+        "term": "day",
+        "got": "dei"
+      },
+      {
+        "id": "R-S1-CAL-0281",
+        "term": "take",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0281",
+        "term": "it",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0281",
+        "term": "easy",
+        "got": "taki"
+      },
+      {
+        "id": "R-S1-CAL-0282",
+        "term": "posted",
+        "got": "posta"
+      },
+      {
+        "id": "R-S1-CAL-0284",
+        "term": "sounds",
+        "got": "sound"
+      },
+      {
+        "id": "R-S1-CAL-0284",
+        "term": "good",
+        "got": "swood"
+      },
+      {
+        "id": "R-S1-CAL-0286",
+        "term": "sense",
+        "got": "sends"
+      },
+      {
+        "id": "R-S1-CAL-0287",
+        "term": "worries",
+        "got": "wri"
+      },
+      {
+        "id": "R-S1-CAL-0288",
+        "term": "bad",
+        "got": "bed"
+      },
+      {
+        "id": "R-S1-CAL-0289",
+        "term": "crossed",
+        "got": "cross"
+      },
+      {
+        "id": "R-S1-CAL-0293",
+        "term": "chicken",
+        "got": "check"
+      },
+      {
+        "id": "R-S1-CAL-0293",
+        "term": "and",
+        "got": "an"
+      },
+      {
+        "id": "R-S1-CAL-0295",
+        "term": "top",
+        "got": "to"
+      },
+      {
+        "id": "R-S1-CAL-0295",
+        "term": "notch",
+        "got": "noatch"
+      },
+      {
+        "id": "R-S1-CAL-0296",
+        "term": "waste",
+        "got": "wa"
+      },
+      {
+        "id": "R-S1-CAL-0299",
+        "term": "still",
+        "got": "ste"
+      },
+      {
+        "id": "R-S1-CAL-0300",
+        "term": "in",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0300",
+        "term": "stone",
+        "got": "inst"
+      },
+      {
+        "id": "R-S1-CAL-0351",
+        "term": "path",
+        "got": "pats"
+      },
+      {
+        "id": "R-S1-CAL-0353",
+        "term": "him",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0354",
+        "term": "i",
+        "got": "iy"
+      },
+      {
+        "id": "R-S1-CAL-0354",
+        "term": "hurry",
+        "got": "earry"
+      },
+      {
+        "id": "R-S1-CAL-0355",
+        "term": "ran",
+        "got": "run"
+      },
+      {
+        "id": "R-S1-CAL-0357",
+        "term": "bag",
+        "got": "bug"
+      },
+      {
+        "id": "R-S1-CAL-0358",
+        "term": "bike",
+        "got": "by"
+      },
+      {
+        "id": "R-S1-CAL-0359",
+        "term": "here",
+        "got": "har"
+      },
+      {
+        "id": "R-S1-CAL-0364",
+        "term": "he",
+        "got": "you"
+      },
+      {
+        "id": "R-S1-CAL-0365",
+        "term": "sun",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0365",
+        "term": "set",
+        "got": "sunset"
+      },
+      {
+        "id": "R-S1-CAL-0366",
+        "term": "kids",
+        "got": "keats"
+      },
+      {
+        "id": "R-S1-CAL-0367",
+        "term": "umbrella",
+        "got": "brella"
+      },
+      {
+        "id": "R-S1-CAL-0370",
+        "term": "cooked",
+        "got": "cook"
+      },
+      {
+        "id": "R-S1-CAL-0373",
+        "term": "he",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0373",
+        "term": "lost",
+        "got": "l"
+      },
+      {
+        "id": "R-S1-CAL-0373",
+        "term": "his",
+        "got": "is"
+      },
+      {
+        "id": "R-S1-CAL-0374",
+        "term": "tonight",
+        "got": "night"
+      },
+      {
+        "id": "R-S1-CAL-0376",
+        "term": "stayed",
+        "got": "stay"
+      },
+      {
+        "id": "R-S1-CAL-0377",
+        "term": "colder",
+        "got": "holder"
+      },
+      {
+        "id": "R-S1-CAL-0378",
+        "term": "green",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0378",
+        "term": "coat",
+        "got": "greencot"
+      },
+      {
+        "id": "R-S1-CAL-0379",
+        "term": "word",
+        "got": "wor"
+      },
+      {
+        "id": "R-S1-CAL-0380",
+        "term": "they",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-CAL-0384",
+        "term": "turned",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0384",
+        "term": "grey",
+        "got": "gray"
+      },
+      {
+        "id": "R-S1-CAL-0385",
+        "term": "on",
+        "got": "or"
+      },
+      {
+        "id": "R-S1-CAL-0386",
+        "term": "spilled",
+        "got": "the"
+      },
+      {
+        "id": "R-S1-CAL-0386",
+        "term": "on",
+        "got": "of"
+      },
+      {
+        "id": "R-S1-CAL-0386",
+        "term": "shirt",
+        "got": "short"
+      },
+      {
+        "id": "R-S1-CAL-0388",
+        "term": "sings",
+        "got": "signs"
+      },
+      {
+        "id": "R-S1-CAL-0389",
+        "term": "cafe",
+        "got": "caffè"
+      },
+      {
+        "id": "R-S1-CAL-0393",
+        "term": "soup",
+        "got": "so"
+      },
+      {
+        "id": "R-S1-CAL-0393",
+        "term": "salt",
+        "got": "soult"
+      },
+      {
+        "id": "R-S1-CAL-0395",
+        "term": "a",
+        "got": null
+      },
+      {
+        "id": "R-S1-CAL-0395",
+        "term": "long",
+        "got": "along"
+      },
+      {
+        "id": "R-S1-CAL-0398",
+        "term": "cleaned",
+        "got": "clean"
+      }
+    ],
+    "wer_ci": [
+      0.11374832064487236,
+      0.1460775473399459
+    ]
+  },
+  "breakdown": {
+    "category": {
+      "single_word": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 15,
+        "del": 4,
+        "ins": 3,
+        "wer": 0.07560137457044673,
+        "insertion_rate": 1.0309278350515463,
+        "eta": 0.84
+      },
+      "phrase": {
+        "n": 50,
+        "ref_words": 273,
+        "sub": 17,
+        "del": 7,
+        "ins": 1,
+        "wer": 0.09157509157509157,
+        "insertion_rate": 0.3663003663003663,
+        "eta": 0.8055555555555556
+      },
+      "brand": {
+        "n": 50,
+        "ref_words": 259,
+        "sub": 47,
+        "del": 5,
+        "ins": 16,
+        "wer": 0.2625482625482625,
+        "insertion_rate": 6.177606177606178,
+        "eta": 0.3076923076923077
+      },
+      "acronym": {
+        "n": 50,
+        "ref_words": 262,
+        "sub": 33,
+        "del": 2,
+        "ins": 9,
+        "wer": 0.16793893129770993,
+        "insertion_rate": 3.435114503816794,
+        "eta": 0.5098039215686274
+      },
+      "switch": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 36,
+        "del": 11,
+        "ins": 3,
+        "wer": 0.1718213058419244,
+        "insertion_rate": 1.0309278350515463,
+        "eta": 0.7083333333333334
+      },
+      "italianized": {
+        "n": 50,
+        "ref_words": 267,
+        "sub": 20,
+        "del": 1,
+        "ins": 3,
+        "wer": 0.0898876404494382,
+        "insertion_rate": 1.1235955056179776,
+        "eta": 0.68
+      },
+      "control_it": {
+        "n": 50,
+        "ref_words": 291,
+        "sub": 9,
+        "del": 2,
+        "ins": 3,
+        "wer": 0.048109965635738834,
+        "insertion_rate": 1.0309278350515463,
+        "eta": null
+      },
+      "control_en": {
+        "n": 50,
+        "ref_words": 300,
+        "sub": 31,
+        "del": 6,
+        "ins": 5,
+        "wer": 0.14,
+        "insertion_rate": 1.6666666666666667,
+        "eta": 0.8766666666666667
+      }
+    },
+    "speaker": {
+      "S1": {
+        "n": 400,
+        "ref_words": 2234,
+        "sub": 208,
+        "del": 38,
+        "ins": 43,
+        "wer": 0.12936436884512087,
+        "insertion_rate": 1.9247985675917636,
+        "eta": 0.7549668874172185
+      }
+    },
+    "speaker_group": {
+      "S1+S2": {
+        "n": 400,
+        "ref_words": 2234,
+        "sub": 208,
+        "del": 38,
+        "ins": 43,
+        "wer": 0.12936436884512087,
+        "insertion_rate": 1.9247985675917636,
+        "eta": 0.7549668874172185
+      }
+    }
+  },
+  "noise": null,
+  "per_utterance": {
+    "R-S1-CAL-0001": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0002": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0003": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0004": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0005": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0006": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0007": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0008": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0009": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0010": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0011": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0012": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0013": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0014": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0015": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0016": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0017": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0018": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0019": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0020": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0021": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0022": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0023": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0024": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0025": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0026": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0027": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0028": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0029": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0030": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0031": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0032": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0033": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0034": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0035": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0036": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0037": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0038": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0039": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0040": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0041": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0042": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0043": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0044": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0045": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0046": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0047": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0048": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0049": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0050": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0051": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0052": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0053": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0054": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0055": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0056": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0057": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0058": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0059": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0060": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0061": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0062": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0063": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0064": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0065": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0066": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0067": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0068": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0069": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0070": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0071": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0072": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0073": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0074": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0075": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0076": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0077": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0078": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0079": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0080": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0081": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0082": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0083": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0084": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0085": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0086": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0087": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0088": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0089": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 2,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0090": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0091": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0092": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0093": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0094": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0095": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0096": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0097": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0098": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0099": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0100": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0101": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0102": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0103": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0104": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0105": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0106": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0107": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0108": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0109": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0110": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0111": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0112": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0113": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0114": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0115": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0116": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 2,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0117": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0118": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 2,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0119": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0120": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0121": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0122": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0123": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0124": {
+      "ref_words": 5,
+      "sub": 3,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0125": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 2,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0126": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0127": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0128": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0129": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0130": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0131": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0132": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0133": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 2,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0134": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0135": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0136": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0137": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0138": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0139": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0140": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0141": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0142": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0143": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0144": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0145": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0146": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0147": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0148": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0149": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0150": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0151": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0152": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0153": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0154": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0155": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0156": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0157": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0158": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0159": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0160": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0161": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0162": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0163": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0164": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0165": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0166": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0167": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0168": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0169": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0170": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0171": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0172": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0173": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0174": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0175": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0176": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0177": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0178": {
+      "ref_words": 5,
+      "sub": 4,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0179": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0180": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0181": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0182": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0183": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0184": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0185": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0186": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0187": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0188": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0189": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0190": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0191": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0192": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0193": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0194": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0195": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0196": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0197": {
+      "ref_words": 4,
+      "sub": 1,
+      "del": 0,
+      "ins": 2,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0198": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0199": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0200": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0201": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0202": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 3,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0203": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0204": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0205": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0206": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0207": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0208": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0209": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0210": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0211": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0212": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0213": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0214": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0215": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0216": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0217": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0218": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0219": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0220": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0221": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0222": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0223": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0224": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0225": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0226": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0227": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0228": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0229": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0230": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0231": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0232": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0233": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0234": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0235": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0236": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0237": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0238": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0239": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0240": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0241": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0242": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0243": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0244": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0245": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0246": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0247": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0248": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0249": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0250": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0251": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0252": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0253": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 1,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0254": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0255": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0256": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0257": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0258": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0259": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0260": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0261": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0262": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0263": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0264": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0265": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0266": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0267": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0268": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0269": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0270": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0271": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0272": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0273": {
+      "ref_words": 9,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0274": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0275": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0276": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0277": {
+      "ref_words": 8,
+      "sub": 0,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0278": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0279": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0280": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 2,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0281": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 2,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0282": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0283": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0284": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0285": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0286": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0287": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0288": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0289": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 2,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0290": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0291": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0292": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0293": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0294": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0295": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0296": {
+      "ref_words": 8,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0297": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 2,
+      "en_hit": 2
+    },
+    "R-S1-CAL-0298": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0299": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 4,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0300": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 3,
+      "en_hit": 1
+    },
+    "R-S1-CAL-0301": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0302": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0303": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0304": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0305": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0306": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0307": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0308": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0309": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0310": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0311": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0312": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0313": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0314": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0315": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0316": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0317": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0318": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0319": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0320": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0321": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0322": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0323": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0324": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0325": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0326": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0327": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0328": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0329": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0330": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0331": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0332": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0333": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0334": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0335": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0336": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0337": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0338": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0339": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0340": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0341": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0342": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0343": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0344": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0345": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0346": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0347": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0348": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0349": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0350": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 0,
+      "en_hit": 0
+    },
+    "R-S1-CAL-0351": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0352": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0353": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0354": {
+      "ref_words": 5,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0355": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0356": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0357": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0358": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0359": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0360": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0361": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0362": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 5,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0363": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 7
+    },
+    "R-S1-CAL-0364": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0365": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0366": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0367": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0368": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0369": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0370": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0371": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0372": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0373": {
+      "ref_words": 7,
+      "sub": 2,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0374": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0375": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0376": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0377": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0378": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0379": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0380": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0381": {
+      "ref_words": 7,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 7
+    },
+    "R-S1-CAL-0382": {
+      "ref_words": 5,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0383": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0384": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0385": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0386": {
+      "ref_words": 6,
+      "sub": 3,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 6,
+      "en_hit": 3
+    },
+    "R-S1-CAL-0387": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0388": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0389": {
+      "ref_words": 6,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0390": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 1,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0391": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0392": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0393": {
+      "ref_words": 6,
+      "sub": 2,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0394": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0395": {
+      "ref_words": 7,
+      "sub": 1,
+      "del": 1,
+      "ins": 0,
+      "en_ref": 7,
+      "en_hit": 5
+    },
+    "R-S1-CAL-0396": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0397": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0398": {
+      "ref_words": 5,
+      "sub": 1,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 5,
+      "en_hit": 4
+    },
+    "R-S1-CAL-0399": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    },
+    "R-S1-CAL-0400": {
+      "ref_words": 6,
+      "sub": 0,
+      "del": 0,
+      "ins": 0,
+      "en_ref": 6,
+      "en_hit": 6
+    }
+  },
+  "manifest": "../moth-cs-dataset/manifests/R-S1-cal.jsonl",
+  "manifest_sha256": "ef34c3f8646b5b63adee9a7810bb1b7733f64a863b199e8f43a3bc1c6c596a7f",
+  "hyp": "runs/E-026/cal-A500-b1.0/hyp.jsonl",
+  "hyp_sha256": "417b866e8fee027fa63c412a7bc21090ed16fcf37e22278dcada1fa55df54ac4",
+  "normalizer": "stt.text.normalize",
+  "normalizer_sha256": "926d2464afaf4b9a62c1da9e0d145b0530883eb1df0e4b01fe9cc9f668974f94",
+  "git_sha": "7cdc76faebfad548902c7078320338e7f53e64ae",
+  "config_path": null,
+  "extra_hypotheses": 0,
+  "vs": {
+    "other": "runs/E-022/cal-none/hyp.jsonl",
+    "other_manifest_sha256": "ef34c3f8646b5b63adee9a7810bb1b7733f64a863b199e8f43a3bc1c6c596a7f",
+    "wer_diff": 0.00044762757385855,
+    "wer_diff_ci": [
+      0.0,
+      0.0013519603424966276
+    ],
+    "wer_tie": true,
+    "eta_diff": -0.0013245033112583293,
+    "eta_diff_ci": [
+      -0.004115226337448541,
+      0.0
+    ],
+    "eta_tie": true
+  }
+}
