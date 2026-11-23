@@ -731,12 +731,40 @@ Artifacts: `experiments/E-025-e020-llm-text.md`,
 `experiments/E-025-prompts.json`, `runs/E-025/RESULT.md`,
 `tools/e020_generate.py`, `tools/e020_filter.py`, `tools/e020_combine.py`.
 
+## D34 — No new recordings; the remaining plan is re-scoped (2026-11-23)
+
+**Owner decision: no further S1 (or other) recording sessions.** The evaluation
+sets stay as they are: S1-dev (960), R-S1-cal (400), T-600, FLEURS, and
+CS-FLEURS-READ, which is still unread and is kept for the final external
+number (E-008).
+
+- **Dropped:** E-019 arm B (unscripted S1 sessions), E-021 arm 1 (acronym,
+  brand and elision recordings) and E-006 arm 5 (new S1 training sessions).
+- **Kept, training-free:** E-026 (E-022 step 3, realistic glossary),
+  pre-registered in `experiments/E-026-e022-glossary.md`.
+- **Kept, needs training and a go-ahead:** E-021 arm 2 (permissive TTS),
+  E-019 arm A (monolingual Italian pseudo-labels), E-006 arms 1–3 and 6,
+  E-013/E-014 and the optional third R1 seed (P11). Their pre-registrations in
+  `experiments/next-experiments.md` predate E-002 §8 and D27: before any of
+  them trains, it is re-pre-registered with **R1 seed 0 + E-034c** as the
+  parent, a same-length control fine-tune, **ranking on R-S1-cal**, the S1-dev
+  veto (E-002 §6.2) and the dev-macro guard. The S1-dev ranking gates written
+  for E-019, E-021 and E-006 are superseded.
+- **Measurement limit.** R-S1-cal resolves about 1–1.5 pp, S1-dev has been read
+  for every product decision since E-005, and T-600 was the R1 guard. Without
+  new audio, only changes expected to move WER or ETA by about 1 pp or more
+  are worth a training run; smaller effects end as ties (E-024, E-025).
+- **Residual risk carried from E-023:** `switch` is the one T-600 category
+  that did not improve with R1 (ETA −2.03 pp, WER +0.22 pp, 60 clips; report
+  only), matching the R-S1-cal direction (−2.43 pp) and opposite to S1-dev.
+  Any data arm reports `switch` and `control_en` first.
+
 ## Open questions
 
-- Exact S1 recording plan: how many hours, which sessions, and which held-out
-  session is the dev set? S1-dev is recorded (960 takes); open are the E-017
-  calibration session (option A), the unscripted sessions (E-019 arm B) and the
-  acronym/brand sessions (E-021).
+- ~~Exact S1 recording plan: how many hours, which sessions, and which held-out
+  session is the dev set?~~ Resolved: S1-dev (960) and R-S1-cal (400) are
+  recorded, and D34 rules out further sessions (E-019 arm B, E-021 arm 1 and
+  E-006 arm 5 are dropped).
 - TTS mixture weight and voice selection; how much synthetic data survives the
   real-data readout without hurting S2/S3/FLEURS?
 - Does the headroom go to a larger LM, a deeper model, or nothing? With A3 it was
@@ -744,8 +772,9 @@ Artifacts: `experiments/E-025-e020-llm-text.md`,
   E-004 B spent it on LM coverage (D23) and leaves 0.79 MB. A further LM
   (E-020) or depth (C, not authorized) needs a new pre-registration, ranked on
   the E-017 set.
-- Which teacher, if any, is good enough on mixed IT–EN dictation (E-018), and
-  does Granary's YouTube-sourced Italian audio pass a licence review?
+- ~~Which teacher, if any, is good enough on mixed IT–EN dictation (E-018)?~~
+  None qualifies (D31). Open: does Granary's YouTube-sourced Italian audio pass
+  a licence review?
 - ~~Should the extra blocks be identity-initialized (review P3), randomly
   initialized as in Moth E-006, or copied from the last Whisper-base block?~~
   Resolved in D16: identity, for every E-003 arm.

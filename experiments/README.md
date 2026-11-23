@@ -39,7 +39,7 @@ external evidence.
 | E-003 | Architecture screen: Whisper-base vs base+2/+4/+6 on the same mixture | **done**: base+6 wins; greedy dev 48.12 / 36.90 / 34.73 / 33.46 %, two seeds on +4/+6 (33.55 % / 34.74 %); E-005 long run and gate complete |
 | E-004 | Package-budget trade-off; re-scoped after E-005: where the E-012 headroom goes (unpruned LM vs base+7 vs base+4 + large LM) | **done 2026-11-21, arm B adopted, then superseded by E-034c (D25) and E-023 R1 (D27)**: E-034 N2_1_1 unpruned LM packed lossless, package 49,210,224 B; dev-macro 16.9863 % vs 17.6212 %, S1-dev 11.6289 / 79.8340 vs 14.0541 / 75.5371 (withdrawn by P2), T-600 13.4748 / 76.5101; browser RTFx 28.36. C/D not run (E-011 veto); `runs/E-004/RESULT.md` |
 | E-005 | Full fine-tune of the winner; INT8 export; browser run | **done, gate PASS**: A3 readout **17.5565 / 17.6212 %** FP32/INT8 vs 23.0170 % (paired **−5.4605 / −5.3957 pp**); S1-dev **13.9956 / 14.0541 %** vs **22.2498 %**, ETA **75.34 / 75.54 %** vs **62.11 %**, no regression; A3 package **47,836,502 B** (2.16 MB headroom); browser exact, **RTFx 22.3**. Superseded by E-034c (D25) and E-023 R1 (D27); S1-dev term-error analysis in `tools/eta_breakdown.py` |
-| E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned; fine-tune arms from the **R1 + E-034c** product baseline. Pseudo-labels → E-018/E-019; S1 sessions and TTS → E-019/E-021 |
+| E-006 | Data scale: VoxPopuli IT, gold repetition, word-level splicing, pseudo-labels, new S1 sessions, TTS | planned; fine-tune arms from the **R1 + E-034c** product baseline, re-pre-registered with R-S1-cal ranking before training. Pseudo-labels → E-018/E-019; TTS → E-021; new S1 sessions dropped (D34) |
 | E-007 | Optional architecture: 25 Hz extra blocks, conv adapters, dropout/EMA, LID auxiliary | split into E-011 (EMA), E-013, E-014, E-015 |
 | E-008 | External evaluation: CS-FLEURS-READ (test-only), FLEURS, per-speaker ranges; ceilings from the E-018 teacher and frontier APIs (evaluation-only) | planned |
 | E-009 | Decoder recalibration (LM weight × token bonus) on dev-macro + S1-dev | **done 2026-11-19**: dev-macro best **0.45 / 2.0** (17.3427 %, −0.2786 pp) **rejected by the S1-dev veto** (+0.5844 pp WER / −1.1230 pp ETA); frozen **0.55 / 2.7** stays; `runs/E-009/RESULT.md` |
@@ -52,18 +52,21 @@ external evidence.
 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | **done 2026-11-23 (D28/D29)**: 1-thread **10.93/19.74/21.17×** (pass); browser default +0.72 pp WER vs Python, `segment:false` +0.35 pp (tie); **E-016b min-runs-3 13.7180 % (+0.34 pp, tie)**; runtime vendored at `0e15442`; `runs/E-016/RESULT.md`, `runs/E-016/E-016b.md` |
 | E-017 | Mixed calibration set separate from the S1-dev gate (new session or S1-dev split) | **done 2026-11-21, frozen**: 400/400 takes, level-matched, manifest + shards, E-002 §8; control E-005 + E-034c 13.9212 / 75.6291; `runs/E-017/RESULT.md` |
 | E-018 | Teacher bake-off on the gold train set (Parakeet, Canary, Whisper-turbo, Voxtral; optional SOV/Nemotron) | **done 2026-11-23, no mixed teacher (D31)**: Parakeet 9.95/79.47/62.71, Whisper-it 9.92/80.12/70.76, Whisper-auto 10.99/82.60/69.92, Canary 13.60/68.62/61.44; Voxtral excluded (cost); `runs/E-018/RESULT.md` |
-| E-019 | Teacher labels: Granary Italian, VoxPopuli unlabelled, unscripted S1 sessions | proposed; **monolingual Italian only (D31)**; fine-tune from R1; needs go-ahead |
+| E-019 | Teacher labels: Granary Italian, VoxPopuli unlabelled, unscripted S1 sessions | proposed; **monolingual Italian only (D31)**; unscripted S1 sessions dropped (D34); fine-tune from R1; needs re-pre-registration and go-ahead |
 | E-020/E-025 | LLM-written mixed IT–EN text for the LM | **done 2026-11-23, not adopted (D33)**: 6,000 generated → 3,521 filtered, 249 eval 4-gram drops; packed LM 7,833,032 B; R-S1-cal 12.8917/75.6291 vs 12.8469/75.4967 (ties); `experiments/E-025-e020-llm-text.md`, `runs/E-025/RESULT.md` |
-| E-021 | Targeted acronym, brand and elision data (recordings + permissive TTS) | proposed; fine-tune from R1 |
-| E-022 | Keyterm (contextual) biasing re-test as a product feature | **done 2026-11-23, oracle ceiling, not shipped (D32)**: acr+brand ETA +5.82 pp step 1; knee b=5; S1-dev oracle 10.47/84.96 vs 13.38/75.15; `control_it` insertion unchanged; `runs/E-022/RESULT.md` |
+| E-021 | Targeted acronym, brand and elision data (recordings + permissive TTS) | proposed; **TTS arm only**, recordings dropped (D34); fine-tune from R1; needs re-pre-registration and go-ahead |
+| E-022 | Keyterm (contextual) biasing re-test as a product feature | **done 2026-11-23, oracle ceiling, not shipped (D32)**: acr+brand ETA +5.82 pp step 1; knee b=5; S1-dev oracle 10.47/84.96 vs 13.38/75.15; `control_it` insertion unchanged; step 3 is E-026; `runs/E-022/RESULT.md` |
 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 (H1) | **done 2026-11-23, adopted (D27)**: 2b report-only (D26), T-600 guard passed 12.2993 / 78.1400 vs 13.7041 / 76.1266; product `0.9.7-e023-r1`; `runs/E-023/RESULT.md` |
 | E-024 | P8 ×3-term unpruned LM | **done 2026-11-23, not adopted (D30)**: same corpus/size/lossless; R-S1-cal identical (12.8469 / 75.4967, 0.0 pp), S1-dev tie (13.3966 / 75.0977); gate 1 failed; `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md` |
+| E-026 | E-022 step 3: realistic glossary — distractor-only harm, partial recall, long lists | **pre-registered 2026-11-23**, no training; decides whether the product exposes an opt-in glossary; `experiments/E-026-e022-glossary.md` |
 
 The rationale, parameter counts and gates for E-003–E-008 are in
 `docs/architecture-options.md`; the corrected Moth evidence, the measurements
 and the proposals that may change them are in `docs/review-2026-11-17.md`. The
 post-E-005 plan (E-009–E-023 and the re-scoped E-004/E-006) and its gates are in
-`experiments/next-experiments.md`; the frontier-model review behind E-017–E-022
+`experiments/next-experiments.md`; later pre-registrations have their own files
+(`E-024-p8-lm-x3.md`, `E-025-e020-llm-text.md`, `E-026-e022-glossary.md`); the
+frontier-model review behind E-017–E-022
 is `docs/frontier-stt-2026-11-19.md` (D24). Do
 not start E-003 before E-002 has frozen the evaluation protocol; T is a
 comparability set, not a clean test. There is no 100 MB experiment: the tier is

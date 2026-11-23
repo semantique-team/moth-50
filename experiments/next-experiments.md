@@ -4,8 +4,13 @@
 and E-004 ran on 2026-11-19/21; E-016/P4, E-017 and E-023 ran on 2026-11-21/23,
 E-023 R1 is adopted (D27), the web runtime is vendored (D28), E-016b is
 adopted (D29), E-024/P8 ran negative (D30), E-018 found no qualifying mixed
-teacher (D31) and E-022's oracle upper bound is positive (D32); E-013–E-015 and
-E-019–E-021 have not run.**
+teacher (D31), E-022's oracle upper bound is positive (D32) and E-025/E-020 ran
+negative (D33). D34 (2026-11-23) rules out new recordings: E-019 arm B, E-021
+arm 1 and E-006 arm 5 are dropped, and every remaining training arm is
+re-pre-registered with R1 seed 0 as the parent and R-S1-cal ranking before it
+runs. E-026 (E-022 step 3, realistic glossary, no training) is pre-registered
+in `experiments/E-026-e022-glossary.md`; E-013–E-015, E-019 and E-021 have not
+run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -93,18 +98,21 @@ after the session.
 | 6 | E-004 | Where the freed bytes go | 3, 5 | **done 2026-11-21: arm B (unpruned LM) adopted** | 49.21 MB |
 | 7 | E-005 product readout | FLEURS once, report-only; T-600 already read in E-004 | FLEURS mel shards | ~1 h CPU | 0 |
 | 8 | E-017 | Mixed calibration set, separate from the S1-dev gate | owner decision | **done 2026-11-21: 400/400 takes, manifest + shards, E-002 §8** | 0 |
-| 9 | E-018 | Teacher bake-off on the gold train set | — | ~1–2 h inference, no training | 0 |
-| 10 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | a release | **done 2026-11-23: 1-thread pass, parity explained, runtime vendored (D28); E-016b proposed** | 0 |
-| 11 | E-019 | Teacher labels (pseudo-label distillation) | 8, 9 | labelling + fine-tunes | 0 |
-| 12 | E-020 | LLM-written mixed text for the LM | 8 | LM builds + readouts | ≤ LM budget |
-| 13 | E-021 | Targeted acronym, brand and elision data | product acoustic baseline | recording + fine-tunes | 0 |
-| 14 | E-022 | Keyterm biasing re-test (product feature) | 8 | CPU readouts | 0 |
+| 9 | E-018 | Teacher bake-off on the gold train set | — | **done 2026-11-23: no mixed teacher qualifies (D31)** | 0 |
+| 10 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | a release | **done 2026-11-23: 1-thread pass, parity explained, runtime vendored (D28); E-016b adopted (D29)** | 0 |
+| 11 | E-019 | Teacher labels (pseudo-label distillation) | 8, 9 | **arm A only, monolingual Italian (D31); arm B dropped (D34); re-pre-register from R1** | 0 |
+| 12 | E-020 | LLM-written mixed text for the LM | 8 | **done 2026-11-23 as E-025: tie, not adopted (D33)** | ≤ LM budget |
+| 13 | E-021 | Targeted acronym, brand and elision data | product acoustic baseline | **arm 2 (TTS) only; arm 1 dropped (D34); re-pre-register from R1** | 0 |
+| 14 | E-022 | Keyterm biasing re-test (product feature) | 8 | **steps 1–2 done 2026-11-23: oracle ceiling (D32); step 3 is E-026** | 0 |
 | 15 | E-013 | Extra blocks before `final_ln` | — | ~1.6 h MPS | 0 |
 | 16 | E-014 | Conformer-style convolution in the extra blocks | — | ~1.6 h MPS | ≈ 0 |
-| 17 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | ~1.6 h MPS | 0 |
-| 18 | E-006 | Remaining data arms | product baseline | days | 0 |
+| 17 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | **not triggered: 1-thread 21.17× at 20 s** | 0 |
+| 18 | E-006 | Remaining data arms | product baseline | days; arm 5 dropped (D34); re-pre-register from R1 | 0 |
 | 19 | E-008 | External evaluation and ceilings | final model | hours | 0 |
 | 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b report-only (D26), T-600 guard passed, adopted (D27)** | 0 |
+| 21 | E-024 | P8 ×3-term unpruned LM | 20 | **done 2026-11-23: no effect, not adopted (D30)** | 0 |
+| 22 | E-025 | E-020 executed: LLM text in the LM | 20 | **done 2026-11-23: tie, not adopted (D33)** | +45,848 B (not shipped) |
+| 23 | E-026 | E-022 step 3: realistic glossary, harm and partial recall | 14, 20 | **pre-registered 2026-11-23; ~20 min CPU, no training** | 0 |
 
 P8 was run after this table was written: **E-024 (2026-11-23) built the
 unpruned E-034 LM with ×3 term weighting, got byte-identical R-S1-cal
@@ -471,6 +479,12 @@ screen and ≥ 1.4× faster extra blocks.
 
 ## E-006 — Data arms (re-scoped)
 
+> **Status (2026-11-23, D34):** the parent is now **R1 seed 0 + E-034c** (D27),
+> not E-005, and the S1-dev ranking below predates E-002 §8: each arm is
+> re-pre-registered with R-S1-cal ranking, the S1-dev veto and the dev-macro
+> guard before it trains. Arm 5 (new S1 sessions) is dropped: no new
+> recordings.
+
 One variable at a time, each as a fine-tune from the **E-005 acoustic + E-034
 LM product baseline** against a control fine-tune of the same length on the
 unchanged mixture; judged on S1-dev WER/ETA with dev-macro as a guard, S2/S3/
@@ -589,6 +603,12 @@ recorded but not adopted. Artifacts: `runs/E-018/RESULT.md`,
 
 ### E-019 — Teacher labels (pseudo-label distillation)
 
+> **Status (2026-11-23):** E-018 found no qualifying mixed teacher, so only
+> monolingual Italian sources remain (D31); source 3 / arm B needs new S1
+> sessions and is dropped (D34). The parent becomes R1 seed 0 + E-034c (D27),
+> and the S1-dev gate below is replaced by R-S1-cal ranking with the S1-dev veto
+> in a re-pre-registration before training.
+
 - **Hypothesis:** teacher-labelled speech that MOTH-50 has never heard improves
   S1-dev WER without an ETA regression; monolingual Italian helps dev-macro too.
 - **Sources** (each pinned with its licence before use):
@@ -651,6 +671,12 @@ recorded but not adopted. Artifacts: `runs/E-018/RESULT.md`,
 
 ### E-021 — Targeted acronym, brand and elision data
 
+> **Status (2026-11-23, D34):** arm 1 (recordings) is dropped; arm 2 (TTS)
+> remains. Its gate below ranks on an S1-dev subset, which E-002 §8 no longer
+> allows: a re-pre-registration ranks on R-S1-cal (acronym + brand ETA
+> reported), keeps the S1-dev veto and the dev-macro guard, and fine-tunes from
+> R1 seed 0 against a same-length control.
+
 - **Evidence:** acronym ETA 29.2 %, brand 48.1 %, acronym insertions 4.70 per
   100 words; elided acronyms not improved over 0.8.1 (34 vs 32 misses).
 - **Arm 1, recordings:** 300–500 new S1 sentences in a new session, dense in
@@ -691,6 +717,13 @@ R-S1-cal pooled acronym+brand ETA **40.78 → 46.60 % (+5.82 pp)**, WER 12.89 �
 75.15 (paired −2.91 pp WER, +9.81 pp ETA), `control_it` insertion 0.24
 unchanged. The lists contain the answers, so this is a ceiling and no product
 change; a realistic glossary/UI decision remains open. `runs/E-022/RESULT.md`.
+
+**Step 3 → E-026 (pre-registered 2026-11-23).** Realistic lists: distractors
+only (harm, 500 and 2,000 terms), partial recall (*p* = 0.5 benefit, 0.25
+report-only) and a 2,000-term dilution check, bonus grid {1, 2, 3, 5} on
+R-S1-cal, one S1-dev veto of the distractor-only list at the chosen bonus.
+Pass → the glossary is exposed as an opt-in runtime option; fail → it stays
+unexposed. `experiments/E-026-e022-glossary.md`.
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 

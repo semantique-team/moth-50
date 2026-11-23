@@ -46,7 +46,10 @@ open (D32). **E-025/E-020** added 3,521 filtered LLM sentences to the LM: the
 packed LM fits at 7,833,032 B but R-S1-cal is a tie (12.8917 / 75.6291 vs
 12.8469 / 75.4967), so E-034c stays (D33). The plan is
 `experiments/next-experiments.md`; E-004, E-009–E-012, E-016–E-018, E-022–E-025
-have run, the rest needs training. Read `STATUS.md` first when resuming.
+have run. **D34** rules out new recordings and re-scopes the training arms;
+**E-026** (E-022 step 3: realistic glossary, harm and partial recall, no
+training) is pre-registered and is the next step, the rest needs training. Read
+`STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -228,7 +231,7 @@ tools/browser_parity.py   browser-vs-Python identity and paired WER/ETA (E-016)
 tools/e018_whisper.py     Whisper teacher runner (E-018)
 tools/e018_teacher.py     Canary/Voxtral teacher runner (E-018)
 tools/e018_summary.py     teacher table and selection rule (E-018)
-tools/keyterm_probe.py    oracle/distractor ContextualBias probe (E-022)
+tools/keyterm_probe.py    oracle/distractor/partial-recall ContextualBias probe (E-022, E-026)
 tools/e020_generate.py    pinned LLM text generation (E-020/E-025)
 tools/e020_filter.py      leakage/quality filter for generated text
 tools/e020_combine.py     combine base corpus and filtered text

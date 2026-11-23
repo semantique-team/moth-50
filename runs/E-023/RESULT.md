@@ -173,6 +173,14 @@ entirely below zero, so the §9 rule **passes**. Report-only, per speaker: S1
 `control_it` 7.84 / —, `control_en` 15.97 / 85.42. The read was declared
 repeated and vetoed only; it did not rank or change the seed, decoder or LM.
 
+Deltas against E-005 + E-034c (report-only, added 2026-11-23 from
+`t600-s0.json` and `runs/E-004/t600-e034c-int8.json`): every speaker improves,
+WER / ETA S1 −1.98 / +1.79, S2 −0.70 / +1.98, S3 −1.53 / +2.25 pp. Every
+category improves except **`switch`** (WER +0.22, ETA **−2.03** pp, 60 clips)
+and `control_en` (0.00 / 0.00, 20 clips). `switch` therefore goes the same way
+as on R-S1-cal (−2.43) and the opposite way to S1-dev; it is the residual risk
+named in E-002 §9 and is reported first by every later arm (D34).
+
 **Package `0.9.7-e023-r1`:** **49,203,776 B**, **796,224 B** of room; graph
 `85abd830…`, E-034c packed LM `7a4332f1…` (7,787,184 B), 16 kHz VAD
 `7ed98ddb…`. Export report: `export-report-0.9.7.json` (FP32/INT8 top-1
