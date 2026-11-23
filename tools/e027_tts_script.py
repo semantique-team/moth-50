@@ -75,7 +75,7 @@ ELISION = re.compile(
     r"^((?:l|un|dell|all|dall|nell|sull|coll|quell|quest|d|c|s|m|t|v|n)')(.+)$",
     re.IGNORECASE,
 )
-EDGE_PUNCT = ".,;:!?\"()[]{}«»“”‘…-–—"
+EDGE_PUNCT = '.,;:!?"()[]{}«»“”‘…-–—'
 DIGIT = re.compile(r"\d")
 
 
