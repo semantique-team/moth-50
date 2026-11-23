@@ -3,6 +3,7 @@ __pycache__/
 .venv/
 .pytest_cache/
 .ruff_cache/
+node_modules/
 
 # Data and model artifacts: never in git
 data/raw/
