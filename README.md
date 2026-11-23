@@ -39,9 +39,11 @@ words, so the first recipe ablation is **E-023 R1** (encoder LR 3e-5),
 pre-registered and **authorized 2026-11-21** (`experiments/next-experiments.md`).
 Seed mean (both seeds, 40,000 steps, 15.78/15.80 h): dev-macro **14.3578 %**
 (−2.63 pp vs E-005), S1-dev **13.7911 / 74.6826**, R-S1-cal **12.6679 /
-75.4305**. The cal `control_en`/`switch` 0.5 pp clause misses (CIs include
-zero), so the formal gate **fails on 2b**; R2 or a dated amendment is the
-decision. E-017 is
+75.4305**. The cal `control_en`/`switch` 0.5 pp clause missed (CIs include
+zero); the dated, post-hoc amendment E-002 §9 (D26, 2026-11-23) makes it
+report-only, as §8.4 already required, and accepts R1. **Seed 0** is the product
+candidate; it replaces E-005 only if a pre-registered T-600 release guard (no
+pooled WER/ETA regression against E-005 + E-034c) passes. E-017 is
 done: the 400-cue `R-S1-cal` set is reviewed, recorded (400/400, 16.95 min),
 level-matched to S1-dev (−16.58 dB), built into `manifests/R-S1-cal.jsonl`
 (`split: dev`) and `data/shards/s1-cal`, and frozen under **E-002 §8**

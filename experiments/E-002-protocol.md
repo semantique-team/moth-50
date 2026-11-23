@@ -289,3 +289,72 @@ control_it has no English terms. This is the control side of R1's paired gate,
 not a gate result; `gate_eligible` is false because the LM is E-034c, not A3.
 `runs/E-017/control-e005-e034c.json`, `runs/E-017/RESULT.md`.
 
+## 9. Amendment 2026-11-23 — E-023 clause 2b and the R1 release guard (written after the E-023 result, before any further readout)
+
+This amendment is **post-hoc**: the E-023 gate had already been read
+(`runs/E-023/RESULT.md`). It changes one clause, says why, and fixes the
+release guard before R1 is read on T-600 or FLEURS. No other gate moves.
+
+1. **What failed.** E-023 clause 2b required the R-S1-cal `control_en` and
+   `switch` ETA point estimates to be within 0.5 pp of E-005 + E-034c. Seed
+   mean: `control_en` **86.50** vs 88.33 (−1.83 pp, CI [−4.97, +1.16]),
+   `switch` **71.18** vs 73.61 (−2.43 pp, CI [−8.21, +3.36]). Gates 1 (dev-macro
+   −2.6320 pp [−2.8253, −2.4515]), 2 pooled (R-S1-cal WER −1.2534 pp
+   [−2.3767, −0.0446], ETA −0.1987 pp [−2.2603, +1.8844]), 3 (S1-dev WER
+   −1.1833 pp [−1.7660, −0.5459], ETA +0.7568 pp [−0.5000, +2.1149]) and 4
+   (INT8 on dev-macro) passed.
+2. **Clause 2b becomes report-only.** Reasons, none of which depends on the
+   direction of the result:
+   - it contradicts §8.4, which already made category-level ETA on R-S1-cal
+     report-only;
+   - it is below the set's resolution: on R-S1-cal `control_en` has **300**
+     English reference words and `switch` **144**, so 0.5 pp is 1.5 and
+     **0.72** words. The seed-mean misses are 5.5 words (control 265, R1
+     261 / 258) and 3.5 words (control 106, R1 102 / 103);
+   - seed-to-seed spread of one recipe on the same set is larger than the
+     clause: `single_word` 84.00 vs 76.00 (R1 s0 / s1), `switch` 66.67 vs
+     70.14 (E-011 s0 / s1), while the control has a single seed.
+3. **Residual risk, recorded.** On R-S1-cal both R1 seeds are below E-005 on
+   both categories, and `control_en` WER is worse on both seeds (13.67 →
+   14.67 / 16.00 %). A loss of 1–2 pp on S1's English is neither shown nor
+   excluded. Seen before this amendment and **not a ranking input**: on S1-dev
+   (read as gate 3; 119 `control_en` and 128 `switch` clips) the same
+   categories move the other way, `control_en` 84.35 → 84.82 / 85.41 and
+   `switch` 80.27 → 81.63 / 82.31, where E-011 lost them (82.00 / 82.59 and
+   74.83 / 78.68).
+4. **Gate 4 is read on dev-macro**, as in E-011: INT8 − FP32 = +0.0641 pp (s0),
+   −0.0177 pp (s1), +0.0232 pp seed mean. R-S1-cal INT8 cost is reported, not
+   gated: WER +0.0895 pp (s0) / +0.4924 pp (s1), ETA 0.00 / −0.13 pp.
+5. **Verdict under this amendment.** E-023 R1 **passes** and is the final-recipe
+   candidate. R2 as pre-registered (E-011 at encoder LR 1e-4 with gold ×20) is
+   **withdrawn**: R1 identified the encoder LR as the main factor and P7 found
+   H2 saturated. Any further recipe arm starts from R1 under its own
+   pre-registration.
+6. **Seed.** Chosen by the §8.3 rule, R-S1-cal pooled ETA: **seed 0**
+   (75.4967 % vs 75.3642 %, 570 vs 569 of 755 terms). Seed 1 is never read on
+   T-600 or FLEURS.
+7. **Release guard (veto only; fixed here, before the readout).** One INT8
+   readout of R1 s0 (`runs/E-023/release-s0/model.int8.onnx`, sha256
+   `85abd830…`) with E-034c and the frozen decoder 0.55 / 2.7, beam 12, top-k
+   10, on T-600 (`manifests/test.jsonl`, sha256 `f9147c85…`,
+   `data/shards/t600`), paired against the existing control hypotheses
+   `runs/E-004/t600-e034c-int8.hyp.jsonl` (E-005 + E-034c, 13.7041 % /
+   76.1266 %). This is a **declared repeated read** of T-600.
+   - **Pass** iff the §6.2 rule holds on pooled T-600: the WER difference CI is
+     not entirely above zero and the ETA difference CI is not entirely below
+     zero.
+   - **Report-only:** per speaker (S1, S2, S3; 200 clips each, a range, not a
+     gate), per category (`control_en` and `switch` first), insertion rate.
+   - T-600 vetoes; it never ranks and never changes the seed, the decoder or
+     the LM.
+8. **Outcome.** Pass → R1 s0 + E-034c is the product (D26): export the package
+   as `0.9.7-e023-r1` with the INT8 graph sha256 equal to `85abd830…`, check it
+   in the browser (load, exact transcript of `T/S1/S1_0001.wav`, RTFx), and read
+   FLEURS-IT/EN once, report-only, against the E-034c product hypotheses
+   (`runs/E-004/fleurs-*-e034c-int8.hyp.jsonl`). P11 is no longer a
+   prerequisite: the R1 runs are the full-length final recipe on two seeds; a
+   third seed with per-eval checkpoints stays optional. Fail → E-005 + E-034c
+   stays the product and R1 is recorded as not adopted.
+
+Artifacts go to `runs/E-023/`.
+

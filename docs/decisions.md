@@ -463,6 +463,46 @@ the product**. Artifacts: `runs/E-004/export-report-e034c.json`,
 `runs/E-004/browser-run-e034c.json`, `runs/E-004/release-e034c/`,
 `runs/E-004/fleurs-RESULT.md`.
 
+## D26 — E-023 R1 accepted by amendment; seed 0 is the product candidate (2026-11-23)
+
+E-023 R1 (the E-011 recipe with `lr_encoder` 3e-5: base+6, 40,000 steps, EMA
+0.9998, gold ×50) failed its pre-registered gate only on clause 2b, the
+R-S1-cal `control_en` / `switch` ETA within 0.5 pp of E-005. Seed mean against
+E-005 + E-034c, INT8, frozen decoder:
+
+| Set | E-005 + E-034c | R1 seed mean | Δ |
+|---|---:|---:|---|
+| Dev macro | 16.9897 % | **14.3578 %** | **−2.6320 pp** (CI excludes 0) |
+| S1-dev | 14.9744 % / 73.9258 % | **13.7911 % / 74.6826 %** | WER **−1.1833 pp** (CI excludes 0), ETA +0.7568 pp |
+| R-S1-cal | 13.9212 % / 75.6291 % | **12.6679 % / 75.4305 %** | WER **−1.2534 pp** (CI excludes 0), ETA −0.1987 pp |
+| R-S1-cal `control_en` / `switch` ETA | 88.33 / 73.61 | 86.50 / 71.18 | −1.83 / −2.43 pp (CIs include 0) |
+
+**Decision (owner, 2026-11-23): amend rather than run R2** (E-002 §9). Clause
+2b becomes report-only because it contradicted §8.4 (category ETA on R-S1-cal
+is report-only) and was below the set's resolution: 0.5 pp is 1.5 words of 300
+on `control_en` and 0.72 words of 144 on `switch`, while the misses are 5.5
+and 3.5 words and the same-recipe seed spread on that set reaches 3.5–8 pp. The
+amendment is post-hoc and says so. The residual risk is recorded: on R-S1-cal
+both seeds lose a little on S1's English, which the data neither show nor
+exclude.
+
+- **R1 is the final recipe.** R2 as pre-registered (back to 1e-4 with gold
+  ×20) is withdrawn; P7 found H2 saturated and R1 identified the encoder LR.
+- **Seed 0** is chosen by the §8.3 rule (R-S1-cal pooled ETA 75.4967 vs
+  75.3642 %); seed 1 is not read on T or FLEURS.
+- **Adoption is conditional** on the E-002 §9 release guard: one declared
+  repeated read of T-600 for seed 0, paired against the E-005 + E-034c
+  hypotheses, no WER or ETA regression with the CI excluding zero (§6.2);
+  speakers and categories are report-only. Pass → package `0.9.7-e023-r1`
+  (same 49.20 MB layout, graph `85abd830…`), browser check, FLEURS once.
+  Fail → E-005 + E-034c stays the product.
+- **P11 is no longer a prerequisite**; a third seed with per-eval checkpoints
+  stays optional.
+
+Status: accepted as the product candidate; **E-005 + E-034c remains the
+shipped product until the guard passes.** Artifacts: `runs/E-023/RESULT.md`,
+`experiments/E-002-protocol.md` §9.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

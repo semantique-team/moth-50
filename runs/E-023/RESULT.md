@@ -1,11 +1,13 @@
 # E-023 — R1: E-011 with encoder LR 3e-5
 
-> **Status: both seeds complete; formal gate FAIL on the R-S1-cal category
-> clause (2b).** Seed mean: dev-macro **14.3578 %** (−2.6320 pp), S1-dev
-> **13.7911 % / 74.6826 %** (no regression), R-S1-cal **12.6679 % / 75.4305 %**
-> (ETA tie, WER improves). `control_en` and `switch` recover vs E-011 but stay
-> 1.83 / 2.43 pp below E-005 on R-S1-cal, missing the pre-registered 0.5 pp
-> clause. Nothing is running.
+> **Status: both seeds complete; the pre-registered gate failed only on the
+> R-S1-cal category clause (2b), and R1 is accepted by the dated amendment
+> E-002 §9 (D26, 2026-11-23).** Seed mean: dev-macro **14.3578 %**
+> (−2.6320 pp), S1-dev **13.7911 % / 74.6826 %** (no regression), R-S1-cal
+> **12.6679 % / 75.4305 %** (ETA tie, WER improves). `control_en` and `switch`
+> recover vs E-011 but stay 1.83 / 2.43 pp below E-005 on R-S1-cal; under §9
+> that clause is report-only. **Seed 0** is the product candidate; adoption
+> waits for the T-600 release guard. Nothing is running.
 
 ## Question
 
@@ -107,6 +109,48 @@ Two explicit owner options:
    (13.3820/75.1465 vs 14.2001/74.2188).
 2. **Follow the pre-registration:** R1 fails; run R2 (E-011 with gold ×20)
    under a dated amendment and do not start P11.
+
+## Amendment 2026-11-23 (E-002 §9, D26)
+
+**The owner chose option 1.** The amendment is post-hoc and is labelled as
+such; it changes clause 2b only and fixes the release guard before any further
+readout. The seed is chosen on R-S1-cal alone; the dev-macro and S1-dev numbers
+in option 1 are context, not the rule.
+
+- **2b becomes report-only.** It contradicted E-002 §8.4 (category ETA on
+  R-S1-cal is report-only) and was below the set's resolution. On R-S1-cal
+  `control_en` has 300 English reference words and `switch` 144, so 0.5 pp is
+  1.5 and 0.72 words; the seed-mean misses are 5.5 words (265 → 261 / 258) and
+  3.5 words (106 → 102 / 103). Same-recipe seed spread on the set is larger
+  than the clause (`single_word` R1 84.00 / 76.00, `switch` E-011 66.67 /
+  70.14), and the control has one seed.
+- **Residual risk:** both seeds lose a little on `control_en` and `switch` on
+  R-S1-cal, and `control_en` WER is worse on both (13.67 → 14.67 / 16.00 %). Seen
+  before the amendment, not a ranking input: on S1-dev the same categories
+  improve on both seeds (`control_en` 84.35 → 84.82 / 85.41, `switch` 80.27 →
+  81.63 / 82.31).
+- **Gate 4 is read on dev-macro:** INT8 − FP32 +0.0641 / −0.0177 pp (s0 / s1).
+  R-S1-cal is reported: WER +0.0895 / +0.4924 pp, ETA 0.00 / −0.13 pp.
+- **R2 is withdrawn**; further recipe arms start from R1.
+- **Seed 0** by the E-002 §8.3 rule (R-S1-cal ETA 75.4967 vs 75.3642 %, 570 vs
+  569 of 755 terms).
+- **Release guard (pending):** one declared repeated read of T-600 with
+  `release-s0` + E-034c against `runs/E-004/t600-e034c-int8.hyp.jsonl`; pass iff
+  pooled WER and ETA show no regression with the CI excluding zero (E-002
+  §6.2); speakers and categories report-only. Pass → package `0.9.7-e023-r1`,
+  browser check, FLEURS once (report-only). Fail → E-005 + E-034c stays.
+
+```bash
+shasum -a 256 runs/E-023/release-s0/model.int8.onnx   # must be 85abd830…
+uv run --frozen --project ../moth-stt --extra training -- \
+  python tools/frozen_readout.py --mode mixed --name t600 \
+  --onnx runs/E-023/release-s0/model.int8.onnx \
+  --lm runs/E-004/lm_e034c_n2.bin --allow-other-lm \
+  --manifest ../moth-cs-dataset/manifests/test.jsonl --shards data/shards/t600 \
+  --config training/configs/base6-long.toml \
+  --reference-hyp runs/E-004/t600-e034c-int8.hyp.jsonl \
+  --out runs/E-023/t600-s0.json --hyp-out runs/E-023/t600-s0.hyp.jsonl
+```
 
 ## Artifacts
 

@@ -1,4 +1,4 @@
-# MOTH-50 — session status and handoff (2026-11-21)
+# MOTH-50 — session status and handoff (2026-11-23)
 
 This is the first file to read when resuming. It records what is done, what is
 running, and the exact next commands. Update it at the end of each session.
@@ -13,14 +13,16 @@ running, and the exact next commands. Update it at the end of each session.
   +1.1230 pp ETA vs A3c) and T-600 **13.7041 % / 76.1266 %** (−0.4870 / +1.0550
   vs A3c, CIs include zero; declared repeated read). E-034 B is retired.
   `runs/E-004/RESULT.md`, `docs/decisions.md` D25.
-- **E-023 R1 both seeds complete (2026-11-23 05:49); formal gate FAIL on 2b.**
-  Seed mean: dev-macro **14.3578 %** (−2.6320 pp [−2.8253, −2.4515], pass);
-  S1-dev **13.7911 % / 74.6826 %** (WER −1.1833, ETA +0.7568, pass);
-  R-S1-cal **12.6679 % / 75.4305 %** (WER −1.2534, ETA tie). On cal,
-  `control_en` **86.50** vs 88.33 (−1.83) and `switch` **71.18** vs 73.61
-  (−2.43) miss the 0.5 pp clause; CIs include zero. INT8 cost: dev-macro
-  +0.0232 pp, cal WER +0.2910 pp, ETA 0.0. No product change adopted; R2 or a
-  dated amendment is the decision. `runs/E-023/RESULT.md`.
+- **E-023 R1 both seeds complete (2026-11-23 05:49); 2b missed, R1 accepted
+  by amendment (E-002 §9, D26, 2026-11-23).** Seed mean: dev-macro
+  **14.3578 %** (−2.6320 pp [−2.8253, −2.4515], pass); S1-dev
+  **13.7911 % / 74.6826 %** (WER −1.1833, ETA +0.7568, pass); R-S1-cal
+  **12.6679 % / 75.4305 %** (WER −1.2534, ETA tie). On cal, `control_en`
+  **86.50** vs 88.33 (−1.83) and `switch` **71.18** vs 73.61 (−2.43) missed
+  the 0.5 pp clause; §9 makes it report-only (it contradicted §8.4 and was
+  1.5 / 0.72 words). R2 is withdrawn. **Seed 0** (cal ETA rule) is the
+  product candidate; **adoption waits for the T-600 release guard**, and
+  E-005 + E-034c stays shipped until then. `runs/E-023/RESULT.md`.
 - **E-005 A3 gate (historical):** `base+6`, 16,000 steps, pinned A3 LM. Frozen
   beam+A3 dev-macro **17.5565 % FP32 / 17.6212 % INT8** against the **23.0170 %**
   reference (paired **−5.4605 / −5.3957 pp**, CIs exclude zero). Held-out S1-dev
@@ -41,7 +43,8 @@ running, and the exact next commands. Update it at the end of each session.
   moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.
   E-017 is done (400-cue `R-S1-cal` reviewed, recorded, level-matched,
   manifest + shards built, E-002 §8 written); E-018–E-022 have not run.
-  E-023 is pre-registered and not authorized.**
+  E-023 R1 ran on two seeds and is accepted by amendment (E-002 §9, D26);
+  its T-600 release guard is pending.**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
   without an explicit go-ahead.
@@ -118,50 +121,79 @@ running, and the exact next commands. Update it at the end of each session.
 | E-034c package/browser | **done**: 49,203,774 B (796,226 B room), graph `14ba2034…`, load 68.7 ms, exact transcript, RTFx 29.35 | `runs/E-004/export-report-e034c.json`, `runs/E-004/browser-run-e034c.json` |
 | P6 E-011 + E-034c | **FAIL on S1-dev ETA**: dev-macro −1.6202 pp (pass); S1-dev WER −0.5040 (tie), ETA −1.7578 [−3.1844, −0.1422]; s0/eta −2.64, s1 −0.88; not adopted | `runs/E-011/p6/RESULT.md` |
 | P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
-| E-023 R1 | **both seeds complete; FAIL on 2b**: seed mean dev-macro 14.3578 % (−2.63 pp, pass), S1-dev 13.7911/74.6826 (pass), cal 12.6679/75.4305 (pooled pass); control_en 86.50 vs 88.33 and switch 71.18 vs 73.61 miss the 0.5 pp clause; INT8 cost 0.0232 pp dev-macro, 0.2910 pp cal WER | `runs/E-023/RESULT.md`, `runs/E-023/p6/` |
+| E-023 R1 | **both seeds complete; 2b missed, accepted by E-002 §9 (D26)**: seed mean dev-macro 14.3578 % (−2.63 pp, pass), S1-dev 13.7911/74.6826 (pass), cal 12.6679/75.4305 (pooled pass); control_en 86.50 vs 88.33 and switch 71.18 vs 73.61 now report-only; seed 0 chosen; T-600 guard pending | `runs/E-023/RESULT.md`, `runs/E-023/p6/` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
 | E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; control E-005 + E-034c **13.9212 % WER / 75.6291 % ETA**; no R1 readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/` |
 
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next step: P7/P10; no training without go-ahead
+## Next step: the E-023 release guard on T-600; no training without go-ahead
 
-**E-034c is adopted (D25)** and its package/browser check is done. **P6 ran and
-failed on the S1-dev ETA veto:** dev-macro seed mean 15.3695 % vs 16.9897
-(−1.6202 pp, gate passes), clean S1-dev seed mean 14.4704 / 72.1680 vs
-14.9744 / 73.9258, WER −0.5040 (CI includes 0) but **ETA −1.7578 pp
-[−3.1844, −0.1422]**. E-011 + E-034c is not adopted; E-005 + E-034c stays. The
-loss is recipe-level (`control_en`, `switch`, `single_word`), not A3-specific.
-Nothing is running.
+**E-023 R1 is accepted by amendment (E-002 §9, D26, 2026-11-23); seed 0 is the
+product candidate.** E-005 + E-034c stays shipped until the guard below passes.
+The guard is fixed in §9 **before** the readout; do not change it after seeing
+the numbers. Nothing is running.
 
-1. **P7 is done; E-023 R1 is pre-registered and NOT authorized.** Gold is
-   saturated in E-005 (0.20 %) and E-011 (0.08/0.14 %), so H2 is not the main
-   cause; the ETA misses are broad short-English substitutions. R1 (encoder LR
-   3e-5, config `training/configs/base6-e023-r1.toml`) needs **E-017 first**
-   and a go-ahead. R2 (gold ×20) only if R1 fails.
-2. **P3 is done** (FLEURS-IT 14.8238 %, EN 30.2675 %; both far better than
-   0.8.1, no ETA). **P4/E-016 — 1-thread RTFx** and vendoring `moth-stt/web/`
-   at `b0fa11c` + `0e15442` remain.
-3. **E-017 is done** — `R-S1-cal` is reviewed, recorded (400/400, 16.95 min),
-   level-matched (−16.58 dB) and built into `manifests/R-S1-cal.jsonl`
-   (`split: dev`) and `data/shards/s1-cal` (400 clips, 0 errors). E-002 §8 is
-   written and the control **E-005 + E-034c** was read once on it: **13.9212 %
-   WER / 75.6291 % ETA**. **R1 (E-023) is complete on both seeds**: dev-macro
-   seed mean 14.3578 % (−2.63 pp), S1-dev 13.7911 / 74.6826, cal
-   12.6679 / 75.4305. It **fails 2b** (`control_en` −1.83, `switch` −2.43 vs
-   E-005; CIs include zero). The next decision is a dated amendment to accept
-   R1 or the pre-registered R2 (gold ×20); no P11 without a passing recipe.
-   New cues are not from `text/pool.jsonl`; future LM corpora must exclude the
-   pool.
-4. **P8** (×3-term unpruned LM, ranked on E-017) and **P11** final run only
-   after a recipe fix; P10 R1/R2 are the recipe candidates. Training needs an
-   explicit go-ahead.
-5. **Second Mac:** E-018 (teacher bake-off), E-019/E-020/E-021 data and LM arms,
-   E-006. P0 is done, so its readouts are machine-comparable.
+1. **T-600 release guard (veto only, declared repeated read, seed 0 only).**
+   Pass iff the pooled WER difference CI is not entirely above zero and the
+   pooled ETA difference CI is not entirely below zero (§6.2), against the
+   E-005 + E-034c hypotheses (13.7041 % / 76.1266 %). Report S1/S2/S3 and
+   `control_en` / `switch`; they do not gate. Seed 1 is never read on T.
 
-The full proposed order is `docs/review-2026-11-21.md` §7–§9; P2 and P6 update
-it: E-034c replaced E-034 B, and P6 failed on S1-dev ETA, so P7/P10 are next.
+   ```bash
+   shasum -a 256 runs/E-023/release-s0/model.int8.onnx   # must be 85abd830…
+   uv run --frozen --project ../moth-stt --extra training -- \
+     python tools/frozen_readout.py --mode mixed --name t600 \
+     --onnx runs/E-023/release-s0/model.int8.onnx \
+     --lm runs/E-004/lm_e034c_n2.bin --allow-other-lm \
+     --manifest ../moth-cs-dataset/manifests/test.jsonl --shards data/shards/t600 \
+     --config training/configs/base6-long.toml \
+     --reference-hyp runs/E-004/t600-e034c-int8.hyp.jsonl \
+     --out runs/E-023/t600-s0.json --hyp-out runs/E-023/t600-s0.hyp.jsonl
+   ```
+
+2. **If it passes:** export the product package `0.9.7-e023-r1` (the INT8 graph
+   sha256 must equal `85abd830…`), run the browser check as in
+   `runs/E-004/browser-run-e034c.json`, and read FLEURS-IT/EN once,
+   report-only, against `runs/E-004/fleurs-*-e034c-int8.hyp.jsonl` as in P3.
+   Then record the adoption in D26, README and here.
+
+   ```bash
+   uv run --frozen --project ../moth-stt --extra export -- python tools/export_release.py \
+     --checkpoint runs/E-023/r1-s0/checkpoints/ckpt_best.pt \
+     --config training/configs/base6-e023-r1.toml \
+     --lm runs/E-004/lm_e034c_n2.bin --allow-other-lm \
+     --out-dir runs/E-023/release-0.9.7 --version 0.9.7-e023-r1
+   for lang in it en; do
+     uv run --frozen --project ../moth-stt --extra training -- \
+       python tools/frozen_readout.py --mode mixed --name fleurs-${lang} \
+       --onnx runs/E-023/release-0.9.7/model.int8.onnx \
+       --lm runs/E-004/lm_e034c_n2.bin --allow-other-lm \
+       --manifest ../moth-stt/data/manifests/fleurs_${lang}_test.jsonl \
+       --shards data/shards/fleurs_${lang}_test --config training/configs/base6-long.toml \
+       --out runs/E-023/fleurs-${lang}-s0.json --hyp-out runs/E-023/fleurs-${lang}-s0.hyp.jsonl
+   done
+   ```
+
+3. **If it fails:** E-005 + E-034c stays the product; record R1 as not adopted
+   in D26 and `runs/E-023/RESULT.md`. R2 stays withdrawn; any further recipe
+   arm starts from R1 under its own pre-registration.
+4. **P11 is no longer a prerequisite** (R1 is the full-length final recipe on
+   two seeds); a third seed with per-eval checkpoints stays optional.
+5. **Independent of the guard:** P4/E-016 (1-thread RTFx and vendoring
+   `moth-stt/web/` at `b0fa11c` + `0e15442`; the package depends on local
+   commits in an archived repository until then), P8 (×3-term unpruned LM,
+   ranked on R-S1-cal) and, on the second Mac, E-018 (teacher bake-off).
+   E-019/E-020/E-021 and E-006 follow. Training needs an explicit go-ahead.
+
+`R-S1-cal` and S1-dev stay as they are: no new recordings are planned. New
+cues never come from `text/pool.jsonl`, and future LM corpora must exclude the
+pool.
+
+The full proposed order is `docs/review-2026-11-21.md` §7–§9; P2, P6 and E-023
+update it: E-034c replaced E-034 B, P6 failed on S1-dev ETA, P10 R1 is accepted
+by amendment and P11 is optional.
 
 Reproduction of the corrected product readout (E-034c; the old E-034 B command
 is the same with `--lm runs/E-004/lm_e034c_n2.bin` replaced by the Moth build):
@@ -279,10 +311,11 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D24, including checkpointing (D15), init (D16),
+- `docs/decisions.md` — D1–D26, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
-  MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23) and frontier
-  models as teachers (D24, proposed).
+  MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier
+  models as teachers (D24, proposed), E-034c (D25) and E-023 R1 by amendment
+  (D26).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
   cannot give MOTH-50; licences; teachers.

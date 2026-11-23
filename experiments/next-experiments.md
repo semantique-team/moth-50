@@ -100,7 +100,7 @@ after the session.
 | 17 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | ~1.6 h MPS | 0 |
 | 18 | E-006 | Remaining data arms | product baseline | days | 0 |
 | 19 | E-008 | External evaluation and ceilings | final model | hours | 0 |
-| 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | ~32 h MPS (2 seeds) | 0 |
+| 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b missed, accepted by E-002 §9 (D26); T-600 guard pending** | 0 |
 
 The FLEURS readout, E-017 and E-018 need no training and can run while the Mac
 is otherwise idle; E-016 is engineering and can run in parallel. The full order
@@ -627,14 +627,16 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
 
 ### E-023 — R1: E-011 with encoder LR 3e-5 (recipe ablation, H1)
 
-**Status: both seeds complete 2026-11-23; formal gate FAIL on 2b.** E-017 is
+**Status: both seeds complete 2026-11-23; the pre-registered gate failed only
+on 2b, and R1 is accepted by the dated amendment E-002 §9 (D26).** E-017 is
 done and frozen (`manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, E-002 §8),
 the control E-005 + E-034c is 13.9212 % WER / 75.6291 % ETA on it. Seed mean
 (`runs/E-023/r1-s{0,1}`, 40,000 steps each, 15.78/15.80 h): dev-macro
 **14.3578 %** (−2.6320 pp, pass), S1-dev **13.7911 / 74.6826** (pass),
 R-S1-cal **12.6679 / 75.4305** (pooled ETA tie; `control_en` −1.83 and
-`switch` −2.43 vs E-005 miss the 0.5 pp clause). No product change adopted;
-R2 or a dated amendment is the decision. `runs/E-023/RESULT.md`.
+`switch` −2.43 vs E-005 miss the 0.5 pp clause, now report-only). Seed 0 is
+the product candidate; adoption waits for the T-600 release guard (E-002 §9).
+`runs/E-023/RESULT.md`.
 
 - **Why:** P6 re-read E-011 with E-034c and failed on clean-S1-dev ETA
   (−1.7578 pp [−3.1844, −0.1422] on the seed mean) while dev-macro passed
@@ -688,6 +690,16 @@ include zero), so the pre-registered gate **FAILS on 2b**. Gates 1, 2 pooled,
 3 and 4 (dev-macro) pass; INT8 cost 0.0232 pp dev-macro, 0.2910 pp cal WER,
 0.0 cal ETA. R2 or a dated amendment accepting R1 is the next decision.
 `runs/E-023/RESULT.md`.
+
+**Amendment (2026-11-23, E-002 §9, D26; post-hoc).** The owner amended rather
+than ran R2. Clause 2b becomes report-only: it contradicted E-002 §8.4, and
+0.5 pp was 1.5 of 300 words on `control_en` and 0.72 of 144 on `switch`, below
+the seed spread of the set. R1 passes and is the final recipe; R2 as written
+is withdrawn. **Seed 0** is chosen on R-S1-cal pooled ETA (75.4967 vs
+75.3642 %). Adoption waits for a release guard fixed before the readout: one
+declared repeated read of T-600 against the E-005 + E-034c hypotheses, no
+pooled WER or ETA regression with the CI excluding zero; speakers and
+categories report-only. P11 is no longer a prerequisite.
 
 ### E-008 addition — ceilings for the paper
 
