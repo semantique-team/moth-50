@@ -51,8 +51,8 @@ external evidence.
 | E-015 | 25 Hz extra blocks (review P7) | not triggered: E-016 passed the 1-thread gate at 21.17× (20 s) |
 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | **done 2026-11-23 (D28/D29)**: 1-thread **10.93/19.74/21.17×** (pass); browser default +0.72 pp WER vs Python, `segment:false` +0.35 pp (tie); **E-016b min-runs-3 13.7180 % (+0.34 pp, tie)**; runtime vendored at `0e15442`; `runs/E-016/RESULT.md`, `runs/E-016/E-016b.md` |
 | E-017 | Mixed calibration set separate from the S1-dev gate (new session or S1-dev split) | **done 2026-11-21, frozen**: 400/400 takes, level-matched, manifest + shards, E-002 §8; control E-005 + E-034c 13.9212 / 75.6291; `runs/E-017/RESULT.md` |
-| E-018 | Teacher bake-off on the gold train set (Parakeet, Canary, Whisper-turbo, Voxtral; optional SOV/Nemotron) | proposed; no training |
-| E-019 | Teacher labels: Granary Italian, VoxPopuli unlabelled, unscripted S1 sessions | proposed; needs E-018; fine-tune from R1 |
+| E-018 | Teacher bake-off on the gold train set (Parakeet, Canary, Whisper-turbo, Voxtral; optional SOV/Nemotron) | **done 2026-11-23, no mixed teacher (D31)**: Parakeet 9.95/79.47/62.71, Whisper-it 9.92/80.12/70.76, Whisper-auto 10.99/82.60/69.92, Canary 13.60/68.62/61.44; Voxtral excluded (cost); `runs/E-018/RESULT.md` |
+| E-019 | Teacher labels: Granary Italian, VoxPopuli unlabelled, unscripted S1 sessions | proposed; **monolingual Italian only (D31)**; fine-tune from R1; needs go-ahead |
 | E-020 | LLM-written mixed IT–EN text for the A3-style LM | proposed; needs E-017 (done) and a clean corpus |
 | E-021 | Targeted acronym, brand and elision data (recordings + permissive TTS) | proposed; fine-tune from R1 |
 | E-022 | Keyterm (contextual) biasing re-test as a product feature | proposed, conditional; Moth E-027 was negative |

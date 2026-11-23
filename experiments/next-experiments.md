@@ -3,8 +3,8 @@
 **Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
 and E-004 ran on 2026-11-19/21; E-016/P4, E-017 and E-023 ran on 2026-11-21/23,
 E-023 R1 is adopted (D27), the web runtime is vendored (D28), E-016b is
-adopted (D29) and E-024/P8 ran negative (D30); E-013–E-015 and E-018–E-022 have
-not run.**
+adopted (D29), E-024/P8 ran negative (D30) and E-018 found no qualifying mixed
+teacher (D31); E-013–E-015 and E-019–E-022 have not run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -560,11 +560,31 @@ attributed in its NOTICE (`tools/release_notice.TRAINING_SOURCES`).
   the faster one. The runner-up, if it qualifies, is the agreement filter in
   E-019. If none qualifies, E-019 keeps only monolingual Italian sources, where
   any candidate is far ahead of MOTH-50.
-- **Tooling (not yet written):** a runner that writes `{id, hyp}` JSONL per
-  teacher; Moth's `baselines/parakeet_runner.py` and `whisper_runner.py` are
-  the starting point.
-- **Cost:** Parakeet ran at RTFx 34 on 4 CPU threads in Moth E-017, so the gold
-  set takes ~2 min; the larger local candidates tens of minutes each.
+- **Tooling:** `tools/e018_whisper.py` (Whisper it/auto),
+  `tools/e018_teacher.py` (Canary/Voxtral) and `tools/e018_summary.py` (table
+  and selection rule); Parakeet uses Moth's `baselines/parakeet_sherpa.py`.
+- **Cost:** Parakeet ran at RTFx 25.5 on 4 CPU threads, so the gold set takes
+  ~2 min; Whisper turbo ~21 min (it) / ~38 min (auto); Canary ~4 min; Voxtral
+  is not feasible on the 16 GB M5.
+
+**Result (2026-11-23): no teacher qualifies.** Full gold set, 1,413 clips:
+
+| Candidate | WER | ETA | `italianized` ETA | RTFx | Qualifies |
+|---|---:|---:|---:|---:|---|
+| Parakeet TDT 0.6B v3 | 9.95 % | 79.47 % | 62.71 % | 25.48 | no |
+| Whisper large-v3-turbo, it | 9.92 % | 80.12 % | 70.76 % | 2.73 | no |
+| Whisper large-v3-turbo, auto | 10.99 % | 82.60 % | 69.92 % | 1.51 | no |
+| Canary-1B-v2, it | 13.60 % | 68.62 % | 61.44 % | 14.08 | no |
+| Voxtral Mini 3B | — | — | — | 0.009 | excluded (cost) |
+
+Parakeet is best on English-only (`control_en` 2.8 % WER) but weak on
+Italianized terms; Whisper/Canary are strong on Italian-only but translate
+English-only clips (`control_en` 54.5 / 102.2 %; Whisper auto fixes that to
+7.5 % at the cost of the Italian side). **No mixed IT–EN teacher is selected**
+and there is no runner-up for the agreement filter. E-019 keeps only monolingual
+Italian sources (Granary/VoxPopuli). The language-routed ensemble idea is
+recorded but not adopted. Artifacts: `runs/E-018/RESULT.md`,
+`runs/E-018/summary.json`, `data/sources.lock.json`.
 
 ### E-019 — Teacher labels (pseudo-label distillation)
 

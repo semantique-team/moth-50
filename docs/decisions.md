@@ -651,6 +651,42 @@ weighting is not a lever at the frozen 0.55 / 2.7 decoder. Next: E-018
 (teacher bake-off), then E-019/E-020 text and data. Artifacts:
 `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md`.
 
+## D31 — E-018: no mixed IT–EN teacher; E-019 stays monolingual Italian (2026-11-23)
+
+The teacher bake-off on the gold train set (1,413 clips, 57.6 min) found **no
+qualifying mixed IT–EN teacher** under the pre-registered rule (WER ≤ 7.0 %,
+ETA ≥ 85 %, `italianized` ETA ≥ 72.3 %):
+
+| Candidate | WER | ETA | italianized | RTFx |
+|---|---:|---:|---:|---:|
+| Parakeet TDT 0.6B v3 | 9.95 % | 79.47 % | 62.71 % | 25.48 |
+| Whisper large-v3-turbo, forced it | 9.92 % | 80.12 % | 70.76 % | 2.73 |
+| Whisper large-v3-turbo, auto | 10.99 % | 82.60 % | 69.92 % | 1.51 |
+| Canary-1B-v2, forced it | 13.60 % | 68.62 % | 61.44 % | 14.08 |
+
+Voxtral Mini 3B is pinned and licensed (Apache-2.0) but not feasible on the
+16 GB M5: one 2.62 s clip at RTFx 0.009 projects to >100 h for the set; it is
+excluded on cost, not accuracy. Models are pinned by revision and file hash in
+`data/sources.lock.json`; the runners are `tools/e018_whisper.py`,
+`tools/e018_teacher.py` and `tools/e018_summary.py`.
+
+The failure is structural, not a threshold artefact: Parakeet is the best on
+English-only (`control_en` 2.8 % WER) but weak on Italianized terms; Whisper
+and Canary are good on Italian-only but translate English-only clips
+(`control_en` 54.5 % and 102.2 %; Whisper auto fixes that to 7.5 % at the cost
+of the Italian side). A teacher that writes Italian for an English cue teaches
+the wrong mapping even when its Italian WER is good.
+
+- **No teacher selected; no runner-up** for the E-019 agreement filter.
+- **E-019 stays monolingual Italian** (Granary Italian, VoxPopuli Italian),
+  where the candidates are far ahead of MOTH-50; it does not label mixed
+  audio.
+- A language-routed ensemble (Parakeet for English, Whisper/Canary for Italian)
+  is recorded as an option but **not adopted**; it is outside the pre-registered
+  E-018 rule and needs its own experiment.
+- No product change. Artifacts: `runs/E-018/RESULT.md`,
+  `runs/E-018/summary.json`, `experiments/next-experiments.md` §E-018.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out

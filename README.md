@@ -36,9 +36,12 @@ The browser S1-dev WER is now **13.7180 %** vs Python 13.3820 % (+0.34 pp
 on a five-sentence diagnostic. **P8 (E-024)** built the unpruned E-034 LM with
 ×3 term weighting: byte-identical R-S1-cal hypotheses (12.8469 / 75.4967) and
 a tie on S1-dev (13.3966 / 75.0977), so it was **not adopted**; E-034c stays
-(D30). The plan is `experiments/next-experiments.md`; E-004, E-009–E-012,
-E-016, E-017, E-023 and E-024 have run, the rest has not. Read `STATUS.md`
-first when resuming.
+(D30). **E-018** found no qualifying mixed IT–EN teacher: Parakeet 9.95 % WER
+and Whisper/Canary 9.92 / 13.60 %, all below the ETA/italianized gates;
+Voxtral was excluded for cost on the 16 GB M5. E-019 therefore stays
+monolingual Italian (D31). The plan is `experiments/next-experiments.md`;
+E-004, E-009–E-012, E-016–E-018, E-023 and E-024 have run, the rest has not.
+Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -198,6 +201,7 @@ runs/E-003/, runs/E-005/  depth screen; long fine-tune, package, browser run
 runs/E-023/               R1 recipe, amended gate, guard, product package
 runs/E-016/               browser checks: RTFx, parity, vendored runtime smoke
 runs/E-024/               P8 ×3-term LM: build, pack, cal and S1-dev readouts
+runs/E-018/               teacher bake-off: pins, hyps, metrics, exclusion
 tests/                    tests for tools/ and the vendored code
 training/                 MOTH-50 trainer port (config, data, model, EMA, loop)
 training/configs/         E-003/E-005 configs, the E-010 arm, smoke configs
@@ -214,6 +218,9 @@ tools/frozen_readout.py   E-002 gate readout: beam 12 + A3 LM; dev-macro or a mi
 tools/serve_web.py        serve a release with the vendored web runtime
 tools/browser_probe.mjs   Playwright RTFx / S1-dev browser probe (E-016)
 tools/browser_parity.py   browser-vs-Python identity and paired WER/ETA (E-016)
+tools/e018_whisper.py     Whisper teacher runner (E-018)
+tools/e018_teacher.py     Canary/Voxtral teacher runner (E-018)
+tools/e018_summary.py     teacher table and selection rule (E-018)
 tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
 tools/release_notice.py   the MOTH-50 package NOTICE
