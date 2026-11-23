@@ -57,6 +57,7 @@ external evidence.
 | E-021 | Targeted acronym, brand and elision data (recordings + permissive TTS) | proposed; fine-tune from R1 |
 | E-022 | Keyterm (contextual) biasing re-test as a product feature | proposed, conditional; Moth E-027 was negative |
 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 (H1) | **done 2026-11-23, adopted (D27)**: 2b report-only (D26), T-600 guard passed 12.2993 / 78.1400 vs 13.7041 / 76.1266; product `0.9.7-e023-r1`; `runs/E-023/RESULT.md` |
+| E-024 | P8 ×3-term unpruned LM | **done 2026-11-23, not adopted (D30)**: same corpus/size/lossless; R-S1-cal identical (12.8469 / 75.4967, 0.0 pp), S1-dev tie (13.3966 / 75.0977); gate 1 failed; `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md` |
 
 The rationale, parameter counts and gates for E-003–E-008 are in
 `docs/architecture-options.md`; the corrected Moth evidence, the measurements

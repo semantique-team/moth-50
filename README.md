@@ -33,9 +33,12 @@ S1-dev the upstream browser default was **+0.72 pp** WER vs the Python readout
 VAD runs** for clips that fit one 30 s segment, two or more for longer audio.
 The browser S1-dev WER is now **13.7180 %** vs Python 13.3820 % (+0.34 pp
 [−0.13, +0.79], tie); a blanket auto-off was rejected because it lost 2.14 pp
-on a five-sentence diagnostic. The plan is
-`experiments/next-experiments.md`; E-004, E-009–E-012, E-016, E-017 and E-023
-have run, the rest has not. Read `STATUS.md` first when resuming.
+on a five-sentence diagnostic. **P8 (E-024)** built the unpruned E-034 LM with
+×3 term weighting: byte-identical R-S1-cal hypotheses (12.8469 / 75.4967) and
+a tie on S1-dev (13.3966 / 75.0977), so it was **not adopted**; E-034c stays
+(D30). The plan is `experiments/next-experiments.md`; E-004, E-009–E-012,
+E-016, E-017, E-023 and E-024 have run, the rest has not. Read `STATUS.md`
+first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -186,6 +189,7 @@ experiments/E-002-protocol.md  frozen evaluation protocol and data mixture
 experiments/E-002-s1-dev.md   S1-dev recording runbook and manifest patch
 experiments/E-003-plan.md     pre-registered architecture screen and its result
 experiments/next-experiments.md  post-E-005 plan: E-009–E-023, gates, commands
+experiments/E-024-p8-lm-x3.md  P8 ×3-term LM pre-registration and negative result
 runs/probe-2026-11-17/    measured INT8 size, CPU latency, activation memory
 runs/probe-2026-11-19/    16 kHz Silero graph parity preflight
 runs/E-001/               Moth 0.8.1 baseline reproduction
@@ -193,6 +197,7 @@ runs/E-002/               real 200-step MPS training probe
 runs/E-003/, runs/E-005/  depth screen; long fine-tune, package, browser run
 runs/E-023/               R1 recipe, amended gate, guard, product package
 runs/E-016/               browser checks: RTFx, parity, vendored runtime smoke
+runs/E-024/               P8 ×3-term LM: build, pack, cal and S1-dev readouts
 tests/                    tests for tools/ and the vendored code
 training/                 MOTH-50 trainer port (config, data, model, EMA, loop)
 training/configs/         E-003/E-005 configs, the E-010 arm, smoke configs

@@ -2,8 +2,9 @@
 
 **Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
 and E-004 ran on 2026-11-19/21; E-016/P4, E-017 and E-023 ran on 2026-11-21/23,
-E-023 R1 is adopted (D27), the web runtime is vendored (D28) and E-016b is
-adopted (D29); E-013–E-015 and E-018–E-022 have not run.**
+E-023 R1 is adopted (D27), the web runtime is vendored (D28), E-016b is
+adopted (D29) and E-024/P8 ran negative (D30); E-013–E-015 and E-018–E-022 have
+not run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -103,6 +104,11 @@ after the session.
 | 18 | E-006 | Remaining data arms | product baseline | days | 0 |
 | 19 | E-008 | External evaluation and ceilings | final model | hours | 0 |
 | 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b report-only (D26), T-600 guard passed, adopted (D27)** | 0 |
+
+P8 was run after this table was written: **E-024 (2026-11-23) built the
+unpruned E-034 LM with ×3 term weighting, got byte-identical R-S1-cal
+hypotheses and a tie on S1-dev, and was not adopted (D30)**. The term weighting
+is not a lever at the frozen decoder; E-034c stays.
 
 The FLEURS readout, E-017 and E-018 need no training and can run while the Mac
 is otherwise idle; E-016 is engineering and can run in parallel. The full order

@@ -635,6 +635,22 @@ Artifacts: `runs/E-016/E-016b.md`, `runs/E-016/e016b-diagnostics.json`,
 `runs/E-016/s1-dev-browser-minruns3.json`,
 `runs/E-016/browser-vs-python.json`.
 
+## D30 — P8 ×3-term LM rejected: no effect (2026-11-23)
+
+The unpruned E-034 N2_1_1 LM rebuilt with A3's ×3 term weighting (E-024, P8)
+is **not adopted**. The corpus and recipe are identical to E-034c except
+`term_weight = 3`; the n-gram type set and binary size are unchanged
+(12,303,348 B MOTHLMB1, 7,787,184 B packed, lossless). The probabilities do
+change (21,820 bigram and 69,673 trigram log-probs), but on R-S1-cal the
+hypotheses are **byte-identical** to the control: 12.8469 % / 75.4967 %, 0.0 pp
+WER and ETA. S1-dev is a tie (13.3966 / 75.0977 vs 13.3820 / 75.1465; WER
++0.0146 pp [0, +0.0456], ETA −0.0488 pp [−0.1566, 0], 4/960 clips differ).
+Gate 1 (calibration win) failed, so dev-macro and T-S3 were not run and no
+package, browser or T read changed. E-034c remains the product LM; the term
+weighting is not a lever at the frozen 0.55 / 2.7 decoder. Next: E-018
+(teacher bake-off), then E-019/E-020 text and data. Artifacts:
+`experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md`.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out
