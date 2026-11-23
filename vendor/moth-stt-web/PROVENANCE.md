@@ -17,7 +17,7 @@ Files are byte-identical to the source commit:
 | `mel.js` | `6d6851a0fd7ccaab21bb7bd4a1a17800091d9fafd70732022eaa354f4e381bbc` |
 | `mic-worklet.js` | `e9a5b0a9a1ecb8326aaad0b8d379e2fce4dfbaeb42edd8fe44f91bcbac8b213c` |
 | `mic.js` | `f241a9782c1d2decdbb93e8f3983176d1a81c70f7263bc79194f0c396525550a` |
-| `ort.js` | `8c2677a78aef41951ddedc6fd2377aa97941a24cb30f6999069a24384f43cdbf` |
+| `ort.js` | `8c2677a78aef41951ddedc6fd2377aa97941a24cb30f6999069a24384f43cdbf` (upstream) → `96d099b547b05faac970e278b74485c7efd48b7082898e287877c68faa24072c` (MOTH-50 patch, below) |
 | `package.json` | `e43f20c70d272a15a5aabad44e7c36ef84409c278199da152b15a71e7f12ebdd` |
 | `package-lock.json` | `327543732950ec6045783c6c9455798d9403de99a958ee873d5586e853236fe2` |
 | `server.py` | `6a782324816c1f8270c363a476480070e98347853d0fadd72c9015504b8d698d` |
@@ -41,3 +41,15 @@ python tools/serve_web.py --release runs/E-023/release-0.9.7
 Do not edit these files to make a measurement pass. If a runtime change is
 needed, make it in this copy, record the diff here with a new hash and date,
 and re-run the E-016 checks.
+
+## MOTH-50 patch 2026-11-23 — segmentation at three or more runs (E-016b, D29)
+
+Only `ort.js` differs from upstream. The upstream rule splits when the VAD
+finds two or more runs; MOTH-50 splits at **three or more runs for clips that
+fit one 30 s segment**, and still at two or more for longer recordings so every
+span fits the model. A single run keeps the leading silence the model expects.
+
+The diff is `PATCH-2026-11-23.diff`. Rationale and measurements are in
+`runs/E-016/E-016b.md` and `runs/E-016/e016b-diagnostics.json`: S1-dev browser
+WER 14.10 % → **13.72 %** (tie with the Python readout), multi-sentence sets
+with 5–6 runs unchanged, and a 35 s recording still segments (8 spans).

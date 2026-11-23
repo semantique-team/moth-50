@@ -1,0 +1,23 @@
+diff --git a/vendor/moth-stt-web/ort.js b/vendor/moth-stt-web/ort.js
+index d86bb5b..80d6ce5 100644
+--- a/vendor/moth-stt-web/ort.js
++++ b/vendor/moth-stt-web/ort.js
+@@ -264,11 +264,15 @@ export async function createRunner({ baseUrl = "../release/", threads = null, se
+     }
+     // Split a long recording at its pauses before decoding (see runs/audit-2026-11-09/): the model
+     // is trained on sentence-sized clips and reads several sentences as one unpunctuated stream,
+-    // which costs 9.4 WER points on five concatenated sentences. Only split when the VAD finds two
+-    // or more runs — cutting a single run removes the leading silence the model expects (+1.6 WER).
++    // which costs 9.4 WER points on five concatenated sentences. A single run keeps the leading
++    // silence the model expects (+1.6 WER). On a clip that fits one 30 s segment, two runs are
++    // usually one utterance with a pause and full-clip decoding is better (E-016b: S1-dev and
++    // MLS-IT diagnostics); three or more runs indicate several utterances and are split. Longer
++    // recordings always split at two runs so every span fits the model.
+     const segmentEnabled = segmentOverride ?? segment ?? decodeConfig.segment ?? true;
++    const minimumRuns = pcm.length > maxSamples ? 2 : 3;
+     const bounds = segmentEnabled ? vad.segmentsFrom(pcm.length, probabilities) : [];
+-    const spans = bounds.length >= 2 ? bounds : [{ start: 0, end: pcm.length }];
++    const spans = bounds.length >= minimumRuns ? bounds : [{ start: 0, end: pcm.length }];
+     for (const span of spans) {
+       const samples = span.end - span.start;
+       if (!Number.isInteger(span.start) || !Number.isInteger(span.end) || span.start < 0 ||
