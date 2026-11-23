@@ -1,8 +1,9 @@
 # Post-E-005 experiment plan
 
 **Status: proposed 2026-11-19; the E-005 addendum, E-009, E-010, E-011, E-012
-and E-004 ran on 2026-11-19/21; E-017 and E-023 ran on 2026-11-21/23 and
-E-023 R1 is adopted (D27); E-013–E-016 and E-018–E-022 have not run.**
+and E-004 ran on 2026-11-19/21; E-016/P4, E-017 and E-023 ran on 2026-11-21/23,
+E-023 R1 is adopted (D27) and the web runtime is vendored (D28); E-013–E-015
+and E-018–E-022 have not run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
 (`docs/review-2026-11-21.md`) adds P0–P11 and the S1-dev/LM-corpus overlap
@@ -91,7 +92,7 @@ after the session.
 | 7 | E-005 product readout | FLEURS once, report-only; T-600 already read in E-004 | FLEURS mel shards | ~1 h CPU | 0 |
 | 8 | E-017 | Mixed calibration set, separate from the S1-dev gate | owner decision | **done 2026-11-21: 400/400 takes, manifest + shards, E-002 §8** | 0 |
 | 9 | E-018 | Teacher bake-off on the gold train set | — | ~1–2 h inference, no training | 0 |
-| 10 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | a release | ~1 h | 0 |
+| 10 | E-016 | Browser: 1-thread RTFx, browser-vs-Python WER, vendored runtime | a release | **done 2026-11-23: 1-thread pass, parity explained, runtime vendored (D28); E-016b proposed** | 0 |
 | 11 | E-019 | Teacher labels (pseudo-label distillation) | 8, 9 | labelling + fine-tunes | 0 |
 | 12 | E-020 | LLM-written mixed text for the LM | 8 | LM builds + readouts | ≤ LM budget |
 | 13 | E-021 | Targeted acronym, brand and elision data | product acoustic baseline | recording + fine-tunes | 0 |
@@ -400,6 +401,31 @@ decides.
 - **Runtime ownership:** vendor `moth-stt/web/` into this repository at local
   commits `b0fa11c` (`budget_bytes`) and `0e15442` (`MOTHLMB2` reader), so the
   package no longer depends on a local commit in an archived repository.
+
+**Result (2026-11-23, D28).** 1-thread non-isolated RTFx **10.93× / 19.74× /
+21.17×** on 5 / 10 / 20 s (gate pass). Browser vs Python on S1-dev, product
+`0.9.7-e023-r1`: Python 13.3820 / 75.1465; browser default **14.0979 / 75.5859**
+(675/960 identical, +0.7159 pp WER [+0.1678, +1.2599], no tie); `segment:
+false` **13.7327 / 75.5859** (697/960, +0.3506 pp [−0.1255, +0.8160], **tie**);
+Python-FFT 16 kHz input 14.5215 / 74.7559 (+1.1395 pp). The systematic gap is
+the runtime's default VAD **segmentation**, not resampling; the residual 263/960
+differences are numerical near-ties (Moth E-022 measured 70–77 % identity with a
+WER tie). Every difference is explained, so the gate passes, but the browser
+default costs ~0.4–0.7 pp WER on S1-dev. Runtime vendored byte-identical at
+`0e15442` in `vendor/moth-stt-web/`; `tools/serve_web.py`,
+`tools/browser_probe.mjs` and `tools/browser_parity.py` reproduce the checks.
+`runs/E-016/RESULT.md`.
+
+### E-016b — segmentation default (proposed, no training)
+
+- **Question:** should the runtime skip VAD segmentation when the clip fits one
+  30 s segment, keeping it only for longer inputs?
+- **Why:** E-016 found the default at +0.72 pp WER vs Python on S1-dev and
+  `segment: false` at a tie; the page records at most 30 s, but file uploads can
+  be longer.
+- **Gate:** S1-dev browser readout vs the Python hypotheses is a tie (or every
+  difference explained), the 30 s boundary still segments, and the long-audio
+  smoke test still passes. Report-only until a dated decision adopts it.
 
 ## E-013 — Extra blocks before `final_ln`
 

@@ -25,6 +25,18 @@ running, and the exact next commands. Update it at the end of each session.
   1.5 / 0.72 words). R2 is withdrawn. **Seed 0** (cal ETA rule) is the product
   seed; T-600 guard passed, seed 1 is never read on T or FLEURS.
   `runs/E-023/RESULT.md`.
+- **E-016/P4 done (D28, 2026-11-23).** 1-thread non-isolated RTFx **10.93× /
+  19.74× / 21.17×** on 5 / 10 / 20 s (gate ≥ 8×). Browser vs Python on S1-dev:
+  default **+0.7159 pp** WER [+0.1678, +1.2599] (675/960 identical),
+  `segment: false` **+0.3506 pp** [−0.1255, +0.8160] (**tie**, 697/960);
+  Python-FFT 16 kHz input is not better, so the cause is the runtime's VAD
+  segmentation, not resampling. The residual differences are numerical
+  near-ties (Moth E-022: 70–77 % identity, WER tie). The web runtime is
+  vendored byte-identical at `0e15442` in `vendor/moth-stt-web/` with
+  `tools/serve_web.py`, `tools/browser_probe.mjs` and
+  `tools/browser_parity.py`. **Finding:** the browser default costs ~0.4–0.7 pp
+  WER on S1-dev; E-016b (auto-disable segmentation for clips that fit one
+  30 s segment, then re-read) is proposed, not applied. `runs/E-016/RESULT.md`.
 - **E-005 A3 gate (historical):** `base+6`, 16,000 steps, pinned A3 LM. Frozen
   beam+A3 dev-macro **17.5565 % FP32 / 17.6212 % INT8** against the **23.0170 %**
   reference (paired **−5.4605 / −5.3957 pp**, CIs exclude zero). Held-out S1-dev
@@ -42,15 +54,16 @@ running, and the exact next commands. Update it at the end of each session.
   **E-009 kept the frozen decoder; E-012 passed both gates (16 kHz VAD + lossless
   MOTHLMB2, D19/D20); E-010 chose encoder LR 1e-4 (D21); E-011 won dev-macro but
   failed the S1-dev ETA rule on seed 0 and was not adopted (D22); E-004 arm B
-  moved the product LM to E-034 N2_1_1 (D23). E-013–E-016 have not run.
+  moved the product LM to E-034 N2_1_1 (D23). E-013–E-015 have not run.
   E-017 is done (400-cue `R-S1-cal` reviewed, recorded, level-matched,
   manifest + shards built, E-002 §8 written); E-018–E-022 have not run.
-  E-023 R1 is adopted (E-002 §9 + D26, then D27 after the T-600 guard).**
+  E-023 R1 is adopted (E-002 §9 + D26, then D27 after the T-600 guard);
+  E-016/P4 is done (D28, web runtime vendored).**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
-  without an explicit go-ahead. Next: **P4/E-016** (1-thread RTFx + vendored web
-  runtime), **P8** (×3-term unpruned LM on R-S1-cal), **E-018** (teacher
-  bake-off), then E-019–E-022 and E-006.
+  without an explicit go-ahead. Next: **P8** (×3-term unpruned LM on R-S1-cal),
+  **E-018** (teacher bake-off), the proposed **E-016b** segmentation re-read,
+  then E-019–E-022 and E-006.
 - **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
   the wrong ranking target; the LM is the lever and C no longer fits next to the
   E-034 LM; the E-011 ETA loss looks recipe-level. Procedure P0–P11: cross-machine
@@ -127,6 +140,7 @@ running, and the exact next commands. Update it at the end of each session.
 | E-023 T-600 guard | **PASS**: 12.2993 % / 78.1400 % vs 13.7041 / 76.1266; WER −1.4048 pp [−2.3455, −0.4276], ETA +2.0134 pp [−0.1921, +4.1837]; declared repeated read, speakers/categories report-only | `runs/E-023/t600-s0.json/.hyp.jsonl` |
 | E-023 package/browser | **done, product**: 49,203,776 B (796,224 B room), graph `85abd830…`, load 70.1 ms, exact transcript, RTFx 28.48 (4 threads) | `runs/E-023/export-report-0.9.7.json`, `runs/E-023/browser-run-0.9.7.json` |
 | E-023 FLEURS | **done, report-only**: IT **11.8304 %** (−2.9935 pp vs E-034c), EN **28.1955 %** (−2.0720 pp); no ETA | `runs/E-023/fleurs-{it,en}-s0.*` |
+| E-016/P4 browser | **done (D28)**: 1-thread non-isolated 10.93/19.74/21.17× (pass); S1-dev default +0.72 pp WER (no tie), `segment:false` +0.35 pp (tie); runtime vendored at `0e15442` | `runs/E-016/RESULT.md`, `vendor/moth-stt-web/`, `tools/serve_web.py` |
 | P3 FLEURS | **done, report-only**: IT **14.8238 %** (−5.3383 pp vs 0.8.1, CI excludes 0), EN **30.2675 %** (−19.5401 pp); FLEURS-IT meets ≤18 % | `runs/E-004/fleurs-RESULT.md` |
 | E-017 R-S1-cal | **done, frozen**: 400 cues reviewed; 400/400 takes, 16.95 min, 19 retakes; raw +16.58 dB vs S1-dev, fixed −16.58 dB copies, 0 clipped after; manifest `split: dev`, 1 shard 0 errors; E-002 §8 written; control E-005 + E-034c **13.9212 % WER / 75.6291 % ETA**; no R1 readout | `../moth-cs-dataset/text-2026-11-cal/`, `manifests/R-S1-cal.jsonl`, `data/shards/s1-cal`, `runs/E-017/` |
 
@@ -140,14 +154,16 @@ The T-600 guard passed on 2026-11-23 (12.2993 / 78.1400 vs 13.7041 / 76.1266),
 the package is 49,203,776 B with graph `85abd830…`, the browser transcript is
 exact at RTFx 28.48, and FLEURS is IT 11.8304 % / EN 28.1955 % (report-only).
 E-005 + E-034c (`0.9.6-e034c`, D25) is retired from the product line. Nothing
-is running. **Do not re-read T-600 or FLEURS with this seed.**
+is running. **Do not re-read T-600 or FLEURS with this seed.** E-016/P4 is
+done (D28): the web runtime is vendored, 1-thread RTFx passes, and the browser
+parity is explained (default segmentation costs ~0.4–0.7 pp WER on S1-dev).
 
-1. **P4/E-016 — browser runtime ownership and 1-thread latency.** Measure RTFx
-   at **1 thread without cross-origin isolation** on 5 / 10 / 20 s clips (gate
-   ≥ 8×), compare browser and Python hypotheses on S1-dev, and **vendor
-   `moth-stt/web/` here at local commits `b0fa11c` (`budget_bytes`) + `0e15442`
-   (`MOTHLMB2`)**. Until then the package depends on local commits in an
-   archived repository. This is the first engineering priority.
+1. **E-016b — segmentation default (proposed, no training).** E-016 measured
+   the browser default at **+0.72 pp** WER vs Python on S1-dev (CI excludes
+   zero); `segment: false` is a **tie** (+0.35 pp). Decide whether to
+   auto-disable segmentation when the clip fits one 30 s segment, keep it for
+   longer inputs, and re-read S1-dev report-only. This is a runtime decision,
+   not a new model.
 2. **P8 — LM coverage on the product.** Build the unpruned E-034 LM with the
    ×3-term weighting and rank it on **R-S1-cal** (never S1-dev, never T), then
    the S1-dev veto. No training; the same `pack_lm.py` / `frozen_readout.py`
@@ -162,8 +178,8 @@ is running. **Do not re-read T-600 or FLEURS with this seed.**
    Each has its own pre-registration and gate in `experiments/next-experiments.md`.
 5. **Optional, needs an explicit training go-ahead:** E-013 (extra blocks
    before `final_ln`), E-014 (convolution in the extra blocks), E-015 (25 Hz,
-   only if P4 fails the 1-thread gate), and a third R1 seed with per-eval
-   checkpoints (P11 is no longer a prerequisite).
+   only if the 1-thread gate had failed — it passed at 21.17× on 20 s), and a
+   third R1 seed with per-eval checkpoints (P11 is no longer a prerequisite).
 
 `R-S1-cal` and S1-dev stay as they are: no new recordings are planned. New
 cues never come from `text/pool.jsonl`, and future LM corpora must exclude the
@@ -227,13 +243,13 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   `tools/convert_whisper_encoder.py`). A random-init run is invalid: measured
   99 % dev WER after 4,000 steps. The extra blocks are identity-initialized
   (D16), so base+0/+2/+4/+6 start as the same function.
-- **The web runtime reads `config.budget_bytes`.** `moth-stt/web/ort.js` uses it
-  when present (default 20,000,000, so 0.8.1 is unchanged); the MOTH-50 release
-  declares 50,000,000. The patch is local commit `b0fa11c` in the `moth-stt`
-  checkout: that repository is **archived and read-only**, so it cannot be
-  pushed. If MOTH-50 ships its own web runtime, carry this one-line change
-  there (or vendor the runtime); without it the page rejects the 44.77 MB
-  package. Vendoring the runtime is part of E-016.
+- **The web runtime reads `config.budget_bytes`.** The vendored
+  `vendor/moth-stt-web/ort.js` uses it when present (default 20,000,000, so
+  0.8.1 is unchanged); the MOTH-50 release declares 50,000,000. The patch is
+  upstream local commit `b0fa11c`; the vendored copy at `0e15442` includes it.
+  Serve a release with `python tools/serve_web.py --release
+  runs/E-023/release-0.9.7`; do not depend on the archived `../moth-stt`
+  checkout (E-016/D28).
 - **The 16 kHz VAD is the export default (D19).** `export_release.py` ships
   `silero_vad_16k_op15.onnx` as `silero_vad.onnx` (1,289,603 B); `--vad full`
   remains only for 0.8.1-shaped packages. Parity is measured on 2,040 real clips
@@ -243,9 +259,11 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   the old encoding. Never adopt a lossy codebook without a WER readout: A3 fits
   10 bits (1,018/859 distinct values), other LMs may not, and `pack_lm.py`
   refuses rather than approximating.
-- **The MOTHLMB2 JS reader is a local commit.** `../moth-stt` is archived: the
-  reader is commit `0e15442`, on top of `b0fa11c` (`budget_bytes`). The browser
-  package depends on that checkout until E-016 vendors `web/` here.
+- **The MOTHLMB2 JS reader is vendored.** `vendor/moth-stt-web/lm.js` is
+  byte-identical to upstream `0e15442` (on top of `b0fa11c`) and is covered by
+  `vendor/moth-stt-web/PROVENANCE.md`; the browser package no longer depends on
+  the archived `../moth-stt` checkout. Install the npm dependencies once with
+  `npm ci --prefix vendor/moth-stt-web`.
 - **Never take the LM from `../moth-stt/release/`.** That gitignored copy is the
   pre-A3 LM (`dcf1d59f…`). The readout, calibration and export tools resolve the
   LM through `tools/release_assets.py` (A3, `3be1177b…`) and refuse anything
@@ -271,11 +289,12 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D27, including checkpointing (D15), init (D16),
+- `docs/decisions.md` — D1–D28, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
   MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier
   models as teachers (D24, proposed), E-034c (D25), E-023 R1 by amendment
-  (D26) and R1 seed 0 as the product (D27).
+  (D26), R1 seed 0 as the product (D27) and the vendored web runtime / E-016
+  (D28).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
   cannot give MOTH-50; licences; teachers.
@@ -297,6 +316,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `runs/E-004/fleurs-RESULT.md` — P3 FLEURS-IT/EN product readout vs 0.8.1.
 - `runs/E-017/RESULT.md` — R-S1-cal: review, recording, level match, manifest, shards, power caveat.
 - `runs/E-023/RESULT.md` — R1 seeds, amended gate, T-600 guard, package, browser, FLEURS.
+- `runs/E-016/RESULT.md` — 1-thread RTFx, browser-vs-Python parity, segmentation finding, vendored runtime.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.
 - `runs/E-012/` — E-012 both gates: VAD parity, MOTHLMB2 packing, packages and

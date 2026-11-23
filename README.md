@@ -24,9 +24,15 @@ for 0.8.1; S1-dev **14.05 % / 14.00 %**, ETA **75.5 / 75.3 %** (inflated by the
 same leak; the paired A3-vs-0.8.1 verdict stands). E-012 cut that package to
 **44.77 MB** with the 16 kHz VAD and the lossless packed LM. The first E-005
 readout used the pre-A3 LM and Moth's NOTICE; the erratum is in
-`runs/E-005/RESULT.md` (D17). The plan is `experiments/next-experiments.md`;
-E-004, E-009–E-012, E-017 and E-023 have run, the rest has not. Read
-`STATUS.md` first when resuming.
+`runs/E-005/RESULT.md` (D17). **E-016/P4 (2026-11-23, D28)** vendored the web
+runtime at `0e15442` in `vendor/moth-stt-web/` and measured **10.93× / 19.74× /
+21.17×** at 1 thread without cross-origin isolation (gate ≥ 8×). On S1-dev the
+browser default is **+0.72 pp** WER vs the Python readout (VAD segmentation,
+CI excludes zero), while `segment: false` is a **tie** (+0.35 pp); the residual
+differences are numerical near-ties. E-016b (auto-disable segmentation for
+clips that fit one 30 s segment) is proposed. The plan is
+`experiments/next-experiments.md`; E-004, E-009–E-012, E-016, E-017 and E-023
+have run, the rest has not. Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -183,6 +189,7 @@ runs/E-001/               Moth 0.8.1 baseline reproduction
 runs/E-002/               real 200-step MPS training probe
 runs/E-003/, runs/E-005/  depth screen; long fine-tune, package, browser run
 runs/E-023/               R1 recipe, amended gate, guard, product package
+runs/E-016/               browser checks: RTFx, parity, vendored runtime smoke
 tests/                    tests for tools/ and the vendored code
 training/                 MOTH-50 trainer port (config, data, model, EMA, loop)
 training/configs/         E-003/E-005 configs, the E-010 arm, smoke configs
@@ -196,6 +203,9 @@ tools/s1_dev_qc.py        S1-dev session QC: takes, coverage, levels, projection
 tools/finalize_s1_dev.py  patch build_manifest output to split:dev + session paths
 tools/release_assets.py   pinned A3 LM, 0.8.1 graph and Silero graphs (fetch/check)
 tools/frozen_readout.py   E-002 gate readout: beam 12 + A3 LM; dev-macro or a mixed set
+tools/serve_web.py        serve a release with the vendored web runtime
+tools/browser_probe.mjs   Playwright RTFx / S1-dev browser probe (E-016)
+tools/browser_parity.py   browser-vs-Python identity and paired WER/ETA (E-016)
 tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
 tools/release_notice.py   the MOTH-50 package NOTICE
@@ -211,6 +221,7 @@ tools/probe_lm_pack.py    packed LM format prototype (review P5)
 tools/sample_resources.py  CPU/RAM/MPS sampler for long training runs
 tools/resource_dashboard.py  self-contained SVG dashboard from logs + samples
 vendor/moth-stt/          evaluation code copied from the frozen repo
+vendor/moth-stt-web/      web runtime byte-identical to Moth 0e15442 (E-016/D28)
 LICENSE                   Apache-2.0
 NOTICE                    attribution
 ```

@@ -550,6 +550,45 @@ Artifacts: `runs/E-023/t600-s0.json/.hyp.jsonl`,
 `runs/E-023/browser-run-0.9.7.json`, `runs/E-023/fleurs-{it,en}-s0.*`,
 `runs/E-023/RESULT.md`.
 
+## D28 — Web runtime vendored; E-016 browser checks (2026-11-23)
+
+The archive dependency is closed. `vendor/moth-stt-web/` holds 12 files
+byte-identical to `semantique-team/moth-stt` at
+`0e15442ecb85dffcb4edd68e9d9ece18af6f35df` (on top of `b0fa11c`),
+Apache-2.0, with per-file sha256 in `PROVENANCE.md`. `node_modules/` is not
+vendored (`npm ci --prefix vendor/moth-stt-web`); upstream tests/acceptance are
+not vendored because they depend on Moth's private runs and fixtures. The new
+`tools/serve_web.py` serves any release without copying the runtime;
+`tools/browser_probe.mjs` drives RTFx and S1-dev runs and
+`tools/browser_parity.py` scores them against a Python hypothesis file.
+
+Measurements on `0.9.7-e023-r1`, Chromium 159.0.8154.6, 4 threads isolated
+unless stated:
+
+- **1-thread non-isolated RTFx: 10.93× / 19.74× / 21.17×** on 5 / 10 / 20 s
+  (gate ≥ 8×) — pass, consistent with Moth E-022's 20.2× at 20 s.
+- **Browser vs Python on S1-dev:** Python 13.3820 % / 75.1465 %; browser
+  default 14.0979 / 75.5859 (675/960 identical, **+0.7159 pp**
+  [+0.1678, +1.2599], no tie); browser `segment: false` **13.7327 / 75.5859**
+  (697/960, **+0.3506 pp** [−0.1255, +0.8160], **tie**); browser on
+  Python-FFT 16 kHz PCM 14.5215 / 74.7559 (+1.1395 pp, no tie).
+- **Explanation:** the runtime default VAD segmentation is the systematic term;
+  disabling it recovers a tie. Resampling is not the cause (FFT input is
+  slightly worse). The residual 263/960 differences are numerical near-ties
+  from re-derived mel, cached mel and WASM int8 vs native, the class Moth E-022
+  measured at 70–77 % identity with a WER tie at the shipped decode. ETA is a
+  tie in every variant.
+- **Finding, not changed:** the browser default costs ~0.4–0.7 pp WER on
+  S1-dev versus the Python readout. The page records at most 30 s, but the file
+  input accepts longer audio, where segmentation is required. A follow-up
+  (E-016b) should auto-disable segmentation when the clip fits one 30 s
+  segment, keep it for longer inputs, and re-read S1-dev. Until then the Python
+  readout is the reported product WER and the browser gap is recorded.
+
+Next remains P8 (×3-term unpruned LM on R-S1-cal) and E-018 (teacher bake-off);
+no training is implied. Artifacts: `runs/E-016/`, `tools/serve_web.py`,
+`tools/browser_probe.mjs`, `tools/browser_parity.py`.
+
 ## Open questions
 
 - Exact S1 recording plan: how many hours, which sessions, and which held-out
