@@ -1,0 +1,19 @@
+ready: True  train_guard: ok  tokenizer_sha: d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd
+  train ready                                56769 rows  84.224 h  /Users/tancredi/Desktop/semantique/moth-stt/data/manifests/cv_it_train_clean50.jsonl
+  train ready                                56349 rows  83.564 h  /Users/tancredi/Desktop/semantique/moth-stt/data/manifests/cv_it_train_noisy50.jsonl
+  train ready                                40953 rows 169.886 h  /Users/tancredi/Desktop/semantique/moth-stt/data/manifests/mls_it_train.jsonl
+  train ready                                28370 rows  99.999 h  /Users/tancredi/Desktop/semantique/moth-stt/data/manifests/ls_en_train.jsonl
+  train ready                                20623 rows 110.003 h  /Users/tancredi/Desktop/semantique/moth-50/data/manifests/spliced_it_en.jsonl
+  train ready                                 1413 rows    0.96 h  /Users/tancredi/Desktop/semantique/moth-cs-dataset/manifests/train.jsonl
+  dev   ready                                 1248 rows   5.176 h  /Users/tancredi/Desktop/semantique/moth-stt/data/manifests/mls_it_dev.jsonl
+  dev   ready                                 2691 rows   5.306 h  /Users/tancredi/Desktop/semantique/moth-stt/data/manifests/ls_en_dev.jsonl
+  base+0  20,348,417 params   25.43 MB  room 24.57 MB   4.7 h/epoch ckpt
+  base+2  26,652,161 params   31.85 MB  room 18.15 MB   6.2 h/epoch ckpt
+  base+4  32,955,905 params   38.26 MB  room 11.74 MB   7.8 h/epoch ckpt
+  base+6  39,259,649 params   44.68 MB  room  5.32 MB   9.3 h/epoch ckpt
+  E-002 memory: 3.68 GB, 4.4725 s/step (checkpointing=True)
+commands:
+  uv run --frozen --project ../moth-stt --extra training -- python -m training.train --config /Users/tancredi/Desktop/semantique/moth-50/training/configs/base6-e027-control.toml --head-blocks 0 --max-steps 4000 --out runs/E-003/base+0 --device mps
+  uv run --frozen --project ../moth-stt --extra training -- python -m training.train --config /Users/tancredi/Desktop/semantique/moth-50/training/configs/base6-e027-control.toml --head-blocks 2 --max-steps 4000 --out runs/E-003/base+2 --device mps
+  uv run --frozen --project ../moth-stt --extra training -- python -m training.train --config /Users/tancredi/Desktop/semantique/moth-50/training/configs/base6-e027-control.toml --head-blocks 4 --max-steps 4000 --out runs/E-003/base+4 --device mps
+  uv run --frozen --project ../moth-stt --extra training -- python -m training.train --config /Users/tancredi/Desktop/semantique/moth-50/training/configs/base6-e027-control.toml --head-blocks 6 --max-steps 4000 --out runs/E-003/base+6 --device mps

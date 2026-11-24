@@ -1,0 +1,14 @@
+{
+  "steps": 8000,
+  "epochs_configured": 4,
+  "total_steps": 8000,
+  "last_loss": 0.53671,
+  "nonfinite_steps": 0,
+  "best_dev_wer": 0.1726004381207597,
+  "eval_weights": "ema",
+  "ema_decay": 0.999,
+  "peak_memory_gb": 8.737,
+  "elapsed_seconds": 2407.19,
+  "checkpoint_last": "runs/E-027/control-s1/checkpoints/ckpt_last.pt",
+  "checkpoint_best": "runs/E-027/control-s1/checkpoints/ckpt_best.pt"
+}

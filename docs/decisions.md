@@ -789,14 +789,50 @@ veto at the chosen bonus, all on `0.9.7-e023-r1`. Result in
   this S1-dev read as a fresh gate. The 541-term pool also means lists longer
   than 500 single words remain untested.
 
+## D36 — E-027: TTS fine-tune ties, the model line closes (2026-11-24)
+
+**Decision: E-027 is not adopted, and no further training arm is planned.**
+The product stays **E-023 R1 seed 0 + E-034c** (`0.9.7-e023-r1`, D27). Result in
+`runs/E-027/RESULT.md`; pre-registration in `experiments/E-027-e021-tts.md`.
+
+- **Data.** 3,411 re-filtered E-025 sentences were spoken by four pinned
+  permissive Italian voices (Kokoro `if_sara`/`im_nicola` in `it` and mixed-G2P,
+  Piper `paola`/`serena`): 19,276 clips, 20.827 h, 0 QC drops. The 60-clip
+  listening audit kept every stratum (1 fail allowed; `E027-03390-nicola-it`
+  failed). The TTS source was 9.49 % of the epoch audio (`repeat = 3`).
+- **Training.** Four 8,000-step fine-tunes from R1 s0, two seeds per arm, EMA
+  0.999; 0 non-finite steps. Control/TTS differ only by the TTS source.
+- **Gate 1 fails (tie).** On R-S1-cal the TTS seed mean vs the same-length
+  control is **−0.515 pp** WER [−1.367, +0.271] and **+0.397 pp** ETA [−1.223,
+  +2.115]: neither CI clears zero. Per seed: WER −0.269 / −0.761, ETA −0.199 /
+  +0.993.
+- **Gate 4 fails.** On dev-macro the TTS arm is **+0.150 pp** [+0.038, +0.269]
+  against the product (consistent across seeds, mostly Italian). Gates 2 (no
+  loss on cal), 3 (S1-dev veto) and 5 (INT8 cost +0.065 pp) pass. The
+  same-length control is itself neutral against the product on all three sets,
+  so there is no fallback to adopt.
+- **Read.** The synthetic speech moved the intended cal terms (acronym WER
+  −2.29 pp / ETA +10.78 pp, brand −2.32 / +4.81, single_word −3.26 / +9.00) but
+  gave back the gain on `switch` (+2.92 / −5.56), and the sentence-level WER
+  did not move. Category numbers are report-only.
+- **Consequence.** No package, browser, decoder or LM change; T-600 and FLEURS
+  are not read (not triggered). The renders, shards and four runs stay as
+  evidence. **E-008 followed on 2026-11-24**: CS-FLEURS-READ once is **34.8085 %
+  WER** [32.8929, 36.8120] (176 utterances, one speaker), and
+  `MODEL_CARD.md` records the evidence boundary. E-006 arm 1 (VoxPopuli
+  Italian) and E-019 arm A remain possible but are not planned. Any future arm
+  still needs a new pre-registration and an explicit go-ahead.
+
 ## Open questions
 
 - ~~Exact S1 recording plan: how many hours, which sessions, and which held-out
   session is the dev set?~~ Resolved: S1-dev (960) and R-S1-cal (400) are
   recorded, and D34 rules out further sessions (E-019 arm B, E-021 arm 1 and
   E-006 arm 5 are dropped).
-- TTS mixture weight and voice selection; how much synthetic data survives the
-  real-data readout without hurting S2/S3/FLEURS?
+- ~~TTS mixture weight and voice selection; how much synthetic data survives the
+  real-data readout without hurting S2/S3/FLEURS?~~ Answered by E-027/D36: at
+  9.49 % of the epoch the mixed IT–EN reading voice is a calibration tie and
+  costs +0.15 pp dev-macro; the arm is closed.
 - Does the headroom go to a larger LM, a deeper model, or nothing? With A3 it was
   ~2.16 MB; after E-012 (16 kHz VAD, lossless packed A3) **5.23 MB measured**.
   E-004 B spent it on LM coverage (D23) and leaves 0.79 MB. A further LM

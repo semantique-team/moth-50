@@ -1,0 +1,28 @@
+{
+  "created": "2026-11-23T21:24:31+0100",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.12.12",
+  "torch": "2.14.1",
+  "device": "mps",
+  "seed": 0,
+  "params": 39259649,
+  "encoder": {
+    "width": 512,
+    "n_layers": 6,
+    "n_heads": 8,
+    "ffn_dim": 2048
+  },
+  "head_blocks": 6,
+  "checkpointing": true,
+  "ema_decay": 0.999,
+  "tokenizer": "/Users/tancredi/Desktop/semantique/moth-50/data/tokenizer/moth_bpe.model",
+  "tokenizer_sha256": "d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd",
+  "train_clips": 331542,
+  "dev_clips": 3939,
+  "finetune": {
+    "init_checkpoint": "/Users/tancredi/Desktop/semantique/moth-50/runs/E-023/r1-s0/checkpoints/ckpt_best.pt",
+    "sha256": "5ff95f0e5477fc3ba12d486bae2947f6477113b07993eb76f714f117daaf8abf",
+    "weights": "ema",
+    "source_global_step": 40000
+  }
+}

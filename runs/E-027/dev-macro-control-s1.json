@@ -1,0 +1,84 @@
+{
+  "tool": "tools/frozen_readout.py",
+  "mode": "macro",
+  "checkpoint": null,
+  "checkpoint_sha256": null,
+  "checkpoint_step": null,
+  "checkpoint_weights": null,
+  "onnx": "runs/E-027/release-control-s1/model.int8.onnx",
+  "onnx_sha256": "8f228b29fd6488a7851a6225ad10cde40decc4ae513cfc8da9fd78fddf65d393",
+  "decoder": {
+    "mode": "beam",
+    "beam_width": 12,
+    "top_k": 10,
+    "lm_weight": 0.55,
+    "token_bonus": 2.7,
+    "frozen": true,
+    "gate_eligible": false,
+    "lm": "runs/E-004/lm_e034c_n2.bin",
+    "lm_sha256": "4b122fbed685c3e4be14cad63e26ebe47fc3d311f379faa850bfbf29574ad5b6",
+    "lm_label": "other",
+    "lm_is_a3": false,
+    "lm_format": "mothlmb2",
+    "lm_packed": {
+      "format": "MOTHLMB2",
+      "bits": 10,
+      "bytes": 7787184,
+      "sha256": "7a4332f16cb8e96e4057974290d0b227f721573f3ec9be7b520b1e8a57fd50ee"
+    }
+  },
+  "sets": {
+    "it": {
+      "n": 1248,
+      "wer": 0.19474348503972083,
+      "wer_ci": [
+        0.18808525165821302,
+        0.20127255555003232
+      ],
+      "seconds": 214.3
+    },
+    "en": {
+      "n": 2691,
+      "wer": 0.09181257108761724,
+      "wer_ci": [
+        0.08881523823710132,
+        0.09517895868473245
+      ],
+      "seconds": 229.0
+    }
+  },
+  "macro_wer": 0.14327802806366904,
+  "reference": {
+    "macro_wer": 0.2301698498252397,
+    "sets": {
+      "it": 0.2810404137896899,
+      "en": 0.17929928586078947
+    },
+    "hyp_sha256": "8d31eef0e0c659d67a5691b3161261d920ad0254b4d9e6361031e3737a322fb1",
+    "reported_macro": 0.23017
+  },
+  "paired_macro": {
+    "point": -0.08689182176157065,
+    "ci": [
+      -0.08963940108916071,
+      -0.08396355916596371
+    ],
+    "strata": {
+      "it": 1248,
+      "en": 2691
+    },
+    "bootstrap": 1000,
+    "seed": 0,
+    "tie": false
+  },
+  "gate": {
+    "improvement_pp": 8.6892,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  },
+  "elapsed_seconds": 443.3
+}

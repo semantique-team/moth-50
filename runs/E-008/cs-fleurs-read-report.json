@@ -1,0 +1,22 @@
+{
+  "tool": "tools/build_cs_fleurs_manifest.py",
+  "metadata": "/Users/tancredi/Desktop/semantique/moth-50/data/raw/cs-fleurs/read/test/metadata.jsonl",
+  "metadata_sha256": "1ed381025ed51c368e591e263eace85a6e4e59a215d3f8888ca07c1e188fd709",
+  "audio_root": "/Users/tancredi/Desktop/semantique/moth-50/data/raw/cs-fleurs/read/test",
+  "language": "ita-eng",
+  "out": "data/manifests/cs-fleurs-read.jsonl",
+  "out_sha256": "848c2eae935bbb40ccb9ec27abe26152c3e8caea8c94ffeefd48aab832cb6da8",
+  "rows": 176,
+  "hours": 0.5085,
+  "speakers": {
+    "SC": 176
+  },
+  "fluency": {
+    "0": 86,
+    "1": 40,
+    "2": 50
+  },
+  "rows_with_digits": 27,
+  "digits_note": "normalize(lang_hint='it') spells these in Italian; English-read numbers are a scoring artifact. All rows are kept; report the count.",
+  "split": "test"
+}

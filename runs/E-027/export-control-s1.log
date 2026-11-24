@@ -1,0 +1,23 @@
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+{
+  "fp32_gap": {
+    "max_abs": 0.003894805908203125,
+    "top1_agreement": 1.0
+  },
+  "int8_gap": {
+    "max_abs": 37.15259552001953,
+    "top1_agreement": 1.0
+  },
+  "total_mb": 49.204,
+  "budget_mb": 50.0,
+  "remaining_mb": 0.796,
+  "files": {
+    "NOTICE": 4120,
+    "config.json": 1367,
+    "lm_bpe3.bin": 7787184,
+    "mel_filters.bin": 64320,
+    "model.int8.onnx": 40039997,
+    "silero_vad.onnx": 1289603,
+    "vocab.json": 17193
+  }
+}

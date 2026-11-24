@@ -1,0 +1,7 @@
+fine-tune from /Users/tancredi/Desktop/semantique/moth-50/runs/E-023/r1-s0/checkpoints/ckpt_best.pt (ema weights, step 40000)
+model: 39,259,649 params, encoder={'width': 512, 'n_layers': 6, 'n_heads': 8, 'ffn_dim': 2048}, head_blocks=6, checkpointing=True
+data: 273714 train clips, 3939 dev clips
+{
+  "params": 39259649,
+  "train": 273714
+}

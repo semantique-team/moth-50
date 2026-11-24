@@ -1,0 +1,379 @@
+=== control-s0 s1-cal  Tue Nov 24 11:26:42 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-control-s0/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-cal: 400 clips, 16.9 min
+    250/400 clips, 8s
+{
+  "set": "s1-cal",
+  "wer": 12.8021,
+  "wer_ci": [
+    11.235,
+    14.5031
+  ],
+  "eta": 75.894,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== control-s0 s1-dev  Tue Nov 24 11:26:56 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-control-s0/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-dev: 960 clips, 51.3 min
+    250/960 clips, 10s
+    500/960 clips, 19s
+    750/960 clips, 29s
+{
+  "set": "s1-dev",
+  "wer": 13.0168,
+  "wer_ci": [
+    12.1315,
+    13.9197
+  ],
+  "eta": 75.293,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== control-s0 dev-macro INT8  Tue Nov 24 11:27:33 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-control-s0/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+it: 1248 clips, 310.5 min
+    250/1248 clips, 40s
+    500/1248 clips, 85s
+    750/1248 clips, 126s
+    1000/1248 clips, 169s
+it: WER 19.363 % (212s)
+en: 2691 clips, 318.4 min
+    250/2691 clips, 19s
+    500/2691 clips, 45s
+    750/2691 clips, 65s
+    1000/2691 clips, 87s
+    1250/2691 clips, 108s
+    1500/2691 clips, 131s
+    1750/2691 clips, 148s
+    2000/2691 clips, 170s
+    2250/2691 clips, 188s
+    2500/2691 clips, 206s
+en: WER 9.2167 % (228s)
+{
+  "macro_wer": 14.2898,
+  "reference": 23.017,
+  "diff_pp": -8.7272,
+  "ci_pp": [
+    -9.019,
+    -8.4467
+  ],
+  "gate": {
+    "improvement_pp": 8.7272,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  }
+}
+=== control-s1 s1-cal  Tue Nov 24 11:34:57 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-control-s1/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-cal: 400 clips, 16.9 min
+    250/400 clips, 8s
+{
+  "set": "s1-cal",
+  "wer": 13.2498,
+  "wer_ci": [
+    11.6935,
+    14.9281
+  ],
+  "eta": 75.4967,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== control-s1 s1-dev  Tue Nov 24 11:35:11 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-control-s1/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-dev: 960 clips, 51.3 min
+    250/960 clips, 10s
+    500/960 clips, 20s
+    750/960 clips, 31s
+{
+  "set": "s1-dev",
+  "wer": 13.718,
+  "wer_ci": [
+    12.8122,
+    14.6575
+  ],
+  "eta": 75.3418,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== control-s1 dev-macro INT8  Tue Nov 24 11:35:50 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-control-s1/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+it: 1248 clips, 310.5 min
+    250/1248 clips, 41s
+    500/1248 clips, 87s
+    750/1248 clips, 128s
+    1000/1248 clips, 172s
+it: WER 19.4743 % (214s)
+en: 2691 clips, 318.4 min
+    250/2691 clips, 19s
+    500/2691 clips, 45s
+    750/2691 clips, 65s
+    1000/2691 clips, 87s
+    1250/2691 clips, 108s
+    1500/2691 clips, 131s
+    1750/2691 clips, 148s
+    2000/2691 clips, 171s
+    2250/2691 clips, 188s
+    2500/2691 clips, 207s
+en: WER 9.1813 % (229s)
+{
+  "macro_wer": 14.3278,
+  "reference": 23.017,
+  "diff_pp": -8.6892,
+  "ci_pp": [
+    -8.9639,
+    -8.3964
+  ],
+  "gate": {
+    "improvement_pp": 8.6892,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  }
+}
+=== tts-s0 s1-cal  Tue Nov 24 11:43:18 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-tts-s0/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-cal: 400 clips, 16.9 min
+    250/400 clips, 8s
+{
+  "set": "s1-cal",
+  "wer": 12.7574,
+  "wer_ci": [
+    11.1411,
+    14.4209
+  ],
+  "eta": 75.4967,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== tts-s0 s1-dev  Tue Nov 24 11:43:32 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-tts-s0/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-dev: 960 clips, 51.3 min
+    250/960 clips, 10s
+    500/960 clips, 21s
+    750/960 clips, 31s
+{
+  "set": "s1-dev",
+  "wer": 13.4551,
+  "wer_ci": [
+    12.5594,
+    14.369
+  ],
+  "eta": 74.7559,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== tts-s0 dev-macro INT8  Tue Nov 24 11:44:11 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-tts-s0/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+it: 1248 clips, 310.5 min
+    250/1248 clips, 41s
+    500/1248 clips, 87s
+    750/1248 clips, 128s
+    1000/1248 clips, 172s
+it: WER 19.6649 % (215s)
+en: 2691 clips, 318.4 min
+    250/2691 clips, 19s
+    500/2691 clips, 46s
+    750/2691 clips, 65s
+    1000/2691 clips, 88s
+    1250/2691 clips, 109s
+    1500/2691 clips, 131s
+    1750/2691 clips, 149s
+    2000/2691 clips, 171s
+    2250/2691 clips, 189s
+    2500/2691 clips, 207s
+en: WER 9.2782 % (229s)
+{
+  "macro_wer": 14.4716,
+  "reference": 23.017,
+  "diff_pp": -8.5454,
+  "ci_pp": [
+    -8.8336,
+    -8.2466
+  ],
+  "gate": {
+    "improvement_pp": 8.5454,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  }
+}
+=== tts-s1 s1-cal  Tue Nov 24 11:51:40 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-tts-s1/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-cal: 400 clips, 16.9 min
+    250/400 clips, 8s
+{
+  "set": "s1-cal",
+  "wer": 12.265,
+  "wer_ci": [
+    10.8084,
+    13.7978
+  ],
+  "eta": 76.6887,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== tts-s1 s1-dev  Tue Nov 24 11:51:54 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-tts-s1/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+s1-dev: 960 clips, 51.3 min
+    250/960 clips, 10s
+    500/960 clips, 21s
+    750/960 clips, 31s
+{
+  "set": "s1-dev",
+  "wer": 13.4843,
+  "wer_ci": [
+    12.5778,
+    14.405
+  ],
+  "eta": 75.0488,
+  "decoder_frozen": true,
+  "gate_eligible": false,
+  "no_regression": null
+}
+=== tts-s1 dev-macro INT8  Tue Nov 24 11:52:34 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+onnx: runs/E-027/release-tts-s1/model.int8.onnx (40.04 MB), tokenizer 1024 pieces
+it: 1248 clips, 310.5 min
+    250/1248 clips, 41s
+    500/1248 clips, 86s
+    750/1248 clips, 127s
+    1000/1248 clips, 171s
+it: WER 19.6624 % (214s)
+en: 2691 clips, 318.4 min
+    250/2691 clips, 19s
+    500/2691 clips, 46s
+    750/2691 clips, 66s
+    1000/2691 clips, 88s
+    1250/2691 clips, 109s
+    1500/2691 clips, 131s
+    1750/2691 clips, 149s
+    2000/2691 clips, 171s
+    2250/2691 clips, 189s
+    2500/2691 clips, 208s
+en: WER 9.3043 % (230s)
+{
+  "macro_wer": 14.4834,
+  "reference": 23.017,
+  "diff_pp": -8.5336,
+  "ci_pp": [
+    -8.8268,
+    -8.2294
+  ],
+  "gate": {
+    "improvement_pp": 8.5336,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  }
+}
+=== tts-s0 dev-macro FP32  Tue Nov 24 12:00:01 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+model: 39,259,649 params, step 8000, ema weights, tokenizer 1024 pieces
+it: 1248 clips, 310.5 min
+    250/1248 clips, 44s
+    500/1248 clips, 91s
+    750/1248 clips, 133s
+    1000/1248 clips, 179s
+it: WER 19.5709 % (223s)
+en: 2691 clips, 318.4 min
+    250/2691 clips, 21s
+    500/2691 clips, 49s
+    750/2691 clips, 70s
+    1000/2691 clips, 93s
+    1250/2691 clips, 115s
+    1500/2691 clips, 139s
+    1750/2691 clips, 157s
+    2000/2691 clips, 182s
+    2250/2691 clips, 200s
+    2500/2691 clips, 220s
+en: WER 9.2689 % (243s)
+{
+  "macro_wer": 14.4199,
+  "reference": 23.017,
+  "diff_pp": -8.5971,
+  "ci_pp": [
+    -8.8867,
+    -8.2916
+  ],
+  "gate": {
+    "improvement_pp": 8.5971,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  }
+}
+=== tts-s1 dev-macro FP32  Tue Nov 24 12:07:52 CET 2026 ===
+warning: decoding with a non-A3 LM (other)
+model: 39,259,649 params, step 8000, ema weights, tokenizer 1024 pieces
+it: 1248 clips, 310.5 min
+    250/1248 clips, 44s
+    500/1248 clips, 91s
+    750/1248 clips, 134s
+    1000/1248 clips, 179s
+it: WER 19.509 % (224s)
+en: 2691 clips, 318.4 min
+    250/2691 clips, 21s
+    500/2691 clips, 49s
+    750/2691 clips, 70s
+    1000/2691 clips, 94s
+    1250/2691 clips, 116s
+    1500/2691 clips, 140s
+    1750/2691 clips, 159s
+    2000/2691 clips, 183s
+    2250/2691 clips, 202s
+    2500/2691 clips, 222s
+en: WER 9.3025 % (245s)
+{
+  "macro_wer": 14.4057,
+  "reference": 23.017,
+  "diff_pp": -8.6113,
+  "ci_pp": [
+    -8.8929,
+    -8.3106
+  ],
+  "gate": {
+    "improvement_pp": 8.6113,
+    "ci_excludes_zero": true,
+    "meets_1pp": true,
+    "pass": true,
+    "comparable": false,
+    "decoder_frozen": true,
+    "gate_eligible": false
+  }
+}
+=== readouts done Tue Nov 24 12:15:44 CET 2026 ===

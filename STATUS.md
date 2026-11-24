@@ -11,10 +11,30 @@ running, and the exact next commands. Update it at the end of each session.
   13.7041 / 76.1266 (−1.4048 pp WER [−2.3455, −0.4276], +2.0134 pp ETA
   [−0.1921, +4.1837]). Browser exact at **RTFx 28.48** (4 threads, isolated,
   SIMD, load 70.1 ms). FLEURS once, report-only, vs E-034c: IT **11.8304 %**
-  (−2.9935 pp), EN **28.1955 %** (−2.0720 pp). **E-034c** (`0.9.6`, D25) is
+  (−2.9935 pp), EN **28.1955 %** (−2.0720 pp). **CS-FLEURS-READ once:
+  34.8085 %** [32.8929, 36.8120] (176 utterances, one speaker, insertion
+  2.2603 %; no ETA), the final external number (`runs/E-008/RESULT.md`); the
+  model card is `MODEL_CARD.md`. **E-034c** (`0.9.6`, D25) is
   retired from the product line and stays the historical reference: dev-macro
   **16.9897 %**, S1-dev **14.9744 / 73.9258**, T-600 **13.7041 / 76.1266**,
   browser RTFx 29.35. `runs/E-023/RESULT.md`, D27.
+- **E-027 done (D36, 2026-11-24): TTS fine-tune ties; not adopted, the model
+  line closes.** Four 8,000-step fine-tunes from R1 s0 (control vs +9.49 % TTS
+  audio from four pinned permissive voices; 3,411 sentences, 19,276 clips,
+  20.827 h, 0 QC drops; the 60-clip audit kept every stratum). Seed means: cal
+  TTS **12.5112 / 76.0927** vs control **13.0260 / 75.6954** — **gate 1 fails**
+  (WER −0.515 pp [−1.367, +0.271], ETA +0.397 pp [−1.223, +2.115]); dev-macro
+  TTS **14.4775** vs product **14.3274** — **gate 4 fails** (+0.150 pp
+  [+0.038, +0.269]). Gates 2/3/5 pass; the control is neutral against the
+  product, so there is no fallback. Product unchanged, T-600/FLEURS not read.
+  `runs/E-027/RESULT.md`.
+- **E-008 done (2026-11-24): the final external number.** CS-FLEURS-READ
+  IT–EN, 176 utterances / 0.51 h / one speaker, CC-BY-NC test-only, decoded
+  once with the product INT8 graph and E-034c: **34.8085 % WER** [32.8929,
+  36.8120], insertion 2.2603 %, no ETA (no aligned English spans). 27 rows
+  carry digits (normalizer artifact); without them 33.9948 % [31.8533,
+  36.1435] report-only. The report-only ceiling read (E-018 teacher/frontier
+  APIs) was not run. `runs/E-008/RESULT.md`; the model card is `MODEL_CARD.md`.
 - **E-023 R1 both seeds complete (2026-11-23); 2b missed, accepted by
   amendment (E-002 §9, D26), then adopted after the guard (D27).** Seed mean:
   dev-macro **14.3578 %** (−2.6320 pp [−2.8253, −2.4515], pass); S1-dev
@@ -71,8 +91,8 @@ running, and the exact next commands. Update it at the end of each session.
   failed, so it stays unexposed (D35).**
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
-  without an explicit go-ahead. The training-free queue is empty; **E-027** (the
-  TTS arm of E-021, a fine-tune of R1 seed 0) is pre-registered and authorized.
+  without an explicit go-ahead. E-027 ran and tied, so **the model line is
+  closed (D36)**; the remaining queue is E-008 plus the model card.
 - **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
   the wrong ranking target; the LM is the lever and C no longer fits next to the
   E-034 LM; the E-011 ETA loss looks recipe-level. Procedure P0–P11: cross-machine
@@ -89,10 +109,11 @@ running, and the exact next commands. Update it at the end of each session.
   zero). **Not adopted**; E-011 was superseded by R1 (D26/D27) and its S1-dev
   absolute numbers were inflated by the P2 leak, but the paired E-011-vs-E-005
   comparison used the same A3 LM. `runs/E-011/RESULT.md`.
-- **Tests:** 117 passed + 4 skipped (torch, `stt.lm` parity and soundfile) in
-  the root env on 2026-11-23; `ruff check` and `ruff format --check` clean. The
-  E-026 probe adds `tests/test_keyterm_probe.py` (8 tests, pure selection logic,
-  no Moth import; they pass). The E-027 commit adds `tests/test_e027_tts.py`,
+- **Tests:** 133 passed + 4 skipped (torch, `stt.lm` parity and soundfile) in
+  the root env on 2026-11-24; `ruff check` and `ruff format --check` clean. The
+  E-026 probe adds `tests/test_keyterm_probe.py`; E-027 adds
+  `tests/test_e027_tts.py` (script/QC/share/audit logic) and the `[finetune]`
+  config tests. The E-027 commit adds `tests/test_e027_tts.py`,
   fine-tune cases in `test_training_config.py` / `test_model_init.py` and a
   multi-seed control case in `test_seed_mean.py`; the torch-free ones pass on the
   machine that wrote them, which had no `ruff`, torch or `num2words`: run the
@@ -166,7 +187,7 @@ running, and the exact next commands. Update it at the end of each session.
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next steps: E-027 (TTS fine-tune), pre-registered and authorized
+## Next steps: the model line is closed — E-008 and the model card
 
 **The product is E-023 R1 seed 0 + E-034c, version `0.9.7-e023-r1` (D27).**
 The T-600 guard passed on 2026-11-23 (12.2993 / 78.1400 vs 13.7041 / 76.1266),
@@ -190,47 +211,37 @@ not read. A post-hoc look (report-only) shows the S1-dev harm is real, not
 noise: 30 of 960 hypotheses change, 11 get worse and 3 better, mostly short
 words pulled toward listed terms. `runs/E-026/RESULT.md`.
 
-**Next: E-027, the TTS arm of E-021** (`experiments/E-027-e021-tts.md`,
-authorized 2026-11-23). The E-025 sentences, re-filtered against S1-dev, T, A
-and R-S1-cal, are spoken by four pinned permissive Italian voices (Kokoro
-`if_sara` / `im_nicola` in Italian and mixed-G2P modes, Piper `paola` /
-`serena`), checked by a QC and a 60-clip listening audit, and added at ~10 % of
-the epoch audio to a fine-tune of R1 seed 0 (8,000 steps, LRs 1e-4 / 1e-5, EMA
-0.999, 2 seeds) against the same fine-tune without TTS. Gate: a R-S1-cal win
-over the control, no loss against the product on R-S1-cal, the S1-dev veto and
-the dev-macro guard against the product, INT8 cost ≤ 0.2 pp; then a T-600
-release guard. **Stop rule: if gate 1 ties, the model line closes** and E-008
-plus the model card follow. New code: the trainer's `[finetune]` table
-(`training/README.md`), `tools/e027_tts_script.py`, `tools/e027_tts_render.py`,
-`tools/e027_audit.py`, `tools/e027_share.py`, multi-seed `--control` in
-`tools/seed_mean.py`. The order is in the pre-registration's command block:
+**E-027 is done: the TTS fine-tune ties (D36).** The E-025 sentences,
+re-filtered against S1-dev, T, A and R-S1-cal, were spoken by four pinned
+permissive voices (19,276 clips, 20.827 h, 0 QC drops; the 60-clip audit kept
+every stratum) and added at 9.49 % of the epoch audio to four 8,000-step
+fine-tunes of R1 seed 0. Seed means: cal TTS **12.5112 / 76.0927** vs control
+**13.0260 / 75.6954** — **gate 1 fails** (WER −0.515 pp [−1.367, +0.271], ETA
++0.397 pp [−1.223, +2.115]); dev-macro TTS **14.4775** vs product **14.3274**
+— **gate 4 fails** (+0.150 pp [+0.038, +0.269]). Gates 2 (no cal loss), 3
+(S1-dev veto) and 5 (INT8 +0.065 pp) pass, but the same-length control is
+neutral against the product, so there is no fallback. **The stop rule applies:
+the model line is closed; no further training arm is planned. T-600 and FLEURS
+were not read.** `runs/E-027/RESULT.md`, D36.
 
-1. Download the pinned voices; build the script; **smoke-render 5 rows** per
-   voice/mode and listen. The renderer's engine calls (Kokoro
-   `generate_from_tokens`, misaki espeak G2P, Piper `synthesize`) were written
-   without the packages installed: fix API mismatches at the smoke step, before
-   any measurement.
-2. Full rendering, listening audit (owner), mel shards, `e027_share.py`; set
-   `repeat` in `base6-e027-tts.toml` and **commit before training**.
-3. Preflight and dry-run both configs (the dry-run checks the R1 checkpoint's
-   sha256), then the four runs (~13 h), exports, readouts and the seed-mean
-   gate.
+**E-008 and the model card are done (2026-11-24).** CS-FLEURS-READ was read
+once as the final external number: **34.8085 % WER** [32.8929, 36.8120] (176
+IT–EN utterances, 0.51 h, one speaker; CC-BY-NC test-only; no ETA because
+there are no aligned English spans). 27/176 transcripts carry digits; without
+them the report-only WER is 33.9948 % [31.8533, 36.1435]. The report-only
+ceiling read (E-018 teacher + frontier APIs) is **not run**: it needs
+third-party models, consent for S2/S3 and cost. `runs/E-008/RESULT.md`.
 
-**No new recordings (D34).** E-019 arm B, E-021 arm 1 and E-006 arm 5 are
-dropped. Every remaining training arm is re-pre-registered before it runs, with
-R1 seed 0 + E-034c as the parent, a same-length control fine-tune, R-S1-cal
-ranking, the S1-dev veto and the dev-macro guard. Only changes expected to move
-WER or ETA by about 1 pp or more are worth a run: R-S1-cal cannot resolve less.
-After E-027:
+`MODEL_CARD.md` records the evidence boundary: scripted read speech, known S1/
+S2/S3 voices (S3 never trained but repeatedly evaluated), no spontaneous
+code-switching, per-speaker ranges, one-speaker external sets, repeated T-600,
+the digit-normalisation limit, and the NC test-only labelling.
 
-1. **If E-027 ties or fails:** E-008 (CS-FLEURS-READ once, the final external
-   number) and the model card (README rule). E-006 arm 1 (VoxPopuli Italian)
-   and E-019 arm A stay possible but are not planned.
-2. **E-013 / E-014 — architecture screens**, low priority: expected gains are
-   below what R-S1-cal resolves, and their 4k-step gate ranks on greedy
-   dev-macro, the metric that misled E-010/E-011. E-015 is not triggered.
-3. **P11 — optional third R1 seed** with per-eval checkpoints; no longer a
-   prerequisite.
+**No new recordings (D34).** E-019 arm B, E-021 arm 1 and E-006 arm 5 stay
+dropped. Nothing is running and no step is scheduled. E-006 arm 1 (VoxPopuli
+Italian) and E-019 arm A stay possible but are **not planned**; E-013/E-014 and
+P11 are not planned. Any future arm needs a new pre-registration and an
+explicit go-ahead.
 
 Residual risk carried from E-023 (D34): `switch` did not improve on T-600 (ETA
 −2.03 pp, 60 clips) or R-S1-cal (−2.43 pp), while S1-dev improved. Every later
@@ -267,6 +278,7 @@ historical E-002 gate reference; do not overwrite it.
 | Gold v1.0.0 train | 1,413 | 0.96 | `data/shards/gold-train` |
 | MUSAN noise set | 480 | 1.33 | `data/raw/noise`, `data/manifests/noise.jsonl` |
 | S1-dev | **960** | **0.855** | `data/shards/s1-dev`, `../moth-cs-dataset/audio/R-S1-dev/S1` |
+| CS-FLEURS-READ IT–EN (test-only) | **176** | **0.508** | `data/raw/cs-fleurs/read/test` (CC-BY-NC, never training) |
 
 The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 `27e1ef0e…`, 10,542,669,746 B). It was extracted to `data/raw/cv_it_27`.
@@ -353,15 +365,18 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 ## Docs map
 
 - `README.md` — project goal and current decisions.
-- `docs/decisions.md` — D1–D35, including checkpointing (D15), init (D16),
+- `MODEL_CARD.md` — evidence boundary, training data, evaluation, known
+  weaknesses, provenance and licences for `0.9.7-e023-r1`.
+- `docs/decisions.md` — D1–D36, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
   MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier
   models as teachers (D24, proposed), E-034c (D25), E-023 R1 by amendment
   (D26), R1 seed 0 as the product (D27), the vendored web runtime / E-016
   (D28), the min-runs-3 segmentation rule (D29), the rejected ×3-term LM (D30),
   E-018's no-mixed-teacher result (D31), the E-022 oracle ceiling (D32), the
-  rejected LLM-text LM (D33), the no-recordings re-scope (D34) and the
-  unexposed E-026 glossary (D35).
+  rejected LLM-text LM (D33), the no-recordings re-scope (D34), the unexposed
+  E-026 glossary (D35) and the tied E-027 TTS arm that closes the model line
+  (D36).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
   cannot give MOTH-50; licences; teachers.
@@ -391,6 +406,8 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `experiments/E-025-e020-llm-text.md`, `runs/E-025/RESULT.md` — LLM text, negative.
 - `experiments/E-026-e022-glossary.md` — E-022 step 3 pre-registration: realistic glossary harm and partial recall.
 - `runs/E-026/RESULT.md` — realistic glossary: safe harm and partial-recall win on cal, S1-dev veto fails, not exposed.
+- `runs/E-027/RESULT.md` — TTS fine-tune: render, audit, four runs, readouts, gate; tie and dev-macro loss, model line closed.
+- `runs/E-008/RESULT.md` — CS-FLEURS-READ once: the final external number, 34.81 % WER [32.89, 36.81].
 - `experiments/E-027-e021-tts.md` — E-027 pre-registration: TTS fine-tune of R1 s0 vs a same-length control, gate and stop rule.
 - `runs/E-004/RESULT.md` — arm B, P0 parity, P2 leakage, E-034c; 49.21 MB package.
 - `runs/probe-2026-11-19/` — 16 kHz Silero graph parity preflight.

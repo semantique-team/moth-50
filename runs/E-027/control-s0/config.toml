@@ -1,0 +1,92 @@
+# MOTH-50 E-027 control: same-length fine-tune of the product (R1 seed 0) on the
+# unchanged mixture. Pre-registered 2026-11-23 in experiments/E-027-e021-tts.md.
+# The TTS arm (base6-e027-tts.toml) is this file plus one TTS source; nothing
+# else may differ. Two seeds: run --seed 0 and --seed 1.
+
+[model]
+preset = "base"
+head_blocks = 6
+vocab_size = 1024
+checkpointing = true
+identity_heads = false
+
+# Start from the product acoustic weights: R1 seed 0, step 40,000, EMA weights.
+# The sha256 is the one recorded in runs/E-023/export-report-s0.json.
+[finetune]
+init_checkpoint = "../../runs/E-023/r1-s0/checkpoints/ckpt_best.pt"
+sha256 = "5ff95f0e5477fc3ba12d486bae2947f6477113b07993eb76f714f117daaf8abf"
+weights = "ema"
+
+[data]
+tokenizer = "../../data/tokenizer/moth_bpe.model"
+max_seconds = 192
+max_clips = 32
+augment = true
+seed = 0
+eval_max_seconds = 192
+eval_max_clips = 32
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/cv_it_train_clean50.jsonl"
+shards = "../../data/shards/cv_it_train"
+repeat = 1
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/cv_it_train_noisy50.jsonl"
+shards = "../../data/shards/cv_it_noisy50"
+repeat = 1
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/mls_it_train.jsonl"
+shards = "../../data/shards/mls_it_train"
+repeat = 1
+
+[[data.train]]
+manifest = "../../../moth-stt/data/manifests/ls_en_train.jsonl"
+shards = "../../data/shards/ls_en_train"
+repeat = 1
+
+[[data.train]]
+manifest = "../../data/manifests/spliced_it_en.jsonl"
+shards = "../../data/shards/spliced_it_en"
+repeat = 1
+
+[[data.train]]
+manifest = "../../../moth-cs-dataset/manifests/train.jsonl"
+shards = "../../data/shards/gold-train"
+repeat = 50
+
+[[data.dev]]
+manifest = "../../../moth-stt/data/manifests/mls_it_dev.jsonl"
+shards = "../../data/shards/mls_it_dev"
+
+[[data.dev]]
+manifest = "../../../moth-stt/data/manifests/ls_en_dev.jsonl"
+shards = "../../data/shards/ls_en_dev"
+
+# Gentle fine-tune: a third of R1's peak LRs (3e-4 / 3e-5), a short warm-up and
+# a cosine to 5 % over 8,000 steps (~0.6 epoch).
+[optimizer]
+lr_head = 1e-4
+lr_encoder = 1e-5
+betas = [0.9, 0.98]
+eps = 1e-8
+weight_decay = 0.01
+grad_clip = 1.0
+
+[schedule]
+warmup_steps = 500
+min_factor = 0.05
+
+# The readout uses ckpt_last.pt (step 8,000, EMA weights), never ckpt_best:
+# the greedy dev-macro selection is monitoring only.
+[train]
+epochs = 4
+max_steps = 8000
+log_every = 50
+eval_every_steps = 2000
+checkpoint_every_steps = 100
+empty_cache_every = 10
+autocast = "bf16"
+seed = 0
+ema_decay = 0.999

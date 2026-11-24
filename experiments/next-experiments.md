@@ -9,8 +9,8 @@ negative (D33). D34 (2026-11-23) rules out new recordings: E-019 arm B, E-021
 arm 1 and E-006 arm 5 are dropped, and every remaining training arm is
 re-pre-registered with R1 seed 0 as the parent and R-S1-cal ranking before it
 runs. E-026 (E-022 step 3, realistic glossary) ran and the glossary is not
-exposed (D35). E-027 (E-021 arm 2, TTS fine-tune) is pre-registered and
-authorized in `experiments/E-027-e021-tts.md`; E-013–E-015 and E-019 have not
+exposed (D35). E-027 (E-021 arm 2, TTS fine-tune) ran on 2026-11-24 and tied:
+not adopted and the model line is closed (D36); E-013–E-015 and E-019 have not
 run.**
 E-017–E-022 were added after the frontier-model review
 (`docs/frontier-stt-2026-11-19.md`, D24); the 2026-11-21 review
@@ -109,12 +109,12 @@ after the session.
 | 16 | E-014 | Conformer-style convolution in the extra blocks | — | ~1.6 h MPS | ≈ 0 |
 | 17 | E-015 | 25 Hz extra blocks (P7) | only if E-016 fails | **not triggered: 1-thread 21.17× at 20 s** | 0 |
 | 18 | E-006 | Remaining data arms | product baseline | days; arm 5 dropped (D34); re-pre-register from R1 | 0 |
-| 19 | E-008 | External evaluation and ceilings | final model | hours | 0 |
+| 19 | E-008 | External evaluation and ceilings | final model | **done 2026-11-24: CS-FLEURS-READ 34.8085 % [32.8929, 36.8120]; ceiling read not run** | 0 |
 | 20 | E-023 | R1 recipe ablation: E-011 with encoder LR 3e-5 | E-017, a P6 failure | **done 2026-11-23: 2b report-only (D26), T-600 guard passed, adopted (D27)** | 0 |
 | 21 | E-024 | P8 ×3-term unpruned LM | 20 | **done 2026-11-23: no effect, not adopted (D30)** | 0 |
 | 22 | E-025 | E-020 executed: LLM text in the LM | 20 | **done 2026-11-23: tie, not adopted (D33)** | +45,848 B (not shipped) |
 | 23 | E-026 | E-022 step 3: realistic glossary, harm and partial recall | 14, 20 | **done 2026-11-23: S1-dev veto failed, glossary not exposed (D35)** | 0 |
-| 24 | E-027 | E-021 arm 2: TTS fine-tune from R1 s0 vs a same-length control | 20, 22 | **pre-registered and authorized 2026-11-23; ~13 h MPS + rendering; stop rule: a tie closes the model line** | 0 |
+| 24 | E-027 | E-021 arm 2: TTS fine-tune from R1 s0 vs a same-length control | 20, 22 | **done 2026-11-24: calibration tie, +0.150 pp dev-macro, not adopted; the stop rule closes the model line (D36)** | 0 |
 
 P8 was run after this table was written: **E-024 (2026-11-23) built the
 unpruned E-034 LM with ×3 term weighting, got byte-identical R-S1-cal
