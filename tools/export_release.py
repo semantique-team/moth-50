@@ -194,6 +194,7 @@ def main(argv: list[str] | None = None) -> int:
         head_blocks=model_config.head_blocks,
         lm_sha256=lm_info["sha256"],
         vad_description=vad_description,
+        lm_file_sha256=lm_packed["sha256"],
     )
     (out / "NOTICE").write_text(notice, encoding="utf-8")
 
