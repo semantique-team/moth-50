@@ -12,9 +12,10 @@ not used for selection.
   revision `0cdbf166…` in `data/sources.lock.json`), language pair `ita-eng`.
   Licence **CC-BY-NC-4.0**, **test-only, never training**. 176 utterances,
   0.5085 h, one speaker (SC), fluency 0/1/2 = 86/40/50.
-- **Manifest:** `data/manifests/cs-fleurs-read.jsonl`, built reproducibly by
+- **Manifest:** `data/manifests/cs-fleurs-read.jsonl` (gitignored since
+  2026-11-25: it holds CC-BY-NC transcripts), built reproducibly by
   `tools/build_cs_fleurs_manifest.py` (report
-  `runs/E-008/cs-fleurs-read-report.json`); `split: test`, `source:
+  `runs/E-008/cs-fleurs-read-report.json`, output sha256 `848c2eae…`); `split: test`, `source:
   cs-fleurs`, no `en_spans` (no word alignment, so ETA is undefined). Mel
   shards: 176 clips, 1 file, 0.51 h, 0 errors
   (`data/shards/cs-fleurs-read/`).
@@ -69,7 +70,8 @@ API cost; it never selects and is not part of the product number.
 - `runs/E-008/cs-fleurs-read-0.9.7.json` / `.hyp.jsonl` — readout and
   hypotheses.
 - `runs/E-008/cs-fleurs-read-report.json` — manifest report.
-- `data/manifests/cs-fleurs-read.jsonl`,
+- `data/manifests/cs-fleurs-read.jsonl` (gitignored, CC-BY-NC text; rebuild
+  with the tool below),
   `data/shards/cs-fleurs-read/` (gitignored),
   `tools/build_cs_fleurs_manifest.py`,
   `tests/test_build_cs_fleurs_manifest.py`.

@@ -9,6 +9,8 @@ node_modules/
 data/raw/
 data/shards/
 data/audio/
+# CC-BY-NC test text (E-008): rebuild with tools/build_cs_fleurs_manifest.py
+data/manifests/cs-fleurs-read.jsonl
 runs/**/checkpoints/
 *.onnx
 *.pt
