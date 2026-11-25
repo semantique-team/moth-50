@@ -807,14 +807,21 @@ The product stays **E-023 R1 seed 0 + E-034c** (`0.9.7-e023-r1`, D27). Result in
   +2.115]: neither CI clears zero. Per seed: WER −0.269 / −0.761, ETA −0.199 /
   +0.993.
 - **Gate 4 fails.** On dev-macro the TTS arm is **+0.150 pp** [+0.038, +0.269]
-  against the product (consistent across seeds, mostly Italian). Gates 2 (no
+  against the product (consistent across seeds; IT +0.16 pp and EN +0.14 pp
+  against the product, IT +0.25 / EN +0.09 against the control — corrected
+  2026-11-25 from "mostly Italian"). Gates 2 (no
   loss on cal), 3 (S1-dev veto) and 5 (INT8 cost +0.065 pp) pass. The
   same-length control is itself neutral against the product on all three sets,
   so there is no fallback to adopt.
 - **Read.** The synthetic speech moved the intended cal terms (acronym WER
   −2.29 pp / ETA +10.78 pp, brand −2.32 / +4.81, single_word −3.26 / +9.00) but
   gave back the gain on `switch` (+2.92 / −5.56), and the sentence-level WER
-  did not move. Category numbers are report-only.
+  did not move. Category numbers are report-only. **Post-hoc (2026-11-25,
+  report-only):** the `switch` loss repeats on S1-dev (ETA −2.83 pp [−5.63,
+  −0.11] vs the product); the TTS arm fixes technical terms (`sql`, `http`,
+  `csv`…) and breaks common English words in phrases (`keep me` → "ki mi",
+  `you` → "io"). The likely cause is the `it` mode, which read 2.2 h of English
+  sentences and phrases with the Italian G2P; see `runs/E-027/RESULT.md`.
 - **Consequence.** No package, browser, decoder or LM change; T-600 and FLEURS
   are not read (not triggered). The renders, shards and four runs stay as
   evidence. **E-008 followed on 2026-11-24**: CS-FLEURS-READ once is **34.8085 %
@@ -822,6 +829,46 @@ The product stays **E-023 R1 seed 0 + E-034c** (`0.9.7-e023-r1`, D27). Result in
   `MODEL_CARD.md` records the evidence boundary. E-006 arm 1 (VoxPopuli
   Italian) and E-019 arm A remain possible but are not planned. Any future arm
   still needs a new pre-registration and an explicit go-ahead.
+
+## D37 — Attribution fixes: the LM in the release NOTICE, CS-FLEURS text out of git (2026-11-25)
+
+**Decision: the release NOTICE names the LM that is actually shipped; the
+product is repackaged as `0.9.8-e023-r1` with byte-identical runtime assets.**
+Status: the code fix is committed; the repackaging and its checks run on the
+training Mac (`STATUS.md`). Until they pass, `0.9.7-e023-r1` stays the
+package, with this erratum.
+
+- **The error.** `tools/release_notice.py` has written the same LM sentence
+  since 2026-11-19: "the decoder LM (sha256 …) and the SentencePiece tokenizer
+  are reused unchanged from Moth 0.8.1". That was true for A3. Every non-A3
+  package since E-004 (`0.9.5`, `0.9.6-e034c`, `0.9.7-e023-r1`) inherited it:
+  the `0.9.7` NOTICE calls the E-034c LM Moth's file and quotes the unpacked
+  sha256 `4b122fbe…`, while the shipped `lm_bpe3.bin` is the packed
+  `7a4332f1…`. E-034c is MOTH-50's rebuild of Moth's E-034 recipe on Moth's
+  frozen E-031 corpus minus the 900 S1-dev sentences (D25). The attributed
+  sources are the right ones (the corpus is Moth's); the description and the
+  hash are not.
+- **The fix.** `lm_lines` keeps the A3 wording byte for byte (historical A3
+  packages re-export unchanged), describes E-034c as a MOTH-50 rebuild with the
+  shipped and source hashes, and refuses to call any other LM Moth's.
+  `tools/export_release.py` passes the shipped LM hash.
+- **The package.** `tools/renotice_release.py` copies the five runtime assets of
+  `release-0.9.7` (graph `85abd830…`, LM `7a4332f1…`, VAD `7ed98ddb…`, vocab,
+  mel filters), takes the NOTICE from a scratch re-export of the same
+  checkpoint, sets `version` to `0.9.8-e023-r1` and fails unless every asset
+  keeps its sha256 and the package validates within 50,000,000 B. Decoding is
+  byte-for-byte the same, so no readout is repeated; the browser check (load,
+  sha256 verification, exact smoke transcript) is.
+- **Not changed.** Model, LM, decoder, VAD, all numbers in `MODEL_CARD.md`. The
+  0.9.8 version number was reserved for an adopted E-027 arm, which did not
+  happen (D36).
+- **CS-FLEURS text.** E-008 committed `data/manifests/cs-fleurs-read.jsonl`,
+  176 CC-BY-NC-4.0 transcripts, while the model card says CS-FLEURS is not
+  redistributed. The file is now untracked and gitignored; it is rebuilt from
+  the pinned download by `tools/build_cs_fleurs_manifest.py` (sha256
+  `848c2eae…` in `runs/E-008/cs-fleurs-read-report.json`). It remains in the
+  history of `2836a1e`; removing it from history is the owner's call. The
+  hypotheses in `runs/E-008/` are MOTH-50 output and stay.
 
 ## Open questions
 

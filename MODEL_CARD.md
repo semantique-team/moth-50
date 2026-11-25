@@ -1,11 +1,13 @@
 # MOTH-50 — model card
 
-**Model:** MOTH-50, version **`0.9.7-e023-r1`**
-**Date:** 2026-11-24
+**Model:** MOTH-50, version **`0.9.7-e023-r1`** (a NOTICE-only repackaging,
+`0.9.8-e023-r1`, is pending: see *Licence and attribution* and D37)
+**Date:** 2026-11-24, revised 2026-11-25
 **Status:** final product of the MOTH-50 line. E-027 (TTS fine-tune) tied and was
 not adopted (D36); no further training arm is planned.
-**Licence:** Apache-2.0 for the repository, model code and weights. Third-party
-attributions are in `NOTICE`; the release package carries that NOTICE.
+**Licence:** Apache-2.0 for the repository, model code and weights. Repository
+attributions are in `NOTICE`; the release package carries its own NOTICE,
+written by `tools/release_notice.py` for the files it ships.
 
 ## What it is
 
@@ -45,7 +47,7 @@ encoder on the R1 mixture (per epoch, before repeats):
 | Source | Clips | Hours | Licence |
 |---|---:|---:|---|
 | Common Voice IT 27, clean-50 | 56,769 | 84.22 | CC0 |
-| Common Voice IT 27, noisy-50 | 56,349 | 83.56 | CC0 |
+| Common Voice IT 27, noisy-50 | 56,349 | 83.56 | CC0; mixed with MUSAN noise (CC-BY-4.0) and room tone |
 | MLS Italian train | 40,953 | 169.89 | CC-BY-4.0 |
 | LibriSpeech train-clean-100 | 28,370 | 100.00 | CC-BY-4.0 |
 | Spliced IT+EN | 20,623 | 110.00 | derived from the above |
@@ -119,8 +121,9 @@ min-runs-3 segmentation rule.
   published readout; very short four-word cues are the hardest.
 - **Browser vs Python** is a tie but not identical; VAD segmentation, not
   resampling, is the residual cause (E-016b min-runs-3).
-- **INT8 only in the product.** FP32 dev-macro is 0.06 pp better on the E-027
-  controls and 0.05–0.08 pp on the TTS seeds; the INT8 cost is small but real.
+- **INT8 only in the product.** The product's FP32 dev-macro is 14.2633 %
+  against 14.3274 % INT8 (0.064 pp, CI includes zero); the E-027 TTS seeds
+  show 0.05–0.08 pp. The INT8 cost is small and not significant.
 - **No contextual biasing / glossary.** E-026's realistic glossary was measured
   and not exposed because the S1-dev veto failed (D35). There is no user
   glossary or keyterm injection in `0.9.7`.
@@ -141,10 +144,20 @@ min-runs-3 segmentation rule.
 
 ## Licence and attribution
 
-Code, weights and the release package are Apache-2.0. The release NOTICE lists
-the training-data and runtime attributions: Common Voice IT (CC0), MLS Italian
-and LibriSpeech (CC-BY-4.0), the recorded moth-cs data (CC-BY-4.0), Silero VAD,
-the BPE tokenizer, and the E-034c LM text sources. **CS-FLEURS and SwitchLingua
+Code, weights and the release package are Apache-2.0. The release NOTICE
+(`tools/release_notice.py`) carries the Whisper and Silero VAD MIT notices,
+the Moth tokenizer and LM-corpus sources, and the training datasets: moth-cs
+(CC-BY-4.0), Common Voice IT (CC0), MLS Italian and LibriSpeech (CC-BY-4.0),
+MUSAN (CC-BY-4.0) and the derived splices. **CS-FLEURS and SwitchLingua
 are CC-BY-NC and are evaluation-only**; they are not in training and not
 redistributed. No voice cloning of S1/S2/S3 was used; no commercial-API output
 was used for labels, text or LM data.
+
+**Erratum (2026-11-25, D37).** The NOTICE inside `0.9.7-e023-r1` says the
+decoder LM is "reused unchanged from Moth 0.8.1" and quotes the unpacked
+sha256 `4b122fbe…`. The shipped LM is E-034c: MOTH-50's rebuild of Moth's
+E-034 recipe on Moth's frozen E-031 corpus, packed as `7a4332f1…`. The listed
+sources are the right ones; the description and the hash are not. The fixed
+NOTICE ships in `0.9.8-e023-r1`, a repackaging whose graph, LM, VAD,
+vocabulary and mel filters are byte-identical to `0.9.7`; every number in this
+card applies to both.

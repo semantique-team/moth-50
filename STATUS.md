@@ -1,4 +1,4 @@
-# MOTH-50 — session status and handoff (2026-11-23)
+# MOTH-50 — session status and handoff (2026-11-25)
 
 This is the first file to read when resuming. It records what is done, what is
 running, and the exact next commands. Update it at the end of each session.
@@ -14,7 +14,10 @@ running, and the exact next commands. Update it at the end of each session.
   (−2.9935 pp), EN **28.1955 %** (−2.0720 pp). **CS-FLEURS-READ once:
   34.8085 %** [32.8929, 36.8120] (176 utterances, one speaker, insertion
   2.2603 %; no ETA), the final external number (`runs/E-008/RESULT.md`); the
-  model card is `MODEL_CARD.md`. **E-034c** (`0.9.6`, D25) is
+  model card is `MODEL_CARD.md`. **D37 (2026-11-25):** the `0.9.7` NOTICE calls
+  the E-034c LM Moth's unchanged file and quotes its unpacked hash; the fix is
+  committed and a NOTICE-only package `0.9.8-e023-r1` (same runtime bytes) is
+  pending on the Mac. **E-034c** (`0.9.6`, D25) is
   retired from the product line and stays the historical reference: dev-macro
   **16.9897 %**, S1-dev **14.9744 / 73.9258**, T-600 **13.7041 / 76.1266**,
   browser RTFx 29.35. `runs/E-023/RESULT.md`, D27.
@@ -27,6 +30,10 @@ running, and the exact next commands. Update it at the end of each session.
   TTS **14.4775** vs product **14.3274** — **gate 4 fails** (+0.150 pp
   [+0.038, +0.269]). Gates 2/3/5 pass; the control is neutral against the
   product, so there is no fallback. Product unchanged, T-600/FLEURS not read.
+  Report-only (2026-11-25): the `switch` loss repeats on S1-dev (ETA −2.83 pp
+  [−5.63, −0.11] vs the product); the likely cause is the `it` mode reading
+  2.2 h of English sentences and phrases with the Italian G2P, and the dev-macro
+  loss is on both languages against the product (IT +0.16, EN +0.14 pp).
   `runs/E-027/RESULT.md`.
 - **E-008 done (2026-11-24): the final external number.** CS-FLEURS-READ
   IT–EN, 176 utterances / 0.51 h / one speaker, CC-BY-NC test-only, decoded
@@ -92,7 +99,8 @@ running, and the exact next commands. Update it at the end of each session.
   **P0 (cross-machine parity) passed** byte-identical; **P1 merged** the frontier
   branch (D24); **P2 found the S1-dev leak** and built E-034c. No training starts
   without an explicit go-ahead. E-027 ran and tied, so **the model line is
-  closed (D36)**; the remaining queue is E-008 plus the model card.
+  closed (D36)**; E-008 and the model card are done. The only open work is the
+  D37 repackaging on the Mac (see *Next steps*).
 - **Review 2026-11-21 (proposed):** `docs/review-2026-11-21.md`. dev-macro is
   the wrong ranking target; the LM is the lever and C no longer fits next to the
   E-034 LM; the E-011 ETA loss looks recipe-level. Procedure P0–P11: cross-machine
@@ -110,14 +118,15 @@ running, and the exact next commands. Update it at the end of each session.
   absolute numbers were inflated by the P2 leak, but the paired E-011-vs-E-005
   comparison used the same A3 LM. `runs/E-011/RESULT.md`.
 - **Tests:** 133 passed + 4 skipped (torch, `stt.lm` parity and soundfile) in
-  the root env on 2026-11-24; `ruff check` and `ruff format --check` clean. The
-  E-026 probe adds `tests/test_keyterm_probe.py`; E-027 adds
-  `tests/test_e027_tts.py` (script/QC/share/audit logic) and the `[finetune]`
-  config tests. The E-027 commit adds `tests/test_e027_tts.py`,
-  fine-tune cases in `test_training_config.py` / `test_model_init.py` and a
-  multi-seed control case in `test_seed_mean.py`; the torch-free ones pass on the
-  machine that wrote them, which had no `ruff`, torch or `num2words`: run the
-  full suite, `ruff check` and `ruff format --check` before the smoke render.
+  the root env on 2026-11-24 (the E-008 commit message says 134); `ruff check`
+  and `ruff format --check` clean. E-026 added `tests/test_keyterm_probe.py`;
+  E-027 added `tests/test_e027_tts.py`, the `[finetune]` cases in
+  `test_training_config.py` / `test_model_init.py` and a multi-seed control
+  case in `test_seed_mean.py`; E-008 added `test_build_cs_fleurs_manifest.py`.
+  D37 (2026-11-25) adds LM-wording cases to `test_release_notice.py` and
+  `tests/test_renotice_release.py`; they pass on the Windows machine that wrote
+  them, which has no torch, `num2words`, `sentencepiece` or `ruff`, so the Mac
+  runs the full suite and ruff first.
 - **Tokenizer:** pinned at `data/tokenizer/moth_bpe.model`
   (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
 
@@ -187,7 +196,87 @@ running, and the exact next commands. Update it at the end of each session.
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next steps: the model line is closed — E-008 and the model card
+## Next steps: the model line is closed — finish the D37 repackaging on the Mac
+
+**Nothing is being trained and no experiment is planned.** The only open work is
+D37 (2026-11-25): the `0.9.7` NOTICE describes the E-034c LM as Moth 0.8.1's
+file "reused unchanged" with its unpacked hash. The code fix is committed
+(`tools/release_notice.py`, `tools/export_release.py`) with a repackaging tool
+(`tools/renotice_release.py`); the package itself needs the Mac, where the
+checkpoint, the release folder and the browser setup live.
+
+### To do on the training Mac, in order
+
+1. **Pull and check.** The pull also **deletes**
+   `data/manifests/cs-fleurs-read.jsonl` from the working tree (now gitignored:
+   CC-BY-NC text, D37); restore it byte for byte so E-008 stays reproducible.
+
+   ```bash
+   git pull --ff-only
+   uv run --frozen -- pytest -q
+   uv run --frozen -- ruff check . && uv run --frozen -- ruff format --check .
+   git show 2836a1e:data/manifests/cs-fleurs-read.jsonl > data/manifests/cs-fleurs-read.jsonl
+   shasum -a 256 data/manifests/cs-fleurs-read.jsonl
+   # expect 848c2eae935bbb40ccb9ec27abe26152c3e8caea8c94ffeefd48aab832cb6da8; git status stays clean
+   ```
+
+2. **Confirm the error** in the shipped NOTICE (sha256 `d507f66b…` per
+   `runs/E-023/export-report-0.9.7.json`). If `grep` prints nothing, stop and
+   report: then D37 is only the code fix and there is no new package.
+
+   ```bash
+   shasum -a 256 runs/E-023/release-0.9.7/NOTICE
+   grep -n "reused unchanged" runs/E-023/release-0.9.7/NOTICE
+   ```
+
+3. **Scratch re-export**, only to get the corrected NOTICE from the official
+   path. Its graph hash is a report-only determinism check (`85abd830…`
+   expected); the package uses the 0.9.7 bytes either way.
+
+   ```bash
+   uv run --frozen --project ../moth-stt --extra export -- python tools/export_release.py \
+     --checkpoint runs/E-023/r1-s0/checkpoints/ckpt_best.pt --weights ema \
+     --config training/configs/base6-e023-r1.toml \
+     --lm runs/E-004/lm_e034c_n2.bin --allow-other-lm \
+     --out-dir runs/E-023/release-0.9.8-scratch --version 0.9.8-e023-r1
+   sed -n '/decoder LM/,/these sources/p' runs/E-023/release-0.9.8-scratch/NOTICE
+   shasum -a 256 runs/E-023/release-0.9.8-scratch/model.int8.onnx
+   ```
+
+   The printed paragraph must name "MOTH-50's E-034c LM", the shipped sha256
+   `7a4332f1…` and the source sha256 `4b122fbe…`, and must not say the LM is
+   reused unchanged.
+
+4. **Repackage.** The tool copies the five runtime assets of `release-0.9.7`,
+   swaps in the new NOTICE, sets the version and fails unless every asset keeps
+   its sha256 and the package fits 50,000,000 B.
+
+   ```bash
+   uv run --frozen -- python tools/renotice_release.py --release runs/E-023/release-0.9.7 \
+     --notice runs/E-023/release-0.9.8-scratch/NOTICE --version 0.9.8-e023-r1 \
+     --out-dir runs/E-023/release-0.9.8 --report runs/E-023/export-report-0.9.8.json
+   ```
+
+5. **Browser check** of `runs/E-023/release-0.9.8`, as for
+   `browser-run-0.9.7.json` (`python tools/serve_web.py --release
+   runs/E-023/release-0.9.8`, isolated): the package loads with every sha256
+   verified and transcribes `../moth-cs-dataset/audio/T/S1/S1_0001.wav` exactly
+   as "ho spostato il meeting a domani". Write `runs/E-023/browser-run-0.9.8.json`
+   in the same shape; RTFx is report-only. No WER readout: decoding uses the
+   same bytes.
+
+6. **Docs.** Product version `0.9.8-e023-r1`, new package bytes and room, and the
+   two new reports in `MODEL_CARD.md` (header, component table, provenance;
+   keep the erratum paragraph with "fixed in 0.9.8"), `README.md`, this file,
+   and D37 status → done. Delete `runs/E-023/release-0.9.8-scratch/`
+   (gitignored). Commit the reports and docs.
+
+7. **Owner decisions, not for the agent:** tag and publish
+   `0.9.8-e023-r1` with `MODEL_CARD.md`; whether to purge the CS-FLEURS
+   transcripts from the git history of `2836a1e` (matters only if the repository
+   is or becomes public).
+
+### Product and closed work
 
 **The product is E-023 R1 seed 0 + E-034c, version `0.9.7-e023-r1` (D27).**
 The T-600 guard passed on 2026-11-23 (12.2993 / 78.1400 vs 13.7041 / 76.1266),
@@ -238,7 +327,7 @@ code-switching, per-speaker ranges, one-speaker external sets, repeated T-600,
 the digit-normalisation limit, and the NC test-only labelling.
 
 **No new recordings (D34).** E-019 arm B, E-021 arm 1 and E-006 arm 5 stay
-dropped. Nothing is running and no step is scheduled. E-006 arm 1 (VoxPopuli
+dropped. Nothing is running and no training step is scheduled. E-006 arm 1 (VoxPopuli
 Italian) and E-019 arm A stay possible but are **not planned**; E-013/E-014 and
 P11 are not planned. Any future arm needs a new pre-registration and an
 explicit go-ahead.
@@ -367,7 +456,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 - `README.md` — project goal and current decisions.
 - `MODEL_CARD.md` — evidence boundary, training data, evaluation, known
   weaknesses, provenance and licences for `0.9.7-e023-r1`.
-- `docs/decisions.md` — D1–D36, including checkpointing (D15), init (D16),
+- `docs/decisions.md` — D1–D37, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
   MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier
   models as teachers (D24, proposed), E-034c (D25), E-023 R1 by amendment
@@ -375,8 +464,8 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   (D28), the min-runs-3 segmentation rule (D29), the rejected ×3-term LM (D30),
   E-018's no-mixed-teacher result (D31), the E-022 oracle ceiling (D32), the
   rejected LLM-text LM (D33), the no-recordings re-scope (D34), the unexposed
-  E-026 glossary (D35) and the tied E-027 TTS arm that closes the model line
-  (D36).
+  E-026 glossary (D35), the tied E-027 TTS arm that closes the model line
+  (D36) and the NOTICE / CS-FLEURS attribution fixes (D37).
 - `docs/architecture-options.md` — architecture, budget, data and protocol.
 - `docs/frontier-stt-2026-11-19.md` — what the frontier STT models can and
   cannot give MOTH-50; licences; teachers.

@@ -86,7 +86,12 @@ Gate 1 requires a WER CI entirely below zero **or** an ETA CI entirely above
 zero; neither holds. Per-seed on cal, A vs C: s0 −0.269 [−1.292, +0.695] WER /
 −0.199 [−2.454, +1.997] ETA; s1 −0.761 [−1.664, +0.111] / +0.993 [−0.733,
 +2.802]. The dev-macro loss is consistent across seeds: +0.144 [+0.005, +0.293]
-and +0.156 [+0.022, +0.289]. It is mostly Italian (+0.30 pp IT, +0.06 pp EN).
+and +0.156 [+0.022, +0.289]. Against the product it is on **both** languages
+(seed means: IT 19.6637 vs 19.5016, **+0.16 pp**; EN 9.2913 vs 9.1533, **+0.14
+pp**); against the control it is mostly Italian (IT +0.25 pp, EN +0.09 pp).
+*Corrected 2026-11-25: the first version said "mostly Italian (+0.30 pp IT,
++0.06 pp EN)", which is seed 0 of the arm against seed 0 of the control, not
+the gate comparison.*
 
 **Report-only, C vs P** (the effect of the fine-tune alone): cal +0.179
 [−0.564, +0.916] WER / +0.199 [−1.262, +1.743] ETA; S1-dev −0.015 [−0.408,
@@ -108,7 +113,8 @@ same-length fine-tune is neutral, so there is no fallback to adopt.
 
 The TTS data moved the intended targets on cal (acronyms, brands, single
 words) but gave back the gain on `switch`; the overall WER and ETA are ties.
-Category-level numbers are report-only (E-002 §8.4).
+Category-level numbers are report-only (E-002 §8.4); the post-hoc look below
+shows the `switch` loss repeats on S1-dev.
 
 ## Decision
 
@@ -125,11 +131,68 @@ WER, and it costs a small, CI-firm dev-macro regression. The next work is
 card**; E-006 arm 1 (VoxPopuli) and E-019 arm A remain possible but are not
 planned.
 
+## Post-hoc look: why `switch` got worse (report-only, added 2026-11-25)
+
+Read after the verdict from the committed hypotheses and gate files; it changes
+nothing above and is not a rescue.
+
+**1. The `switch` loss is firm and repeats on S1-dev.** Seed means, pp, 95 % CI:
+
+| Set, comparison | `switch` WER | `switch` ETA |
+|---|---:|---:|
+| R-S1-cal, A vs C (50 clips) | +2.92 [+0.51, +5.71] | −5.56 [−10.26, −1.44] |
+| S1-dev, A vs P (128 clips) | +1.34 [−0.08, +2.82] | −2.83 [−5.63, −0.11] |
+
+Both seeds move the same way on cal. The single-term categories move the
+other way on cal: `single_word` −3.26 [−6.08, −0.86] / +9.00 [+3.00, +16.00],
+`acronym` −2.29 [−5.02, +0.19] / +10.78 [+2.94, +20.59], `brand` −2.32 [−4.21,
+−0.39] / +4.81 [−2.88, +12.50]. With eight categories some intervals exclude
+zero by chance; the pattern across both sets is the finding, not one interval.
+
+**2. Which terms moved.** Term errors made by both TTS seeds and by neither
+control seed ("new"), against errors made by both control seeds and by neither
+TTS seed ("fixed"): R-S1-cal 14 fixed / 9 new, S1-dev 19 fixed / 20 new.
+
+- Fixed on cal: `sql`, `csv`, `gif`, `tcp`, `http`, `https`, `token`, `update`,
+  `mouse`, `samsung`, `uniqlo`; on S1-dev also `casio`, `paramount`,
+  `security`, `badge`, `onboardato`, `uploadato`, but also common words
+  (`our`, `let's`, `after`, `near`).
+- New (cal and S1-dev together): common English words inside phrases, often turned into an
+  Italian look-alike: `keep me` → "ki mi", `ask me` → "askmi", `you` → "io",
+  `sense` → "sends", `eat` → "need", `date` → "ofdate"/"todate", `weird` →
+  "word", `happy`, `small`, `boat`.
+
+**3. A likely cause: the `it` mode also read whole English sentences.** The
+pre-registered `it` mode sends the entire sentence through the Italian G2P,
+`control_en` rows and long English runs included. In the rendered manifest:
+
+| Row content | `it` mode | `mix` mode |
+|---|---:|---:|
+| English sentence (`control_en`) | 1,668 clips, 1.69 h | 834 clips, 0.89 h |
+| mixed, an English run of ≥ 3 words | 336 clips, 0.47 h | 168 clips, 0.26 h |
+| mixed, English runs of 1–2 words | 9,260 clips, 9.75 h | 4,630 clips, 5.63 h |
+| Italian only | 2,380 clips, 2.14 h | — |
+
+About **2.2 h, 10 % of the TTS audio, pairs English sentences and phrases with
+Italian-phonemized speech**, nearly twice their English-phonemized renderings
+(1.15 h). An Italian reading is realistic for a technical term and wrong for
+"keep me" or "you", which matches the shape of the term lists. The audit rule
+("an Italian accent on English terms is not a failure") could not catch it:
+`E027-04030-sara-it`, a fully English sentence read with the Italian G2P,
+passed, and `E027-03390-nicola-it`, the same kind of row, was the one fail.
+
+This is a hypothesis from one experiment, and the cause is a design choice of
+the pre-registration, not an execution error. A redesign would keep the Italian
+G2P for isolated terms only and render every English run of two or more words,
+and every `control_en` row, with `en-us`; it would still have to remove the
+dev-macro cost, which against the product is on both languages. It is **not
+planned** (D36) and would need its own pre-registration and go-ahead.
+
 ## Artifacts
 
 - `runs/E-027/` — `tts-script.jsonl` + report, `render-report.json`,
   `audit.jsonl`/`audit-report.json`/`audit.html`/`audit-listening.md`,
-  `share.json`, `build-mel.log`, `preflight-{control,tts}.json`, `dry-{control,tts}/`,
+  `share.json`, `build-mel.log`, `preflight-{control,tts}.json`, `dry-{control,tts}.log`,
   the four run directories (`console.log`, `train.log.jsonl`, metrics,
   checkpoints), `export-{run}.log`, `release-{run}/`, the 14 readout
   `*.json`/`*.hyp.jsonl`, and `gate/*.json`.

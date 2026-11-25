@@ -1,6 +1,7 @@
-# MOTH-50 — scaffold
+# MOTH-50
 
-**Status (2026-11-24): the product is E-023 R1 seed 0 + the E-034c LM (D27).**
+**Status (2026-11-25): the model line is closed (D36); the product is E-023 R1
+seed 0 + the E-034c LM (D27).**
 R1 is the E-011 recipe with `lr_encoder` 3e-5. Seed mean: dev-macro **14.36 %**,
 S1-dev **13.79 % / 74.68 %**, R-S1-cal **12.67 % / 75.43 %**. The T-600 release
 guard passed: **12.30 % / 78.14 %** vs **13.70 / 76.13** for E-005 + E-034c
@@ -11,7 +12,9 @@ guard passed: **12.30 % / 78.14 %** vs **13.70 / 76.13** for E-005 + E-034c
 30.27 for E-034c and 20.16 / 49.81 for 0.8.1). The external mixed
 **CS-FLEURS-READ** read is **34.81 % WER** [32.89, 36.81] (176 utterances, one
 speaker, read once); the evidence boundary and all limitations are in
-`MODEL_CARD.md`. **E-005 + E-034c**
+`MODEL_CARD.md`. The `0.9.7` NOTICE misdescribes the LM as Moth's file; a
+NOTICE-only repackaging, **`0.9.8-e023-r1`**, with byte-identical runtime
+assets is pending on the training Mac (D37). **E-005 + E-034c**
 (`0.9.6-e034c`, D25) is retired from the product line and remains the
 historical reference.
 
@@ -59,9 +62,10 @@ voices spoke 3,411 re-filtered sentences (19,276 clips, 20.83 h) at 9.49 % of
 the epoch, and four 8,000-step fine-tunes of R1 seed 0 were read once. It ties
 the same-length control on R-S1-cal (WER −0.52 pp [−1.37, +0.27], ETA +0.40
 [−1.22, +2.12]) and costs **+0.15 pp dev-macro** [+0.04, +0.27], so it is
-**not adopted (D36)** and **the model line is closed**. Next: E-008
-(CS-FLEURS-READ once) and the model card. Read `STATUS.md` first when
-resuming.
+**not adopted (D36)** and **the model line is closed**. Its `switch` loss repeats
+on S1-dev; a report-only look traces it to English sentences read with the
+Italian G2P (`runs/E-027/RESULT.md`). E-008 (CS-FLEURS-READ once) and the model
+card are done. Read `STATUS.md` first when resuming.
 
 E-009 (2026-11-19) tested a lighter decoder: 0.45 / 2.0 improved dev-macro by
 0.28 pp but regressed S1-dev by 0.58 pp WER and 1.12 pp ETA, so the frozen
@@ -253,7 +257,9 @@ tools/e027_audit.py       E-027 listening-audit sample and drop rule
 tools/e027_share.py       E-027 TTS repeat for a ~10 % share of the epoch audio
 tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
-tools/release_notice.py   the MOTH-50 package NOTICE
+tools/release_notice.py   the MOTH-50 package NOTICE (LM described per D37)
+tools/renotice_release.py  repackage a release with a new NOTICE, assets byte-identical (D37)
+tools/build_cs_fleurs_manifest.py  CS-FLEURS-READ IT-EN test manifest (E-008; output gitignored)
 tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer
 tools/pack_lm.py          lossless A3 → MOTHLMB2 packing with an exact round trip

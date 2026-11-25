@@ -49,7 +49,26 @@ Apache-2.0; the recorded Moth data is CC BY 4.0
 (`semantique-team/moth-cs`). The file is reproduced here unchanged to pin the
 LM/decoder piece IDs (sha256 `d6e1054e9273915db4e706898286f90d4b97e6b703386ed8b84f0a148caed2fd`).
 
-## Planned data and TTS sources (to be listed when actually used)
+## Data actually used (2026-11-25)
+
+- The product model (`0.9.7-e023-r1`; the NOTICE-only repackaging
+  `0.9.8-e023-r1` is pending, D37) was
+  trained on Common Voice IT 27 (CC0), MLS Italian (CC-BY 4.0), LibriSpeech
+  train-clean-100 (CC-BY 4.0), MUSAN noise (CC-BY 4.0, mixed into the noisy
+  Common Voice half) and the recorded moth-cs data (CC BY 4.0). The release
+  package's own NOTICE lists them with their pinned versions. No TTS audio is
+  in the product.
+- Text in this repository: `data/manifests/spliced_it_en.jsonl` carries Common
+  Voice, MLS and LibriSpeech transcripts (licences above);
+  `data/manifests/tts_e027.jsonl`, `runs/E-025/` and `runs/E-027/` carry
+  sentences generated with Qwen2.5-1.5B-Instruct (Apache-2.0).
+- E-027 rendered training audio with Kokoro-82M (Apache-2.0) and Piper
+  `it_IT-paola-medium` / `it_IT-serena-medium` (MIT; data CC0 and CC-BY 4.0 as
+  below). The audio is not in the repository and not in any shipped model (D36).
+- CS-FLEURS transcripts are not in the repository (gitignored, D37); only
+  MOTH-50's own hypotheses on that audio are (`runs/E-008/`).
+
+## Planned data and TTS sources (the 2026-11-17 plan, kept for reference)
 
 Training data must remain commercially usable:
 
