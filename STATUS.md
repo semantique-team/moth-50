@@ -9,8 +9,8 @@ running, and the exact next commands. Update it at the end of each session.
   (795,903 B of room), version `0.9.8-e023-r1`, INT8 graph `85abd830…`,
   packed E-034c LM `7a4332f1…`, 16 kHz VAD. Published at
   <https://huggingface.co/semantique-team/moth-50> (2026-11-26); live demo at
-  <https://semantique-team-moth-50-demo.static.hf.space>. The T-600
-  release guard passed:
+  <https://semantique-team-moth-50-demo.static.hf.space>; GitHub Release
+  `v0.9.8-e023-r1`. The T-600 release guard passed:
   **12.2993 % / 78.1400 %** vs 13.7041 / 76.1266 (−1.4048 pp WER
   [−2.3455, −0.4276], +2.0134 pp ETA [−0.1921, +4.1837]). Browser exact at
   **RTFx 28.48** (4 threads, isolated, SIMD, load 79.7 ms). FLEURS once,
@@ -243,11 +243,13 @@ What was run on the training Mac on 2026-11-26:
    passes (`tests/test_publish_space.py`, 3 tests). The live page loads with
    every sha256 verified in 1-thread WASM and transcribes the smoke clip
    exactly at **10× realtime**.
+9. **Tagged and released** (2026-11-26): annotated tag `v0.9.8-e023-r1` and
+   GitHub Release with `docs/releases/0.9.8-e023-r1.md`, no binary assets
+   (the model is on Hugging Face).
 
-**Still owner decisions, not for the agent:** add a git tag plus GitHub Release
-(not part of these upload steps); whether to purge the CS-FLEURS transcripts
-from the git history of `2836a1e` (matters only if the repository is or becomes
-public).
+**Still an owner decision, not for the agent:** whether to purge the CS-FLEURS
+transcripts from the git history of `2836a1e` (matters only if the repository is
+or becomes public).
 
 ### Product and closed work
 

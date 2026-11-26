@@ -185,6 +185,7 @@ min-runs-3 segmentation rule.
 - Live browser demo: <https://semantique-team-moth-50-demo.static.hf.space>
   (static Space staged by `tools/publish_space.py`; the page verifies every
   sha256 before running).
+- Release notes: <https://github.com/semantique-team/moth-50/releases/tag/v0.9.8-e023-r1>.
 - Readouts: `runs/E-023/RESULT.md`, `runs/E-004/fleurs-RESULT.md`,
   `runs/E-008/RESULT.md`, `runs/E-017/RESULT.md`.
 - Training code and configs: `training/`, `training/configs/base6-e023-r1.toml`.

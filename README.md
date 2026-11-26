@@ -18,6 +18,7 @@ assets, ships the corrected attribution (D37). Published at
 <https://huggingface.co/semantique-team/moth-50> with the verified uploader
 `tools/upload_hf.py`; the live demo is
 <https://semantique-team-moth-50-demo.static.hf.space> (`tools/publish_space.py`).
+Release notes: <https://github.com/semantique-team/moth-50/releases/tag/v0.9.8-e023-r1>.
 **E-005 + E-034c**
 (`0.9.6-e034c`, D25) is retired from the product line and remains the
 historical reference.
