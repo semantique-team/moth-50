@@ -14,7 +14,9 @@ guard passed: **12.30 % / 78.14 %** vs **13.70 / 76.13** for E-005 + E-034c
 speaker, read once); the evidence boundary and all limitations are in
 `MODEL_CARD.md`. The `0.9.7` NOTICE misdescribed the LM as Moth's file; the
 NOTICE-only repackaging **`0.9.8-e023-r1`**, with byte-identical runtime
-assets, ships the corrected attribution (D37). **E-005 + E-034c**
+assets, ships the corrected attribution (D37). Published at
+<https://huggingface.co/semantique-team/moth-50> with the verified uploader
+`tools/upload_hf.py`. **E-005 + E-034c**
 (`0.9.6-e034c`, D25) is retired from the product line and remains the
 historical reference.
 
@@ -260,6 +262,7 @@ tools/calibrate_decoder.py  E-009 LM-weight × token-bonus grid on dev
 tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package check
 tools/release_notice.py   the MOTH-50 package NOTICE (LM described per D37)
 tools/renotice_release.py  repackage a release with a new NOTICE, assets byte-identical (D37)
+tools/upload_hf.py        verify a release and publish it to Hugging Face (dry-run by default)
 tools/build_cs_fleurs_manifest.py  CS-FLEURS-READ IT-EN test manifest (E-008; output gitignored)
 tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer

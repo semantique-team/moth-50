@@ -7,7 +7,9 @@ running, and the exact next commands. Update it at the end of each session.
 - **Current product (D27, 2026-11-23; D37 repackaging done 2026-11-26):
   E-023 R1 seed 0 acoustic + E-034c LM.** Package **49,204,097 B**
   (795,903 B of room), version `0.9.8-e023-r1`, INT8 graph `85abd830…`,
-  packed E-034c LM `7a4332f1…`, 16 kHz VAD. The T-600 release guard passed:
+  packed E-034c LM `7a4332f1…`, 16 kHz VAD. Published at
+  <https://huggingface.co/semantique-team/moth-50> (2026-11-26). The T-600
+  release guard passed:
   **12.2993 % / 78.1400 %** vs 13.7041 / 76.1266 (−1.4048 pp WER
   [−2.3455, −0.4276], +2.0134 pp ETA [−0.1921, +4.1837]). Browser exact at
   **RTFx 28.48** (4 threads, isolated, SIMD, load 79.7 ms). FLEURS once,
@@ -225,11 +227,19 @@ What was run on the training Mac on 2026-11-26:
    verified, exact transcript "ho spostato il meeting a domani", load 79.7 ms,
    **RTFx 28.48** (5-run median). No WER readout: decoding uses the same bytes.
 6. **Docs updated** (`MODEL_CARD.md`, `README.md`, this file, D37); the scratch
-   folder was deleted. The two reports are new files awaiting the commit.
+   folder was deleted. The two reports and the docs were committed in `57bc738`.
+7. **Published on Hugging Face** (2026-11-26) at
+   <https://huggingface.co/semantique-team/moth-50>. The model card is the HF
+   `README.md`; the seven files (five assets, config, NOTICE) were uploaded by
+   `tools/upload_hf.py`, which re-verifies every sha256 and refuses a stale
+   release or a card for another version. The guard has 7 tests in
+   `tests/test_upload_hf.py`; the remote tree reproduces `85abd830…`,
+   `7a4332f1…`, `7ed98ddb…` and the rest.
 
-**Owner decisions, not for the agent:** tag and publish `0.9.8-e023-r1` with
-`MODEL_CARD.md`; whether to purge the CS-FLEURS transcripts from the git history
-of `2836a1e` (matters only if the repository is or becomes public).
+**Still owner decisions, not for the agent:** add a git tag plus GitHub Release
+(not part of this upload step); build a static demo Space like `moth-demo`;
+whether to purge the CS-FLEURS transcripts from the git history of `2836a1e`
+(matters only if the repository is or becomes public).
 
 ### Product and closed work
 

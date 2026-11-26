@@ -13,6 +13,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "huggingface-hub>=2.4.0",
     "pytest",
     "ruff",
     "sentencepiece",

@@ -1,4 +1,45 @@
-# MOTH-50 — model card
+---
+license: apache-2.0
+language:
+  - it
+  - en
+tags:
+  - speech-to-text
+  - automatic-speech-recognition
+  - code-switching
+  - italian
+  - english
+  - ctc
+  - onnx
+  - int8
+  - whisper
+  - edge
+library_name: onnxruntime
+pipeline_tag: automatic-speech-recognition
+base_model: openai/whisper-base
+datasets:
+  - semantique-team/moth-cs
+  - google/fleurs
+  - openslr/librispeech_asr
+  - facebook/multilingual_librispeech
+model-index:
+  - name: moth-50-0.9.8-e023-r1
+    results:
+      - task:
+          type: automatic-speech-recognition
+          name: Speech Recognition
+        dataset:
+          type: fleurs
+          name: FLEURS (it_it)
+          config: it_it
+          split: test
+        metrics:
+          - type: wer
+            value: 11.8304
+            name: WER (beam+LM, normalized, percent)
+---
+
+# MOTH-50 0.9.8-e023-r1 — model card
 
 **Model:** MOTH-50, version **`0.9.8-e023-r1`** (a NOTICE-only repackaging of
 `0.9.7-e023-r1` with byte-identical runtime assets: see *Licence and
@@ -139,6 +180,8 @@ min-runs-3 segmentation rule.
 - Package/browser: `runs/E-023/export-report-0.9.8.json`,
   `runs/E-023/browser-run-0.9.8.json` (the `0.9.7` reports record the same
   runtime bytes).
+- Published model: <https://huggingface.co/semantique-team/moth-50> (uploaded
+  with `tools/upload_hf.py`, which re-verifies every sha256 first).
 - Readouts: `runs/E-023/RESULT.md`, `runs/E-004/fleurs-RESULT.md`,
   `runs/E-008/RESULT.md`, `runs/E-017/RESULT.md`.
 - Training code and configs: `training/`, `training/configs/base6-e023-r1.toml`.
