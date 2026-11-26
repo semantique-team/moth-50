@@ -6,15 +6,15 @@ R1 is the E-011 recipe with `lr_encoder` 3e-5. Seed mean: dev-macro **14.36 %**,
 S1-dev **13.79 % / 74.68 %**, R-S1-cal **12.67 % / 75.43 %**. The T-600 release
 guard passed: **12.30 % / 78.14 %** vs **13.70 / 76.13** for E-005 + E-034c
 (−1.40 pp WER [−2.35, −0.43], +2.01 pp ETA [−0.19, +4.18]). The package
-**`0.9.7-e023-r1`** is **49,203,776 B** (796,224 B of room), graph
+**`0.9.8-e023-r1`** is **49,204,097 B** (795,903 B of room), graph
 `85abd830…`, browser exact at **RTFx 28.48** (4 threads, SIMD, isolated, load
-70.1 ms). FLEURS, report-only: **IT 11.83 %**, **EN 28.20 %** (vs 14.82 /
+79.7 ms). FLEURS, report-only: **IT 11.83 %**, **EN 28.20 %** (vs 14.82 /
 30.27 for E-034c and 20.16 / 49.81 for 0.8.1). The external mixed
 **CS-FLEURS-READ** read is **34.81 % WER** [32.89, 36.81] (176 utterances, one
 speaker, read once); the evidence boundary and all limitations are in
-`MODEL_CARD.md`. The `0.9.7` NOTICE misdescribes the LM as Moth's file; a
-NOTICE-only repackaging, **`0.9.8-e023-r1`**, with byte-identical runtime
-assets is pending on the training Mac (D37). **E-005 + E-034c**
+`MODEL_CARD.md`. The `0.9.7` NOTICE misdescribed the LM as Moth's file; the
+NOTICE-only repackaging **`0.9.8-e023-r1`**, with byte-identical runtime
+assets, ships the corrected attribution (D37). **E-005 + E-034c**
 (`0.9.6-e034c`, D25) is retired from the product line and remains the
 historical reference.
 
@@ -89,7 +89,8 @@ zero); the dated, post-hoc amendment E-002 §9 (D26, 2026-11-23) makes it
 report-only, as §8.4 already required, and accepts R1. **Seed 0** is the product
 seed: the pre-registered T-600 release guard passed on 2026-11-23 (12.2993 /
 78.1400 vs 13.7041 / 76.1266, no WER or ETA regression) and **D27 adopts it as
-`0.9.7-e023-r1`**. E-017 is
+the product (`0.9.7-e023-r1`, repackaged as `0.9.8-e023-r1` for the NOTICE fix,
+D37)**. E-017 is
 done: the 400-cue `R-S1-cal` set is reviewed, recorded (400/400, 16.95 min),
 level-matched to S1-dev (−16.58 dB), built into `manifests/R-S1-cal.jsonl`
 (`split: dev`) and `data/shards/s1-cal`, and frozen under **E-002 §8**
@@ -125,7 +126,7 @@ was evaluated and rejected. The model must remain commercially usable.
 - **Architecture**: Whisper-base encoder + 6 extra pre-LN transformer blocks +
   linear CTC over the 1,024-piece BPE + E-031/E-034 LM + Silero VAD. **39.3 M
   acoustic parameters, 47.74 MB initial package** (measured graph size; the
-  current product package is **49.20 MB** (`0.9.7-e023-r1`, E-034c LM + 16 kHz
+  current product package is **49.20 MB** (`0.9.8-e023-r1`, E-034c LM + 16 kHz
   VAD, 0.80 MB under the ceiling); the A3 package is 44.77 MB).
   Same-budget challenger: base + 4 blocks + a 12 MB LM (~47.94 MB), decided by
   E-004. Memory: E-002 measured 13.37 GB without checkpointing and 3.68 GB with

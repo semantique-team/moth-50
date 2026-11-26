@@ -1,8 +1,9 @@
 # MOTH-50 — model card
 
-**Model:** MOTH-50, version **`0.9.7-e023-r1`** (a NOTICE-only repackaging,
-`0.9.8-e023-r1`, is pending: see *Licence and attribution* and D37)
-**Date:** 2026-11-24, revised 2026-11-25
+**Model:** MOTH-50, version **`0.9.8-e023-r1`** (a NOTICE-only repackaging of
+`0.9.7-e023-r1` with byte-identical runtime assets: see *Licence and
+attribution* and D37)
+**Date:** 2026-11-24, revised 2026-11-26
 **Status:** final product of the MOTH-50 line. E-027 (TTS fine-tune) tied and was
 not adopted (D36); no further training arm is planned.
 **Licence:** Apache-2.0 for the repository, model code and weights. Repository
@@ -24,7 +25,7 @@ It is an **encoder-only CTC** model, not a streaming or an LLM-decoder system.
 | VAD | Silero 16 kHz, 1,289,603 B |
 | Decoder | beam 12, top-k 10, LM weight 0.55, token bonus 2.7 |
 | INT8 graph | 40,039,997 B, sha256 `85abd830…` |
-| Release package | **49,203,776 B** (796,224 B under the 50,000,000 B ceiling) |
+| Release package | **49,204,097 B** (795,903 B under the 50,000,000 B ceiling) |
 
 Input is 16 kHz mono audio; the runtime applies the 16 kHz VAD. The package is
 self-contained: acoustic INT8 graph, LM, VAD, mel filters, vocab and config.
@@ -58,7 +59,7 @@ activation checkpointing, on an M5 Pro (16 GB). **S1-dev and R-S1-cal are held
 out**; no S1-dev or R-S1-cal audio was trained on. **No TTS audio is in the
 product**: E-027 rendered four permissive voices but the arm tied and was not
 adopted (D36). The NOTICE admits permissive TTS as a data class; that is a
-policy allowance, not a component of `0.9.7`.
+policy allowance, not a component of `0.9.8`.
 
 ## Evaluation
 
@@ -84,7 +85,7 @@ not a fresh holdout. FLEURS and CS-FLEURS were read once, report-only, and were
 never used to select anything. CS-FLEURS-READ is CC-BY-NC and test-only.
 
 Browser: the release transcript is exact on the smoke clip at **RTFx 28.48**
-(4 threads, isolated, SIMD, load 70.1 ms); 1-thread non-isolated throughput is
+(4 threads, isolated, SIMD, load 79.7 ms); 1-thread non-isolated throughput is
 10.93× / 19.74× / 21.17× at 5 / 10 / 20 s. The browser WER on S1-dev is
 **13.7180 %** vs Python 13.3820 % (**+0.34 pp** [−0.13, +0.79], a tie) with the
 min-runs-3 segmentation rule.
@@ -126,7 +127,7 @@ min-runs-3 segmentation rule.
   show 0.05–0.08 pp. The INT8 cost is small and not significant.
 - **No contextual biasing / glossary.** E-026's realistic glossary was measured
   and not exposed because the S1-dev veto failed (D35). There is no user
-  glossary or keyterm injection in `0.9.7`.
+  glossary or keyterm injection in `0.9.8`.
 
 ## Provenance and reproducibility
 
@@ -135,8 +136,9 @@ min-runs-3 segmentation rule.
   pooled ETA). Seed 1 was never read on T-600 or FLEURS.
 - LM: E-034c clean rebuild (D25), packed lossless MOTHLMB2.
 - VAD: 16 kHz Silero (D19); tokenizer pinned (D14).
-- Package/browser: `runs/E-023/export-report-0.9.7.json`,
-  `runs/E-023/browser-run-0.9.7.json`.
+- Package/browser: `runs/E-023/export-report-0.9.8.json`,
+  `runs/E-023/browser-run-0.9.8.json` (the `0.9.7` reports record the same
+  runtime bytes).
 - Readouts: `runs/E-023/RESULT.md`, `runs/E-004/fleurs-RESULT.md`,
   `runs/E-008/RESULT.md`, `runs/E-017/RESULT.md`.
 - Training code and configs: `training/`, `training/configs/base6-e023-r1.toml`.
@@ -153,11 +155,12 @@ are CC-BY-NC and are evaluation-only**; they are not in training and not
 redistributed. No voice cloning of S1/S2/S3 was used; no commercial-API output
 was used for labels, text or LM data.
 
-**Erratum (2026-11-25, D37).** The NOTICE inside `0.9.7-e023-r1` says the
-decoder LM is "reused unchanged from Moth 0.8.1" and quotes the unpacked
-sha256 `4b122fbe…`. The shipped LM is E-034c: MOTH-50's rebuild of Moth's
-E-034 recipe on Moth's frozen E-031 corpus, packed as `7a4332f1…`. The listed
-sources are the right ones; the description and the hash are not. The fixed
-NOTICE ships in `0.9.8-e023-r1`, a repackaging whose graph, LM, VAD,
-vocabulary and mel filters are byte-identical to `0.9.7`; every number in this
+**Erratum (2026-11-25, D37; fixed in `0.9.8-e023-r1`).** The NOTICE inside
+`0.9.7-e023-r1` said the decoder LM is "reused unchanged from Moth 0.8.1" and
+quoted the unpacked sha256 `4b122fbe…`. The shipped LM is E-034c: MOTH-50's
+rebuild of Moth's E-034 recipe on Moth's frozen E-031 corpus, packed as
+`7a4332f1…`. The listed sources were the right ones; the description and the
+hash were not. The fixed NOTICE ships in `0.9.8-e023-r1`, a repackaging whose
+graph, LM, VAD, vocabulary and mel filters are byte-identical to `0.9.7`
+(every sha256 checked by `tools/renotice_release.py`); every number in this
 card applies to both.

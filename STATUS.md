@@ -1,23 +1,24 @@
-# MOTH-50 — session status and handoff (2026-11-25)
+# MOTH-50 — session status and handoff (2026-11-26)
 
 This is the first file to read when resuming. It records what is done, what is
 running, and the exact next commands. Update it at the end of each session.
 
 - **Remote:** `semantique-team/moth-50`, branch `main`
-- **Current product (D27, 2026-11-23): E-023 R1 seed 0 acoustic + E-034c
-  LM.** Package **49,203,776 B** (796,224 B of room), version
-  `0.9.7-e023-r1`, INT8 graph `85abd830…`, packed E-034c LM `7a4332f1…`,
-  16 kHz VAD. The T-600 release guard passed: **12.2993 % / 78.1400 %** vs
-  13.7041 / 76.1266 (−1.4048 pp WER [−2.3455, −0.4276], +2.0134 pp ETA
-  [−0.1921, +4.1837]). Browser exact at **RTFx 28.48** (4 threads, isolated,
-  SIMD, load 70.1 ms). FLEURS once, report-only, vs E-034c: IT **11.8304 %**
-  (−2.9935 pp), EN **28.1955 %** (−2.0720 pp). **CS-FLEURS-READ once:
-  34.8085 %** [32.8929, 36.8120] (176 utterances, one speaker, insertion
-  2.2603 %; no ETA), the final external number (`runs/E-008/RESULT.md`); the
-  model card is `MODEL_CARD.md`. **D37 (2026-11-25):** the `0.9.7` NOTICE calls
-  the E-034c LM Moth's unchanged file and quotes its unpacked hash; the fix is
-  committed and a NOTICE-only package `0.9.8-e023-r1` (same runtime bytes) is
-  pending on the Mac. **E-034c** (`0.9.6`, D25) is
+- **Current product (D27, 2026-11-23; D37 repackaging done 2026-11-26):
+  E-023 R1 seed 0 acoustic + E-034c LM.** Package **49,204,097 B**
+  (795,903 B of room), version `0.9.8-e023-r1`, INT8 graph `85abd830…`,
+  packed E-034c LM `7a4332f1…`, 16 kHz VAD. The T-600 release guard passed:
+  **12.2993 % / 78.1400 %** vs 13.7041 / 76.1266 (−1.4048 pp WER
+  [−2.3455, −0.4276], +2.0134 pp ETA [−0.1921, +4.1837]). Browser exact at
+  **RTFx 28.48** (4 threads, isolated, SIMD, load 79.7 ms). FLEURS once,
+  report-only, vs E-034c: IT **11.8304 %** (−2.9935 pp), EN **28.1955 %**
+  (−2.0720 pp). **CS-FLEURS-READ once: 34.8085 %** [32.8929, 36.8120] (176
+  utterances, one speaker, insertion 2.2603 %; no ETA), the final external
+  number (`runs/E-008/RESULT.md`); the model card is `MODEL_CARD.md`. **D37
+  (2026-11-25, done 2026-11-26):** the `0.9.7` NOTICE called the E-034c LM
+  Moth's unchanged file and quoted its unpacked hash; `0.9.8-e023-r1` ships
+  the corrected NOTICE (sha256 `ea1759b6…`) with byte-identical runtime
+  assets. **E-034c** (`0.9.6`, D25) is
   retired from the product line and stays the historical reference: dev-macro
   **16.9897 %**, S1-dev **14.9744 / 73.9258**, T-600 **13.7041 / 76.1266**,
   browser RTFx 29.35. `runs/E-023/RESULT.md`, D27.
@@ -182,7 +183,7 @@ running, and the exact next commands. Update it at the end of each session.
 | P7 E-011 diagnostics | **done**: gold WER E-005 0.2018 %, s0 0.0831, s1 0.1424 (H2 saturated); ETA misses +54 / +18, mostly short-English substitutions; D2 blocked on E-017 | `runs/E-011/p7/RESULT.md` |
 | E-023 R1 | **adopted (D27)**: both seeds complete; 2b report-only by E-002 §9 (D26); seed mean dev-macro 14.3578 % (−2.63 pp), S1-dev 13.7911/74.6826, cal 12.6679/75.4305; seed 0 chosen on cal ETA | `runs/E-023/RESULT.md`, `runs/E-023/p6/` |
 | E-023 T-600 guard | **PASS**: 12.2993 % / 78.1400 % vs 13.7041 / 76.1266; WER −1.4048 pp [−2.3455, −0.4276], ETA +2.0134 pp [−0.1921, +4.1837]; declared repeated read, speakers/categories report-only | `runs/E-023/t600-s0.json/.hyp.jsonl` |
-| E-023 package/browser | **done, product**: 49,203,776 B (796,224 B room), graph `85abd830…`, load 70.1 ms, exact transcript, RTFx 28.48 (4 threads) | `runs/E-023/export-report-0.9.7.json`, `runs/E-023/browser-run-0.9.7.json` |
+| E-023 package/browser | **done, product**: 49,204,097 B (795,903 B room), version `0.9.8-e023-r1`, graph `85abd830…`, load 79.7 ms, exact transcript, RTFx 28.48 (4 threads); NOTICE fixed (D37) | `runs/E-023/export-report-0.9.8.json`, `runs/E-023/browser-run-0.9.8.json` |
 | E-023 FLEURS | **done, report-only**: IT **11.8304 %** (−2.9935 pp vs E-034c), EN **28.1955 %** (−2.0720 pp); no ETA | `runs/E-023/fleurs-{it,en}-s0.*` |
 | E-016/P4 browser | **done (D28/D29)**: 1-thread non-isolated 10.93/19.74/21.17× (pass); S1-dev upstream +0.72 pp, `segment:false` +0.35 pp, **min-runs-3 13.7180 % (+0.34 pp, tie)**; runtime vendored at `0e15442`, one-file patch `96d099b5…` | `runs/E-016/RESULT.md`, `runs/E-016/E-016b.md`, `vendor/moth-stt-web/`, `tools/serve_web.py` |
 | E-024/P8 ×3-term LM | **done, not adopted (D30)**: same corpus/size/lossless pack; R-S1-cal **identical** (12.8469 / 75.4967, 0.0 pp), S1-dev tie 13.3966 / 75.0977 (+0.0146 / −0.0488, 4/960 clips); gate 1 failed, dev-macro/T not run | `experiments/E-024-p8-lm-x3.md`, `runs/E-024/RESULT.md` |
@@ -196,91 +197,45 @@ running, and the exact next commands. Update it at the end of each session.
 The pre-A3 artifacts (`readout.json`, `readout-int8.json`, `release/`,
 `browser-run.json`) are kept for the erratum; they are **not** the final numbers.
 
-## Next steps: the model line is closed — finish the D37 repackaging on the Mac
+## Next steps: the model line and the D37 repackaging are done
 
-**Nothing is being trained and no experiment is planned.** The only open work is
-D37 (2026-11-25): the `0.9.7` NOTICE describes the E-034c LM as Moth 0.8.1's
-file "reused unchanged" with its unpacked hash. The code fix is committed
-(`tools/release_notice.py`, `tools/export_release.py`) with a repackaging tool
-(`tools/renotice_release.py`); the package itself needs the Mac, where the
-checkpoint, the release folder and the browser setup live.
+**Nothing is being trained and no experiment is planned. D37 is closed
+(2026-11-26).** The `0.9.7` NOTICE described the E-034c LM as Moth 0.8.1's file
+"reused unchanged" with its unpacked hash. The corrected
+`tools/release_notice.py` now writes "MOTH-50's E-034c LM" with both the shipped
+sha256 `7a4332f1…` and the source sha256 `4b122fbe…`; the NOTICE-only package
+`0.9.8-e023-r1` (NOTICE sha256 `ea1759b6…`) ships byte-identical runtime assets.
 
-### To do on the training Mac, in order
+What was run on the training Mac on 2026-11-26:
 
-1. **Pull and check.** The pull also **deletes**
-   `data/manifests/cs-fleurs-read.jsonl` from the working tree (now gitignored:
-   CC-BY-NC text, D37); restore it byte for byte so E-008 stays reproducible.
+1. **Pull and check.** `git pull --ff-only` (2836a1e → f7f5b72); pytest **139
+   passed, 4 skipped**; ruff check and format clean. `data/manifests/
+   cs-fleurs-read.jsonl` was restored byte for byte from `2836a1e` (sha256
+   `848c2eae…`; gitignored, so `git status` stays clean).
+2. **Error confirmed.** `release-0.9.7/NOTICE` sha256 `d507f66b…` contains
+   "reused unchanged" at the LM sentence.
+3. **Scratch re-export** from `r1-s0/checkpoints/ckpt_best.pt` (EMA) with
+   E-034c: graph `85abd830…` reproduced; the NOTICE names the E-034c LM with
+   both hashes and no longer calls the LM Moth's.
+4. **Repackage** with `tools/renotice_release.py`: all five runtime assets kept
+   their sha256, only `NOTICE` and `config.json` changed, **49,204,097 B**
+   (795,903 B of room). Reports: `runs/E-023/export-report-0.9.8.json` and
+   `runs/E-023/browser-run-0.9.8.json`.
+5. **Browser check** of `release-0.9.8` (isolated, 4 threads): every sha256
+   verified, exact transcript "ho spostato il meeting a domani", load 79.7 ms,
+   **RTFx 28.48** (5-run median). No WER readout: decoding uses the same bytes.
+6. **Docs updated** (`MODEL_CARD.md`, `README.md`, this file, D37); the scratch
+   folder was deleted. The two reports are new files awaiting the commit.
 
-   ```bash
-   git pull --ff-only
-   uv run --frozen -- pytest -q
-   uv run --frozen -- ruff check . && uv run --frozen -- ruff format --check .
-   git show 2836a1e:data/manifests/cs-fleurs-read.jsonl > data/manifests/cs-fleurs-read.jsonl
-   shasum -a 256 data/manifests/cs-fleurs-read.jsonl
-   # expect 848c2eae935bbb40ccb9ec27abe26152c3e8caea8c94ffeefd48aab832cb6da8; git status stays clean
-   ```
-
-2. **Confirm the error** in the shipped NOTICE (sha256 `d507f66b…` per
-   `runs/E-023/export-report-0.9.7.json`). If `grep` prints nothing, stop and
-   report: then D37 is only the code fix and there is no new package.
-
-   ```bash
-   shasum -a 256 runs/E-023/release-0.9.7/NOTICE
-   grep -n "reused unchanged" runs/E-023/release-0.9.7/NOTICE
-   ```
-
-3. **Scratch re-export**, only to get the corrected NOTICE from the official
-   path. Its graph hash is a report-only determinism check (`85abd830…`
-   expected); the package uses the 0.9.7 bytes either way.
-
-   ```bash
-   uv run --frozen --project ../moth-stt --extra export -- python tools/export_release.py \
-     --checkpoint runs/E-023/r1-s0/checkpoints/ckpt_best.pt --weights ema \
-     --config training/configs/base6-e023-r1.toml \
-     --lm runs/E-004/lm_e034c_n2.bin --allow-other-lm \
-     --out-dir runs/E-023/release-0.9.8-scratch --version 0.9.8-e023-r1
-   sed -n '/decoder LM/,/these sources/p' runs/E-023/release-0.9.8-scratch/NOTICE
-   shasum -a 256 runs/E-023/release-0.9.8-scratch/model.int8.onnx
-   ```
-
-   The printed paragraph must name "MOTH-50's E-034c LM", the shipped sha256
-   `7a4332f1…` and the source sha256 `4b122fbe…`, and must not say the LM is
-   reused unchanged.
-
-4. **Repackage.** The tool copies the five runtime assets of `release-0.9.7`,
-   swaps in the new NOTICE, sets the version and fails unless every asset keeps
-   its sha256 and the package fits 50,000,000 B.
-
-   ```bash
-   uv run --frozen -- python tools/renotice_release.py --release runs/E-023/release-0.9.7 \
-     --notice runs/E-023/release-0.9.8-scratch/NOTICE --version 0.9.8-e023-r1 \
-     --out-dir runs/E-023/release-0.9.8 --report runs/E-023/export-report-0.9.8.json
-   ```
-
-5. **Browser check** of `runs/E-023/release-0.9.8`, as for
-   `browser-run-0.9.7.json` (`python tools/serve_web.py --release
-   runs/E-023/release-0.9.8`, isolated): the package loads with every sha256
-   verified and transcribes `../moth-cs-dataset/audio/T/S1/S1_0001.wav` exactly
-   as "ho spostato il meeting a domani". Write `runs/E-023/browser-run-0.9.8.json`
-   in the same shape; RTFx is report-only. No WER readout: decoding uses the
-   same bytes.
-
-6. **Docs.** Product version `0.9.8-e023-r1`, new package bytes and room, and the
-   two new reports in `MODEL_CARD.md` (header, component table, provenance;
-   keep the erratum paragraph with "fixed in 0.9.8"), `README.md`, this file,
-   and D37 status → done. Delete `runs/E-023/release-0.9.8-scratch/`
-   (gitignored). Commit the reports and docs.
-
-7. **Owner decisions, not for the agent:** tag and publish
-   `0.9.8-e023-r1` with `MODEL_CARD.md`; whether to purge the CS-FLEURS
-   transcripts from the git history of `2836a1e` (matters only if the repository
-   is or becomes public).
+**Owner decisions, not for the agent:** tag and publish `0.9.8-e023-r1` with
+`MODEL_CARD.md`; whether to purge the CS-FLEURS transcripts from the git history
+of `2836a1e` (matters only if the repository is or becomes public).
 
 ### Product and closed work
 
-**The product is E-023 R1 seed 0 + E-034c, version `0.9.7-e023-r1` (D27).**
+**The product is E-023 R1 seed 0 + E-034c, version `0.9.8-e023-r1` (D27, D37).**
 The T-600 guard passed on 2026-11-23 (12.2993 / 78.1400 vs 13.7041 / 76.1266),
-the package is 49,203,776 B with graph `85abd830…`, the browser transcript is
+the package is 49,204,097 B with graph `85abd830…`, the browser transcript is
 exact at RTFx 28.48, and FLEURS is IT 11.8304 % / EN 28.1955 % (report-only).
 E-005 + E-034c (`0.9.6-e034c`, D25) is retired from the product line. Nothing
 is running. **Do not re-read T-600 or FLEURS with this seed.** E-016/P4 is
@@ -348,7 +303,7 @@ stays (D33).
 come from `text/pool.jsonl`, and future LM corpora must exclude the pool.
 
 The adopted readouts and the guard command are in `runs/E-023/RESULT.md`
-(`t600-s0.json/.hyp.jsonl`, `browser-run-0.9.7.json`,
+(`t600-s0.json/.hyp.jsonl`, `browser-run-0.9.8.json`,
 `fleurs-{it,en}-s0.*`). The A3 package/readout (`runs/E-005/`) remains the
 historical E-002 gate reference; do not overwrite it.
 
@@ -413,7 +368,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
   `vendor/moth-stt-web/ort.js` also carries the E-016b min-runs-3 rule
   (`96d099b5…`, `PATCH-2026-11-23.diff`); the other files are untouched. Serve
   a release with `python tools/serve_web.py --release
-  runs/E-023/release-0.9.7`; do not depend on the archived `../moth-stt`
+  runs/E-023/release-0.9.8`; do not depend on the archived `../moth-stt`
   checkout (E-016/D28/D29).
 - **The 16 kHz VAD is the export default (D19).** `export_release.py` ships
   `silero_vad_16k_op15.onnx` as `silero_vad.onnx` (1,289,603 B); `--vad full`
@@ -455,7 +410,7 @@ The CV 27.0 Italian archive is pinned in `data/sources.lock.json` (sha256
 
 - `README.md` — project goal and current decisions.
 - `MODEL_CARD.md` — evidence boundary, training data, evaluation, known
-  weaknesses, provenance and licences for `0.9.7-e023-r1`.
+  weaknesses, provenance and licences for `0.9.8-e023-r1`.
 - `docs/decisions.md` — D1–D37, including checkpointing (D15), init (D16),
   release asset pins (D17), the post-E-005 plan (D18), the 16 kHz VAD and
   MOTHLMB2 (D19/D20), encoder LR (D21), E-011 (D22), E-004 B (D23), frontier

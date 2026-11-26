@@ -834,9 +834,11 @@ The product stays **E-023 R1 seed 0 + E-034c** (`0.9.7-e023-r1`, D27). Result in
 
 **Decision: the release NOTICE names the LM that is actually shipped; the
 product is repackaged as `0.9.8-e023-r1` with byte-identical runtime assets.**
-Status: the code fix is committed; the repackaging and its checks run on the
-training Mac (`STATUS.md`). Until they pass, `0.9.7-e023-r1` stays the
-package, with this erratum.
+Status: **done (2026-11-26).** The Mac checks passed: the corrected NOTICE
+sha256 is `ea1759b6…`, every runtime asset kept its sha256, the package is
+**49,204,097 B** (795,903 B of room) and the browser check is exact at RTFx
+28.48. Reports: `runs/E-023/export-report-0.9.8.json`,
+`runs/E-023/browser-run-0.9.8.json`.
 
 - **The error.** `tools/release_notice.py` has written the same LM sentence
   since 2026-11-19: "the decoder LM (sha256 …) and the SentencePiece tokenizer
@@ -857,8 +859,9 @@ package, with this erratum.
   mel filters), takes the NOTICE from a scratch re-export of the same
   checkpoint, sets `version` to `0.9.8-e023-r1` and fails unless every asset
   keeps its sha256 and the package validates within 50,000,000 B. Decoding is
-  byte-for-byte the same, so no readout is repeated; the browser check (load,
-  sha256 verification, exact smoke transcript) is.
+  byte-for-byte the same, so no readout was repeated; the browser check (load,
+  sha256 verification, exact smoke transcript, RTFx 28.48 report-only) was run
+  on 2026-11-26.
 - **Not changed.** Model, LM, decoder, VAD, all numbers in `MODEL_CARD.md`. The
   0.9.8 version number was reserved for an adopted E-027 arm, which did not
   happen (D36).
