@@ -182,6 +182,9 @@ min-runs-3 segmentation rule.
   runtime bytes).
 - Published model: <https://huggingface.co/semantique-team/moth-50> (uploaded
   with `tools/upload_hf.py`, which re-verifies every sha256 first).
+- Live browser demo: <https://semantique-team-moth-50-demo.static.hf.space>
+  (static Space staged by `tools/publish_space.py`; the page verifies every
+  sha256 before running).
 - Readouts: `runs/E-023/RESULT.md`, `runs/E-004/fleurs-RESULT.md`,
   `runs/E-008/RESULT.md`, `runs/E-017/RESULT.md`.
 - Training code and configs: `training/`, `training/configs/base6-e023-r1.toml`.

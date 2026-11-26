@@ -16,7 +16,9 @@ speaker, read once); the evidence boundary and all limitations are in
 NOTICE-only repackaging **`0.9.8-e023-r1`**, with byte-identical runtime
 assets, ships the corrected attribution (D37). Published at
 <https://huggingface.co/semantique-team/moth-50> with the verified uploader
-`tools/upload_hf.py`. **E-005 + E-034c**
+`tools/upload_hf.py`; the live demo is
+<https://semantique-team-moth-50-demo.static.hf.space> (`tools/publish_space.py`).
+**E-005 + E-034c**
 (`0.9.6-e034c`, D25) is retired from the product line and remains the
 historical reference.
 
@@ -263,6 +265,7 @@ tools/export_release.py   INT8 release folder + MOTH-50 NOTICE + 50 MB package c
 tools/release_notice.py   the MOTH-50 package NOTICE (LM described per D37)
 tools/renotice_release.py  repackage a release with a new NOTICE, assets byte-identical (D37)
 tools/upload_hf.py        verify a release and publish it to Hugging Face (dry-run by default)
+tools/publish_space.py    stage and publish the static browser demo Space
 tools/build_cs_fleurs_manifest.py  CS-FLEURS-READ IT-EN test manifest (E-008; output gitignored)
 tools/probe_vad.py        Silero graph parity probe (E-012)
 tools/moth_lm.py          MOTHLMB2 writer/reader and runtime scorer

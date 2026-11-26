@@ -8,7 +8,8 @@ running, and the exact next commands. Update it at the end of each session.
   E-023 R1 seed 0 acoustic + E-034c LM.** Package **49,204,097 B**
   (795,903 B of room), version `0.9.8-e023-r1`, INT8 graph `85abd830…`,
   packed E-034c LM `7a4332f1…`, 16 kHz VAD. Published at
-  <https://huggingface.co/semantique-team/moth-50> (2026-11-26). The T-600
+  <https://huggingface.co/semantique-team/moth-50> (2026-11-26); live demo at
+  <https://semantique-team-moth-50-demo.static.hf.space>. The T-600
   release guard passed:
   **12.2993 % / 78.1400 %** vs 13.7041 / 76.1266 (−1.4048 pp WER
   [−2.3455, −0.4276], +2.0134 pp ETA [−0.1921, +4.1837]). Browser exact at
@@ -235,11 +236,18 @@ What was run on the training Mac on 2026-11-26:
    release or a card for another version. The guard has 7 tests in
    `tests/test_upload_hf.py`; the remote tree reproduces `85abd830…`,
    `7a4332f1…`, `7ed98ddb…` and the rest.
+8. **Published the static demo Space** (2026-11-26):
+   <https://semantique-team-moth-50-demo.static.hf.space>. `tools/publish_space.py`
+   stages the branded page (`runs/E-023/space/`), the vendored runtime and the
+   verified release, checks every sha256, and uploads only after the guard
+   passes (`tests/test_publish_space.py`, 3 tests). The live page loads with
+   every sha256 verified in 1-thread WASM and transcribes the smoke clip
+   exactly at **10× realtime**.
 
 **Still owner decisions, not for the agent:** add a git tag plus GitHub Release
-(not part of this upload step); build a static demo Space like `moth-demo`;
-whether to purge the CS-FLEURS transcripts from the git history of `2836a1e`
-(matters only if the repository is or becomes public).
+(not part of these upload steps); whether to purge the CS-FLEURS transcripts
+from the git history of `2836a1e` (matters only if the repository is or becomes
+public).
 
 ### Product and closed work
 
